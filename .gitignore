@@ -187,3 +187,4 @@ $RECYCLE.BIN/
 # add
 .classpath
 .project
+.gitignore
