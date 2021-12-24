@@ -46,7 +46,7 @@ public class MemberJoinDataCheck {
 		Pattern patternS = Pattern.compile("[~!@#$%^&*()-_=+<>/?]");
 		Matcher matcherS = patternA.matcher(userPwd);
 		// 공백문자 확인
-		Pattern patternB = Pattern.compile("\s");
+		Pattern patternB = Pattern.compile("\\s");
 		Matcher matcherB = patternA.matcher(userPwd);
 
 		// 비밀번호 글자수 검사
