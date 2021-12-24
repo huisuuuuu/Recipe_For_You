@@ -1,0 +1,55 @@
+@charset "UTF-8";
+        *{box-sizing: border-box;
+         font-family: 'Noto Sans KR', sans-serif;
+        }
+        
+        
+       
+        #menuNavi_wrapper
+        {
+           
+            width:100%;
+            height: 250px;
+            margin: 0px auto;
+          
+            
+        }
+        #menu_content1
+        {
+        
+            width: 33%;
+            height: 100%;
+            float: left;
+        }
+         #menu_content2
+        {
+          
+            width: 33%;
+            height: 100%;
+            float: left;
+           
+            
+        }
+         #menu_content3
+        {
+         
+            width: 33%;
+            height: 100%;
+            float: left;
+           
+            
+        }
+
+ 
+            #menu_content2 H3,H6
+        {
+            position: relative;
+            top:15%;
+        }
+        #menu_content2 H6
+        {
+            text-align: center;
+            line-height: 80px;
+            color: dimgray
+        }
+        

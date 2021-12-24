@@ -1,0 +1,206 @@
+
+    *{box-sizing: border-box;
+    
+     }
+    #cWrapper
+    {
+        width: 1280px;
+        height: auto;
+        margin: 0 auto;  
+        font-family: 'Noto Serif KR', serif;
+    }
+    .side_empty
+    { 
+        width: 315px;
+        height:1000px;
+        float: left;
+        
+      
+    }
+    #content_wrapper
+    {
+        
+        width: 650px;
+        height: auto;
+        float: left;
+        margin: auto;
+    }
+    #content_empty
+    {
+    
+        width: 100%;
+        height: 100px;
+    }
+    #content1
+    {
+        width: 100%;
+        height: 961px;
+    }
+    #food_img
+    {
+      
+        width: 100%;
+        height: 648px;
+       
+    }
+    #subtitle
+    {
+        
+        width: 100%;
+        height: 50px;
+        line-height: 60px;
+        font-size: 18px;
+        color: gray;
+        
+       
+    }
+     #title
+    {
+      
+        width: 100%;
+        height: 90px;
+        line-height: 60px;
+        font-size: 20px;
+        font-weight: 900;
+        
+        
+    }
+     #introduction
+    {  
+        width: 100%;
+        height: 173px;
+        line-height: 24px;
+        font-size: 17px;
+        color: gray;  
+    }
+
+    .line
+    {
+        border-color: #7FB292;
+        border-bottom-width: medium;
+    }
+    
+    
+    #content2_ingredient
+    {
+        
+        width: 100%;
+        height: 278px;
+    }
+    #content2_ingredient table,tr,td
+    {
+        border-collapse: collapse;
+        padding: 0px;
+        margin: 0px auto;
+    }
+    
+    
+    #content3_cook
+    {
+       
+        width: 100%;
+        height: auto;
+      
+    }
+    .step_wrapper
+    {
+      
+        width: 100%;
+        height: 383px;
+        margin: 14px auto;
+    }
+    .step_empty
+    {
+       
+        width: 100%;
+        height: 74px;
+        line-height: 120px;
+        font-weight: bold;
+    }
+     .step_content
+    {
+        
+        width: 100%;
+        height: 308px;
+       
+    }
+    .step_content hr
+    {
+        margin: 0;
+    }
+    .step_img
+    {
+        width: 302px;
+        height: 100%;
+        float: left;
+       
+    }
+     .step_text
+    {
+       
+        width: 340px;
+        height: 100%;
+        float: left;
+       
+    }
+    
+    
+     #content_fotter
+    {
+       
+        width: 100%;
+        height: 252px;
+       
+    }
+    #fotter_button
+    {
+      
+        width: 100%;
+        height: 52px;
+        float: left;
+       
+    }
+    #fotter_empty1
+    {
+       
+        width: 100%;
+        height: 60px;
+        float: left;
+     
+
+    }
+    #fotter_empty2
+    {
+        
+        width: 100%;
+        height: 140px;
+        float: left;
+        
+        
+
+    }
+    .btn-success
+    {
+        width: 10%;
+        height:41px;
+        background-color: #7FB292;
+        color: white;
+        transform: translateY(-10px);
+    }
+ 
+    #deleteBtn
+    {
+        transform: translate(290px,-10px);
+        
+    }
+    #fotter_button
+    {
+        line-height: 70px;
+    }
+    #fotter_line
+    {
+       height: 3px;
+    }
+    
+
+    
