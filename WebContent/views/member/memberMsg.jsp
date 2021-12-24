@@ -1,17 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<<<<<<< HEAD
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
-</head>
-<body>
-	<H3>비정상적인 접근을 시도하였습니다.</H3>
-	<H5>정상적인 방법으로 접근을 해주시길 바랍니다.</H5>
-	<a href="/">메인 페이지로 이동</a><br>
-=======
+<!-- JSTL 라이브러리 -->
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>    
 <!DOCTYPE html>
 <html>
 <head>
@@ -33,11 +23,6 @@
         button:hover{
             font-weight: bolder;
         }
-        #consent{
-            height : 20px;
-            width : 20px;
-            margin-top: 13px;
-        }
         .greenBtn{
             background-color: #7FB292;
             color: white;
@@ -58,10 +43,10 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                   </div>
                   <div class="modal-body" id="alertModalMSG">
-                  	비정상적인 접근입니다.
+                  	${requestScope.msg }
                   </div>
                   <div class="modal-footer">
-                    <a href="/"><button type="button" class="btn greenBtn" data-bs-dismiss="modal" id="#btn">확인</button></a>
+                    <a href="${requestScope.addr }"><button type="button" class="btn greenBtn" data-bs-dismiss="modal" id="#btn">확인</button></a>
                   </div>
                 </div>
               </div>
@@ -73,6 +58,5 @@
 		})
 	
 	</script> 
->>>>>>> d5939b1f99d94c7a744a9b52d10efd48952b58be
 </body>
 </html>
