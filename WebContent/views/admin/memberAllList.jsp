@@ -155,26 +155,26 @@ HashMap<String, Object> pageDataMap = (HashMap<String, Object>)request.getAttrib
 		</thead>
 		<tbody>
 		<%for(Member m: list){ %>
-			<%if(m.getEnd_YN()=='Y'){ %>
+			<%if(m.getEndYN()=='Y'){ %>
 		<tr style='color:grey;'>
 		<%}else { %>
 		
 			<tr>
 			<%} %>
-				<td><%=m.getUser_No() %></td>
-				<td><%=m.getUser_Id() %></td>
+				<td><%=m.getUserNo() %></td>
+				<td><%=m.getUserId() %></td>
 				
-				<%if(m.getEnd_YN()=='N'){ %>
-				<td><a class="link" href="/admin/memberSelect.do?userNo=<%=m.getUser_No() %>&currentPage=<%=currentPage%>" ><%=m.getUser_Name() %></a></td>
+				<%if(m.getEndYN()=='N'){ %>
+				<td><a class="link" href="/admin/memberSelect.do?userNo=<%=m.getUserNo() %>&currentPage=<%=currentPage%>" ><%=m.getUserName() %></a></td>
 				<%}else{ %>
-				<td><%=m.getUser_Name() %></td>
+				<td><%=m.getUserName() %></td>
 				<%} %>
-				<td><%=m.getEnroll_date() %></td>
-				<td><%=m.getUser_Email() %></td>
+				<td><%=m.getEnrollDate() %></td>
+				<td><%=m.getUserEmail() %></td>
 
 				
 				<td>
-				<%if(m.getEnd_YN()=='Y'){ %>
+				<%if(m.getEndYN()=='Y'){ %>
 				탈퇴
 				<%}else{ %>
 				일반
