@@ -9,9 +9,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import kr.co.rfy.member.service.MemberService;
-import kr.co.rfy.member.service.MemberServiceImpl;
-import kr.co.rfy.member.vo.Member;
+import kr.co.rfy.member.model.service.MemberService;
+import kr.co.rfy.member.model.service.MemberServiceImpl;
+import kr.co.rfy.member.model.vo.Member;
 
 /**
  * Servlet implementation class MemberPwdChangeServlet
