@@ -3,7 +3,7 @@ package kr.co.rfy.member.controller;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import kr.co.rfy.member.vo.Member;
+import kr.co.rfy.member.model.vo.Member;
 
 public class MemberJoinDataCheck {
 	

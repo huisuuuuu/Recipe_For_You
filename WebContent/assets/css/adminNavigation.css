@@ -1,0 +1,130 @@
+@charset "UTF-8";
+
+* {
+	font-family: 'Noto Sans KR', sans-serif;
+}
+
+div {
+	box-sizing: border-box;
+}
+
+#wrapper {
+	width: 100%;
+	min-height: 100%;
+}
+
+#navigation {
+	width: 15%;
+	height: 100%;;
+	float: left;
+	position:fixed; 
+}
+
+#mainLogo {
+	width: 100%;
+	height: 100px;
+	background-color: #5D9A71;
+	text-align: center;
+}
+
+#mainLogoTitle {
+	letter-spacing: 3px;
+	text-align: center;
+	text-decoration: none;
+	font-weight: 600;
+	color: white;
+	font-size: 15px;
+}
+
+#mainLogoTitle:before {
+	content: "";
+	display: block;
+	width: 185px;
+	border: 1px solid white;
+	margin: 3px auto;
+}
+
+#mainLogoTitle:after {
+	content: "";
+	display: block;
+	width: 185px;
+	border: 1px solid white;
+	margin: 3px auto;
+}
+
+#mainLogo>p {
+	line-height: 40px;
+	margin: 0px;
+	display: inline-block;
+	color: white;
+}
+
+#gnb {
+	width: 100%;
+	height: 850px;
+	margin: 0px;
+	padding: 0px;
+	padding-top: 50px;
+	background-color: #5D9A71;
+}
+
+#gnb>li {
+	width: 100%;
+	list-style: none;
+}
+
+#gnb>li>a {
+	width: 100%;
+	height: 100%;
+	color: white;
+	text-align: center;
+	line-height: 59px;
+	text-decoration: none;
+	display: block;
+	font-size: 17px;
+}
+
+#gnb>li>a:hover {
+	font-weight: bolder;
+}
+
+.submenu {
+	border: 1px solid white;
+	width: 70%;
+	height: 100%;
+	display: none;
+}
+
+.submenu li {
+	list-style: none;
+	color: white;
+}
+
+.submenu>li>a {
+	width: 100%;
+	height: 100%;
+	line-height: 40px;
+	list-style: none;
+	text-decoration: none;
+	color: white;
+	visibility: hidden;
+	font-size: 14px;
+}
+
+.submenu>li>a:hover {
+	font-weight: bolder;
+}
+
+#gnb>li:hover>.submenu {
+	border: 1px solid white;
+	margin: 0 auto;
+	display: block;
+}
+
+#gnb>li:hover>.submenu>li {
+	list-style: disc;
+}
+
+#gnb>li:hover>.submenu>li>a {
+	visibility: visible;
+}

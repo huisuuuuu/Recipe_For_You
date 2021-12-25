@@ -641,42 +641,6 @@ public class RecipeDAO {
 		return ingredientCount;
 	}
 
-	public ArrayList<MiddleCode> getBigCode(Connection conn, String bigCode) {
-		
-		PreparedStatement pstmt = null;
-		ResultSet rset=null;
-		ArrayList<MiddleCode> mList = new ArrayList<MiddleCode>();
-		
-		String query="SELECT MIDDLE_CODE,MIDDLE_NAME FROM PRODUCT_MIDDLE WHERE BIG_CODE =?";
-			try {
-				pstmt=conn.prepareStatement(query);
-				pstmt.setString(1, bigCode);
-				rset = pstmt.executeQuery();
-				
-				
-				while(rset.next())
-				{
-					MiddleCode mCode = new MiddleCode();
-					
-					mCode.setmCode(rset.getString("middle_code"));
-					mCode.setmName(rset.getString("middle_name"));
-					
-					
-					mList.add(mCode);
-				}
-				
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}finally
-			{
-				JDBCTemplate.close(rset);
-				JDBCTemplate.close(pstmt);
-			}
-		   
-			return mList;
-		
-	}
 
 	public ArrayList<OurRecipe> selectRecipeKindAllList(Connection conn, int currentPage, int recordCountPerPage, String recipeKind) {
 		
@@ -1016,6 +980,79 @@ public class RecipeDAO {
 		}
 		
 		return count;
+	}
+
+	//대분류를 이용한 중분류 코드 가져오기
+	public ArrayList<MiddleCode> getBigCode(Connection conn, String bigCode) {
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset=null;
+		ArrayList<MiddleCode> mList = new ArrayList<MiddleCode>();
+		
+		String query="SELECT MIDDLE_CODE,MIDDLE_NAME FROM PRODUCT_MIDDLE WHERE BIG_CODE =?";
+			try {
+				pstmt=conn.prepareStatement(query);
+				pstmt.setString(1, bigCode);
+				rset = pstmt.executeQuery();
+				
+				
+				while(rset.next())
+				{
+					MiddleCode mCode = new MiddleCode();
+					
+					mCode.setmCode(rset.getString("middle_code"));
+					mCode.setmName(rset.getString("middle_name"));
+					
+					
+					mList.add(mCode);
+				}
+				
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}finally
+			{
+				JDBCTemplate.close(rset);
+				JDBCTemplate.close(pstmt);
+			}
+		   
+			return mList;
+		
+	}
+	
+	
+	//중분류를 이용한 재료 코드 가져오기
+	public ArrayList<MiddleCode> getMiddleCode(Connection conn, String middleCode) {
+		PreparedStatement pstmt = null;
+		ResultSet rset=null;
+		ArrayList<MiddleCode> mList = new ArrayList<MiddleCode>();
+		
+		String query="SELECT INGREDIENT_CODE,INGREDIENT_NAME FROM INGREDIENT WHERE MIDDLE_CODE =?";
+		
+		try {
+			pstmt=conn.prepareStatement(query);
+			pstmt.setString(1, middleCode);
+			rset=pstmt.executeQuery();
+			
+			while(rset.next())
+			{
+				MiddleCode mCode = new MiddleCode();
+				
+				mCode.setmCode(rset.getString("INGREDIENT_CODE"));
+				mCode.setmName(rset.getString("INGREDIENT_NAME"));
+				
+				mList.add(mCode);
+			}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally
+		{
+			JDBCTemplate.close(rset);
+			JDBCTemplate.close(pstmt);
+		}
+		return mList;
 	}
 
 

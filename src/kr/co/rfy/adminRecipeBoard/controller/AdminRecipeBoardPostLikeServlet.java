@@ -1,7 +1,6 @@
-package kr.co.rfy.member.controller;
+package kr.co.rfy.adminRecipeBoard.controller;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -9,20 +8,20 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import kr.co.rfy.member.model.service.MemberService;
-import kr.co.rfy.member.model.service.MemberServiceImpl;
+import kr.co.rfy.adminRecipeBoard.model.service.AdminRecipeBoardService;
+import kr.co.rfy.adminRecipeBoard.model.service.AdminRecipeBoardServiceImpl;
 
 /**
- * Servlet implementation class AjaxIdCheckServlet
+ * Servlet implementation class AdminRecipeBoardPostLikeServlet
  */
-@WebServlet("/member/AjaxIdCheck.do")
-public class AjaxIdCheckServlet extends HttpServlet {
+@WebServlet("/recipeBoard/recipeBoardPostLike.do")
+public class AdminRecipeBoardPostLikeServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public AjaxIdCheckServlet() {
+    public AdminRecipeBoardPostLikeServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -31,24 +30,19 @@ public class AjaxIdCheckServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// ajax로부터 사용자가 입력한 아이디가 중복된 아이디인지 확인하고 그 결과를 ajax로 돌려주는 서블릿
 		
-		// 입력받은 아이디
-		String userId = request.getParameter("userId");
+		int boardNo = Integer.parseInt(request.getParameter("boardNo"));
+		int likeNum = Integer.parseInt(request.getParameter("likeNum"));
+		AdminRecipeBoardService rbService = new AdminRecipeBoardServiceImpl();
+		int result = rbService.updateRecipePostLike(boardNo, likeNum);
 		
-		// 비지니스 로직 처리
-		MemberService mService = new MemberServiceImpl();
-		String id = mService.memberIdCheck(userId);
-		
-		// 결과에 따라 ajax에 보내줄 값 설정
-		int result;
-		if(id.equals("")) result=0;
-		else result=1;
-		
-		response.setCharacterEncoding("UTF-8");
-		PrintWriter out = response.getWriter();
-		
-		out.println(result);	
+		if(result>0)
+		{
+			response.sendRedirect("/recipeBoard/recipeBoardSelectContent.do?boardNo="+boardNo);
+		}else
+		{
+			response.sendRedirect("/views/commons/error.jsp");
+		}
 	}
 
 	/**
