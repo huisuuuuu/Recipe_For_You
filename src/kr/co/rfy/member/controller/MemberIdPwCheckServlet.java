@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import kr.co.rfy.member.vo.Member;
+import kr.co.rfy.member.model.vo.Member;
 
 /**
  * Servlet implementation class MemberIdPwCheckServlet

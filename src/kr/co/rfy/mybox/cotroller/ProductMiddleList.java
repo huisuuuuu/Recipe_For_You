@@ -10,9 +10,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import kr.co.rfy.mybox.service.MyboxService;
-import kr.co.rfy.mybox.service.MyboxServiceImpl;
-import kr.co.rfy.mybox.vo.ProductMiddle;
+import kr.co.rfy.mybox.model.service.MyboxService;
+import kr.co.rfy.mybox.model.service.MyboxServiceImpl;
+import kr.co.rfy.mybox.model.vo.ProductMiddle;
 
 /**
  * Servlet implementation class ProductBigList
