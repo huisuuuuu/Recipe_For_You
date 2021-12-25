@@ -39,17 +39,17 @@ public class AdminMemberDAO {
 			while(rset.next())
 			{
 				Member m = new Member();
-				m.setUser_No(rset.getInt("user_No"));
-				m.setUser_Id(rset.getString("user_Id"));
-				m.setUser_Pwd(rset.getString("user_Pwd"));
-				m.setUser_Name(rset.getString("user_Name"));
-				m.setUser_Email(rset.getString("user_Email"));
-				m.setUser_Phone(rset.getString("user_Phone"));
-				m.setAgree_YN(rset.getString("agree_YN").charAt(0));
-				m.setEnroll_date(rset.getDate("enroll_date"));
-				m.setBlack_YN(rset.getString("black_YN").charAt(0));
+				m.setUserNo(rset.getInt("user_No"));
+				m.setUserId(rset.getString("user_Id"));
+				m.setUserPwd(rset.getString("user_Pwd"));
+				m.setUserName(rset.getString("user_Name"));
+				m.setUserEmail(rset.getString("user_Email"));
+				m.setUserPhone(rset.getString("user_Phone"));
+				m.setAgreeYN(rset.getString("agree_YN").charAt(0));
+				m.setEnrollDate(rset.getDate("enroll_date"));
+				m.setBlackYN(rset.getString("black_YN").charAt(0));
 				m.setRoll(rset.getString("roll"));
-				m.setEnd_YN(rset.getString("end_YN").charAt(0));
+				m.setEndYN(rset.getString("end_YN").charAt(0));
 				list.add(m);
 			}
 			
@@ -237,17 +237,17 @@ StringBuilder sb = new StringBuilder();
 				Member m = new Member();
 				
 				
-				m.setUser_No(rset.getInt("user_No"));
-				m.setUser_Id(rset.getString("user_Id"));
-				m.setUser_Pwd(rset.getString("user_Pwd"));
-				m.setUser_Name(rset.getString("user_Name"));
-				m.setUser_Email(rset.getString("user_Email"));
-				m.setUser_Phone(rset.getString("user_Phone"));
-				m.setAgree_YN(rset.getString("agree_YN").charAt(0));
-				m.setEnroll_date(rset.getDate("enroll_date"));
-				m.setBlack_YN(rset.getString("black_YN").charAt(0));
+				m.setUserNo(rset.getInt("user_No"));
+				m.setUserId(rset.getString("user_Id"));
+				m.setUserPwd(rset.getString("user_Pwd"));
+				m.setUserName(rset.getString("user_Name"));
+				m.setUserEmail(rset.getString("user_Email"));
+				m.setUserPhone(rset.getString("user_Phone"));
+				m.setAgreeYN(rset.getString("agree_YN").charAt(0));
+				m.setEnrollDate(rset.getDate("enroll_date"));
+				m.setBlackYN(rset.getString("black_YN").charAt(0));
 				m.setRoll(rset.getString("roll"));
-				m.setEnd_YN(rset.getString("end_YN").charAt(0));
+				m.setEndYN(rset.getString("end_YN").charAt(0));
 				list.add(m);
 				
 				
@@ -426,17 +426,17 @@ public ArrayList<Member> BlackList(Connection conn, int currentPage, int recordC
 		while(rset.next())
 		{
 			Member m = new Member();
-			m.setUser_No(rset.getInt("user_No"));
-			m.setUser_Id(rset.getString("user_Id"));
-			m.setUser_Pwd(rset.getString("user_Pwd"));
-			m.setUser_Name(rset.getString("user_Name"));
-			m.setUser_Email(rset.getString("user_Email"));
-			m.setUser_Phone(rset.getString("user_Phone"));
-			m.setAgree_YN(rset.getString("agree_YN").charAt(0));
-			m.setEnroll_date(rset.getDate("enroll_date"));
-			m.setBlack_YN(rset.getString("black_YN").charAt(0));
+			m.setUserNo(rset.getInt("user_No"));
+			m.setUserId(rset.getString("user_Id"));
+			m.setUserPwd(rset.getString("user_Pwd"));
+			m.setUserName(rset.getString("user_Name"));
+			m.setUserEmail(rset.getString("user_Email"));
+			m.setUserPhone(rset.getString("user_Phone"));
+			m.setAgreeYN(rset.getString("agree_YN").charAt(0));
+			m.setEnrollDate(rset.getDate("enroll_date"));
+			m.setBlackYN(rset.getString("black_YN").charAt(0));
 			m.setRoll(rset.getString("roll"));
-			m.setEnd_YN(rset.getString("end_YN").charAt(0));
+			m.setEndYN(rset.getString("end_YN").charAt(0));
 			list.add(m);
 		}
 		
@@ -628,17 +628,17 @@ public ArrayList<Member> SearchMemberBlack(Connection conn, int currentPage, int
 			Member m = new Member();
 			
 			
-			m.setUser_No(rset.getInt("user_No"));
-			m.setUser_Id(rset.getString("user_Id"));
-			m.setUser_Pwd(rset.getString("user_Pwd"));
-			m.setUser_Name(rset.getString("user_Name"));
-			m.setUser_Email(rset.getString("user_Email"));
-			m.setUser_Phone(rset.getString("user_Phone"));
-			m.setAgree_YN(rset.getString("agree_YN").charAt(0));
-			m.setEnroll_date(rset.getDate("enroll_date"));
-			m.setBlack_YN(rset.getString("black_YN").charAt(0));
+			m.setUserNo(rset.getInt("user_No"));
+			m.setUserId(rset.getString("user_Id"));
+			m.setUserPwd(rset.getString("user_Pwd"));
+			m.setUserName(rset.getString("user_Name"));
+			m.setUserEmail(rset.getString("user_Email"));
+			m.setUserPhone(rset.getString("user_Phone"));
+			m.setAgreeYN(rset.getString("agree_YN").charAt(0));
+			m.setEnrollDate(rset.getDate("enroll_date"));
+			m.setBlackYN(rset.getString("black_YN").charAt(0));
 			m.setRoll(rset.getString("roll"));
-			m.setEnd_YN(rset.getString("end_YN").charAt(0));
+			m.setEndYN(rset.getString("end_YN").charAt(0));
 			list.add(m);
 			
 			
@@ -813,17 +813,18 @@ public Member selectOne(Connection conn, int userNo) {
 		{
 			m = new Member();
 			
-			m.setUser_No(rset.getInt("user_No"));
-			m.setUser_Id(rset.getString("user_Id"));
-			m.setUser_Pwd(rset.getString("user_Pwd"));
-			m.setUser_Name(rset.getString("user_Name"));
-			m.setUser_Email(rset.getString("user_Email"));
-			m.setUser_Phone(rset.getString("user_Phone"));
-			m.setAgree_YN(rset.getString("agree_YN").charAt(0));
-			m.setEnroll_date(rset.getDate("enroll_date"));
-			m.setBlack_YN(rset.getString("black_YN").charAt(0));
+			m.setUserNo(rset.getInt("user_No"));
+			m.setUserId(rset.getString("user_Id"));
+			m.setUserPwd(rset.getString("user_Pwd"));
+			m.setUserName(rset.getString("user_Name"));
+			m.setUserEmail(rset.getString("user_Email"));
+			m.setUserPhone(rset.getString("user_Phone"));
+			m.setAgreeYN(rset.getString("agree_YN").charAt(0));
+			m.setEnrollDate(rset.getDate("enroll_date"));
+			m.setBlackYN(rset.getString("black_YN").charAt(0));
 			m.setRoll(rset.getString("roll"));
-			m.setEnd_YN(rset.getString("end_YN").charAt(0));
+			m.setEndYN(rset.getString("end_YN").charAt(0));
+			
 		}
 		
 	} catch (SQLException e) {
@@ -888,17 +889,17 @@ public ArrayList<Member> selectAllMemberListUp(Connection conn, int currentPage,
 		while(rset.next())
 		{
 			Member m = new Member();
-			m.setUser_No(rset.getInt("user_No"));
-			m.setUser_Id(rset.getString("user_Id"));
-			m.setUser_Pwd(rset.getString("user_Pwd"));
-			m.setUser_Name(rset.getString("user_Name"));
-			m.setUser_Email(rset.getString("user_Email"));
-			m.setUser_Phone(rset.getString("user_Phone"));
-			m.setAgree_YN(rset.getString("agree_YN").charAt(0));
-			m.setEnroll_date(rset.getDate("enroll_date"));
-			m.setBlack_YN(rset.getString("black_YN").charAt(0));
+			m.setUserNo(rset.getInt("user_No"));
+			m.setUserId(rset.getString("user_Id"));
+			m.setUserPwd(rset.getString("user_Pwd"));
+			m.setUserName(rset.getString("user_Name"));
+			m.setUserEmail(rset.getString("user_Email"));
+			m.setUserPhone(rset.getString("user_Phone"));
+			m.setAgreeYN(rset.getString("agree_YN").charAt(0));
+			m.setEnrollDate(rset.getDate("enroll_date"));
+			m.setBlackYN(rset.getString("black_YN").charAt(0));
 			m.setRoll(rset.getString("roll"));
-			m.setEnd_YN(rset.getString("end_YN").charAt(0));
+			m.setEndYN(rset.getString("end_YN").charAt(0));
 			list.add(m);
 		}
 		
@@ -1078,17 +1079,17 @@ public ArrayList<Member> SearchMemberUp(Connection conn, int currentPage, int re
 			Member m = new Member();
 			
 			
-			m.setUser_No(rset.getInt("user_No"));
-			m.setUser_Id(rset.getString("user_Id"));
-			m.setUser_Pwd(rset.getString("user_Pwd"));
-			m.setUser_Name(rset.getString("user_Name"));
-			m.setUser_Email(rset.getString("user_Email"));
-			m.setUser_Phone(rset.getString("user_Phone"));
-			m.setAgree_YN(rset.getString("agree_YN").charAt(0));
-			m.setEnroll_date(rset.getDate("enroll_date"));
-			m.setBlack_YN(rset.getString("black_YN").charAt(0));
+			m.setUserNo(rset.getInt("user_No"));
+			m.setUserId(rset.getString("user_Id"));
+			m.setUserPwd(rset.getString("user_Pwd"));
+			m.setUserName(rset.getString("user_Name"));
+			m.setUserEmail(rset.getString("user_Email"));
+			m.setUserPhone(rset.getString("user_Phone"));
+			m.setAgreeYN(rset.getString("agree_YN").charAt(0));
+			m.setEnrollDate(rset.getDate("enroll_date"));
+			m.setBlackYN(rset.getString("black_YN").charAt(0));
 			m.setRoll(rset.getString("roll"));
-			m.setEnd_YN(rset.getString("end_YN").charAt(0));
+			m.setEndYN(rset.getString("end_YN").charAt(0));
 			list.add(m);
 			
 			
@@ -1257,17 +1258,18 @@ public Member selectOneUp(Connection conn, int userNo) {
 		{
 			m = new Member();
 			
-			m.setUser_No(rset.getInt("user_No"));
-			m.setUser_Id(rset.getString("user_Id"));
-			m.setUser_Pwd(rset.getString("user_Pwd"));
-			m.setUser_Name(rset.getString("user_Name"));
-			m.setUser_Email(rset.getString("user_Email"));
-			m.setUser_Phone(rset.getString("user_Phone"));
-			m.setAgree_YN(rset.getString("agree_YN").charAt(0));
-			m.setEnroll_date(rset.getDate("enroll_date"));
-			m.setBlack_YN(rset.getString("black_YN").charAt(0));
+			m.setUserNo(rset.getInt("user_No"));
+			m.setUserId(rset.getString("user_Id"));
+			m.setUserPwd(rset.getString("user_Pwd"));
+			m.setUserName(rset.getString("user_Name"));
+			m.setUserEmail(rset.getString("user_Email"));
+			m.setUserPhone(rset.getString("user_Phone"));
+			m.setAgreeYN(rset.getString("agree_YN").charAt(0));
+			m.setEnrollDate(rset.getDate("enroll_date"));
+			m.setBlackYN(rset.getString("black_YN").charAt(0));
 			m.setRoll(rset.getString("roll"));
-			m.setEnd_YN(rset.getString("end_YN").charAt(0));
+			m.setEndYN(rset.getString("end_YN").charAt(0));
+		
 		}
 		
 	} catch (SQLException e) {
@@ -1332,17 +1334,17 @@ public ArrayList<Member> BlackListUp(Connection conn, int currentPage, int recor
 		while(rset.next())
 		{
 			Member m = new Member();
-			m.setUser_No(rset.getInt("user_No"));
-			m.setUser_Id(rset.getString("user_Id"));
-			m.setUser_Pwd(rset.getString("user_Pwd"));
-			m.setUser_Name(rset.getString("user_Name"));
-			m.setUser_Email(rset.getString("user_Email"));
-			m.setUser_Phone(rset.getString("user_Phone"));
-			m.setAgree_YN(rset.getString("agree_YN").charAt(0));
-			m.setEnroll_date(rset.getDate("enroll_date"));
-			m.setBlack_YN(rset.getString("black_YN").charAt(0));
+			m.setUserNo(rset.getInt("user_No"));
+			m.setUserId(rset.getString("user_Id"));
+			m.setUserPwd(rset.getString("user_Pwd"));
+			m.setUserName(rset.getString("user_Name"));
+			m.setUserEmail(rset.getString("user_Email"));
+			m.setUserPhone(rset.getString("user_Phone"));
+			m.setAgreeYN(rset.getString("agree_YN").charAt(0));
+			m.setEnrollDate(rset.getDate("enroll_date"));
+			m.setBlackYN(rset.getString("black_YN").charAt(0));
 			m.setRoll(rset.getString("roll"));
-			m.setEnd_YN(rset.getString("end_YN").charAt(0));
+			m.setEndYN(rset.getString("end_YN").charAt(0));
 			list.add(m);
 		}
 		
@@ -1532,17 +1534,17 @@ public ArrayList<Member> SearchMemberBlackUp(Connection conn, int currentPage, i
 			Member m = new Member();
 			
 			
-			m.setUser_No(rset.getInt("user_No"));
-			m.setUser_Id(rset.getString("user_Id"));
-			m.setUser_Pwd(rset.getString("user_Pwd"));
-			m.setUser_Name(rset.getString("user_Name"));
-			m.setUser_Email(rset.getString("user_Email"));
-			m.setUser_Phone(rset.getString("user_Phone"));
-			m.setAgree_YN(rset.getString("agree_YN").charAt(0));
-			m.setEnroll_date(rset.getDate("enroll_date"));
-			m.setBlack_YN(rset.getString("black_YN").charAt(0));
+			m.setUserNo(rset.getInt("user_No"));
+			m.setUserId(rset.getString("user_Id"));
+			m.setUserPwd(rset.getString("user_Pwd"));
+			m.setUserName(rset.getString("user_Name"));
+			m.setUserEmail(rset.getString("user_Email"));
+			m.setUserPhone(rset.getString("user_Phone"));
+			m.setAgreeYN(rset.getString("agree_YN").charAt(0));
+			m.setEnrollDate(rset.getDate("enroll_date"));
+			m.setBlackYN(rset.getString("black_YN").charAt(0));
 			m.setRoll(rset.getString("roll"));
-			m.setEnd_YN(rset.getString("end_YN").charAt(0));
+			m.setEndYN(rset.getString("end_YN").charAt(0));
 			list.add(m);
 			
 			
