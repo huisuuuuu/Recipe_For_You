@@ -9,8 +9,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import kr.co.rfy.member.service.MemberService;
-import kr.co.rfy.member.service.MemberServiceImpl;
+import kr.co.rfy.member.model.service.MemberService;
+import kr.co.rfy.member.model.service.MemberServiceImpl;
 
 /**
  * Servlet implementation class AjaxFindIdServlet

@@ -107,14 +107,14 @@
             <div class="td">
             <input type="email" name="userEmail"  placeholder=" 예: member@join.com" data-name="이메일" vali="T">
             <button id="checkEmail" type="button">인증하기</button><br>
-            </div>
+            </div><br />
             <div style="display:none;" id="inputAuthKey">
 				<div class="th">인증번호</div>
 				<div class="td">
 					<input type="text" id="authKeyNo" placeholder="인증번호를 입력하세요" />
 					<button id="authKeyCheck" type="button">인증번호확인</button><br>
-				</div>
-			</div><br>
+				</div><br />
+			</div>
             
             <!--전화번호-->
             <div class="th">전화번호 </div>

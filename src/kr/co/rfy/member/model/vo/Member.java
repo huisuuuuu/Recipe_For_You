@@ -4,118 +4,136 @@ import java.sql.Date;
 
 public class Member {
 
-	private int user_No;
-	private String user_Id;
-	private String user_Pwd;
-	private String user_Name;
-	private String user_Email;
-	private String user_Phone;
-	private char agree_YN;
-	private Date enroll_date;
-	private char black_YN;
+	private int userNo;
+	private String userId;
+	private String userPwd;
+	private String userName;
+	private String userEmail;
+	private String userPhone;
+	private char agreeYN;
+	private Date enrollDate;
+	private char blackYN;
 	private String roll;
-	private char end_YN;
+	private char endYN;
 	
-	
-	
-	
-	
-	
-	@Override
-	public String toString() {
-		return "Member [user_No=" + user_No + ", user_Id=" + user_Id + ", user_Pwd=" + user_Pwd + ", user_Name="
-				+ user_Name + ", user_Email=" + user_Email + ", user_Phone=" + user_Phone + ", agree_YN=" + agree_YN
-				+ ", enroll_date=" + enroll_date + ", black_YN=" + black_YN + ", roll=" + roll + ", end_YN=" + end_YN
-				+ "]";
-	}
 	public Member() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public Member(int user_No, String user_Id, String user_Pwd, String user_Name, String user_Email, String user_Phone,
-			char agree_YN, Date enroll_date, char black_YN, String roll, char end_YN) {
+
+	public Member(int userNo, String userId, String userPwd, String userName, String userEmail, String userPhone,
+			char agreeYN, Date enrollDate, char blackYN, String roll, char endYN) {
 		super();
-		this.user_No = user_No;
-		this.user_Id = user_Id;
-		this.user_Pwd = user_Pwd;
-		this.user_Name = user_Name;
-		this.user_Email = user_Email;
-		this.user_Phone = user_Phone;
-		this.agree_YN = agree_YN;
-		this.enroll_date = enroll_date;
-		this.black_YN = black_YN;
+		this.userNo = userNo;
+		this.userId = userId;
+		this.userPwd = userPwd;
+		this.userName = userName;
+		this.userEmail = userEmail;
+		this.userPhone = userPhone;
+		this.agreeYN = agreeYN;
+		this.enrollDate = enrollDate;
+		this.blackYN = blackYN;
 		this.roll = roll;
-		this.end_YN = end_YN;
+		this.endYN = endYN;
 	}
-	public int getUser_No() {
-		return user_No;
+
+	public Member(String userId, String userPwd, String userName, String userEmail, String userPhone, char agreeYN) {
+		super();
+		this.userId = userId;
+		this.userPwd = userPwd;
+		this.userName = userName;
+		this.userEmail = userEmail;
+		this.userPhone = userPhone;
+		this.agreeYN = agreeYN;
 	}
-	public void setUser_No(int user_No) {
-		this.user_No = user_No;
+
+	public int getUserNo() {
+		return userNo;
 	}
-	public String getUser_Id() {
-		return user_Id;
+
+	public void setUserNo(int userNo) {
+		this.userNo = userNo;
 	}
-	public void setUser_Id(String user_Id) {
-		this.user_Id = user_Id;
+
+	public String getUserId() {
+		return userId;
 	}
-	public String getUser_Pwd() {
-		return user_Pwd;
+
+	public void setUserId(String userId) {
+		this.userId = userId;
 	}
-	public void setUser_Pwd(String user_Pwd) {
-		this.user_Pwd = user_Pwd;
+
+	public String getUserPwd() {
+		return userPwd;
 	}
-	public String getUser_Name() {
-		return user_Name;
+
+	public void setUserPwd(String userPwd) {
+		this.userPwd = userPwd;
 	}
-	public void setUser_Name(String user_Name) {
-		this.user_Name = user_Name;
+
+	public String getUserName() {
+		return userName;
 	}
-	public String getUser_Email() {
-		return user_Email;
+
+	public void setUserName(String userName) {
+		this.userName = userName;
 	}
-	public void setUser_Email(String user_Email) {
-		this.user_Email = user_Email;
+
+	public String getUserEmail() {
+		return userEmail;
 	}
-	public String getUser_Phone() {
-		return user_Phone;
+
+	public void setUserEmail(String userEmail) {
+		this.userEmail = userEmail;
 	}
-	public void setUser_Phone(String user_Phone) {
-		this.user_Phone = user_Phone;
+
+	public String getUserPhone() {
+		return userPhone;
 	}
-	public char getAgree_YN() {
-		return agree_YN;
+
+	public void setUserPhone(String userPhone) {
+		this.userPhone = userPhone;
 	}
-	public void setAgree_YN(char agree_YN) {
-		this.agree_YN = agree_YN;
+
+	public char getAgreeYN() {
+		return agreeYN;
 	}
-	public Date getEnroll_date() {
-		return enroll_date;
+
+	public void setAgreeYN(char agreeYN) {
+		this.agreeYN = agreeYN;
 	}
-	public void setEnroll_date(Date enroll_date) {
-		this.enroll_date = enroll_date;
+
+	public Date getEnrollDate() {
+		return enrollDate;
 	}
-	public char getBlack_YN() {
-		return black_YN;
+
+	public void setEnrollDate(Date enrollDate) {
+		this.enrollDate = enrollDate;
 	}
-	public void setBlack_YN(char black_YN) {
-		this.black_YN = black_YN;
+
+	public char getBlackYN() {
+		return blackYN;
 	}
+
+	public void setBlackYN(char blackYN) {
+		this.blackYN = blackYN;
+	}
+
 	public String getRoll() {
 		return roll;
 	}
+
 	public void setRoll(String roll) {
 		this.roll = roll;
 	}
-	public char getEnd_YN() {
-		return end_YN;
+
+	public char getEndYN() {
+		return endYN;
 	}
-	public void setEnd_YN(char end_YN) {
-		this.end_YN = end_YN;
+
+	public void setEndYN(char endYN) {
+		this.endYN = endYN;
 	}
-	
-	
-	
 	
 	
 }
