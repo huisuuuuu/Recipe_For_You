@@ -26,8 +26,6 @@ public interface RecipeService {
 
 	HashMap<String, Object> selectMyRecipeList(int currentPage );
 
-	ArrayList<MiddleCode> getMiddleCode(String middleCode);
-
 
 
 
