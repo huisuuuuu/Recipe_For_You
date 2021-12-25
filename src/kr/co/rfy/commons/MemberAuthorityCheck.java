@@ -7,7 +7,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import kr.co.rfy.member.vo.Member;
+import kr.co.rfy.member.model.vo.Member;
+
+
 
 
 

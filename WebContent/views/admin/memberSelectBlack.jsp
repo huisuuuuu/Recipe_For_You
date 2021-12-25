@@ -108,35 +108,35 @@ text-align:right;
 				<tbody>
 				<tr>
 				<td>회원 번호</td>
-				<td class="td"><%=m.getUser_No() %></td>
+				<td class="td"><%=m.getUserNo() %></td>
 				</tr>
 				
 				<tr>
 				<td>아이디</td>
-				<td class="td"><%=m.getUser_Id() %></td>
+				<td class="td"><%=m.getUserId() %></td>
 				</tr>
 				
 				<tr>
 				<td>이름</td>
-				<td class="td"><%=m.getUser_Name() %></td>
+				<td class="td"><%=m.getUserName() %></td>
 				</tr>
 				
 				<tr>
 				<td>휴대전화</td>
-				<td class="td"><%=m.getUser_Phone() %></td>
+				<td class="td"><%=m.getUserPhone() %></td>
 				</tr>
 				
 				<tr>
 				<td>이메일</td>
-				<td class="td"><%=m.getUser_Email() %></td>
+				<td class="td"><%=m.getUserEmail() %></td>
 				</tr>
 				
 				<tr>
 				<td>회원상태</td>
 				<td class="td">
 
-				<a href="/admin/membereEndYNChangeBlack.do?userNo=<%=m.getUser_No()%>&blackYN=<%=m.getBlack_YN()%>">
-				<button style="width:100%" class="button"><%if(m.getBlack_YN()=='Y'){ %>
+				<a href="/admin/membereEndYNChangeBlack.do?userNo=<%=m.getUserNo()%>&blackYN=<%=m.getBlackYN()%>">
+				<button style="width:100%" class="button"><%if(m.getBlackYN()=='Y'){ %>
 				블랙
 				<%}else{ %>
 				정상<%} %></button></a>
