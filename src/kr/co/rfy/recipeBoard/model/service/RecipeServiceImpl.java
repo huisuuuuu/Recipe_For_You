@@ -141,20 +141,6 @@ public class RecipeServiceImpl implements RecipeService {
 		
 	}
 
-	@Override
-	public ArrayList<MiddleCode> getBigCode(String bigCode) {
-		
-		Connection conn = JDBCTemplate.getConnection();
-		ArrayList<MiddleCode> mList=rDAO.getBigCode(conn,bigCode);
-		
-		JDBCTemplate.close(conn);
-		
-		return mList;
-		
-		
-		
-		
-	}
 
 	
 	//카테고리별 레시피 목록 가져오기
@@ -221,6 +207,34 @@ public class RecipeServiceImpl implements RecipeService {
 		
 		
 		
+	}
+	
+	//대분류코드를 이용하여 중분류 코드를 가져온다.
+	@Override
+	public ArrayList<MiddleCode> getBigCode(String bigCode) {
+		
+		Connection conn = JDBCTemplate.getConnection();
+		ArrayList<MiddleCode> mList=rDAO.getBigCode(conn,bigCode);
+		
+		JDBCTemplate.close(conn);
+		
+		return mList;
+		
+		
+		
+		
+	}
+
+	//중분류 코드를 이용하여 재료명들을 가져온다.
+	@Override
+	public ArrayList<MiddleCode> getMiddleCode(String middleCode) {
+		
+		Connection conn = JDBCTemplate.getConnection();
+		ArrayList<MiddleCode> mList=rDAO.getMiddleCode(conn,middleCode);
+		
+		JDBCTemplate.close(conn);
+		
+		return mList;
 	}
 
 

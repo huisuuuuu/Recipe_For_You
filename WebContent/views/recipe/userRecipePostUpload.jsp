@@ -179,7 +179,8 @@
 						<option value="PRODUCT_11">유제품</option>
 					</select>
 					 <select name="middle_Code" id="mArea" onchange="selectMiddlecode()" >
-						<option value>중분류</option>
+						<option>중분류</option>
+
 					 	
 					</select> 
 					
@@ -203,6 +204,7 @@
 									 
 									 
 									 mArea.innerHTML="";
+									 mArea.innerHTML="<option>중분류</option>";
 									 for(var i in middleCodeList)
 									{		
 										 mArea.innerHTML+='<option value='+middleCodeList[i].mCode+'>'+middleCodeList[i].mName+'</option>';
@@ -235,9 +237,7 @@
 						
 						function selectMiddlecode(){
 							
-							var middleCode = $('select[name=middle_Code]').val();
-							
-							
+							var middleCode = $('#mArea').val();
 							
 							 $.ajax({
 								 
@@ -246,9 +246,16 @@
 								 dataType:"json",
 								 data:{"middleCode":middleCode},
 								 success:function(data){
-									
 									 
-									 alert('a');
+									 ingredientCodeList=data;
+									 
+										 ingredient_Code.innerHTML="";
+										 ingredient_Code.innerHTML="<option value>소분류</option>";
+										 for(var i in ingredientCodeList)
+										{		
+											 ingredient_Code.innerHTML+='<option value='+ingredientCodeList[i].mCode+'>'+ingredientCodeList[i].mName+'</option>';
+										  
+									}
 									 
 								 },
 								 error:function(){
@@ -262,22 +269,7 @@
 						
 					</script>
 					
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
 
-
-					
-					
 					
 					<input type="text" maxlength="10" name="ingredient_Num"
 						id="ingredient_Num" placeholder="계량 정보 / 예)300g" />
