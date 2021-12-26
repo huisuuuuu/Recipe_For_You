@@ -1,3 +1,4 @@
+<%@page import="kr.co.rfy.member.model.vo.Member"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -73,8 +74,12 @@ div {
 }
 .login {
     display: inline-block;
+    margin-right: 35px;
 }
-
+.admin {
+    display: inline-block;
+    margin-right: 35px;
+}
 .navibar {
     width: 100%;
     max-width: 1280px;
@@ -140,7 +145,6 @@ div {
 .nav-item:hover>a{
     color: #7FB292;
 }
-
 .nav-item:hover > .submenu {
     width: 100%;
     height: 100%;
@@ -149,7 +153,7 @@ div {
     border: 1px solid #5E5E5E;
 }
 
-.nav-item:hover > .submenu>li>a:hover {
+.nav-item:hover > .myMenuSub>li>a:hover {
     color: #7FB292;
 }
 .submenu {
@@ -261,10 +265,59 @@ div {
     font-family: 'Noto Sans KR', sans-serif;
     
 }
+
+.myMenu, .login, .admin {
+    color: #5E5E5E;
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 12px;
+    font-weight: bold;
+    line-height: 10px;
+    letter-spacing: 1px;
+    text-align: center;
+	box-sizing: border-box;
+}
+
+
+#myMenu:hover > .myMenuSub {
+	display: block;
+}
+.myMenuSub:hover > ul {
+	display: block;
+	
+}
+.myMenuSub{
+	padding: 5px;
+	background-color: white;
+	position: relative;
+	z-index:999;
+	display: none;
+	border: 1px solid #5E5E5E;
+}
+.myMenuSub > li {
+    list-style: none;
+}
+.myMenuSub > li > a {
+    width: 100%;
+    height: 20px;
+    text-decoration: none;
+    text-align: center;
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 12px;
+    line-height: 30px;
+    color: #5E5E5E;    
+    background-color: white;
+}
+.box-user > div{
+	float: left;
+}
+a { text-decoration:none !important }
 </style>
 
 </head>
 <body>
+<%
+     Member m = (Member)session.getAttribute("member");
+%>
  <div id="wrapper">
         <div class="header fixed-top">
             <div class="top">
@@ -276,12 +329,38 @@ div {
                     <img src="/assets/common/images/main%20logo.png" alt="">
                 </a>
                 <div class="box-user">
-                   <a href="" class="mypage">
-                    <img src="/assets/common/images/headericon1.png" alt="" width="23px" height="28px">
-                </a>
-                <a href="/views/member/memberLogin.jsp" class="login">
-                    <img src="/assets/common/images/headericon2.png" alt="" width="80px" height="30px">
-                </a>
+               		<div id="mypage">
+	                    <a href="" class="mypage">
+	                    	<img src="/assets/common/images/headericon1.png" alt="" width="23px" height="28px">
+	        	        </a>
+       	    	    </div>
+                 <%if(m==null) {%>
+                 <div>
+	                <a href="/views/member/memberLogin.jsp" class="login" style="text-decoration: 'none'">
+	                    <img src="/assets/common/images/headericon2.png" alt="" width="23px" height="28px">
+	                    로그인
+	                </a>
+                </div>
+                <%}else{ %>
+                <div id="myMenu">
+                	<a href="#" class="myMenu login" style="text-decoration: 'none'">
+	                    <img src="/assets/common/images/headericon2.png" alt="" width="23px" height="28px">
+	                    <%=m.getUserName() %>님 
+	                </a>    
+                    <ul class="myMenuSub">
+                    	<li><a href="/views/member/memberUpdateCheck.jsp">회원정보 수정</a></li>
+                   		<li><a href="/views/member/memberPwdCheck.jsp">비밀번호 변경</a></li>
+                   		<li><a href="/member/memberLogout.do">로그아웃</a></li>
+                    </ul>
+	            </div>    
+                	<%if(m.getRoll().substring(0,2).equals("AD")) {%>
+                <div>	
+                	<a href="/views/admin/adminmain.jsp" class="admin">
+	            	    <img src="/assets/common/images/headericon3.png" width="15px" height="28px"> 관리자 페이지
+	               	</a>
+	            </div>    		
+                	<%} %>
+                <%} %> 
                 </div>
                 
             </div>
