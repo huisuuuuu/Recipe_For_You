@@ -69,16 +69,16 @@
 						<li class="nav-item"><a class="nav-link active nav-recipe"
 							href="#">레시피</a>
 							<ul class="submenu">
-								<li><a href="">모두보기</a></li>
-								<li><a href="">한식</a></li>
-								<li><a href="">양식</a></li>
-								<li><a href="">일식</a></li>
-								<li><a href="">중식</a></li>
-								<li><a href="">분식</a></li>
-								<li><a href="">채식</a></li>
-								<li><a href="">다이어트</a></li>
-								<li><a href="">밑반찬</a></li>
-								<li><a href="">안주</a></li>
+									<li><a href="/recipe/recipeBoard/selectAll.do">모두보기</a></li>
+                                    <li><a href="/recipe/recipeBoardSelectList.do?recipe=hansik ">한식</a></li>
+                                    <li><a href="/recipe/recipeBoardSelectList.do?recipe=yangsik ">양식</a></li>
+                                    <li><a href="/recipe/recipeBoardSelectList.do?recipe=ilsik & ">일식</a></li>
+                                    <li><a href="/recipe/recipeBoardSelectList.do?recipe=jungsik ">중식</a></li>
+                                    <li><a href="/recipe/recipeBoardSelectList.do?recipe=bunsik ">분식</a></li>
+                                    <li><a href="/recipe/recipeBoardSelectList.do?recipe=vege ">채식</a></li>
+                                    <li><a href="/recipe/recipeBoardSelectList.do?recipe=dite ">다이어트</a></li>
+                                    <li><a href="/recipe/recipeBoardSelectList.do?recipe=banchan ">밑반찬</a></li>
+                                    <li><a href="/recipe/recipeBoardSelectList.do?recipe=annju ">안주</a></li>
 							</ul></li>
 
 						<li class="nav-item"><a class="nav-link active nav-info"

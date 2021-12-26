@@ -14,7 +14,7 @@ public class JDBCTemplate {
       try {
          Class.forName("oracle.jdbc.driver.OracleDriver");
          
-         conn= DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe","team2","team2");
+         conn= DriverManager.getConnection("jdbc:oracle:thin:@khds-b1.iptime.org:21521","team2","team2");
          
          conn.setAutoCommit(false);
          
