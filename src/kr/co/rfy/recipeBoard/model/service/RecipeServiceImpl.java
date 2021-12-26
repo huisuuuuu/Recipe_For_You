@@ -4,7 +4,7 @@ import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import kr.co.rfy.commons.JDBCTemplate;
+import kr.co.rfy.common.JDBCTemplate;
 import kr.co.rfy.recipeBoard.model.doa.RecipeDAO;
 import kr.co.rfy.recipeBoard.model.vo.Content;
 import kr.co.rfy.recipeBoard.model.vo.File;

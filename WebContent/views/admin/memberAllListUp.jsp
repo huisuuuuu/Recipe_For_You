@@ -97,7 +97,7 @@ color:black;
 </style>
 
 
-<jsp:include page="/views/commons/top.jsp"></jsp:include>
+<jsp:include page="/views/common/top.jsp"></jsp:include>
 <%
 
 HashMap<String, Object> pageDataMap = (HashMap<String, Object>)request.getAttribute("pageDataMap");
@@ -232,7 +232,7 @@ HashMap<String, Object> pageDataMap = (HashMap<String, Object>)request.getAttrib
 
 
 
-<jsp:include page="/views/commons/bottom.jsp"></jsp:include>
+<jsp:include page="/views/common/bottom.jsp"></jsp:include>
 
 </body>
 </html>

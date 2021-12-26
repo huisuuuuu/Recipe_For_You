@@ -1,4 +1,4 @@
-<%@page import="kr.co.rfy.member.vo.Member"%>
+<%@page import="kr.co.rfy.member.model.vo.Member"%>
 <%@page import="kr.co.rfy.notice.model.vo.Notice"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>

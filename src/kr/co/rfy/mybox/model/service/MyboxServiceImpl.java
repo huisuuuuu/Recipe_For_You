@@ -3,7 +3,7 @@ package kr.co.rfy.mybox.model.service;
 import java.sql.Connection;
 import java.util.List;
 
-import kr.co.rfy.commons.JDBCTemplate;
+import kr.co.rfy.common.JDBCTemplate;
 import kr.co.rfy.mybox.model.vo.Ingredient;
 import kr.co.rfy.mybox.model.vo.Mybox;
 import kr.co.rfy.mybox.model.vo.ProductBig;
