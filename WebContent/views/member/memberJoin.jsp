@@ -183,7 +183,7 @@
 		            <!--아이디-->
 		            <div class="th">아이디 </div>
 		            <div class="td">
-		                <input type="text" name="userId" placeholder=" 6자 이상의 영문 혹은 영문과 숫자 조합" maxlength="12" data-name="아이디">
+		                <input type="text" name="userId" placeholder=" 6자 이상의 영문 혹은 영문과 숫자 조합" maxlength="12" data-name="아이디" class="essential">
 		                <button id="checkId" type="button">중복확인</button><br>
 		            </div>
 		            <div class="validation" style="display:none;"><div class="th"></div><span>6자 이상의 영문 혹은 영문과 숫자 조합</span></div><br>
@@ -191,35 +191,35 @@
 		            <!--비밀번호-->
 		            <div class="th">비밀번호 </div>
 		            <div class="td">
-		                <input type="password" name="userPwd" placeholder=" 비밀번호를 입력해주세요" maxlength="14" data-name="비밀번호">
+		                <input type="password" name="userPwd" placeholder=" 비밀번호를 입력해주세요" maxlength="14" data-name="비밀번호" class="essential">
 		            </div>
 		            <div class="validation" style="display:none;"><div class="th"></div><span>8자 이상의 영문, 숫자, 특수문자 조합</span></div><br>
 		            
 		            <!--비밀번호 확인-->
 		            <div class="th">비밀번호 확인</div>
 		            <div class="td">
-		                <input type="password" name="userPwd_re" placeholder=" 비밀번호를 한번 더 입력해주세요" maxlength="14" data-name="비밀번호 확인">
+		                <input type="password" name="userPwd_re" placeholder=" 비밀번호를 한번 더 입력해주세요" maxlength="14" data-name="비밀번호 확인" class="essential">
 		            </div>
 		            <div class="validation" style="display:none;"><div class="th"></div><span>비밀번호를 확인해주세요</span></div><br>
 		
 		            <!--이름-->
 		            <div class="th">이름 </div>
 		            <div class="td">
-		            <input type="text" name="userName" placeholder=" 이름을 입력해주세요" data-name="이름" maxlength="10">
+		            <input type="text" name="userName" placeholder=" 이름을 입력해주세요" data-name="이름" maxlength="10" class="essential">
 		            </div>
 		            <div class="validation" style="display:none;"><div class="th"></div><span>2자 이상의 한글</span></div><br>
 		
 		            <!--이메일-->
 		            <div class="th">이메일 </div>
 		            <div class="td">
-			            <input type="email" name="userEmail" placeholder=" 예: member@join.com" data-name="이메일">
+			            <input type="email" name="userEmail" placeholder=" 예: member@join.com" data-name="이메일" class="essential">
 		                <button id="checkEmail" type="button">인증하기</button><br>
 		            </div>
 					<div class="validation" style="display:none;"><div class="th"></div><span>이메일 형식으로 작성</span></div><br>
 					<div style="display:none;" id="inputAuthKey">
 						<div class="th">인증번호</div>
 						<div class="td">
-							<input type="text" id="authKeyNo" placeholder="인증번호를 입력하세요" />
+							<input type="text" id="authKeyNo" placeholder="인증번호를 입력하세요" data-name="인증번호" value="auth"/>
 							<button id="authKeyCheck" type="button">인증번호확인</button><br>
 						</div>
 					</div><br>
@@ -227,19 +227,19 @@
 		            <!--전화번호-->
 		            <div class="th">전화번호 </div>
 		            <div class="td">
-		                <input type="text" name="userPhone" placeholder=" 숫자만 입력해주세요" maxlength="11" data-name="전화번호">
+		                <input type="text" name="userPhone" placeholder=" 숫자만 입력해주세요" maxlength="11" data-name="전화번호" class="essential">
 		            </div>
 		            <div class="validation" style="display:none;"><div class="th"></div><span>숫자만 입력</span></div><br>
 		
 		            <!--이용약관동의-->
 		            <div class="th">이용약관 </div>
 		            <div class="td">
-		                <label><input type="checkbox" name="userConsent" id="consent" class="form-check-input" value="Y" vali="T"> 동의</label>
+		                <label><input type="checkbox" name="userConsent" id="consent" class="form-check-input" value="Y" data-name="동의" vali="T"> 동의</label>
 		                <a type="button" id="showTOS" data-bs-toggle="modal" data-bs-target="#tosModal">약관보기 &gt; </a>
 		            </div><br>
 		                 
 		            <br><br><br>
-		            <div class="th"></div><input type="button" value="회원가입" id="joinBtn" class="greenBtn">
+		            <div class="th"></div><input type="button" value="회원가입" id="joinBtn" class="greenBtn" data-name="회원가입">
 		        </form>
 		            <!-- 이용약관 Modal -->
 		            <div class="modal fade" id="tosModal" tabindex="-1" aria-labelledby="tosModalLabel" aria-hidden="true">
@@ -535,7 +535,7 @@
 	        	if(authKeyNo = authKey){
 	    			$msg.html("인증되었습니다.");
 	    			$modal.modal("show");
-	    			$("input[name=userEmail]").attr("authCon",$("input[name=userEmail]").val());
+	    			$("input[name=userEmail]").attr("data-name",$("input[name=userEmail]").val());
 	    			return ;
 	        	}else{
 	        		$msg.html("인증번호가 다릅니다.");
@@ -555,10 +555,12 @@
         	var $form = $("#joinForm");
         	var $userId = $("input[name=userId]");
 
-        	$.each($("input[name]:not(input[name=checkbox])"), function(index, item){
+        	$.each($(".essential"), function(index, item){
         			// 입력값이 없을 경우
         		if($(this).val()==""){
+        				console.log($(this).val());
         				var dataName = $(this).attr("data-name");
+        				$(this).focus();
         				$msg.html(dataName+"을(를) 입력해주세요.");
                     	$modal.modal("show");
                     	$form = "";
@@ -580,8 +582,8 @@
 	            	console.log($(this).val());
 	            	return false;
     			}
- 	       		// 이메일 인증을 하지 않았을 경우 
- 	        	if($("input[name=userEmail]").attr("authCon")!=$("input[name=userEmail]").val()){
+ 	       			// 이메일 인증을 하지 않았을 경우 
+ 	        	if($("input[name=userEmail]").attr("data-name")!=$("input[name=userEmail]").val()){
  	        		$msg.html("이메일 인증을 해주세요");
  	        		$modal.modal("show");
 	            	$form = "";

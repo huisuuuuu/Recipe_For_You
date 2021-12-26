@@ -36,7 +36,7 @@ public class MemberIdPwCheckServlet extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		
 		//로그인한 회원인지 확인
-		if(request.getSession().getAttribute("member")==null) response.sendRedirect("/views/commons/error.jsp");
+		if(request.getSession().getAttribute("member")==null) response.sendRedirect("/views/common/error.jsp");
 		
 		// 데이터 가져오기
 		String inputUserId = request.getParameter("userId");

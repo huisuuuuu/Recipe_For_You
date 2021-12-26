@@ -35,7 +35,7 @@ public class MemberWithDrawServlet extends HttpServlet {
 		// 회원탈퇴처리(정보 업데이트)하는 서블릿
 		
 		//로그인한 회원인지 확인
-		if(request.getSession().getAttribute("member")==null) response.sendRedirect("/views/commons/error.jsp");
+		if(request.getSession().getAttribute("member")==null) response.sendRedirect("/views/common/error.jsp");
 
 		// 세션에서 아이디 가져오기
 		String userId = ((Member)request.getSession().getAttribute("member")).getUserId();
