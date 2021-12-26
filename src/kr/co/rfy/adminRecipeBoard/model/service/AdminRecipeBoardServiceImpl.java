@@ -5,6 +5,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import kr.co.rfy.adminRecipeBoard.model.dao.AdminRecipeBoardDAO;
+import kr.co.rfy.adminRecipeBoard.model.vo.AdminProductBig;
+import kr.co.rfy.adminRecipeBoard.model.vo.AdminProductIngredient;
+import kr.co.rfy.adminRecipeBoard.model.vo.AdminProductMiddle;
 import kr.co.rfy.adminRecipeBoard.model.vo.AdminRecipeBoard;
 import kr.co.rfy.adminRecipeBoard.model.vo.RecipeContent;
 import kr.co.rfy.adminRecipeBoard.model.vo.RecipeImage;
@@ -120,14 +123,39 @@ public class AdminRecipeBoardServiceImpl implements AdminRecipeBoardService {
 	}
 
 	@Override
-	public int recipeBoardMemberBlack(String[] recipeBoardNoValues) {
+	public int recipeBoardMemberBlack(String[] recipePostWriterIdValues) {
 		
 		Connection conn = JDBCTemplate.getConnection();
-		int result = rbDAO.recipeBoardMemberBlack(conn, recipeBoardNoValues);
-		if(result==recipeBoardNoValues.length) JDBCTemplate.commit(conn);
+		/*int result = */rbDAO.recipeBoardMemberBlack(conn, recipePostWriterIdValues);
+		/*if(result==recipeWriterIdValues.length) JDBCTemplate.commit(conn);
 		else JDBCTemplate.rollback(conn);
+		JDBCTemplate.close(conn);*/
+		return 0;
+	}
+
+	@Override
+	public ArrayList<AdminProductBig> selectProductBig() {
+		
+		Connection conn = JDBCTemplate.getConnection();
+		ArrayList<AdminProductBig> list = rbDAO.selectProductBig(conn);
 		JDBCTemplate.close(conn);
-		return result;
+		return list;
+	}
+
+	@Override
+	public ArrayList<AdminProductMiddle> selectProductMiddle(String bigCode) {
+		Connection conn = JDBCTemplate.getConnection();
+		ArrayList<AdminProductMiddle> list = rbDAO.selectProductMiddle(conn, bigCode);
+		JDBCTemplate.close(conn);
+		return list;
+	}
+
+	@Override
+	public ArrayList<AdminProductIngredient> selectProductIngredient(String middleCode) {
+		Connection conn = JDBCTemplate.getConnection();
+		ArrayList<AdminProductIngredient> list = rbDAO.selectProductIngredient(conn, middleCode);
+		JDBCTemplate.close(conn);
+		return list;
 	}
 
 }

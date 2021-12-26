@@ -42,7 +42,7 @@ public class AdminRecipeBoardAllSelectServlet extends HttpServlet {
 		//권한 검증 작업(권한을 확인하여 관리자 또는 운영자가 아니라면 error 페이지로 안내)
 		if(roll==null)
 		{
-			response.sendRedirect("/views/commons/error.jsp");
+			response.sendRedirect("/views/common/error.jsp");
 			return ;
 		}
 		

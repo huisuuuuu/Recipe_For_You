@@ -6,6 +6,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import kr.co.rfy.adminRecipeBoard.model.vo.AdminProductBig;
+import kr.co.rfy.adminRecipeBoard.model.vo.AdminProductIngredient;
+import kr.co.rfy.adminRecipeBoard.model.vo.AdminProductMiddle;
 import kr.co.rfy.adminRecipeBoard.model.vo.AdminRecipeBoard;
 import kr.co.rfy.adminRecipeBoard.model.vo.RecipeContent;
 import kr.co.rfy.adminRecipeBoard.model.vo.RecipeImage;
@@ -20,23 +23,6 @@ public class AdminRecipeBoardDAO {
 		ResultSet rset = null;
 		
 		ArrayList<AdminRecipeBoard> list = new ArrayList<AdminRecipeBoard>();
-		
-		/*
-		--TOP-N 분석
-		--전체적인 순위를 만들고, 그 순위에서 가장 최상위에서 몇번째까지
-
-		--1Page => NUM이 1~5까지의 글을 가져오면 됨
-		--2Page => NUM이 6~10까지의 글을 가져오면 됨
-		--3Page => NUM이 11~15까지의 글을 가져오면 됨
-
-		--공식
-		--START = 현재 페이지 * 목록 개수 - (목록 개수 - 1)
-		--END = 현재 페이지 * 목록 개수
-
-		--ex) 만약 1 페이지라면(목록 개수 5개)
-		--START = 1*5 - (5-1) => 1
-		--END = 1*5 => 5
-		*/
 		
 		int start = currentPage * recordCountPerPage - (recordCountPerPage-1);
 		int end = currentPage * recordCountPerPage;
@@ -95,59 +81,11 @@ public class AdminRecipeBoardDAO {
 		
 		int pageTotalCount = 0; //전체 페이지 개수
 		
-		//현재 한 페이지당 보여주는 글(post) 개수가 5개이므로, post 수가 5개라면 1page
-		//post 수가 6개라면 2page
-		//post 수가 105개라면 21page
-		//post 수가 108개라면 22page
-		
-		/*
-		if((recordTotalCount % recordCountPerPage) > 0)
-		{	
-			//나머지가 있다면 페이지를 1개 더 만들어라
-			pageTotalCount = (recordTotalCount / recordCountPerPage)+1;
-		}else
-		{
-			pageTotalCount = recordTotalCount / recordCountPerPage;
-		}
-		*/
-		
 		pageTotalCount = (int)Math.ceil(recordTotalCount/(double)recordCountPerPage);
-		
-		/*
-		 현재 내가 요청한 Page에 따라 startNavi 값과 endNavi 값을 구할 수 있어야한다.
-		 
-		 ex1)현재 page가 1이라면
-		 	 startNavi: 1, endNavi: 5
-		 	 
-		 ex2)현재 page가 3이라면
-		 	 startNavi: 1, endNavi: 5
-		 
-		 ex3)현재 page가 7이라면
-		 	 startNavi: 6, endNavi: 10
-		 	 
-		 startNavi 공식
-		 startNavi = (((현재 페이지 - 1) / Navi 당 보여질 개수) * Navi 당 보여질 개수) + 1
-		 
-		 코드로 표현
-		 startNavi = (((currentPage - 1) / naviCountPerPage) * naviCountPerPage) + 1
-		 
-		 endNavi 공식
-		 endNavi = 시작 Navi 값 +(Navi 당 보여질 개수 - 1)
-		 
-		 코드로 표현
-		 endNavi = startNavi + (naviCountPerPage - 1)
-		 
-		 */
 		
 		int startNavi = (((currentPage - 1) / naviCountPerPage) * naviCountPerPage) + 1; 
 		int endNavi = startNavi + (naviCountPerPage - 1);
 		
-		//단, 상기 공식에는 문제가 없지만, 예외 상황이 한가지 있다.
-		//만약 현재 페이지가 21페이지라면? < 21 22
-		//startNavi = (((21-1) / 5)*5)+1 -> 21
-		//endNavi = 21+(5-1) -> 25
-		
-		//만약 공식으로 구한 endNavi가 총 Page 수보다 크다면 총 Page 수로 셋팅
 		if(endNavi > pageTotalCount)
 		{
 			endNavi = pageTotalCount;
@@ -650,15 +588,15 @@ public class AdminRecipeBoardDAO {
 		return result;
 	}
 
-	public int recipeBoardMemberBlack(Connection conn, String[] recipeBoardNoValues) {
+	public int recipeBoardMemberBlack(Connection conn, String[] recipePostWriterIdValues) {
 		
 		PreparedStatement pstmt = null;
 		int result = 0;
 		
-		String values = String.join(",", recipeBoardNoValues);
+		String values = String.join(",", recipePostWriterIdValues);
 		//[0] = 100 / [1] = 101 / [2] 102
 		//100,101,102
-		String query = "UPDATE RECIPE_BOARD SET END_YN='Y' WHERE BOARD_NO IN("+values+")";
+		String query = "UPDATE MEMBER SET BLACK_YN='Y' WHERE USER_ID IN("+values+")";
 
 		try {
 			pstmt = conn.prepareStatement(query);
@@ -673,5 +611,109 @@ public class AdminRecipeBoardDAO {
 		
 		return result;
 		
+	}
+
+	public ArrayList<AdminProductBig> selectProductBig(Connection conn) {
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		ArrayList<AdminProductBig> list = new ArrayList<AdminProductBig>();
+		
+		String query = "SELECT * FROM PRODUCT_BIG";
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				
+				AdminProductBig pb = new AdminProductBig();
+				
+				pb.setBigCode(rset.getString("BIG_CODE"));
+				pb.setBigName(rset.getString("BIG_NAME"));
+				
+				list.add(pb);
+				
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			JDBCTemplate.close(rset);
+			JDBCTemplate.close(pstmt);
+		}
+		
+		return list;
+	}
+
+	public ArrayList<AdminProductMiddle> selectProductMiddle(Connection conn, String bigCode) {
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		ArrayList<AdminProductMiddle> list = new ArrayList<AdminProductMiddle>();
+		
+		String query = "SELECT * FROM PRODUCT_MIDDLE WHERE BIG_CODE=?";
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, bigCode);
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				
+				AdminProductMiddle pm = new AdminProductMiddle();
+				
+				pm.setBigCode(rset.getString("BIG_CODE"));
+				pm.setMiddleCode(rset.getString("MIDDLE_CODE"));
+				pm.setMiddleName(rset.getString("MIDDLE_NAME"));
+				
+				list.add(pm);
+				
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			JDBCTemplate.close(rset);
+			JDBCTemplate.close(pstmt);
+		}
+		
+		return list;
+		
+	}
+
+	public ArrayList<AdminProductIngredient> selectProductIngredient(Connection conn, String middleCode) {
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		ArrayList<AdminProductIngredient> list = new ArrayList<AdminProductIngredient>();
+		
+		String query = "SELECT * FROM INGREDIENT WHERE MIDDLE_CODE=?";
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, middleCode);
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				
+				AdminProductIngredient pi = new AdminProductIngredient();
+				
+				pi.setMiddleCode(rset.getString("MIDDLE_CODE"));
+				pi.setIngredientCode(rset.getString("INGREDIENT_CODE"));
+				pi.setIngredientName(rset.getString("INGREDIENT_NAME"));
+				
+				list.add(pi);
+				
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			JDBCTemplate.close(rset);
+			JDBCTemplate.close(pstmt);
+		}
+		
+		return list;
 	}
 }

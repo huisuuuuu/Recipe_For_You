@@ -28,7 +28,8 @@
 	integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm"
 	crossorigin="anonymous">
 
-<link rel="stylesheet" type="text/css" href="/assets/css/adminRecipeBoard.css">
+<link rel="stylesheet" type="text/css"
+	href="/assets/css/adminRecipeBoard.css">
 
 <title>냉장고를 부탁해</title>
 
@@ -36,16 +37,16 @@
 <body>
 	<%
 		//페이징 처리되어 넘어온 데이터를 가져와야 함
-		HashMap<String,Object> pageDataMap = (HashMap<String,Object>)request.getAttribute("pageDataMap");
-		
-		ArrayList<AdminRecipeBoard> list = (ArrayList<AdminRecipeBoard>)pageDataMap.get("list");
-		String pageNavi = (String)pageDataMap.get("pageNavi");
+		HashMap<String, Object> pageDataMap = (HashMap<String, Object>) request.getAttribute("pageDataMap");
+
+		ArrayList<AdminRecipeBoard> list = (ArrayList<AdminRecipeBoard>) pageDataMap.get("list");
+		String pageNavi = (String) pageDataMap.get("pageNavi");
 	%>
-	
+
 	<div id="wrapper">
 		<div id="header"></div>
 		<div id="navigation">
-			<%@include file="/views/common/adminNavigation.jsp" %>
+			<%@include file="/views/common/adminNavigation.jsp"%>
 		</div>
 		<div id="content">
 			<div class="page_section">
@@ -60,34 +61,20 @@
 						</select>
 					</div>
 					<div class="search-bar">
-						<input type="text" size="30" name="keyword" class="search-input"/>
-						<label for="searchSubmit" style="cursor: pointer;"><i class="fas fa-search search-icon">
-						</i></label>
-						<input type="submit" id="searchSubmit" style="display:none;"/>
+						<input type="text" size="30" name="keyword" class="search-input" />
+						<label for="searchSubmit" style="cursor: pointer;"><i
+							class="fas fa-search search-icon"> </i></label> <input type="submit"
+							id="searchSubmit" style="display: none;" />
 					</div>
 					<div id="abminBtn">
-						<button id="blackBtn" type="button" onclick="btn(black)">블랙리스트 등록</button>
+						<button id="blackBtn" type="button">블랙리스트
+							등록</button>
 						&nbsp;
-						<button id="delBtn" type="button" onclick="btn(post)">삭제</button>
-						<%-- <button id="delBtn" type="button" onclick="$('#boardForm').submit();">삭제</button> --%>
+						<button id="delBtn" type="button">삭제</button>
 					</div>
 				</form>
-				
-				<script>
-					function btn(str){
-						
-						if(str.equals("black"))
-						{
-							boardForm.action = "/adRecipeBoard/memberBlack.do";
-						}else
-						{
-							boardForm.action = "/adRecipeBoard/deletAdminBoardList.do";
-						}
-						
-					}
-					
-				</script>
-				<form action="/adRecipeBoard/deletAdminBoardList.do" method="post" name="boardForm">
+
+				<form action="" method="post" id="boardForm">
 					<table>
 						<thead>
 							<tr>
@@ -112,16 +99,19 @@
 						</thead>
 						<tbody>
 							<%
-								for(AdminRecipeBoard recipeBoard : list){
+								for (AdminRecipeBoard recipeBoard : list) {
 							%>
 							<tr>
 								<td><input type="checkbox" name="postNo"
-									value="<%=recipeBoard.getBoardNo() %>" /></td>
-								<td><%=recipeBoard.getBoardNo() %></td>
-								<td><%=recipeBoard.getRecipeName() %></td>
-								<td><a id="recipeName" href="/recipeBoard/recipeBoardSelectContent.do?boardNo=<%=recipeBoard.getBoardNo()%>"><%=recipeBoard.getTitle() %></a></td>
-								<td><%=recipeBoard.getUserName() %></td>
-								<td><%=recipeBoard.getRegDate() %></td>
+									value="<%=recipeBoard.getBoardNo()%>" /></td>
+								<td><%=recipeBoard.getBoardNo()%></td>
+								<td><%=recipeBoard.getRecipeName()%></td>
+								<td><a id="recipeName"
+									href="/recipeBoard/recipeBoardSelectContent.do?boardNo=<%=recipeBoard.getBoardNo()%>"><%=recipeBoard.getTitle()%></a></td>
+								<td><%=recipeBoard.getUserName()%>
+								<input type="hidden" name="postWriterId"
+									value="<%=recipeBoard.getUserId()%>"/></td>
+								<td><%=recipeBoard.getRegDate()%></td>
 							</tr>
 							<%} %>
 						</tbody>
@@ -130,7 +120,7 @@
 						<div class="page-navi">
 							<nav aria-label="Page navigation example">
 							<ul class="pagination justify-content-center mt-5">
-								<%=pageNavi %>
+								<%=pageNavi%>
 							</ul>
 							</nav>
 						</div>
@@ -140,33 +130,47 @@
 		</div>
 
 		<script>
-			$('#allCheckBox').click(function() {
-				
-				$('input[name=postNo]').trigger('click');
-				
-				if ($(this).prop('checked')) {
-					$('input[name=postNo]').prop('checked', true);
-					$('input[name=postNo]').parents('tr').css('background-color','#E3EEE6');
-				} else {
-					$('input[name=postNo]').prop('checked', false);
-					$('input[name=postNo]').parents('tr').css('background-color','#white');
-				}
-			});
+			$('#allCheckBox').click(
+					function() {
+
+						$('input[name=postNo]').trigger('click');
+
+						if ($(this).prop('checked')) {
+							$('input[name=postNo]').prop('checked', true);
+							$('input[name=postNo]').parents('tr').css(
+									'background-color', '#E3EEE6');
+						} else {
+							$('input[name=postNo]').prop('checked', false);
+							$('input[name=postNo]').parents('tr').css(
+									'background-color', '#white');
+						}
+					});
 		</script>
-		
+
 		<script>
-			$('input[name=postNo]').click(function(){
-				
-				if($(this).prop('checked'))
-				{
-					$(this).parents('tr').css('background-color','#E3EEE6');
-				}else
-				{
-					$(this).parents('tr').css('background-color','white');
+			$('input[name=postNo]').click(function() {
+
+				if ($(this).prop('checked')) {
+					$(this).parents('tr').css('background-color', '#E3EEE6');
+				} else {
+					$(this).parents('tr').css('background-color', 'white');
 				}
 			});
 		</script>
 
+		<script>
+			$('#blackBtn').click(function(){
+				$('#boardForm').attr("action", "/adRecipeBoard/memberBlack.do");
+				$('#boardForm').submit();
+				alert("요청하신 회원을 블랙리스트에 등록하였습니다.");
+			});
+			
+			$('#delBtn').click(function(){
+				$('#boardForm').attr("action", "/adRecipeBoard/deletAdminBoardList.do");
+				$('#boardForm').submit();
+				alert("요청하신 게시글의 삭제가 완료되었습니다.");
+			});
+		</script>
 
 		<div id="footer"></div>
 	</div>

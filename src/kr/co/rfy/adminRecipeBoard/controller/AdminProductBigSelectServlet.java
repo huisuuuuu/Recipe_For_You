@@ -1,6 +1,8 @@
 package kr.co.rfy.adminRecipeBoard.controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.ArrayList;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -8,20 +10,24 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+
 import kr.co.rfy.adminRecipeBoard.model.service.AdminRecipeBoardService;
 import kr.co.rfy.adminRecipeBoard.model.service.AdminRecipeBoardServiceImpl;
+import kr.co.rfy.adminRecipeBoard.model.vo.AdminProductBig;
 
 /**
- * Servlet implementation class AdminRecipeBoardPostLikeServlet
+ * Servlet implementation class AdminProductBigSelectServlet
  */
-@WebServlet("/recipeBoard/recipeBoardPostLike.do")
-public class AdminRecipeBoardPostLikeServlet extends HttpServlet {
+@WebServlet("/admin/productBig.do")
+public class AdminProductBigSelectServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public AdminRecipeBoardPostLikeServlet() {
+    public AdminProductBigSelectServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -31,18 +37,24 @@ public class AdminRecipeBoardPostLikeServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		int boardNo = Integer.parseInt(request.getParameter("boardNo"));
-		int likeNum = Integer.parseInt(request.getParameter("likeNum"));
-		AdminRecipeBoardService rbService = new AdminRecipeBoardServiceImpl();
-		int result = rbService.updateRecipePostLike(boardNo, likeNum);
+		  AdminRecipeBoardService rbService = new AdminRecipeBoardServiceImpl();
+		  ArrayList<AdminProductBig> list = rbService.selectProductBig();
 		
-		if(result>0)
-		{
-			response.sendRedirect("/recipeBoard/recipeBoardSelectContent.do?boardNo="+boardNo);
-		}else
-		{
-			response.sendRedirect("/views/common/error.jsp");
-		}
+		  JSONArray jsonArray = new JSONArray();
+		  
+		  for(AdminProductBig pb : list) {
+			  
+			  JSONObject json = new JSONObject();
+			  json.put("bigCode", pb.getBigCode());
+			  json.put("bigName", pb.getBigName());
+			  
+			  jsonArray.add(json);
+		  }
+		  
+		  response.setCharacterEncoding("UTF-8");
+		  PrintWriter out = response.getWriter();
+		  out.print(jsonArray);
+		  
 	}
 
 	/**

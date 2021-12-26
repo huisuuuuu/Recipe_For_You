@@ -17,42 +17,50 @@ import kr.co.rfy.common.MemberAuthorityCheck;
 @WebServlet("/adRecipeBoard/memberBlack.do")
 public class AdminRecipeBoardMemberBlackServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public AdminRecipeBoardMemberBlackServlet() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#HttpServlet()
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		String roll = MemberAuthorityCheck.authorityCheck(request, response);
-		
-		//삭제하려는 게시물 번호 가져오기
-		String [] recipeBoardNoValues = request.getParameterValues("postNo");
-		
-		AdminRecipeBoardService rbService = new AdminRecipeBoardServiceImpl();
-		int result = rbService.recipeBoardMemberBlack(recipeBoardNoValues);
-		
-		if(result==recipeBoardNoValues.length)
-		{
-			response.sendRedirect("/recipeBoard/recipeBoardAllSelect.do");
-		}else
-		{
-			response.sendRedirect("/views/commons/error.jsp");
-		}
-		
+	public AdminRecipeBoardMemberBlackServlet() {
+		super();
+		// TODO Auto-generated constructor stub
 	}
-		
+
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+
+		String roll = MemberAuthorityCheck.authorityCheck(request, response);
+
+		// 권한 검증 작업(권한을 확인하여 관리자 또는 운영자가 아니라면 error 페이지로 안내)
+		if (roll == null) {
+			response.sendRedirect("/views/common/error.jsp");
+			return;
+		}
+
+		// 삭제하려는 게시물 작성자 아이디 가져오기
+		String[] recipePostWriterIdValues = request.getParameterValues("postWriterId");
+
+		AdminRecipeBoardService rbService = new AdminRecipeBoardServiceImpl();
+		int result = rbService.recipeBoardMemberBlack(recipePostWriterIdValues);
+
+		if (result == recipePostWriterIdValues.length) {
+			response.sendRedirect("/recipeBoard/recipeBoardAllSelect.do");
+		} else {
+			response.sendRedirect("/views/common/error.jsp");
+		}
+
+	}
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);
 	}

@@ -3,6 +3,9 @@ package kr.co.rfy.adminRecipeBoard.model.service;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import kr.co.rfy.adminRecipeBoard.model.vo.AdminProductBig;
+import kr.co.rfy.adminRecipeBoard.model.vo.AdminProductIngredient;
+import kr.co.rfy.adminRecipeBoard.model.vo.AdminProductMiddle;
 import kr.co.rfy.adminRecipeBoard.model.vo.AdminRecipeBoard;
 
 public interface AdminRecipeBoardService {
@@ -51,6 +54,15 @@ public interface AdminRecipeBoardService {
 	int deleteAdminPost(String[] recipeBoardNoValues);
 
 
-	int recipeBoardMemberBlack(String[] recipeBoardNoValues);
+	int recipeBoardMemberBlack(String[] recipePostWriterIdValues);
+
+
+	ArrayList<AdminProductBig> selectProductBig();
+
+
+	ArrayList<AdminProductMiddle> selectProductMiddle(String bigCode);
+
+
+	ArrayList<AdminProductIngredient> selectProductIngredient(String middleCode);
 	
 }

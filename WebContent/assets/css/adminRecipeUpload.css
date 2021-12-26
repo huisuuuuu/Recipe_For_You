@@ -72,7 +72,7 @@ div {
 	color: #5E5E5E;
 }
 
-#formList {
+#recipePostFrm {
 	width: 650px;
 	margin: 0 auto;
 }
@@ -197,18 +197,32 @@ div {
 	font-size: 14px;
 }
 
-#ingredientList>li {
-	width: 41%;
-	margin: 0 27px;
+#ingredientList{
+	margin-left: 50px;
+}
+
+#ingredientList>div {
+	width: 48%;
+	padding: 5px 0px;
+	display: inline-block;
+}
+
+#ingredientList>div>li {
+	width: 60%;
+	margin: 0 10px;
 	padding: 5px 0px;
 	display: inline-block;
 	font-family: "Noto Serif KR", serif, Helvetica, "Helvetica Neue", Arial;
 	font-size: 15px;
 	font-weight: 500;
+	text-align: left;
 }
 
 #ingredientList span {
-	float: right;
+	width: 40%;
+	padding: 5px 0px;
+	margin: 0 20px;
+	text-align: left;
 	color: #5E5E5E;
 }
 

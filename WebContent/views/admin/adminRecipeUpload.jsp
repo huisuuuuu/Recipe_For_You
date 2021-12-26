@@ -39,7 +39,7 @@
 		<div id="content">
 			<h1 class="main-title">CREATE A RECIPE</h1>
 			<h2 class="sub-title">여러분만의 맛있고 특별한 레시피를 공유해주세요.</h2>
-			<form id="formList">
+			<form id="recipePostFrm">
 				<div class="recipeCode">
 					<select name="recipe_Code">
 						<option>레시피 분류</option>
@@ -81,38 +81,20 @@
 				</div>
 				<hr style="width: 650px; margin: 0 auto; margin-top: 15px;">
 				<div id="ingredient" class="titleArea">
-					<span>재료</span> <select name="big_Code">
+					<span>재료</span> <select name="big_Code" id="bigCode">
 						<option value>대분류</option>
-						<option value="product_01">반찬/김치</option>
-						<option value="product_02">정육/계란</option>
-						<option value="product_03">수산/해산/건어물</option>
-						<option value="product_04">채소/과일</option>
-						<option value="product_05">견과/쌀</option>
-						<option value="product_06">면류</option>
-						<option value="product_07">간편식/조리식품</option>
-						<option value="product_08">과일청/잼</option>
-						<option value="product_09">디저트</option>
-						<option value="product_10">장류/조미료</option>
-						<option value="product_11">유제품</option>
-					</select> <select name="middle_Code">
-						<option value>중분류</option>
-					</select> <select name="ingredient_Code" id="ingredient_Code">
-						<option value>소분류</option>
-						<option value="kimchi">김치</option>
-						<option value="pork_neck">목살</option>
-						<option value="eggplant">가지</option>
-						<option value="potato">감자</option>
-						<option value="apple">사과</option>
+					</select> <select name="middle_Code" id="middleCode">
+						<option id="middleOption" value>중분류</option>
+					</select> <select name="ingredient_Code" id="ingredientCode">
+						<option id="ingredientOption" value>소분류</option>
 					</select> <input type="text" maxlength="10" name="ingredient_Num"
 						id="ingredient_Num" placeholder="계량 정보 / 예)300g" />
 					<button id="ingredientBtn" type="button">추가</button>
 				</div>
 				<div id="idgredientContent" style="width: 650px; margin: 10px auto;">
-					<ul id="ingredientList" style="margin: 0px; padding: 0px;">
-						<li>돼지고기 <span>300g</span>
-						</li>
-						<li>청주 <span>한 큰술</span>
-						</li>
+					<ul id="ingredientList" style="margin-left: 40px; padding: 0px;">
+					<div><li>소고기</li><span>한근</span></div>
+					<div><li>파</li><span>한단</span></div>
 					</ul>
 				</div>
 
@@ -121,24 +103,27 @@
 							.click(
 									function() {
 
-										var $ingredientSelect = $('#ingredient_Code option:selected');
+										var $ingredientSelect = $('#ingredientCode option:selected');
 										var ingredient = $ingredientSelect
 												.text();
 										var $ingredient_Num = $(
 												'#ingredient_Num').val();
+										var divTag = document
+										.createElement("div");
 										var liTag = document
 												.createElement("li");
 										var spanTag = document
 												.createElement("span");
 
-										spanTag.innerHTML = $ingredient_Num;
 										liTag.innerHTML = ingredient;
-										liTag.appendChild(spanTag);
+										spanTag.innerHTML = $ingredient_Num;
+										divTag.appendChild(liTag);
+										divTag.appendChild(spanTag);
 
 										if (ingredient != "소분류"
 												&& $ingredient_Num.length > 0) {
 											$('#ingredientList')[0]
-													.appendChild(liTag);
+													.appendChild(divTag);
 										} else {
 											alert("재료 및 계랑 정보를 입력해주세요.");
 										}
@@ -215,5 +200,87 @@
 		</div>
 		<div id="footer"></div>
 	</div>
+	
+	<script>
+		
+	$(document).ready(function(){
+		$.ajax({
+			url: "/admin/productBig.do",
+			type: "get",
+			dataType: "json",
+			success: function(data){
+					
+				var $bigCode = $('#bigCode');
+				
+				$.each(data, function(index, item){
+					
+					var str = "<option value='"+item.bigCode+"'>"+item.bigName+"</option>";
+					$bigCode.append(str);
+				});
+				
+			},
+			error: function(){
+				console.log("Ajax 통신 실패");	
+			}
+		});
+	});
+	
+	$('#bigCode').click(function(){
+		
+		var bigCode = $(this).val();
+		console.log(bigCode);
+		
+		$.ajax({
+			url: "/admin/productMiddle.do",
+			data: {"bigCode":bigCode},
+			dataType: "json",
+			type: "get",
+			success: function(data){
+				
+				var $middleCode = $('#middleCode');
+				$('#middleCode option:not(#middleOption)').remove();
+				
+				$.each(data, function(index, item){
+					
+					var str = "<option value='"+item.middleCode+"'>"+item.middleName+"</option>";
+					$middleCode.append(str);
+				});
+				
+			},
+			error: function(){
+				console.log("Ajax 통신 실패");
+			}
+		});
+		
+	});
+	
+	$('#middleCode').click(function(){
+		
+		var middleCode = $(this).val();
+		
+		$.ajax({
+			url: "/admin/productIngredient.do",
+			data: {"middleCode":middleCode},
+			dataType: "json",
+			type: "get",
+			success: function(data){
+				
+				var $ingredientCode = $('#ingredientCode');
+				$('#ingredientCode option:not(#ingredientOption)').remove();
+				
+				$.each(data, function(index, item){
+					
+					var str = "<option value='"+item.ingredientCode+"'>"+item.ingredientName+"</option>";
+					$ingredientCode.append(str);
+				});
+				
+			},
+			error: function(){
+				console.log("Ajax 통신 실패");
+			}
+		});
+		
+	});
+	</script>
 </body>
 </html>

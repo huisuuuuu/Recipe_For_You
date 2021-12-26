@@ -55,7 +55,8 @@
 	integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm"
 	crossorigin="anonymous">
 
-<link rel="stylesheet" type="text/css" href="/assets/css/adminRecipeUpload.css">	
+<link rel="stylesheet" type="text/css"
+	href="/assets/css/adminRecipeUpload.css">
 
 <title>Insert title here</title>
 </head>
@@ -83,7 +84,7 @@
 	<div id="wrapper">
 		<div id="header"></div>
 		<div id="navigation">
-			<%@include file="/views/common/adminNavigation.jsp" %>
+			<%@include file="/views/common/adminNavigation.jsp"%>
 		</div>
 		<div class="contents">
 			<div id="cWrapper">
@@ -109,7 +110,7 @@
 						<div id="ingredient_warpper">
 							<table width="90%">
 								<%
-									for (int i = 0; i <ingredientList.size(); i++) {
+									for (int i = 0; i < ingredientList.size(); i++) {
 								%>
 								<tr>
 									<td><%=ingredientList.get(i).getIngredientName()%> <spn
@@ -170,22 +171,36 @@
 						</div>
 						<!--작성자라면 수정,취소/미작성자는 추천
 						 session 객체에서 회원 ID를 확인한 뒤 작성자와 일치하면 수정 버튼을 활성화-->
-					<% 	Member m = (Member)session.getAttribute("member"); %>
+						<%
+							Member m = (Member) session.getAttribute("member");
+						%>
 						<div id="fotter_button">
 							<span>이 레시피를&nbsp&nbsp</span>
-							<%if(m!=null && m.getUserId().equals(recipeBoard.getUserId())) {%>
+							<%
+								if (m != null && m.getUserId().equals(recipeBoard.getUserId())) {
+							%>
 							<button type="button" class="btnStyle" id="updateBtn">
 								수정</button>
-							<%}else { %>
-							<form action="/recipeBoard/recipeBoardPostLike.do" method="post" id="likeUpdateForm" style="display:inline-block;">
-							<button class="btnStyle" id="likeBtn">추천</button>
-							<input type="hidden" name="boardNo" value="<%=recipeBoard.getBoardNo() %>"/>
-							<input type="hidden" name="likeNum" value="<%=recipeBoard.getLikeNum() %>"/>
-							</form>	
-							<%} %>		
-							<span style="margin:3px 2px;">&nbsp할래요!</span>
+							<%
+								} else {
+							%>
+							<form action="/recipeBoard/recipeBoardPostLike.do" method="post"
+								id="likeUpdateForm" style="display: inline-block;">
+								<button class="btnStyle" id="likeBtn">추천</button>
+								<input type="hidden" name="boardNo"
+									value="<%=recipeBoard.getBoardNo()%>" /> <input type="hidden"
+									name="likeNum" value="<%=recipeBoard.getLikeNum()%>" />
+							</form>
+							<%
+								}
+							%>
+							<span style="margin: 3px 2px;">&nbsp할래요!</span>
+							<%if(m != null && m.getUserId().equals(recipeBoard.getUserId())) {%>
 							<button type="button" class="btnStyle" id="deleteBtn">삭제</button>
-							<button type="button"  class="btnStyle"  id="boardListBtn"><a href="/recipeBoard/recipeBoardAllSelect.do">목록</a></button>
+							<%} %>
+							<button type="button" class="btnStyle" id="boardListBtn">
+								<a href="/recipeBoard/recipeBoardAllSelect.do">목록</a>
+							</button>
 						</div>
 						<div id="fotter_empty2"></div>
 					</div>
@@ -195,11 +210,11 @@
 				<div class="side_empty"></div>
 			</div>
 		</div>
-			<!-- conntent 끝-->
+		<!-- conntent 끝-->
 		<div id="footer"></div>
-		</div>
-		
-		<script>
+	</div>
+
+	<script>
 			$('#likeBtn').click(function(){
 				alert('추천이 완료되었습니다.');
 			});
@@ -228,17 +243,15 @@
 					document.body.appendChild(formTag);
 					
 					formTag.submit();
-					
-					
-					
 				}else
 				{
 					alert('삭제를 취소하였습니다.');
 				}
-			});
+			}
+		});
 			
 		</script>
-		
+
 	<!-- Optional JavaScript; choose one of the two! -->
 
 	<!-- Option 1: Bootstrap Bundle with Popper -->
