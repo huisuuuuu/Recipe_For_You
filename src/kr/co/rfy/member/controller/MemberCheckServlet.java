@@ -40,7 +40,7 @@ public class MemberCheckServlet extends HttpServlet {
 					
 				}else // 회원정보를 꺼내보았을때 없다면! -> 비로그인한 사용자라면
 				{
-					view = request.getRequestDispatcher("/views/commons/error.jsp");
+					view = request.getRequestDispatcher("/views/common/error.jsp");
 				}
 				
 				view.forward(request, response);

@@ -12,7 +12,7 @@ import javax.servlet.http.HttpSession;
 /**
  * Servlet implementation class MemberLogoutServlet
  */
-@WebServlet("/member/logout.do")
+@WebServlet("/member/memberLogout.do")
 public class MemberLogoutServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -28,19 +28,13 @@ public class MemberLogoutServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-HttpSession session = request.getSession();
+		// 현재 가지고 있는 세션을 파기하는 서블릿
 		
-		// 일반적인 로그아웃은 session을 찾아서 파기만 하면 된다.
-		// 그런데 만약에 혹시라도 로그아웃에 대한 시점 저장 하고 싶다 ? -> 그때에는 session에서 데이터(ID값)를 찾아서 DB 에 기록을 해야 한다.
+		HttpSession session = request.getSession();
+		// 세션파기
+		session.invalidate();
 		
-		session.invalidate(); //세션 파기
-		
-		/*
-		sendRedirect?
-		RequestDispatcher?
-		*/
-		
-		response.sendRedirect("/");	
+		response.sendRedirect("/");
 	}
 
 	/**

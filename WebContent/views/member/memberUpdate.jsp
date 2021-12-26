@@ -182,13 +182,13 @@
 			            <!--이메일-->
 			            <div class="th">이메일 </div>
 			            <div class="td">
-			            <input type="email" name="userEmail"  placeholder=" 예: member@join.com" data-name="이메일" vali="T">
+			            <input type="email" name="userEmail"  placeholder=" 예: member@join.com" data-name="이메일" vali="T" class="essential" />
 			            <button id="checkEmail" type="button">인증하기</button><br>
 			            </div><br />
 			            <div style="display:none;" id="inputAuthKey">
 							<div class="th">인증번호</div>
 							<div class="td">
-								<input type="text" id="authKeyNo" placeholder="인증번호를 입력하세요" />
+								<input type="text" id="authKeyNo" placeholder="인증번호를 입력하세요"  data-name="이메일인증"/>
 								<button id="authKeyCheck" type="button">인증번호확인</button><br>
 							</div><br />
 						</div>
@@ -359,7 +359,7 @@
         	var $form = $("#updateForm");
         	var $userEmail = $("input[name=userEmail]");
 
-        	$.each($("input[name]"), function(index, item){
+        	$.each($(".essential"), function(index, item){
         			// 입력값이 없을 경우
         		if($(this).val()==""){
         				var dataName = $(this).attr("data-name");

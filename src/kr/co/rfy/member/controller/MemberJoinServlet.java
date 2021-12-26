@@ -35,7 +35,7 @@ public class MemberJoinServlet extends HttpServlet {
 		// 회원가입시 입력받은 정보를 데이터 유효성검증을 하고 DB에 정보를 저장하는 서블릿
 		
 		// 로그인한 회원인지 확인
-		if(request.getSession().getAttribute("member")!=null) response.sendRedirect("/views/commons/error.jsp");
+		if(request.getSession().getAttribute("member")!=null) response.sendRedirect("/views/common/error.jsp");
 		
 		// 입력받은 회원정보 가져오기
 		request.setCharacterEncoding("UTF-8");

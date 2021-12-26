@@ -49,7 +49,7 @@ public class MemberUpdateServlet extends HttpServlet {
 		String msg = "";
 		// 유효성 검증
 		MemberJoinDataCheck mDataCheck = new MemberJoinDataCheck();		
-		if(mDataCheck.regExEmail(userEmail) && mDataCheck.regExEmail(userPhone)) {
+		if(mDataCheck.regExEmail(userEmail) && mDataCheck.regExPhone(userPhone)) {
 			
 			// 세션에서 id 가쟈오기
 			String userId = ((Member)request.getSession().getAttribute("member")).getUserId();
