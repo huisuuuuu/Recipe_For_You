@@ -41,8 +41,12 @@ public class AdminRecipeBoardMemberBlackServlet extends HttpServlet {
 			return;
 		}
 
-		// 삭제하려는 게시물 작성자 아이디 가져오기
+		// 블랙리스트에 등록하려는 작성자 아이디 가져오기
 		String[] recipePostWriterIdValues = request.getParameterValues("postWriterId");
+		
+		for(String str : recipePostWriterIdValues) {
+			System.out.println(str);
+		}
 
 		AdminRecipeBoardService rbService = new AdminRecipeBoardServiceImpl();
 		int result = rbService.recipeBoardMemberBlack(recipePostWriterIdValues);

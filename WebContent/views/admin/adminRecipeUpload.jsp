@@ -39,32 +39,32 @@
 		<div id="content">
 			<h1 class="main-title">CREATE A RECIPE</h1>
 			<h2 class="sub-title">여러분만의 맛있고 특별한 레시피를 공유해주세요.</h2>
-			<form id="recipePostFrm">
+			<form id="recipePostFrm" action="/recipeBoard/adminRecipePostUpload.do" method="post" enctype="multipart/form-data">
 				<div class="recipeCode">
 					<select name="recipe_Code">
 						<option>레시피 분류</option>
-						<option value="recipe_01">한식</option>
-						<option value="recipe_02">양식</option>
-						<option value="recipe_03">일식</option>
-						<option value="recipe_04">중식</option>
-						<option value="recipe_05">분식</option>
-						<option value="recipe_06">채식</option>
-						<option value="recipe_07">다이어트</option>
-						<option value="recipe_08">밑반찬</option>
-						<option value="recipe_09">안주</option>
-					</select> <select name="levle_Code">
+						<option value="Recipe_01">한식</option>
+						<option value="Recipe_02">양식</option>
+						<option value="Recipe_03">일식</option>
+						<option value="Recipe_04">중식</option>
+						<option value="Recipe_05">분식</option>
+						<option value="Recipe_06">채식</option>
+						<option value="Recipe_07">다이어트</option>
+						<option value="Recipe_08">밑반찬</option>
+						<option value="Recipe_09">안주</option>
+					</select> <select name="level_Code">
 						<option value>난이도</option>
-						<option value="levle_01">초급</option>
-						<option value="levle_02">중급</option>
-						<option value="levle_03">고급</option>
+						<option value="LEVEL_01">초급</option>
+						<option value="LEVEL_02">중급</option>
+						<option value="LEVEL_03">고급</option>
 					</select> <select name="time_Code">
 						<option value>조리시간</option>
-						<option value="time_01">10분</option>
-						<option value="time_02">20분</option>
-						<option value="time_03">30분</option>
-						<option value="time_04">40분</option>
-						<option value="time_05">50분</option>
-						<option value="time_06">60분이상</option>
+						<option value="TIME_01">10분</option>
+						<option value="TIME_02">20분</option>
+						<option value="TIME_03">30분</option>
+						<option value="TIME_04">40분</option>
+						<option value="TIME_05">50분</option>
+						<option value="TIME_06">60분이상</option>
 					</select>
 				</div>
 				<div id="thumbnail">
@@ -76,7 +76,7 @@
 						placeholder="레시피 제목을 입력해주세요" /></br> <input type=text name="subTitle"
 						class="recipeContentInput" maxlength="20"
 						placeholder="레시피를 간단히 설명해주세요(20자 이내)" /></br>
-						<textarea id="recipeContent"
+						<textarea id="recipeContent" name="recipeContent"
 						placeholder="레시피를 상세히 설명해주세요" style="resize: none;"></textarea>
 				</div>
 				<hr style="width: 650px; margin: 0 auto; margin-top: 15px;">
@@ -93,16 +93,13 @@
 				</div>
 				<div id="idgredientContent" style="width: 650px; margin: 10px auto;">
 					<ul id="ingredientList" style="margin-left: 40px; padding: 0px;">
-					<div><li>소고기</li><span>한근</span></div>
-					<div><li>파</li><span>한단</span></div>
 					</ul>
 				</div>
 
 				<script>
-					$('#ingredientBtn')
-							.click(
-									function() {
-
+				
+						$('#ingredientBtn').click(function() {
+										
 										var $ingredientSelect = $('#ingredientCode option:selected');
 										var ingredient = $ingredientSelect
 												.text();
@@ -114,11 +111,24 @@
 												.createElement("li");
 										var spanTag = document
 												.createElement("span");
+										var inputTag = document.createElement("input");
+										var inputTag2 = document.createElement("input");
 
 										liTag.innerHTML = ingredient;
 										spanTag.innerHTML = $ingredient_Num;
 										divTag.appendChild(liTag);
 										divTag.appendChild(spanTag);
+										
+										inputTag.setAttribute("type","hidden");
+										inputTag.setAttribute("name","ingredientName");
+										inputTag.setAttribute("value",ingredient);
+										
+										inputTag2.setAttribute("type","hidden");
+										inputTag2.setAttribute("name","ingredientNum");
+										inputTag2.setAttribute("value",$ingredient_Num);
+										
+										divTag.appendChild(inputTag);
+										divTag.appendChild(inputTag2);
 
 										if (ingredient != "소분류"
 												&& $ingredient_Num.length > 0) {
@@ -141,7 +151,7 @@
 						<div id="stepImage_1" class="stepImage" style="margin-right: 5px;"></div>
 						</label>
 						<div id="stepText_1" class="stepText">
-							<textarea id="step_text_1" class="stepText"
+							<textarea id="step_text_1" class="stepText" name="recipeContent"
 								placeholder="조리법을 설명해주세요" style="resize: none;"></textarea>
 						</div>
 					</div>
@@ -150,12 +160,10 @@
 				<input type="submit" value="작성하기"/>
 				<button type="button"><a href="/recipeBoard/recipeBoardAllSelect.do">취소</a></button>
 				</div>
+				<input type="file" id="thumbnailImage" name="recipeImage" accept="image/*" onchange="setThumbnail(event,'thumbnailImage');" style="display: none;"/>
+				<input type="file" id="recipeImage_1" name="recipeImage" style="display: none;"/>
 			</form>
-			<form id="fileUpload">
-				<input type="file" id="thumbnailImage" style="display: none;" /> <input
-					type="file" id="recipeImage_1" style="display: none;" />
-			</form>
-
+			
 			<script>
 				var count = 2;
 
@@ -171,29 +179,34 @@
 
 					parentDiv.id = "stepItem_" + count;
 					parentDiv.setAttribute("class", "step");
+					
 					pTag.innerText = "Step" + count;
+					
 					labelTag.setAttribute("for", "recipeImage_" + count);
 					imageDiv.setAttribute("id", "stepImage_" + count)
 					imageDiv.setAttribute("class", "stepImage");
 					labelTag.appendChild(imageDiv);
+					
 					textDiv.setAttribute("id", "stepText_" + count)
 					textDiv.setAttribute("class", "stepText");
 					textareaTag.setAttribute("id", "step_text_" + count)
+					textareaTag.setAttribute("name", "recipeContent")
 					textareaTag.setAttribute("class", "stepText");
 					textareaTag.setAttribute("placeholder", "조리법을 설명해주세요");
 					textareaTag.setAttribute("style", "resize:none");
 					textDiv.appendChild(textareaTag);
+					
 					parentDiv.appendChild(pTag);
 					parentDiv.appendChild(labelTag);
 					parentDiv.appendChild(textDiv);
-					console.log(parentDiv);
 
 					inputTag.setAttribute("type", "file");
-					inputTag.setAttribute("id", "recipeImage_" + count);
+					inputTag.setAttribute("id", "recipeImage_"+count);
+					inputTag.setAttribute("name", "recipeImage");
 					inputTag.setAttribute("style", "display:none");
 
 					$('#stepArea')[0].appendChild(parentDiv);
-					$('#fileUpload')[0].appendChild(inputTag);
+					$('#recipePostFrm')[0].appendChild(inputTag);
 					count++;
 				})
 			</script>
@@ -228,7 +241,6 @@
 	$('#bigCode').click(function(){
 		
 		var bigCode = $(this).val();
-		console.log(bigCode);
 		
 		$.ajax({
 			url: "/admin/productMiddle.do",

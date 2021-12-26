@@ -16,7 +16,7 @@
 			<ul id="gnb">
 				<li><a href="">레시피 관리</a>
 					<ul class="submenu">
-						<li><a href="/views/admin/adminRecipeUpload.jsp">레시피 등록</a></li>
+						<li><a href="/recipeBoard/adminRecipePostUpload.do">레시피 등록</a></li>
 						<li><a href="/recipeBoard/recipeBoardAllSelect.do">레시피 조회 및 관리</a></li>
 					</ul></li>
 				<li><a href="">문의/리뷰 관리</a>

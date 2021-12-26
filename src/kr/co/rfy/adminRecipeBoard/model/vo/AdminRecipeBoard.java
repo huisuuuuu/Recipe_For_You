@@ -24,7 +24,17 @@ public class AdminRecipeBoard {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-
+	
+	public AdminRecipeBoard(String recipeCode, String levelCode, String timeCode, String title, String subTitle,
+			String userId) {
+		super();
+		this.recipeCode = recipeCode;
+		this.levelCode = levelCode;
+		this.timeCode = timeCode;
+		this.title = title;
+		this.subTitle = subTitle;
+		this.userId = userId;
+	}
 
 	public AdminRecipeBoard(String boardCode, int boardNo, String recipeCode, String levelCode, String timeCode,
 			String title, String subTitle, String userId, Date regDate, int likeNum, int viewCount, char endYN,

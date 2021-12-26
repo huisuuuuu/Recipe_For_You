@@ -45,7 +45,7 @@ public class AdminRecipeBoardListDeleteServlet extends HttpServlet {
 
 		// 삭제하려는 게시물 번호 가져오기
 		String[] recipeBoardNoValues = request.getParameterValues("postNo");
-
+		
 		AdminRecipeBoardService rbService = new AdminRecipeBoardServiceImpl();
 		int result = rbService.deleteAdminPost(recipeBoardNoValues);
 

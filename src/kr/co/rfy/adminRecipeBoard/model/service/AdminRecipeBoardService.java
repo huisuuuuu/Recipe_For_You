@@ -64,5 +64,9 @@ public interface AdminRecipeBoardService {
 
 
 	ArrayList<AdminProductIngredient> selectProductIngredient(String middleCode);
+
+
+	int insertAdminRecipePost(AdminRecipeBoard arb, String[] uploadImageNameValues, String[] uploadImagePathValues,
+			String[] ingredientNameValues, String[] ingredientNum, String[] recipeContent);
 	
 }

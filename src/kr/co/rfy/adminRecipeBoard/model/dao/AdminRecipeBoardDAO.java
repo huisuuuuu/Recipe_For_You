@@ -24,6 +24,23 @@ public class AdminRecipeBoardDAO {
 		
 		ArrayList<AdminRecipeBoard> list = new ArrayList<AdminRecipeBoard>();
 		
+		/*
+		--TOP-N 분석
+		--전체적인 순위를 만들고, 그 순위에서 가장 최상위에서 몇번째까지
+
+		--1Page => NUM이 1~5까지의 글을 가져오면 됨
+		--2Page => NUM이 6~10까지의 글을 가져오면 됨
+		--3Page => NUM이 11~15까지의 글을 가져오면 됨
+
+		--공식
+		--START = 현재 페이지 * 목록 개수 - (목록 개수 - 1)
+		--END = 현재 페이지 * 목록 개수
+
+		--ex) 만약 1 페이지라면(목록 개수 5개)
+		--START = 1*5 - (5-1) => 1
+		--END = 1*5 => 5
+		*/
+		
 		int start = currentPage * recordCountPerPage - (recordCountPerPage-1);
 		int end = currentPage * recordCountPerPage;
 		
@@ -81,11 +98,59 @@ public class AdminRecipeBoardDAO {
 		
 		int pageTotalCount = 0; //전체 페이지 개수
 		
+		//현재 한 페이지당 보여주는 글(post) 개수가 5개이므로, post 수가 5개라면 1page
+		//post 수가 6개라면 2page
+		//post 수가 105개라면 21page
+		//post 수가 108개라면 22page
+		
+		/*
+		if((recordTotalCount % recordCountPerPage) > 0)
+		{	
+			//나머지가 있다면 페이지를 1개 더 만들어라
+			pageTotalCount = (recordTotalCount / recordCountPerPage)+1;
+		}else
+		{
+			pageTotalCount = recordTotalCount / recordCountPerPage;
+		}
+		*/
+		
 		pageTotalCount = (int)Math.ceil(recordTotalCount/(double)recordCountPerPage);
+		
+		/*
+		 현재 내가 요청한 Page에 따라 startNavi 값과 endNavi 값을 구할 수 있어야한다.
+		 
+		 ex1)현재 page가 1이라면
+		 	 startNavi: 1, endNavi: 5
+		 	 
+		 ex2)현재 page가 3이라면
+		 	 startNavi: 1, endNavi: 5
+		 
+		 ex3)현재 page가 7이라면
+		 	 startNavi: 6, endNavi: 10
+		 	 
+		 startNavi 공식
+		 startNavi = (((현재 페이지 - 1) / Navi 당 보여질 개수) * Navi 당 보여질 개수) + 1
+		 
+		 코드로 표현
+		 startNavi = (((currentPage - 1) / naviCountPerPage) * naviCountPerPage) + 1
+		 
+		 endNavi 공식
+		 endNavi = 시작 Navi 값 +(Navi 당 보여질 개수 - 1)
+		 
+		 코드로 표현
+		 endNavi = startNavi + (naviCountPerPage - 1)
+		 
+		 */
 		
 		int startNavi = (((currentPage - 1) / naviCountPerPage) * naviCountPerPage) + 1; 
 		int endNavi = startNavi + (naviCountPerPage - 1);
 		
+		//단, 상기 공식에는 문제가 없지만, 예외 상황이 한가지 있다.
+		//만약 현재 페이지가 21페이지라면? < 21 22
+		//startNavi = (((21-1) / 5)*5)+1 -> 21
+		//endNavi = 21+(5-1) -> 25
+		
+		//만약 공식으로 구한 endNavi가 총 Page 수보다 크다면 총 Page 수로 셋팅
 		if(endNavi > pageTotalCount)
 		{
 			endNavi = pageTotalCount;
@@ -211,6 +276,35 @@ public class AdminRecipeBoardDAO {
 		}
 		
 		return recipeBoard;
+	}
+	
+	public int selectOneRecipePost(Connection conn, String title, String writer) {
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		int boardNo = 0;
+		
+		String query = "SELECT BOARD_NO FROM RECIPE_BOARD WHERE TITLE=? AND USER_ID=? ORDER BY 1 DESC";
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, title);
+			pstmt.setString(2, writer);
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				boardNo = rset.getInt("board_no");
+			}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			JDBCTemplate.close(rset);
+			JDBCTemplate.close(pstmt);
+		}
+		
+		return boardNo;
 	}
 	
 	//recipe_content에서 해당 boardNo을 가진 recipe의 content 내용 가져오기
@@ -572,6 +666,7 @@ public class AdminRecipeBoardDAO {
 		String values = String.join(",", recipeBoardNoValues);
 		//[0] = 100 / [1] = 101 / [2] 102
 		//100,101,102
+		System.out.println(values);
 		String query = "UPDATE RECIPE_BOARD SET END_YN='Y' WHERE BOARD_NO IN("+values+")";
 
 		try {
@@ -594,6 +689,7 @@ public class AdminRecipeBoardDAO {
 		int result = 0;
 		
 		String values = String.join(",", recipePostWriterIdValues);
+		System.out.println(values);
 		//[0] = 100 / [1] = 101 / [2] 102
 		//100,101,102
 		String query = "UPDATE MEMBER SET BLACK_YN='Y' WHERE USER_ID IN("+values+")";
@@ -716,4 +812,132 @@ public class AdminRecipeBoardDAO {
 		
 		return list;
 	}
+
+	public int insertAdminRecipeBoard(Connection conn, AdminRecipeBoard arb) {
+		
+		PreparedStatement pstmt = null;
+		int result = 0;
+		String query = "INSERT INTO RECIPE_BOARD VALUES('BOARD-2',RECIPE_SEQ.NEXTVAL,?,?,?,?,?,?,SYSDATE,0,0,'N')";
+
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, arb.getRecipeCode());
+			pstmt.setString(2, arb.getLevelCode());
+			pstmt.setString(3, arb.getTimeCode());
+			pstmt.setString(4, arb.getTitle());
+			pstmt.setString(5, arb.getSubTitle());
+			pstmt.setString(6, arb.getUserId());
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			JDBCTemplate.close(pstmt);
+		}
+		
+		return result;
+		
+		
+	}
+
+	public int insertRecipePostContent(Connection conn, int boardNo, String[] recipeContent) {
+		
+		PreparedStatement pstmt = null;
+		int result = 0;
+		StringBuilder query = new StringBuilder();
+		
+		query.append("INSERT ALL");
+		
+		for(int i=0; i<recipeContent.length; i++) {
+			
+			query.append(" ");
+			query.append("INTO RECIPE_CONTENT VALUES("+boardNo+","+(i+1)+",'"+recipeContent[i]+"', 'N')");
+			query.append(" ");
+		}
+		
+		query.append("SELECT * FROM DUAL");
+		
+		try {
+			pstmt = conn.prepareStatement(query.toString());
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			JDBCTemplate.close(pstmt);
+		}
+		
+		return result;
+		
+	}
+
+	public int insertRecipePostIngredient(Connection conn, int boardNo, String[] ingredientNameValues,
+			String[] ingredientNum) {
+		
+		PreparedStatement pstmt = null;
+		int result = 0;
+		StringBuilder query = new StringBuilder();
+		
+		query.append("INSERT ALL");
+		
+		for(int i=0; i<ingredientNameValues.length; i++) {
+			
+			query.append(" ");
+			query.append("INTO RECIPE_MANAGEMENT VALUES("+boardNo+", '"+
+						ingredientNameValues[i]+"', '"+ingredientNum[i]+"', 'N')");
+			query.append(" ");
+		}
+		
+		query.append("SELECT * FROM DUAL");
+		
+		try {
+			pstmt = conn.prepareStatement(query.toString());
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			JDBCTemplate.close(pstmt);
+		}
+		
+		return result;
+	}
+
+	public int insertRecipePostImage(Connection conn, int boardNo, String[] uploadImageNameValues,
+			String[] uploadImagePathValues) {
+		
+		PreparedStatement pstmt = null;
+		int result = 0;
+		StringBuilder query = new StringBuilder();
+		
+		query.append("INSERT ALL");
+		
+		for(int i=0; i<uploadImageNameValues.length; i++) {
+			
+			query.append(" ");
+			query.append("INTO RECIPE_FILE VALUES("+boardNo+","+(i+1)+",'"+uploadImageNameValues[i]+"', '"+
+						  uploadImagePathValues[i]+"', 'N')");
+			query.append(" ");
+		}
+		
+		query.append("SELECT * FROM DUAL");
+		
+		try {
+			pstmt = conn.prepareStatement(query.toString());
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			JDBCTemplate.close(pstmt);
+		}
+		
+		return result;
+		
+	}
+
 }

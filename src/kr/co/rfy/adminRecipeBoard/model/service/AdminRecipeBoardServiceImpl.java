@@ -158,4 +158,40 @@ public class AdminRecipeBoardServiceImpl implements AdminRecipeBoardService {
 		return list;
 	}
 
+	@Override
+	public int insertAdminRecipePost(AdminRecipeBoard arb, String[] uploadImageNameValues,
+			String [] uploadImagePathValues, String[] ingredientNameValues, String[] ingredientNum,
+			String [] recipeContent) {
+		
+		Connection conn = JDBCTemplate.getConnection();
+		int result = rbDAO.insertAdminRecipeBoard(conn, arb);
+		int totalResult = result;
+		
+		if(result>0)
+		{
+			JDBCTemplate.commit(conn);
+			
+			int boardNo = rbDAO.selectOneRecipePost(conn, arb.getTitle(), arb.getUserId());
+			System.out.println("boardNo : "+boardNo);
+			
+			int ingredientResult = rbDAO.insertRecipePostIngredient(conn, boardNo, ingredientNameValues, ingredientNum);
+				if(ingredientResult==ingredientNameValues.length) JDBCTemplate.commit(conn);
+				else JDBCTemplate.rollback(conn);
+			int contentResult = rbDAO.insertRecipePostContent(conn, boardNo, recipeContent);
+				if(contentResult==recipeContent.length) JDBCTemplate.commit(conn);
+				else JDBCTemplate.rollback(conn);
+			int imageResult =rbDAO.insertRecipePostImage(conn, boardNo, uploadImageNameValues, uploadImagePathValues);
+				if(imageResult==uploadImageNameValues.length) JDBCTemplate.commit(conn);
+				else JDBCTemplate.rollback(conn);
+			
+				totalResult += ingredientNameValues.length+recipeContent.length+uploadImageNameValues.length;
+		}else
+		{
+			JDBCTemplate.rollback(conn);
+		}
+		
+		return totalResult;
+		
+	}
+
 }
