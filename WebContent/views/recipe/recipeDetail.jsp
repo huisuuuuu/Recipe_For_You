@@ -211,22 +211,22 @@
                		//Member m =(Member)session.getAttribute("member");
                
                %>
-            <%--     <%if(m!=null && m.getUserId().equals(recipeInfo.getUserId())){ %>  --%>
+               <%if(m!=null && m.getUserId().equals(recipeInfo.getUserId())){ %> 
                   이 레시피를 &nbsp&nbsp
                    <button type="button" class="btn btn-success" id="updateBtn" > 수정 </button> &nbsp 할래요! 
                    <button type="button" class="btn btn-success" id="deleteBtn" style="transform: translate(280px,-10px)">삭제</button>
                     <a href="/recipe/recipeBoard/selectAll.do?currentPage=<%=currentPage%>"><button type="button" class="btn btn-success" id="listBtn" style="transform: translate(300px,-10px)">목록</button></a>
      			
-     <%--       <%}else if(m!=null && m.getUserId().equals(recipeInfo.getUserId())){ %>   
+        <%}else if(m!=null && m.getUserId().equals(recipeInfo.getUserId())){ %>   
           	  이 레시피를 &nbsp&nbsp
                    <button type="button" class="btn btn-success" id="likeBtn"> 추천</button> 
                     <button type="button" class="btn btn-success" style="width: 15%; display:none" id="likeCancelBtn">추천취소</button> &nbsp 할래요!
                      <a href="/recipe/recipeBoard/selectAll.do?currentPage=<%=currentPage%>"><button type="button" class="btn btn-success" id="listBtn" style="transform: translate(300px,-16px)">목록</button></a> 
                		
-             <% } %>  --%>   
+             <% } %> 
              
-              <%--   <a href="/recipe/recipeBoard/selectAll.do?currentPage=<%=currentPage%>"><button type="button" class="btn btn-success" id="listBtn" style="transform: translateX(300px)">목록</button></a> 
-                --%>
+                <a href="/recipe/recipeBoard/selectAll.do?currentPage=<%=currentPage%>"><button type="button" class="btn btn-success" id="listBtn" style="transform: translateX(300px)">목록</button></a> 
+                
                </div>
                <div id="fotter_empty2"></div>
            </div>
