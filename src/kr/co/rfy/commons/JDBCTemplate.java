@@ -19,7 +19,7 @@ public class JDBCTemplate {
 				//conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1522:orcl", "Recipe_For_You", "123456");
 				
 
-				conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe", "semi", "semi");
+				conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe", "team2", "team2");
 
 
 				conn.setAutoCommit(false);

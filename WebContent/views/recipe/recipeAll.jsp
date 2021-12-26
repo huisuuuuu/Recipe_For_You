@@ -1,4 +1,4 @@
-<%@page import="kr.co.rfy.member.vo.Member"%>
+<%@page import="kr.co.rfy.member.model.vo.Member"%>
 <%@page import="kr.co.rfy.recipeBoard.model.vo.OurRecipe"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.util.HashMap"%>
@@ -208,7 +208,7 @@
 	                                    <span><%=o.getTimeName() %></span>
 	                                </div>
 	                            </div>
-	                            <div class="empty" ></div>
+	                            <div class="empty" style="text-align:center" ><%=o.getUserId() %></div>
                             </a>
                         </div>
                         <%} %>

@@ -1,5 +1,5 @@
 
-<%@page import="kr.co.rfy.member.vo.Member"%>
+<%@page import="kr.co.rfy.member.model.vo.Member"%>
 <%@page import="kr.co.rfy.recipeBoard.model.vo.Ingredient"%>
 <%@page import="kr.co.rfy.recipeBoard.model.vo.File"%>
 <%@page import="kr.co.rfy.recipeBoard.model.vo.Content"%>
