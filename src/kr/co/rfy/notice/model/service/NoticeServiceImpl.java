@@ -4,7 +4,7 @@ import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import kr.co.rfy.commons.JDBCTemplate;
+import kr.co.rfy.common.JDBCTemplate;
 import kr.co.rfy.notice.model.dao.NoticeDAO;
 import kr.co.rfy.notice.model.vo.Notice;
 

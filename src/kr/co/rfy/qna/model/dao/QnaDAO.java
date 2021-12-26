@@ -6,7 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-import kr.co.rfy.commons.JDBCTemplate;
+import kr.co.rfy.common.JDBCTemplate;
 import kr.co.rfy.qna.model.vo.Qna;
 
 public class QnaDAO {

@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import javax.security.auth.message.callback.PrivateKeyCallback.Request;
 import javax.servlet.RequestDispatcher;
 
-import kr.co.rfy.commons.JDBCTemplate;
+import kr.co.rfy.common.JDBCTemplate;
 import kr.co.rfy.notice.model.vo.Notice;
 
 public class NoticeDAO {

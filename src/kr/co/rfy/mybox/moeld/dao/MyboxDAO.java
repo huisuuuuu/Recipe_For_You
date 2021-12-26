@@ -8,7 +8,7 @@ import java.sql.Statement;
 import java.util.LinkedList;
 import java.util.List;
 
-import kr.co.rfy.commons.JDBCTemplate;
+import kr.co.rfy.common.JDBCTemplate;
 import kr.co.rfy.member.model.vo.Member;
 import kr.co.rfy.mybox.model.vo.Ingredient;
 import kr.co.rfy.mybox.model.vo.Mybox;

@@ -28,7 +28,7 @@
 
 <%if(m!=null){ %>
 
-	[<a href="/member/memberCheck.do"><%=m.getUser_Name()%></a>] 님 환영합니다!! <a href="/member/logout.do">로그아웃</a><br>
+	[<a href="/member/memberCheck.do"><%=m.getUserName()%></a>] 님 환영합니다!! <a href="/member/logout.do">로그아웃</a><br>
 
 
 <%if(m.getRoll().substring(0,2).equals("AD")){  //관리자로 구분되어진 사용자라면%>

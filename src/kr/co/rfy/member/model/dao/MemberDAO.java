@@ -5,7 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import kr.co.rfy.commons.JDBCTemplate;
+import kr.co.rfy.common.JDBCTemplate;
 import kr.co.rfy.member.model.vo.Member;
 
 public class MemberDAO {

@@ -2,7 +2,7 @@ package kr.co.rfy.member.model.service;
 
 import java.sql.Connection;
 
-import kr.co.rfy.commons.JDBCTemplate;
+import kr.co.rfy.common.JDBCTemplate;
 import kr.co.rfy.member.model.dao.MemberDAO;
 import kr.co.rfy.member.model.vo.Member;
 

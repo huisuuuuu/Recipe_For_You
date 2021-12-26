@@ -83,7 +83,7 @@
 	<div id="wrapper">
 		<div id="header"></div>
 		<div id="navigation">
-			<%@include file="/views/commons/adminNavigation.jsp" %>
+			<%@include file="/views/common/adminNavigation.jsp" %>
 		</div>
 		<div class="contents">
 			<div id="cWrapper">
