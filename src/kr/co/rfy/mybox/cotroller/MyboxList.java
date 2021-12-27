@@ -21,6 +21,7 @@ import kr.co.rfy.mybox.model.service.MyboxService;
 import kr.co.rfy.mybox.model.service.MyboxServiceImpl;
 import kr.co.rfy.mybox.model.vo.Mybox;
 import kr.co.rfy.mybox.model.vo.ProductBig;
+import kr.co.rfy.mybox.model.vo.RecipeWithFile;
 
 /**
  * Servlet implementation class myboxCreate
@@ -49,9 +50,11 @@ public class MyboxList extends HttpServlet {
 		HttpSession session = request.getSession();
 //		String userId = (String) session.getAttribute("user_id");
 		String userId = "test1000";
+		System.out.println("======== userId: " + userId);
+		
 		List<Mybox> myboxList = null;
 		
-		// 나의 재료 목록 요청
+		// ���� �щ� 紐⑸� ��泥�
 		try {
 			myboxList = myboxService.myboxList(userId);
 		} catch (Exception e) {
@@ -59,7 +62,11 @@ public class MyboxList extends HttpServlet {
 			e.printStackTrace();
 		}
 		
-		// 대분류 요청
+		if(myboxList == null) {
+			myboxList = new LinkedList<Mybox>();
+		}
+		
+		// ��遺�瑜� ��泥�
 		List<ProductBig> productBigList = null;
 		
 		try {
@@ -68,7 +75,18 @@ public class MyboxList extends HttpServlet {
 			// TODO: handle exception
 		}
 		
-		
+		List<RecipeWithFile> recipeWithFileList = null;
+		try {
+			recipeWithFileList = myboxService.topMatchedRecipes(userId);
+			for (RecipeWithFile recipe : recipeWithFileList) {
+				System.out.println(recipe);
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		if(recipeWithFileList == null) {
+			recipeWithFileList = new LinkedList<RecipeWithFile>();
+		}
 		
 		for (Mybox mybox : myboxList) {
 			System.out.println(mybox.toString());
@@ -76,6 +94,7 @@ public class MyboxList extends HttpServlet {
 		
 		request.setAttribute("myboxList", myboxList);
 		request.setAttribute("productBigList", productBigList);
+		request.setAttribute("recipeWithFileList", recipeWithFileList);
 		
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/views/mybox/myboxList.jsp");
 		dispatcher.forward(request, response);

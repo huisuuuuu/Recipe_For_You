@@ -68,6 +68,7 @@ public class MyboxCreate extends HttpServlet {
 		System.out.println("productBigList 개수 " +  productBigList.length);
 		System.out.println("productMidList 개수 " +  productMidList.length);
 		System.out.println("ingredientCodeList 개수 " +  ingredientCodeList.length);
+		System.out.println("ingredientCodeList 개수 " +  ingredientCodeList[0].toString());
 		System.out.println("endDateList 개수 " +  endDateList.length);
 		System.out.println("memoList 개수 " +  memoList.length);
 		

@@ -1,9 +1,10 @@
-package kr.co.rfy.mybox.moeld.dao;
+package kr.co.rfy.mybox.model.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.SQLSyntaxErrorException;
 import java.sql.Statement;
 import java.util.LinkedList;
 import java.util.List;
@@ -14,6 +15,7 @@ import kr.co.rfy.mybox.model.vo.Ingredient;
 import kr.co.rfy.mybox.model.vo.Mybox;
 import kr.co.rfy.mybox.model.vo.ProductBig;
 import kr.co.rfy.mybox.model.vo.ProductMiddle;
+import kr.co.rfy.mybox.model.vo.RecipeWithFile;
 
 public class MyboxDAO {
 
@@ -41,6 +43,8 @@ public class MyboxDAO {
 				String ingredientName = mybox.getIngredient_name();
 				String endDate = mybox.getEnd_date();
 				String memo = mybox.getMemo();
+				
+				System.out.println("my_box_no:" + myboxNo + ", ingredientCode");
 				
 				pstmt.setString(index++, userId);
 				pstmt.setString(index++, ingredientCode);
@@ -141,7 +145,7 @@ public class MyboxDAO {
 				   + " AND ing.middle_code = mid.middle_code "
 				   + " AND mid.big_code = big.big_code "
 				   + " AND box.ingredient_code IN ( SELECT ingredient_code FROM my_box WHERE user_id = ? ) "
-				   + " ORDER BY end_date DESC "
+				   + " ORDER BY end_date ASC "
 				   ;
 		
 		List<Mybox> myboxList = new LinkedList<Mybox>();
@@ -178,8 +182,12 @@ public class MyboxDAO {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			JDBCTemplate.close(rset);
-			JDBCTemplate.close(pstmt);
+			if(rset != null) {
+				JDBCTemplate.close(rset);
+			}
+			if (pstmt != null) {
+				JDBCTemplate.close(pstmt);
+			}	
 		}
 		
 		return myboxList;
@@ -301,12 +309,70 @@ public class MyboxDAO {
 	}
 	
 	
-	
-	
-	
-	
 
-	
+	public List<RecipeWithFile> topMatchedRecipes(Connection conn, String user_id) {
+		StringBuilder sb = new StringBuilder();
+
+		sb.append("SELECT *");
+		sb.append("	FROM (");
+		sb.append("	SELECT * ");
+		sb.append("	FROM (");
+		sb.append("	SELECT rm.BOARD_NO, COUNT(*) matched");
+		sb.append("	FROM RECIPE_MANAGEMENT rm");
+		sb.append("	JOIN (");
+		sb.append("	SELECT mb.INGREDIENT_CODE, i.INGREDIENT_NAME ");
+		sb.append("	FROM MY_BOX  mb ");
+		sb.append("	JOIN INGREDIENT i ");
+		sb.append("	ON mb.INGREDIENT_CODE = i.INGREDIENT_CODE");
+		sb.append("	WHERE mb.USER_ID = " + "'" + user_id + "'");
+		sb.append("	) mine");
+		sb.append("	USING(INGREDIENT_NAME)");
+		sb.append("	GROUP BY BOARD_NO");
+		sb.append("	ORDER BY MATCHED DESC");
+		sb.append("	) o1");
+		sb.append("	JOIN RECIPE_BOARD o2");
+		sb.append("	USING(BOARD_NO)");
+		sb.append("	WHERE ROWNUM <= 4");
+		sb.append("	) o3");
+		sb.append("	JOIN (	SELECT * FROM RECIPE_FILE oo1	ORDER BY FILE_NAME ) o4");
+		sb.append("	USING (BOARD_NO)");
+		sb.append("	ORDER BY BOARD_NO");
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		int result = 0;
+		String sql = sb.toString();
+		
+		List<RecipeWithFile> recipeWithFileList = new LinkedList<RecipeWithFile>();
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			rset = pstmt.executeQuery();
+			String beforeTitle = "";
+			while( rset.next() ) {
+
+				String title = rset.getString("title");
+				String subtitle = rset.getString("subtitle");
+				String file_path = rset.getString("file_path").replaceAll("\\/", "/");
+				
+				if(beforeTitle.compareTo(title) != 0) {
+					beforeTitle = title;
+					RecipeWithFile recipe = new RecipeWithFile(title, subtitle, file_path);
+					recipeWithFileList.add(recipe);
+				}
+			}
+			
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(rset);
+			JDBCTemplate.close(pstmt);
+		}
+		
+		return recipeWithFileList;
+	}
+		
 }
 
 

@@ -4,11 +4,12 @@ import java.sql.Connection;
 import java.util.List;
 
 import kr.co.rfy.common.JDBCTemplate;
+import kr.co.rfy.mybox.model.dao.MyboxDAO;
 import kr.co.rfy.mybox.model.vo.Ingredient;
 import kr.co.rfy.mybox.model.vo.Mybox;
 import kr.co.rfy.mybox.model.vo.ProductBig;
 import kr.co.rfy.mybox.model.vo.ProductMiddle;
-import kr.co.rfy.mybox.moeld.dao.MyboxDAO;
+import kr.co.rfy.mybox.model.vo.RecipeWithFile;
 
 public class MyboxServiceImpl implements MyboxService {
 
@@ -75,6 +76,11 @@ public class MyboxServiceImpl implements MyboxService {
 		return result;
 	}
 
-	
+	@Override
+	public List<RecipeWithFile> topMatchedRecipes(String user_id) throws Exception {
+		Connection conn = JDBCTemplate.getConnection();
+		List<RecipeWithFile> result = myboxDAO.topMatchedRecipes(conn, user_id);
+		return result;
+	}
 
 }
