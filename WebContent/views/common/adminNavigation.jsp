@@ -27,8 +27,8 @@
 
 				<li><a href="">회원 관리</a>
 					<ul class="submenu">
-						<li><a href="">일반 회원 관리</a></li>
-						<li><a href="">블랙리스트 관리</a></li>
+						<li><a href="/admin/memberAllList.do">일반 회원 관리</a></li>
+						<li><a href="/admin/blackList.do">블랙리스트 관리</a></li>
 					</ul></li>
 			</ul>
 		</div>
