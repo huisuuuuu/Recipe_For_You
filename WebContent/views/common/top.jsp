@@ -36,6 +36,7 @@ div {
 
 #wrapper {
 	width: 100%;
+	min-height: 100%;
 }
 
 #header {
@@ -46,7 +47,7 @@ div {
 
 #navigation {
 	width: 15%;
-	height: 950px;
+	height: 100%;;
 	float: left;
 	position:fixed
 }
@@ -69,6 +70,14 @@ div {
 	background-color: #5D9A71;
 	text-align: center;
 }
+#mainLogoTitle {
+	letter-spacing: 3px;
+	text-align: center;
+	text-decoration: none;
+	font-weight: 600;
+	color: white;
+	font-size: 15px;
+}
 
 #title {
 	letter-spacing: 3px;
@@ -79,7 +88,7 @@ div {
 	font-size: 15px;
 }
 
-#title:before {
+#mainLogoTitle:before {
 	content: "";
 	display: block;
 	width: 185px;
@@ -87,7 +96,7 @@ div {
 	margin: 3px auto;
 }
 
-#title:after {
+#mainLogoTitle:after {
 	content: "";
 	display: block;
 	width: 185px;
@@ -189,14 +198,6 @@ div {
 }
 
 
-
-
-
-
-
-
-
-
 </style>
 </head>
 <body>
@@ -204,13 +205,13 @@ div {
 		<div id="header"></div>
 		<div id="navigation">
 			<div id="mainLogo">
-				<br> <br> <a href="/" id="title">냉장고를 부탁해 관리자</a>
+				<br> <br> <a href="/" id="mainLogoTitle">냉장고를 부탁해 관리자</a>
 			</div>
 			<ul id="gnb">
 				<li><a href="">레시피 관리</a>
 					<ul class="submenu">
-						<li><a href="">레시피 등록</a></li>
-						<li><a href="">레시피 조회 및 관리</a></li>
+						<li><a href="/views/admin/adminRecipeUpload.jsp">레시피 등록</a></li>
+						<li><a href="/recipeBoard/recipeBoardAllSelect.do">레시피 조회 및 관리</a></li>
 					</ul></li>
 
 				<li><a href="">문의/리뷰 관리</a>

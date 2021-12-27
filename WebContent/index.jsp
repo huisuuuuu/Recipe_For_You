@@ -194,11 +194,12 @@ div {
     margin-bottom: auto;
     margin-top: 20px;
     margin-left: 0px;
-    width: 100%;
+    width: 50%;
     height: 30px;
     border-radius: 30px;
     border-color: #7FB292;
     border-style: solid;
+    float:right;
 }
 .search_input {
     color: black;
@@ -215,11 +216,11 @@ div {
     height: 12px;
     width: 10px;
     position: absolute;
-    top: 15%;
     right: 3%;
     border-radius: 50%;
     color: #7FB292;
     text-decoration: none;
+    
 }
 
 .form-control {
@@ -401,12 +402,14 @@ a { text-decoration:none !important }
                         </ul>
                     </div>
                 </nav>
-                <div class=" box-search d-flex justify-content-center h-100">
-                    <div class="searchbar">
-                        <input class="search_input" type="text" name="" placeholder="">
-                        <a href="" class="search_icon"><i class="fas fa-search"></i></a>
-                    </div>
-                </div>
+                <form action="/search/recipe.do" method="get" id="search">
+<div class="searchbar">
+<input type="text" size="30" name="keyword" class="search_input"/>
+<input type="hidden" name="type" value="latest"/>
+<label for="searchSubmit" class="search_icon" style="cursor: pointer;"><i class="fas fa-search search-icon"></i></label>
+<input type="submit" id="searchSubmit" style="display:none;"/>
+</div>
+			</form>
             </div>
         </div>
         
