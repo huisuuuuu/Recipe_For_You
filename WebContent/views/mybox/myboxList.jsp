@@ -487,10 +487,10 @@ section.title h2 {
 												<option value="${mybox.ingredient_code}">${mybox.ingredient_name}</option>
 										</select></td>
 										<td><c:if test="${mybox.end_yn eq 'Y'}">
-												<input type="text" name="end_date" value="${mybox.end_date}"
-													style="color: red;">
-											</c:if> <c:if test="${mybox.end_yn eq 'N'}">
 												<input type="text" name="end_date" value="${mybox.end_date}">
+											</c:if> <c:if test="${mybox.end_yn eq 'N'}">
+												<input type="text" name="end_date" value="${mybox.end_date}"
+												style="color: red;">
 											</c:if></td>
 
 										<td><input type="text" name="memo" value="${mybox.memo}">

@@ -145,7 +145,7 @@ public class MyboxDAO {
 				   + " AND ing.middle_code = mid.middle_code "
 				   + " AND mid.big_code = big.big_code "
 				   + " AND box.ingredient_code IN ( SELECT ingredient_code FROM my_box WHERE user_id = ? ) "
-				   + " ORDER BY end_date DESC "
+				   + " ORDER BY end_date ASC "
 				   ;
 		
 		List<Mybox> myboxList = new LinkedList<Mybox>();
