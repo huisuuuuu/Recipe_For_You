@@ -172,7 +172,6 @@ public class AdminRecipeBoardServiceImpl implements AdminRecipeBoardService {
 			JDBCTemplate.commit(conn);
 			
 			int boardNo = rbDAO.selectOneRecipePost(conn, arb.getTitle(), arb.getUserId());
-			System.out.println("boardNo : "+boardNo);
 			
 			int ingredientResult = rbDAO.insertRecipePostIngredient(conn, boardNo, ingredientNameValues, ingredientNum);
 				if(ingredientResult==ingredientNameValues.length) JDBCTemplate.commit(conn);

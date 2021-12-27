@@ -170,6 +170,16 @@ div {
 	color: white;
 }
 
+#updateBtn>a{
+	text-decoration: none;
+	color: white;
+}
+
+#deleteBtn>a{
+	text-decoration: none;
+	color: white;
+}
+
 #fotter_line {
 	height: 3px;
 }

@@ -12,7 +12,6 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
-
 <!-- Required meta tags -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -159,9 +158,7 @@
 								</div>
 							</div>
 						</div>
-						<%
-							}
-						%>
+						<%} %>
 
 						<!--content3_cook div -->
 					</div>
@@ -180,7 +177,7 @@
 								if (m != null && m.getUserId().equals(recipeBoard.getUserId())) {
 							%>
 							<button type="button" class="btnStyle" id="updateBtn">
-								수정</button>
+								<a href="/recipeBoard/recipePostUpdate.do?boardNo=<%=recipeBoard.getBoardNo()%>">수정</a></button>
 							<%
 								} else {
 							%>
@@ -196,7 +193,8 @@
 							%>
 							<span style="margin: 3px 2px;">&nbsp할래요!</span>
 							<%if(m != null && m.getUserId().equals(recipeBoard.getUserId())) {%>
-							<button type="button" class="btnStyle" id="deleteBtn">삭제</button>
+							<button type="button" class="btnStyle" id="deleteBtn">
+							<a href="">삭제</a></button>
 							<%} %>
 							<button type="button" class="btnStyle" id="boardListBtn">
 								<a href="/recipeBoard/recipeBoardAllSelect.do">목록</a>
@@ -247,7 +245,6 @@
 				{
 					alert('삭제를 취소하였습니다.');
 				}
-			}
 		});
 			
 		</script>

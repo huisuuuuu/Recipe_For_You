@@ -24,23 +24,6 @@ public class AdminRecipeBoardDAO {
 		
 		ArrayList<AdminRecipeBoard> list = new ArrayList<AdminRecipeBoard>();
 		
-		/*
-		--TOP-N 분석
-		--전체적인 순위를 만들고, 그 순위에서 가장 최상위에서 몇번째까지
-
-		--1Page => NUM이 1~5까지의 글을 가져오면 됨
-		--2Page => NUM이 6~10까지의 글을 가져오면 됨
-		--3Page => NUM이 11~15까지의 글을 가져오면 됨
-
-		--공식
-		--START = 현재 페이지 * 목록 개수 - (목록 개수 - 1)
-		--END = 현재 페이지 * 목록 개수
-
-		--ex) 만약 1 페이지라면(목록 개수 5개)
-		--START = 1*5 - (5-1) => 1
-		--END = 1*5 => 5
-		*/
-		
 		int start = currentPage * recordCountPerPage - (recordCountPerPage-1);
 		int end = currentPage * recordCountPerPage;
 		
@@ -238,9 +221,11 @@ public class AdminRecipeBoardDAO {
 		ResultSet rset = null;
 		AdminRecipeBoard recipeBoard = null;
 		
-		String query = "SELECT rb.*, rc.RECIPE_NAME, m.USER_NAME FROM (RECIPE_BOARD rb JOIN RECIPE_CLASS rc " + 
-					"ON (rb.recipe_code = rc.recipe_code)) JOIN MEMBER m ON (rb.user_id = m.user_id) " + 
-					"WHERE rb.BOARD_NO=? AND rb.END_YN='N'";
+		String query = "SELECT rb.*, rc.*, m.USER_NAME, rl.LEVEL_NAME, ct.TIME_NAME FROM (((RECIPE_BOARD rb JOIN RECIPE_CLASS rc " + 
+				"ON (rb.recipe_code = rc.recipe_code)) JOIN MEMBER m ON (rb.user_id = m.user_id)) " + 
+				"JOIN RECIPE_LEVEL rl ON (rb.level_code = rl.level_code)) " + 
+				"JOIN COOK_TIME ct ON (rb.time_code = ct.time_code) " + 
+				"WHERE rb.BOARD_NO=? AND rb.END_YN='N'";
 		
 		try {
 			pstmt = conn.prepareStatement(query);
@@ -254,8 +239,11 @@ public class AdminRecipeBoardDAO {
 				recipeBoard.setBoardCode(rset.getString("board_code"));
 				recipeBoard.setBoardNo(rset.getInt("board_no"));
 				recipeBoard.setRecipeCode(rset.getString("recipe_code"));
+				recipeBoard.setRecipeName(rset.getString("recipe_name"));
 				recipeBoard.setLevelCode(rset.getString("level_code"));
+				recipeBoard.setLevelName(rset.getString("level_name"));
 				recipeBoard.setTimeCode(rset.getString("time_code"));
+				recipeBoard.setTimeName(rset.getString("time_name"));
 				recipeBoard.setTitle(rset.getString("title"));
 				recipeBoard.setSubTitle(rset.getString("subtitle"));
 				recipeBoard.setUserId(rset.getString("user_id"));
@@ -263,7 +251,6 @@ public class AdminRecipeBoardDAO {
 				recipeBoard.setLikeNum(rset.getInt("like_num"));
 				recipeBoard.setViewCount(rset.getInt("view_count"));
 				recipeBoard.setEndYN(rset.getString("end_yn").charAt(0));
-				recipeBoard.setRecipeName(rset.getString("recipe_name"));
 				recipeBoard.setUserName(rset.getString("user_name"));
 			}
 			
