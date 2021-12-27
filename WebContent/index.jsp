@@ -355,7 +355,7 @@ a { text-decoration:none !important }
 	            </div>    
                 	<%if(m.getRoll().substring(0,2).equals("AD")) {%>
                 <div>	
-                	<a href="/views/admin/adminmain.jsp" class="admin">
+                	<a href="/recipeBoard/recipeBoardAllSelect.do" class="admin">
 	            	    <img src="/assets/common/images/headericon3.png" width="15px" height="28px"> 관리자 페이지
 	               	</a>
 	            </div>    		
