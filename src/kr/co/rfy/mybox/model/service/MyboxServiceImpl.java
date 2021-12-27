@@ -1,15 +1,15 @@
-package kr.co.rfy.mybox.service;
+package kr.co.rfy.mybox.model.service;
 
 import java.sql.Connection;
 import java.util.List;
 
 import kr.co.rfy.common.JDBCTemplate;
-import kr.co.rfy.mybox.dao.MyboxDAO;
-import kr.co.rfy.mybox.vo.Ingredient;
-import kr.co.rfy.mybox.vo.Mybox;
-import kr.co.rfy.mybox.vo.ProductBig;
-import kr.co.rfy.mybox.vo.ProductMiddle;
-import kr.co.rfy.mybox.vo.RecipeWithFile;
+import kr.co.rfy.mybox.model.dao.MyboxDAO;
+import kr.co.rfy.mybox.model.vo.Ingredient;
+import kr.co.rfy.mybox.model.vo.Mybox;
+import kr.co.rfy.mybox.model.vo.ProductBig;
+import kr.co.rfy.mybox.model.vo.ProductMiddle;
+import kr.co.rfy.mybox.model.vo.RecipeWithFile;
 
 public class MyboxServiceImpl implements MyboxService {
 

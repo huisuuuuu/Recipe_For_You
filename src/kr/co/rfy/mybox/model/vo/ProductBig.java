@@ -1,4 +1,4 @@
-package kr.co.rfy.mybox.vo;
+package kr.co.rfy.mybox.model.vo;
 
 public class ProductBig {
 

@@ -1,4 +1,4 @@
-package kr.co.rfy.mybox.dao;
+package kr.co.rfy.mybox.model.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -11,11 +11,11 @@ import java.util.List;
 
 import kr.co.rfy.common.JDBCTemplate;
 import kr.co.rfy.member.model.vo.Member;
-import kr.co.rfy.mybox.vo.Ingredient;
-import kr.co.rfy.mybox.vo.Mybox;
-import kr.co.rfy.mybox.vo.ProductBig;
-import kr.co.rfy.mybox.vo.ProductMiddle;
-import kr.co.rfy.mybox.vo.RecipeWithFile;
+import kr.co.rfy.mybox.model.vo.Ingredient;
+import kr.co.rfy.mybox.model.vo.Mybox;
+import kr.co.rfy.mybox.model.vo.ProductBig;
+import kr.co.rfy.mybox.model.vo.ProductMiddle;
+import kr.co.rfy.mybox.model.vo.RecipeWithFile;
 
 public class MyboxDAO {
 

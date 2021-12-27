@@ -15,9 +15,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import kr.co.rfy.mybox.service.MyboxService;
-import kr.co.rfy.mybox.service.MyboxServiceImpl;
-import kr.co.rfy.mybox.vo.Mybox;
+import kr.co.rfy.mybox.model.service.MyboxService;
+import kr.co.rfy.mybox.model.service.MyboxServiceImpl;
+import kr.co.rfy.mybox.model.vo.Mybox;
 
 /**
  * Servlet implementation class myboxCreate

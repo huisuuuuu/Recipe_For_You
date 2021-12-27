@@ -17,11 +17,11 @@ import javax.servlet.http.HttpSession;
 
 import org.apache.jasper.tagplugins.jstl.core.ForEach;
 
-import kr.co.rfy.mybox.service.MyboxService;
-import kr.co.rfy.mybox.service.MyboxServiceImpl;
-import kr.co.rfy.mybox.vo.Mybox;
-import kr.co.rfy.mybox.vo.ProductBig;
-import kr.co.rfy.mybox.vo.RecipeWithFile;
+import kr.co.rfy.mybox.model.service.MyboxService;
+import kr.co.rfy.mybox.model.service.MyboxServiceImpl;
+import kr.co.rfy.mybox.model.vo.Mybox;
+import kr.co.rfy.mybox.model.vo.ProductBig;
+import kr.co.rfy.mybox.model.vo.RecipeWithFile;
 
 /**
  * Servlet implementation class myboxCreate
