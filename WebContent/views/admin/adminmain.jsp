@@ -112,8 +112,8 @@
             <ul id="navi-list">
                 <li><a href="">레시피 관리</a>
                 <ul class="sub-menu">
-                        <li><a href="">레시피 등록</a></li>
-                        <li><a href="">레시피 조회</a></li>
+                        <li><a href="/views/admin/adminRecipeUpload.jsp">레시피 등록</a></li>
+                        <li><a href="/recipeBoard/recipeBoardAllSelect.do">레시피 조회</a></li>
                       
                     </ul>
                 </li>
@@ -124,7 +124,7 @@
                      
                     </ul>
                 </li>
-                <li><a href="">회원관리</a>
+                <li><a href="/admin/memberAllList.do">회원관리</a>
                     <ul class="sub-menu">
                         <li><a href="/admin/memberAllList.do">회원관리 페이지</a></li>
                         <li><a href="/admin/blackList.do">블랙리스트관리</a></li>
