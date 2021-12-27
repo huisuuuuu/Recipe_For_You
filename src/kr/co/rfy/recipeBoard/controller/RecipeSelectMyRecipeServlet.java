@@ -11,6 +11,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.tomcat.util.buf.UEncoder;
+
 import kr.co.rfy.member.model.vo.Member;
 import kr.co.rfy.recipeBoard.model.service.RecipeService;
 import kr.co.rfy.recipeBoard.model.service.RecipeServiceImpl;
@@ -35,9 +37,9 @@ public class RecipeSelectMyRecipeServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		//HttpSession session = request.getSession();
+		HttpSession session = request.getSession();
 		
-		//String userId=((Member)session.getAttribute("member")).getUserId();
+		String userId=((Member)session.getAttribute("member")).getUserId();
 		
 		
 		
@@ -55,7 +57,7 @@ public class RecipeSelectMyRecipeServlet extends HttpServlet {
 		
 		RecipeService rService = new RecipeServiceImpl();
 		
-		HashMap<String, Object>	myRecipeDataMap =rService.selectMyRecipeList(currentPage);
+		HashMap<String, Object>	myRecipeDataMap =rService.selectMyRecipeList(currentPage,userId);
 		
 		
 		RequestDispatcher view = request.getRequestDispatcher("/views/recipe/myRecipe.jsp");

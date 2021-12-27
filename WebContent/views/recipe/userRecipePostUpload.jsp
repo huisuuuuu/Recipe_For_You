@@ -63,7 +63,7 @@
                    <a href="" class="mypage">
                     <img src="/assets/common/images/headericon1.png" alt="" width="23px" height="28px">
                 </a>
-                <a href="" class="login">
+                <a href="/views/member/memberLogin.jsp" class="login">
                     <img src="/assets/common/images/headericon2.png" alt="" width="80px" height="30px">
                 </a>
                 </div>

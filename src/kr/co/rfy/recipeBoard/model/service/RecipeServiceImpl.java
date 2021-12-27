@@ -10,6 +10,7 @@ import kr.co.rfy.recipeBoard.model.vo.Content;
 import kr.co.rfy.recipeBoard.model.vo.File;
 import kr.co.rfy.recipeBoard.model.vo.Ingredient;
 import kr.co.rfy.recipeBoard.model.vo.MiddleCode;
+import kr.co.rfy.recipeBoard.model.vo.MyboxIngredient;
 import kr.co.rfy.recipeBoard.model.vo.OurRecipe;
 import kr.co.rfy.recipeBoard.model.vo.RecipeDetail;
 
@@ -46,7 +47,7 @@ public class RecipeServiceImpl implements RecipeService {
 
 	//하나의 레시피 가져오기
 	@Override
-	public HashMap<String,Object> selectOnePost(int boardNo) {
+	public HashMap<String,Object> selectOnePost(int boardNo,String userId) {
 	
 	Connection conn = JDBCTemplate.getConnection();
 	
@@ -59,6 +60,7 @@ public class RecipeServiceImpl implements RecipeService {
 		ArrayList<Content> contentList = rDAO.selectOnePostContent(conn,boardNo);
 		ArrayList<File> fileList = rDAO.selectOnePostFile(conn,boardNo);
 		ArrayList<Ingredient> ingredientList = rDAO.selectOnePostIngredient(conn,boardNo);
+		ArrayList<MyboxIngredient> myBoxList = rDAO.selectMyBox(conn,userId);
 		
 		JDBCTemplate.close(conn);
 		
@@ -69,6 +71,7 @@ public class RecipeServiceImpl implements RecipeService {
 		hm.put("contentList", contentList);
 		hm.put("fileList", fileList);
 		hm.put("ingredientList", ingredientList);
+		hm.put("myBoxList", myBoxList);
 		
 		return hm;
 		
@@ -177,13 +180,13 @@ public class RecipeServiceImpl implements RecipeService {
 
 	//나의 레시피 목록 가져온다. 
 	@Override
-	public HashMap<String, Object> selectMyRecipeList(int currentPage) {
+	public HashMap<String, Object> selectMyRecipeList(int currentPage,String userId) {
 		
 		Connection conn = JDBCTemplate.getConnection();
 		
 		//1.한페이지에 n개의 글을 가져올 것인지 설정
 		int recordCountPerPage =12;
-		ArrayList<OurRecipe> list =rDAO.selectMyRecipeList(conn,currentPage,recordCountPerPage);
+		ArrayList<OurRecipe> list =rDAO.selectMyRecipeList(conn,currentPage,recordCountPerPage,userId);
 		
 		
 		//2.해당 페이지에 필요한 네비바 생성

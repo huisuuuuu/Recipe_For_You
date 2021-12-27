@@ -1,4 +1,5 @@
 
+<%@page import="kr.co.rfy.recipeBoard.model.vo.MyboxIngredient"%>
 <%@page import="kr.co.rfy.member.model.vo.Member"%>
 <%@page import="kr.co.rfy.recipeBoard.model.vo.Ingredient"%>
 <%@page import="kr.co.rfy.recipeBoard.model.vo.File"%>
@@ -55,6 +56,7 @@
 	ArrayList<Content> contentList = (ArrayList<Content>)recipeDetailInfo.get("contentList");
 	ArrayList<File> fileList =(ArrayList<File>) recipeDetailInfo.get("fileList");	
 	ArrayList<Ingredient> ingredientList = (ArrayList<Ingredient>)recipeDetailInfo.get("ingredientList");
+	ArrayList<MyboxIngredient> myBoxList = (ArrayList<MyboxIngredient>)recipeDetailInfo.get("myBoxList");
 	
 	Member m = (Member)session.getAttribute("member");
 	%>
@@ -75,7 +77,7 @@
                    <a href="" class="mypage">
                     <img src="/assets/common/images/headericon1.png" alt="" width="23px" height="28px">
                 </a>
-                <a href="" class="login">
+                <a href="/views/member/memberLogin.jsp" class="login">
                     <img src="/assets/common/images/headericon2.png" alt="" width="80px" height="30px">
                 </a>
                 </div>
@@ -156,21 +158,41 @@
               <div id="ingredient_warpper">
                 <table width="90%">
              
-                     <%for(int i=0;i<ingredientList.size();i++) {%>
-                   <tr>
-                       <td><%=ingredientList.get(i).getIngredientName() %> <spn style="color: red">필요해요!</spn></td>
-                       <td><%=ingredientList.get(i).getIngredientNum() %></td>
-                     
-                     <%if(i!=ingredientList.size()-1){ %>
-                       <td><%=ingredientList.get(i+1).getIngredientName() %> <spn style="color: red">필요해요!</spn></td>
-                       <td><%=ingredientList.get(i+1).getIngredientNum() %></td>
-                   	<%} %>
-                   </tr>
-                   <% i++;} %>
-                   
+                      <%for(int i=0;i<ingredientList.size();i++) {%>
+                   		<%if(i%2==0){ %>
+                   		 <tr>
+                 			<%for(int k=0; k<myBoxList.size();k++ ){ %>
 
-                   
-                   
+		                 			<%if(ingredientList.get(i).getIngredientName().equals(myBoxList.get(k).getIngredientName())){ %> 
+			                       		<td><%=ingredientList.get(i).getIngredientName() %> <spn ></spn></td>
+			                      		<td><%=ingredientList.get(i).getIngredientNum() %></td>
+			                     
+			                     	<%break;}else{ %>
+			                     	<%if(k==(myBoxList.size()-1)){ %>
+			                     		 <td><%=ingredientList.get(i).getIngredientName() %> <spn style="color: red">필요해요!</spn></td>
+			                       		 <td><%=ingredientList.get(i).getIngredientNum() %></td>
+			                       	<%} %>
+			                       		
+			                     <%} %>
+	                    	 <%} %>
+	                    <%}else{ %>
+		                    	 
+		                    		<%for(int j=0; j<myBoxList.size();j++ ){ %>
+				                    	 
+					                    	<%if(ingredientList.get(i).getIngredientName().equals(myBoxList.get(j).getIngredientName())){ %> 
+					                       		<td><%=ingredientList.get(i).getIngredientName() %> <spn ></spn></td>
+					                      		<td><%=ingredientList.get(i).getIngredientNum() %></td>
+				                     
+					                     	<%break;}else{ %>
+					                    	 <%if(j==myBoxList.size()-1){ %>
+						                       	<td><%=ingredientList.get(i).getIngredientName() %> <spn style="color: red">필요해요!</spn></td>
+						                       	<td><%=ingredientList.get(i).getIngredientNum() %></td>
+						                       	<%} %>
+				                       	 	<%} %>
+				                   <%} %>
+				                     </tr>
+		                  <%} %>
+                   <%} %>
                    
                </table>
             </div>
@@ -217,16 +239,16 @@
                    <button type="button" class="btn btn-success" id="deleteBtn" style="transform: translate(280px,-10px)">삭제</button>
                     <a href="/recipe/recipeBoard/selectAll.do?currentPage=<%=currentPage%>"><button type="button" class="btn btn-success" id="listBtn" style="transform: translate(300px,-10px)">목록</button></a>
      			
-        <%}else if(m!=null && m.getUserId().equals(recipeInfo.getUserId())){ %>   
+        <%}else if(m!=null && !(m.getUserId().equals(recipeInfo.getUserId()))){ %>   
           	  이 레시피를 &nbsp&nbsp
                    <button type="button" class="btn btn-success" id="likeBtn"> 추천</button> 
                     <button type="button" class="btn btn-success" style="width: 15%; display:none" id="likeCancelBtn">추천취소</button> &nbsp 할래요!
                      <a href="/recipe/recipeBoard/selectAll.do?currentPage=<%=currentPage%>"><button type="button" class="btn btn-success" id="listBtn" style="transform: translate(300px,-16px)">목록</button></a> 
                		
-             <% } %> 
+             <% }else{ %> 
              
                 <a href="/recipe/recipeBoard/selectAll.do?currentPage=<%=currentPage%>"><button type="button" class="btn btn-success" id="listBtn" style="transform: translateX(300px)">목록</button></a> 
-                
+              <%} %> 
                </div>
                <div id="fotter_empty2"></div>
            </div>
@@ -365,16 +387,6 @@
     			
     			});
     			
-    			
-    			
-    			
-    			
-    			
-    			
-    			
-    			
-    			
-    			
     		}else
     		{
     			alert('레시피 삭제를 취소하셨습니다.');
@@ -386,8 +398,18 @@
     
     </script>
     
-    
-            
+    <%-- --%>
+      <script>
+       
+      
+      
+      
+      
+      
+      
+      
+      
+      </script> 
             
             
 <!-- conntent 끝-->  
