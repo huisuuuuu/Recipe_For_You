@@ -1,3 +1,4 @@
+
 <%@page import="kr.co.rfy.member.model.vo.Member"%>
 <%@page import="kr.co.rfy.recipeBoard.model.vo.OurRecipe"%>
 <%@page import="java.util.ArrayList"%>
@@ -51,8 +52,9 @@
 	ArrayList<OurRecipe> list =(ArrayList<OurRecipe>) pageDataMap.get("list");
 	String pageNavi =(String)pageDataMap.get("pageNavi");	
 	int currentPage = (int)request.getAttribute("currentPage");
-		
-		Member m = (Member)session.getAttribute("member");
+	String type = (String)request.getAttribute("type");	
+	
+	Member m = (Member)session.getAttribute("member");
 	%>
 
 
@@ -63,14 +65,14 @@
                 <span class="top1 align">마이냉장고에 나만의 식재료를 등록하고 레시피를 추천 받아 보세요!</span>
             </div>
             <div class="header1">
-                <a href="/" class="logo">
+                <a href="" class="logo">
                     <img src="/assets/common/images//main%20logo.png" alt="">
                 </a>
                 <div class="box-user">
                    <a href="" class="mypage">
                     <img src="/assets/common/images//headericon1.png" alt="" width="23px" height="28px">
                 </a>
-                <a href="/views/member/memberLogin.jsp" class="login">
+                <a href="" class="login">
                     <img src="/assets/common/images//headericon2.png" alt="" width="80px" height="30px">
                 </a>
                 </div>
@@ -87,7 +89,7 @@
                             <li class="nav-item">
                                 <a class="nav-link active nav-recipe" href="/recipe/recipeBoard/selectAll.do">레시피</a>
                                 <ul class="submenu">
-                                    <li><a href="/">모두보기</a></li>
+                                    <li><a href="">모두보기</a></li>
                                     <li><a href="/recipe/recipeBoardSelectList.do?recipe=hansik">한식</a></li>
                                     <li><a href="/recipe/recipeBoardSelectList.do?recipe=yangsik">양식</a></li>
                                     <li><a href="/recipe/recipeBoardSelectList.do?recipe=ilsik">일식</a></li>
@@ -151,15 +153,12 @@
             <div id="menu_content3">
                 <div id="menu_content3_top"></div>
                 <div id="menu_content3_bottom">
-         <%if(m!=null) {%>  
+          <%--       <%if(m!=null) {%>  --%>
                    <button type="button" class="btn btn-success" id="myRecipeBtn">MY Recipe</a></button>
                     <button type="button" class="btn btn-success">레시피 등록</button>
                 
-         <%}else{ %> 
-                 <button type="button" class="btn btn-success" id="myRecipeBtnNotLogin">MY Recipe</a></button>
-                  <button type="button" class="btn btn-success" id="uploadNotLogin">레시피 등록</button>
-                 
-         <%} %>        	  
+          <%--        <%} %>     --%>
+                 	  
                 </div>
             </div>
         </div>
@@ -167,28 +166,9 @@
 		<script>
 			$('#myRecipeBtn').click(function(){
 				
-				
 				location.replace("/recipe/recipeBoard/myRecipe.do");
 				
 			});
-
-			$('#myRecipeBtnNotLogin').click(function(){
-				
-				
-				location.replace("/views/member/memberLogin.jsp");
-				
-			});
-			
-			
-			$('#uploadNotLogin').click(function(){
-				
-				
-				location.replace("/views/member/memberLogin.jsp");
-				
-			});
-			
-
-
 		</script>
 
 
@@ -197,22 +177,39 @@
                  <div id="content_wrapper">
           
            <div id="recipe_search">
-              <form action=" " method="">
-                   <select>
+              <form action="/recipe/recipeBoard/selectAll.do " id="recipeSearch"  method="get" onchange="searchAllPost()">
+                   <select name="type">
+
                        <option value="latest_desc">최신순</option>
                        <option value="like_desc">추천순</option>
                        <option value="level_asc">난이도</option>
                        <option value="time_asc">조리시간</option>
+
                    </select>
                 </form>               
            </div>
+           
+           <%--검색 조건을 선택 시 한번 더 submit 동작--%>
+           
+           <script>
+           	
+           	function searchAllPost(){
+           	
+           		recipeSearch.submit();
+           	}
+           	
+           	
+           </script>
+           
+           
             <div id="content_recipe_wrapper">
                      <div class="content_recipe" id="recipe1">
                
                			<%for(OurRecipe o:list) {%>
-                        <div class="recipe_content">
-                        	<a href="/recipe/recipeSelectContent.do?boardNo=<%=o.getBoardNo()%>&currentPage=<%=currentPage %>&userId=<%=m.getUserId() %>" style="text-decoration: none; color: inherit;">
-	                            <div class="image" style="text-align: center"><img src="<%=o.getFilePath()%>" width="278" height="278" ></div>
+         
+                        <div class="recipe_content">																	<%--useID 변경할 곳 --%>
+                        	<a href="/recipe/recipeSelectContent.do?boardNo=<%=o.getBoardNo()%>&currentPage=<%=currentPage %>&userId=user11" style="text-decoration: none; color: inherit;">
+	                            <div class="image" style="text-align: center;"><img src="<%=o.getFilePath()%>" width="278" height="278" ></div>
 	                            <div class="subtitle" style="text-align:center" ><%=o.getSubTitle() %></div>
 	                            <div class="title" style="text-align:center"><b><%=o.getTitle() %></b></div>
 	                            <div class="menu"  style="color:gray">
@@ -225,7 +222,7 @@
 	                                    <span><%=o.getTimeName() %></span>
 	                                </div>
 	                            </div>
-	                            <div class="empty" style="text-align:center" ><%=o.getUserId() %></div>
+	                            <div class="empty" style="text-align:center"><%=o.getUserId() %></div>
                             </a>
                         </div>
                         <%} %>
