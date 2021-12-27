@@ -63,14 +63,14 @@
                 <span class="top1 align">마이냉장고에 나만의 식재료를 등록하고 레시피를 추천 받아 보세요!</span>
             </div>
             <div class="header1">
-                <a href="" class="logo">
+                <a href="/" class="logo">
                     <img src="/assets/common/images//main%20logo.png" alt="">
                 </a>
                 <div class="box-user">
                    <a href="" class="mypage">
                     <img src="/assets/common/images//headericon1.png" alt="" width="23px" height="28px">
                 </a>
-                <a href="" class="login">
+                <a href="/views/member/memberLogin.jsp" class="login">
                     <img src="/assets/common/images//headericon2.png" alt="" width="80px" height="30px">
                 </a>
                 </div>
@@ -87,7 +87,7 @@
                             <li class="nav-item">
                                 <a class="nav-link active nav-recipe" href="/recipe/recipeBoard/selectAll.do">레시피</a>
                                 <ul class="submenu">
-                                    <li><a href="">모두보기</a></li>
+                                    <li><a href="/">모두보기</a></li>
                                     <li><a href="/recipe/recipeBoardSelectList.do?recipe=hansik">한식</a></li>
                                     <li><a href="/recipe/recipeBoardSelectList.do?recipe=yangsik">양식</a></li>
                                     <li><a href="/recipe/recipeBoardSelectList.do?recipe=ilsik">일식</a></li>
@@ -155,8 +155,11 @@
                    <button type="button" class="btn btn-success" id="myRecipeBtn">MY Recipe</a></button>
                     <button type="button" class="btn btn-success">레시피 등록</button>
                 
-         <%} %> 
-                 	  
+         <%}else{ %> 
+                 <button type="button" class="btn btn-success" id="myRecipeBtnNotLogin">MY Recipe</a></button>
+                  <button type="button" class="btn btn-success" id="uploadNotLogin">레시피 등록</button>
+                 
+         <%} %>        	  
                 </div>
             </div>
         </div>
@@ -169,7 +172,21 @@
 				
 			});
 
-
+			$('#myRecipeBtnNotLogin').click(function(){
+				
+				
+				location.replace("/views/member/memberLogin.jsp");
+				
+			});
+			
+			
+			$('#uploadNotLogin').click(function(){
+				
+				
+				location.replace("/views/member/memberLogin.jsp");
+				
+			});
+			
 
 
 		</script>
@@ -194,7 +211,7 @@
                
                			<%for(OurRecipe o:list) {%>
                         <div class="recipe_content">
-                        	<a href="/recipe/recipeSelectContent.do?boardNo=<%=o.getBoardNo()%>&currentPage=<%=currentPage %>" style="text-decoration: none; color: inherit;">
+                        	<a href="/recipe/recipeSelectContent.do?boardNo=<%=o.getBoardNo()%>&currentPage=<%=currentPage %>&userId=<%=m.getUserId() %>" style="text-decoration: none; color: inherit;">
 	                            <div class="image" style="text-align: center"><img src="<%=o.getFilePath()%>" width="278" height="278" ></div>
 	                            <div class="subtitle" style="text-align:center" ><%=o.getSubTitle() %></div>
 	                            <div class="title" style="text-align:center"><b><%=o.getTitle() %></b></div>

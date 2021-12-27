@@ -72,13 +72,13 @@ div {
                    <a href="" class="mypage">
                     <img src="/assets/common/images//headericon1.png" alt="" width="23px" height="28px">
                 </a>
-                <a href="" class="login">
+                <a href="/views/member/memberLogin.jsp" class="login">
                     <img src="/assets/common/images//headericon2.png" alt="" width="80px" height="30px">
                 </a>
                 </div>
                 
             </div>
- <div class="navibar container-fluid">
+ 	<div class="navibar container-fluid">
                 <nav class="navbar navbar-expand-lg nav-distance">
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
@@ -136,7 +136,7 @@ div {
             
         </div>  
                   <div id="content_wrapper">
-          
+          <%if(!list.isEmpty()){ %>
            <div id="recipe_search">
        
               <form action=" " method="">
@@ -149,31 +149,34 @@ div {
                 </form>               
            </div>
             <div id="content_recipe_wrapper">
-                                         <div class="content_recipe" id="recipe1">
-               
+             <div class="content_recipe" id="recipe1">
+               		
+               		
                			<%for(OurRecipe o:list) {%>
-                        <div class="recipe_content">
-                        	<a href="/recipe/recipeSelectContent.do?boardNo=<%=o.getBoardNo()%>&currentPage=<%=currentPage %>" style="text-decoration: none; color: inherit;">
-	                            <div class="image" style="text-align: center"><img src="<%=o.getFilePath()%>" width="278" height="278" ></div>
-	                            <div class="subtitle" style="text-align:center" ><%=o.getSubTitle() %></div>
-	                            <div class="title" style="text-align:center"><b><%=o.getTitle() %></b></div>
-	                            <div class="menu"  style="color:gray">
-	                                <div class="menu_level" style="transform: translateX(45px)"> 
-	                                <img src="/assets/images/Level.png"  width="20px" height="20px" class="img">
-	                                <span ><%=o.getLevelName() %></span>
-	                                </div>
-	                                <div class="menu_time" style="transform: translateX(-15px)">
-	                                    <img src="/assets/images/clock_time.png" width="20px" height="20px" class="img">
-	                                    <span><%=o.getTimeName() %></span>
-	                                </div>
-	                            </div>
-	                            <div class="empty" ></div>
-                            </a>
-                        </div>
-                        <%} %>
+	                        <div class="recipe_content">
+	                        	<a href="/recipe/recipeSelectContent.do?boardNo=<%=o.getBoardNo()%>&currentPage=<%=currentPage %>" style="text-decoration: none; color: inherit;">
+		                            <div class="image" style="text-align: center"><img src="<%=o.getFilePath()%>" width="278" height="278" ></div>
+		                            <div class="subtitle" style="text-align:center" ><%=o.getSubTitle() %></div>
+		                            <div class="title" style="text-align:center"><b><%=o.getTitle() %></b></div>
+		                            <div class="menu"  style="color:gray">
+		                                <div class="menu_level" style="transform: translateX(45px)"> 
+		                                <img src="/assets/images/Level.png"  width="20px" height="20px" class="img">
+		                                <span ><%=o.getLevelName() %></span>
+		                                </div>
+		                                <div class="menu_time" style="transform: translateX(-15px)">
+		                                    <img src="/assets/images/clock_time.png" width="20px" height="20px" class="img">
+		                                    <span><%=o.getTimeName() %></span>
+		                                </div>
+		                            </div>
+		                            <div class="empty" ></div>
+	                            </a>
+	                        </div>
+	                       <%} %>
+                      <%}else{ %>
+                      
+								<H3 style="text-align:center">등록된 레시피가 없습니다.</H3>	
 
-
-                
+                	<%} %>
             </div>
 
         </div>

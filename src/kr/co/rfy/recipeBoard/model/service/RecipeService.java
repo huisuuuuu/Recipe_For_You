@@ -10,7 +10,7 @@ public interface RecipeService {
 
 	HashMap<String, Object> selectAllPostList(int currentPage);
 
-	HashMap<String,Object> selectOnePost(int boardNo);
+	HashMap<String,Object> selectOnePost(int boardNo,String userId);
 
 	int postLike(int boardNo,int likeNum);
 
@@ -24,7 +24,7 @@ public interface RecipeService {
 
 	HashMap<String, Object> selectRecipeKindAllList(int currentPage, String recipeKind);
 
-	HashMap<String, Object> selectMyRecipeList(int currentPage );
+	HashMap<String, Object> selectMyRecipeList(int currentPage,String userId);
 
 	ArrayList<MiddleCode> getMiddleCode(String middleCode);
 

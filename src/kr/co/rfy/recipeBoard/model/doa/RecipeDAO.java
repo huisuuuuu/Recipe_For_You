@@ -11,6 +11,7 @@ import kr.co.rfy.recipeBoard.model.vo.Content;
 import kr.co.rfy.recipeBoard.model.vo.File;
 import kr.co.rfy.recipeBoard.model.vo.Ingredient;
 import kr.co.rfy.recipeBoard.model.vo.MiddleCode;
+import kr.co.rfy.recipeBoard.model.vo.MyboxIngredient;
 import kr.co.rfy.recipeBoard.model.vo.OurRecipe;
 import kr.co.rfy.recipeBoard.model.vo.RecipeDetail;
 
@@ -329,6 +330,48 @@ public class RecipeDAO {
 		
 	}
 
+	
+	//마이냉장고에서 재료 가져오기
+	public ArrayList<MyboxIngredient> selectMyBox(Connection conn, String userId) {
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		ArrayList<MyboxIngredient> list = new ArrayList<MyboxIngredient>();
+		
+		
+		String query = "SELECT * FROM MY_BOX WHERE USER_ID=?";
+		
+		try {
+			pstmt=conn.prepareStatement(query);
+			pstmt.setString(1, userId);
+			
+			rset=pstmt.executeQuery();
+			
+			while(rset.next())
+			{
+				MyboxIngredient m = new MyboxIngredient();
+				
+				m.setUserId(rset.getString("user_id"));
+				m.setIngredientCode(rset.getString("ingredient_Code"));
+				m.setIngredientName(rset.getString("ingredient_Name"));
+				
+				list.add(m);
+			}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally
+		{
+			JDBCTemplate.close(rset);
+			JDBCTemplate.close(pstmt);
+		}
+	
+		return list;
+	}
+	
+	
+	
 	public int postLike(Connection conn, int boardNo,int likeNum) {
 		
 		
@@ -816,7 +859,7 @@ public class RecipeDAO {
 		
 	}
 
-	public ArrayList<OurRecipe> selectMyRecipeList(Connection conn, int currentPage, int recordCountPerPage) {
+	public ArrayList<OurRecipe> selectMyRecipeList(Connection conn, int currentPage, int recordCountPerPage,String userId) {
 		
 
 		PreparedStatement pstmt = null;
@@ -833,16 +876,16 @@ public class RecipeDAO {
 		 		"LEFT JOIN COOK_TIME C ON(C.TIME_CODE=R.TIME_CODE) " + 
 		 		"LEFT JOIN RECIPE_LEVEL L ON(L.LEVEL_CODE=R.LEVEL_CODE) " + 
 		 		"LEFT JOIN RECIPE_FILE F ON(F.BOARD_NO=R.BOARD_NO) " + 
-		 		"WHERE R.END_YN='N' AND F.FILE_NO=1 AND R.USER_ID='user11') " + 
+		 		"WHERE R.END_YN='N' AND F.FILE_NO=1 AND R.USER_ID=?) " + 
 		 		"WHERE NUM BETWEEN ? AND ?";
 		
 		
 		 try {
 			pstmt=conn.prepareStatement(query);
 			
-			//pstmt.setString(1, userId);
-			pstmt.setInt(1, start);
-			pstmt.setInt(2, end);
+			pstmt.setString(1, userId);
+			pstmt.setInt(2, start);
+			pstmt.setInt(3, end);
 			
 			rset=pstmt.executeQuery();
 			
@@ -1054,6 +1097,8 @@ public class RecipeDAO {
 		}
 		return mList;
 	}
+
+	
 
 
 
