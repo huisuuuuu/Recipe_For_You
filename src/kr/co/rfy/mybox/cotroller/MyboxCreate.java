@@ -15,9 +15,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import kr.co.rfy.mybox.model.service.MyboxService;
-import kr.co.rfy.mybox.model.service.MyboxServiceImpl;
-import kr.co.rfy.mybox.model.vo.Mybox;
+import kr.co.rfy.mybox.service.MyboxService;
+import kr.co.rfy.mybox.service.MyboxServiceImpl;
+import kr.co.rfy.mybox.vo.Mybox;
 
 /**
  * Servlet implementation class myboxCreate
@@ -68,6 +68,7 @@ public class MyboxCreate extends HttpServlet {
 		System.out.println("productBigList 개수 " +  productBigList.length);
 		System.out.println("productMidList 개수 " +  productMidList.length);
 		System.out.println("ingredientCodeList 개수 " +  ingredientCodeList.length);
+		System.out.println("ingredientCodeList 개수 " +  ingredientCodeList[0].toString());
 		System.out.println("endDateList 개수 " +  endDateList.length);
 		System.out.println("memoList 개수 " +  memoList.length);
 		

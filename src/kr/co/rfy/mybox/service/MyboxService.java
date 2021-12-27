@@ -1,11 +1,12 @@
-package kr.co.rfy.mybox.model.service;
+package kr.co.rfy.mybox.service;
 
 import java.util.List;
 
-import kr.co.rfy.mybox.model.vo.Ingredient;
-import kr.co.rfy.mybox.model.vo.Mybox;
-import kr.co.rfy.mybox.model.vo.ProductBig;
-import kr.co.rfy.mybox.model.vo.ProductMiddle;
+import kr.co.rfy.mybox.vo.Ingredient;
+import kr.co.rfy.mybox.vo.Mybox;
+import kr.co.rfy.mybox.vo.ProductBig;
+import kr.co.rfy.mybox.vo.ProductMiddle;
+import kr.co.rfy.mybox.vo.RecipeWithFile;
 
 public interface MyboxService {
 
@@ -27,7 +28,8 @@ public interface MyboxService {
 	// 제품명 목록
 	public List<Ingredient> ingredientList(String middle_code) throws Exception;
 	
-	
+	// 재료가 있는 레시피 가져오기
+	public List<RecipeWithFile> topMatchedRecipes(String user_id) throws Exception;
 }
 
 

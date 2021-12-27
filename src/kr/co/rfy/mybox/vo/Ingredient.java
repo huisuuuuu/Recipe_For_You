@@ -1,4 +1,4 @@
-package kr.co.rfy.mybox.model.vo;
+package kr.co.rfy.mybox.vo;
 
 public class Ingredient {
 
