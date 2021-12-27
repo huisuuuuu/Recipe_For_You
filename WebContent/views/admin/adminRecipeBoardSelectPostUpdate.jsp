@@ -56,7 +56,7 @@
 	crossorigin="anonymous">
 
 <link rel="stylesheet" type="text/css"
-	href="/assets/css/adminRecipeUpload.css">
+	href="/assets/css/adminRecipePostUpdate.css">	
 	
 <link rel="stylesheet" type="text/css"
 	href="/assets/css/adminRecipeDetailContent.css">	
@@ -122,7 +122,8 @@
 				</div>
 				<div id="thumbnail">
 					<label for="thumbnailImage"><div id="thumbnailUpload">
-						</div></label>
+						<img src="<%=imageList.get(0).getFilePath() %>"/>
+					</div></label>
 				</div>
 				<div class="recipeContent">
 					<input type=text name="title" class="recipeContentInput"
@@ -152,22 +153,17 @@
 								%>
 									<div><li><%=ingredientList.get(i).getIngredientName()%></li>
 									<span><%=ingredientList.get(i).getIngredientNum()%></span>
-									<input type="hidden" name="ingredientName" value="(설도)불고기">
-									<input type="hidden" name="ingredientNum" value="300"></div>
+									<input type="hidden" name="ingredientName" value="<%=ingredientList.get(i).getIngredientName()%>">
+									<input type="hidden" name="ingredientNum" value="<%=ingredientList.get(i).getIngredientNum()%>"></div>
 									<%
 										if (i != ingredientList.size() - 1) {
 									%>
 									<div><li><%=ingredientList.get(i + 1).getIngredientName()%></li>
 									<span><%=ingredientList.get(i + 1).getIngredientNum()%></span>
-									<input type="hidden" name="ingredientName" value="(설도)불고기">
-									<input type="hidden" name="ingredientNum" value="300"></div>
-									<%
-										}
-									%>
-								<%
-									i++;
-										}
-								%>
+									<input type="hidden" name="ingredientName" value="<%=ingredientList.get(i + 1).getIngredientName()%>">
+									<input type="hidden" name="ingredientNum" value="<%=ingredientList.get(i + 1).getIngredientNum()%>"></div>
+									<%} %>
+								<%i++; } %>
 							</ul>
 						</div>
 					</div>
@@ -250,7 +246,8 @@
 				</div>
 			</form>
 			<script>
-				var count = $('#stepArea').child.
+				var count = $('#stepArea').children("last");
+				console.log(count);
 
 				$('#stepBtn').click(function() {
 

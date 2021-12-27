@@ -41,22 +41,19 @@ public class AdminRecipeBoardMemberBlackServlet extends HttpServlet {
 			return;
 		}
 
-		// 블랙리스트에 등록하려는 작성자 아이디 가져오기
-		String[] recipePostWriterIdValues = request.getParameterValues("postWriterId");
+		// 블랙리스트 등록하려는 회원의 게시글번호 가져오기
+		String[] recipeBoardNoValues = request.getParameterValues("postNo");
 		
-		for(String str : recipePostWriterIdValues) {
-			System.out.println(str);
-		}
-
 		AdminRecipeBoardService rbService = new AdminRecipeBoardServiceImpl();
-		int result = rbService.recipeBoardMemberBlack(recipePostWriterIdValues);
-
-		if (result == recipePostWriterIdValues.length) {
+		int result = rbService.recipeBoardMemberBlack(recipeBoardNoValues);
+		
+		if (result == recipeBoardNoValues.length) {
 			response.sendRedirect("/recipeBoard/recipeBoardAllSelect.do");
+
 		} else {
 			response.sendRedirect("/views/common/error.jsp");
 		}
-
+		
 	}
 
 	/**

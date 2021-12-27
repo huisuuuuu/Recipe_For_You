@@ -670,16 +670,22 @@ public class AdminRecipeBoardDAO {
 		return result;
 	}
 
-	public int recipeBoardMemberBlack(Connection conn, String[] recipePostWriterIdValues) {
+	public int recipeBoardMemberBlack(Connection conn, ArrayList<String> recipePostWriter) {
 		
 		PreparedStatement pstmt = null;
 		int result = 0;
 		
-		String values = String.join(",", recipePostWriterIdValues);
-		System.out.println(values);
-		//[0] = 100 / [1] = 101 / [2] 102
-		//100,101,102
-		String query = "UPDATE MEMBER SET BLACK_YN='Y' WHERE USER_ID IN("+values+")";
+		StringBuilder blackList = new StringBuilder();
+		
+		for(int i=0; i<recipePostWriter.size(); i++) {
+			blackList.append("'"+recipePostWriter.get(i)+"'");
+			blackList.append(",");
+		}
+		
+		// ?이상~?미만 -- 마지막 파일에 "," 구분자 없애주기
+		blackList.delete(blackList.length()-1, blackList.length());
+
+		String query = "UPDATE MEMBER SET BLACK_YN='Y' WHERE USER_ID IN("+blackList+")";
 
 		try {
 			pstmt = conn.prepareStatement(query);
@@ -924,6 +930,40 @@ public class AdminRecipeBoardDAO {
 		}
 		
 		return result;
+		
+	}
+
+	public ArrayList<String> selectRecipePostWriter(Connection conn, String [] recipeBoardNoValues) {
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		ArrayList<String> list = new ArrayList<String>();
+		int count = 0;
+		
+		String values = String.join(",", recipeBoardNoValues);
+		//[0] = 100 / [1] = 101 / [2] 102
+		//100,101,102
+		System.out.println(values);
+		
+		String query = "SELECT USER_ID FROM RECIPE_BOARD WHERE BOARD_NO IN("+values+") AND END_YN='N'";
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				list.add(rset.getString("user_id"));
+			}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			JDBCTemplate.close(rset);
+			JDBCTemplate.close(pstmt);
+		}
+		
+		return list;
 		
 	}
 

@@ -123,14 +123,18 @@ public class AdminRecipeBoardServiceImpl implements AdminRecipeBoardService {
 	}
 
 	@Override
-	public int recipeBoardMemberBlack(String[] recipePostWriterIdValues) {
+	public int recipeBoardMemberBlack(String[] recipeBoardNoValues) {
 		
 		Connection conn = JDBCTemplate.getConnection();
-		/*int result = */rbDAO.recipeBoardMemberBlack(conn, recipePostWriterIdValues);
-		/*if(result==recipeWriterIdValues.length) JDBCTemplate.commit(conn);
+		ArrayList<String> recipePostWriter = rbDAO.selectRecipePostWriter(conn, recipeBoardNoValues);
+		System.out.println(recipePostWriter);
+		
+		
+		int result = rbDAO.recipeBoardMemberBlack(conn, recipePostWriter);	
+		if(result==recipeBoardNoValues.length) JDBCTemplate.commit(conn);
 		else JDBCTemplate.rollback(conn);
-		JDBCTemplate.close(conn);*/
-		return 0;
+		JDBCTemplate.close(conn);
+		return result;
 	}
 
 	@Override
