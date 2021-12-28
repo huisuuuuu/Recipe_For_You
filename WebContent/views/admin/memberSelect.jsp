@@ -150,7 +150,7 @@ text-align:right;
 				
 				</td>
 				</tr>
-			</tr>
+			
 			</tbody>
 			</table>
 			<br>

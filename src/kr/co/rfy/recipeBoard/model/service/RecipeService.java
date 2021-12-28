@@ -8,9 +8,10 @@ import kr.co.rfy.recipeBoard.model.vo.Recipe;
 
 public interface RecipeService {
 
-	HashMap<String, Object> selectAllPostList(int currentPage);
+	HashMap<String, Object> selectAllPostList(int currentPage,String type);
 
 	HashMap<String,Object> selectOnePost(int boardNo,String userId);
+	HashMap<String,Object> selectOnePost(int boardNo);
 
 	int postLike(int boardNo,int likeNum);
 
@@ -24,7 +25,7 @@ public interface RecipeService {
 
 	HashMap<String, Object> selectRecipeKindAllList(int currentPage, String recipeKind);
 
-	HashMap<String, Object> selectMyRecipeList(int currentPage,String userId);
+	HashMap<String, Object> selectMyRecipeList(int currentPage,String userId );
 
 	ArrayList<MiddleCode> getMiddleCode(String middleCode);
 

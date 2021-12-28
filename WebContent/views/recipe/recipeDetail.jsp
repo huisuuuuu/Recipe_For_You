@@ -16,6 +16,9 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 
+	<!-- jQuery Cookie --> 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js" integrity="sha512-aUhL2xOCrpLEuGD5f6tgHbLYEXRpYZ8G5yD+WlFrXrPy2IrWBlu6bih5C9H6qGsgqnU6mgx6KtU8TreHpASprw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
 
 	<%--제이쿼리 라이브러리 --%>   
     <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
@@ -50,15 +53,23 @@
 	int currentPage	=(int)request.getAttribute("currentPage");//현재페이지 목록을 불러오기 위한 값
 	HashMap<String,Object> recipeDetailInfo = (HashMap<String,Object>)request.getAttribute("recipeDetailInfo");
 	
-	// recipeDetailInfo에 들어있는 4가지 값 꺼내기
+	// recipeDetailInfo에 들어있는 5가지 값 꺼내기
 	
 	RecipeDetail recipeInfo =(RecipeDetail)recipeDetailInfo.get("recipeInfo");
 	ArrayList<Content> contentList = (ArrayList<Content>)recipeDetailInfo.get("contentList");
 	ArrayList<File> fileList =(ArrayList<File>) recipeDetailInfo.get("fileList");	
 	ArrayList<Ingredient> ingredientList = (ArrayList<Ingredient>)recipeDetailInfo.get("ingredientList");
-	ArrayList<MyboxIngredient> myBoxList = (ArrayList<MyboxIngredient>)recipeDetailInfo.get("myBoxList");
-	
 	Member m = (Member)session.getAttribute("member");
+	
+	ArrayList<MyboxIngredient> myBoxList = null;
+	
+	if(m!=null)
+	{
+		myBoxList = (ArrayList<MyboxIngredient>)recipeDetailInfo.get("myBoxList");	
+	}
+		
+	
+	
 	%>
 
 	
@@ -77,7 +88,7 @@
                    <a href="" class="mypage">
                     <img src="/assets/common/images/headericon1.png" alt="" width="23px" height="28px">
                 </a>
-                <a href="/views/member/memberLogin.jsp" class="login">
+                <a href="" class="login">
                     <img src="/assets/common/images/headericon2.png" alt="" width="80px" height="30px">
                 </a>
                 </div>
@@ -158,7 +169,13 @@
               <div id="ingredient_warpper">
                 <table width="90%">
              
-                      <%for(int i=0;i<ingredientList.size();i++) {%>
+             
+
+          <%if(m!=null){ %> 
+            
+            
+            	<%if(myBoxList!=null){ %>
+              		 <%for(int i=0;i<ingredientList.size();i++) {%>
                    		<%if(i%2==0){ %>
                    		 <tr>
                  			<%for(int k=0; k<myBoxList.size();k++ ){ %>
@@ -175,7 +192,7 @@
 			                       		
 			                     <%} %>
 	                    	 <%} %>
-	                    <%}else{ %>
+	                   <%}else{ %>
 		                    	 
 		                    		<%for(int j=0; j<myBoxList.size();j++ ){ %>
 				                    	 
@@ -193,6 +210,39 @@
 				                     </tr>
 		                  <%} %>
                    <%} %>
+                   
+              <%}else {%>
+                   		<%for(int i=0;i<ingredientList.size();i++) {%>
+                   <tr>
+                       <td><%=ingredientList.get(i).getIngredientName() %> <spn style="color: red">필요해요!</spn></td>
+                       <td><%=ingredientList.get(i).getIngredientNum() %></td>
+
+                     <%if(i!=ingredientList.size()-1){ %>
+                       <td><%=ingredientList.get(i+1).getIngredientName() %> <spn style="color: red">필요해요!</spn></td>
+                       <td><%=ingredientList.get(i+1).getIngredientNum() %></td>
+                       <%} %>
+                   </tr>
+                   <% i++;} %>
+                   
+                   <%} %>
+
+                   
+            <%}else{ %>   
+                   
+		                   <%for(int i=0;i<ingredientList.size();i++) {%>
+		                   <tr>
+		                       <td><%=ingredientList.get(i).getIngredientName() %> </td>
+		                       <td><%=ingredientList.get(i).getIngredientNum() %></td>
+		
+		                     <%if(i!=ingredientList.size()-1){ %>
+		                       <td><%=ingredientList.get(i+1).getIngredientName() %> </td>
+		                       <td><%=ingredientList.get(i+1).getIngredientNum() %></td>
+		                       <%} %>
+		                   </tr>
+		                   <% i++;} %>
+		                   
+                 <%} %>  
+                   
                    
                </table>
             </div>
@@ -229,11 +279,8 @@
               <!--작성자라면 수정,취소/미작성자는 추천-->
                <div id="fotter_button">
                
-               <%
-               		//Member m =(Member)session.getAttribute("member");
-               
-               %>
-               <%if(m!=null && m.getUserId().equals(recipeInfo.getUserId())){ %> 
+              
+               <%if(m!=null && m.getUserId().equals(recipeInfo.getUserId())){ %>  
                   이 레시피를 &nbsp&nbsp
                    <button type="button" class="btn btn-success" id="updateBtn" > 수정 </button> &nbsp 할래요! 
                    <button type="button" class="btn btn-success" id="deleteBtn" style="transform: translate(280px,-10px)">삭제</button>
@@ -245,10 +292,11 @@
                     <button type="button" class="btn btn-success" style="width: 15%; display:none" id="likeCancelBtn">추천취소</button> &nbsp 할래요!
                      <a href="/recipe/recipeBoard/selectAll.do?currentPage=<%=currentPage%>"><button type="button" class="btn btn-success" id="listBtn" style="transform: translate(300px,-16px)">목록</button></a> 
                		
-             <% }else{ %> 
+             <%}else{ %> 
              
-                <a href="/recipe/recipeBoard/selectAll.do?currentPage=<%=currentPage%>"><button type="button" class="btn btn-success" id="listBtn" style="transform: translateX(300px)">목록</button></a> 
-              <%} %> 
+             
+               <a href="/recipe/recipeBoard/selectAll.do?currentPage=<%=currentPage%>"><button type="button" class="btn btn-success" id="listBtn" style="transform: translateX(300px)">목록</button></a> 
+             <%} %>
                </div>
                <div id="fotter_empty2"></div>
            </div>
@@ -387,6 +435,7 @@
     			
     			});
     			
+    			
     		}else
     		{
     			alert('레시피 삭제를 취소하셨습니다.');
@@ -398,18 +447,15 @@
     
     </script>
     
-    <%-- --%>
-      <script>
-       
-      
-      
-      
-      
-      
-      
-      
-      
-      </script> 
+   
+	
+	
+  
+    
+    
+    
+    
+            
             
             
 <!-- conntent 끝-->  

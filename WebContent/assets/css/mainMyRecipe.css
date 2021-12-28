@@ -1,0 +1,33 @@
+.contetns-sub {
+    width: 100%;
+    max-width: 1280px;
+    margin: 15px auto 40px auto;
+}
+
+.contents1-image {
+    height: 550px;
+    width: 100%;
+    max-width: 1280px;
+    margin: 32px 0px 15px 0px;
+}
+
+.contents1-image-1 {
+    float: left;
+    
+}
+
+.contents1-image-2 {
+    margin: 0px 35px 0px 35px;
+    float: left;
+    
+}
+
+.contents1-image-3 {
+    margin: 0px 0px 31px 986px;
+    
+}
+
+.contents1-image-4 {
+    float: right;
+   
+}

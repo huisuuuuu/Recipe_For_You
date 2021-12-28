@@ -20,13 +20,13 @@ public class RecipeServiceImpl implements RecipeService {
 
 	//모든 레시피 리스트 가져오기
 	@Override
-	public HashMap<String, Object> selectAllPostList(int currentPage) {
+	public HashMap<String, Object> selectAllPostList(int currentPage,String type) {
 		
 		Connection conn = JDBCTemplate.getConnection();
 		
 		//1.한페이지에 n개의 글을 가져올 것인지 설정
 		int recordCountPerPage =12;
-		ArrayList<OurRecipe> list =rDAO.selectAllPostPageList(conn,currentPage,recordCountPerPage);
+		ArrayList<OurRecipe> list =rDAO.selectAllPostPageList(conn,currentPage,recordCountPerPage,type);
 			
 		//2.해당 페이지에 필요한 네비바 생성
 		// 하나의 pageNavi bar에 보여질 navi 갯수를 설정
@@ -45,7 +45,7 @@ public class RecipeServiceImpl implements RecipeService {
 		return hm;
 	}
 
-	//하나의 레시피 가져오기
+	//하나의 레시피 가져오기 (userid !=null 일 때)
 	@Override
 	public HashMap<String,Object> selectOnePost(int boardNo,String userId) {
 	
@@ -56,14 +56,15 @@ public class RecipeServiceImpl implements RecipeService {
 		//2. 해당 내용
 		//3. 해당 파일 경로
 		//4. 재료
+		//5. 마이냉장고 재료
 		RecipeDetail recipe=rDAO.selectOnePost(conn,boardNo);
 		ArrayList<Content> contentList = rDAO.selectOnePostContent(conn,boardNo);
 		ArrayList<File> fileList = rDAO.selectOnePostFile(conn,boardNo);
 		ArrayList<Ingredient> ingredientList = rDAO.selectOnePostIngredient(conn,boardNo);
 		ArrayList<MyboxIngredient> myBoxList = rDAO.selectMyBox(conn,userId);
 		
-		JDBCTemplate.close(conn);
 		
+		JDBCTemplate.close(conn);
 		
 		HashMap<String,Object> hm = new HashMap<String,Object>();
 		
@@ -76,6 +77,45 @@ public class RecipeServiceImpl implements RecipeService {
 		return hm;
 		
 	}
+	
+	//하나의 레시피 가져오기 (userId==null 일 때)
+	@Override
+	public HashMap<String,Object> selectOnePost(int boardNo) {
+	
+	Connection conn = JDBCTemplate.getConnection();
+	
+		//총 4개의 데이터를 가져와야한다.
+		//1. 레시피 게시판 테이블에 있는 모든 데이터
+		//2. 해당 내용
+		//3. 해당 파일 경로
+		//4. 재료
+		//5. 마이냉장고 재료
+		RecipeDetail recipe=rDAO.selectOnePost(conn,boardNo);
+		ArrayList<Content> contentList = rDAO.selectOnePostContent(conn,boardNo);
+		ArrayList<File> fileList = rDAO.selectOnePostFile(conn,boardNo);
+		ArrayList<Ingredient> ingredientList = rDAO.selectOnePostIngredient(conn,boardNo);
+		
+		
+		
+		JDBCTemplate.close(conn);
+		
+		HashMap<String,Object> hm = new HashMap<String,Object>();
+		
+		hm.put("recipeInfo", recipe);
+		hm.put("contentList", contentList);
+		hm.put("fileList", fileList);
+		hm.put("ingredientList", ingredientList);
+		
+		
+		return hm;
+		
+	}
+	
+	
+	
+	
+	
+	
 	//레시피 추천 +1 반영
 	@Override
 	public int postLike(int boardNo,int likeNum) {
@@ -179,38 +219,38 @@ public class RecipeServiceImpl implements RecipeService {
 	}
 
 	//나의 레시피 목록 가져온다. 
-	@Override
-	public HashMap<String, Object> selectMyRecipeList(int currentPage,String userId) {
-		
-		Connection conn = JDBCTemplate.getConnection();
-		
-		//1.한페이지에 n개의 글을 가져올 것인지 설정
-		int recordCountPerPage =12;
-		ArrayList<OurRecipe> list =rDAO.selectMyRecipeList(conn,currentPage,recordCountPerPage,userId);
-		
-		
-		//2.해당 페이지에 필요한 네비바 생성
-		// 하나의 pageNavi bar에 보여질 navi 갯수를 설정
-				
-		int naviCountPerPage=12;
-				
-		String pageNavi = rDAO.getMyRecipeNavi(conn,naviCountPerPage,recordCountPerPage,currentPage);
-		
-		JDBCTemplate.close(conn);
-		
-		HashMap<String, Object> hm = new HashMap<String, Object>();
-		
-		hm.put("list", list);
-		hm.put("pageNavi", pageNavi);
-		
-		return hm;
-		
-		
-		
-		
-		
-		
-	}
+		@Override
+		public HashMap<String, Object> selectMyRecipeList(int currentPage,String userId) {
+			
+			Connection conn = JDBCTemplate.getConnection();
+			
+			//1.한페이지에 n개의 글을 가져올 것인지 설정
+			int recordCountPerPage =12;
+			ArrayList<OurRecipe> list =rDAO.selectMyRecipeList(conn,currentPage,recordCountPerPage,userId);
+			
+			
+			//2.해당 페이지에 필요한 네비바 생성
+			// 하나의 pageNavi bar에 보여질 navi 갯수를 설정
+					
+			int naviCountPerPage=12;
+					
+			String pageNavi = rDAO.getMyRecipeNavi(conn,naviCountPerPage,recordCountPerPage,currentPage);
+			
+			JDBCTemplate.close(conn);
+			
+			HashMap<String, Object> hm = new HashMap<String, Object>();
+			
+			hm.put("list", list);
+			hm.put("pageNavi", pageNavi);
+			
+			return hm;
+			
+			
+			
+			
+			
+			
+		}
 	
 	//대분류코드를 이용하여 중분류 코드를 가져온다.
 	@Override
