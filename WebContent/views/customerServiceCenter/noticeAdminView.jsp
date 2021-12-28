@@ -14,34 +14,10 @@
 <!-- jQuery 라이브러리 -->
 <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
 
+<link rel="stylesheet" type="text/css"
+	href="/assets/css/adminRecipeBoard.css">
+
 <style type="text/css">
-#wrap{
-	height: 1480px;
-	width: 1280px;
-	margin: 0 auto;
-	
-}
-
-#header{
-	height: 200px;
-	width: 1280px;
-	margin: 0 auto;
-
-}
-
-#center{
-	height: 980px;
-	width: 1280px;
-	margin: 0 auto;
-
-}
-
-#footer{
-	height: 300px;
-	width: 1280px;
-	margin: 0 auto;
-
-}
 
 #notice{
 	height: 100px;
@@ -54,7 +30,7 @@
 	height: 400px;
 	width: 1000px;
 	margin: 0 auto;
-
+	border: 1px solid black;
 }
 
 #titleForm{
@@ -64,7 +40,7 @@
 	height: 50px;
 	width: 1000px;
 	margin: 0 auto;
-
+	border: 1px solid black;
 }
 
 #regDage{
@@ -78,8 +54,8 @@
 	height: 30px;
 	width: 1000px;
 	margin: 0 auto;
-
 }
+
 </style>
 
 <title>냉장고를 부탁해 공지사항 게시판</title>
@@ -93,18 +69,18 @@ Member m = (Member)session.getAttribute("member");
 %>
 
 <div id="wrap">
-		<div id="header">
-		
-		</div>
-		
+		<div id="header"></div>
+		<div id="navigation">
+			<%@include file="/views/common/adminNavigation.jsp"%>
+		</div><br>
 		<form action="/views/customerServiceCenter/noticeUpdate.jsp" method="post">
-		<div id="center">
+		<div id="content" align="right">
 		
 			<!-- 소개 하는 공간 -->
 			<div id="notice" align="center"">
 				<h1>  |  NOTICE  |  </h1>
 				<span>새로운 소식들과 유용한 정보들을 한곳에서 확인하세요.</span>
-			</div><hr>
+			</div>
 				<input type="hidden" name="currentPage" value="<%=currentPage%>"/>
 				<input type="hidden" name="board_no" value="<%=n.getBoard_no()%>"/>
 				<input type="hidden" name="notice_title" value="<%=n.getTitle()%>"/>
@@ -112,7 +88,7 @@ Member m = (Member)session.getAttribute("member");
 				
 				<div id="titleForm" align="center">
 					<h2><%=n.getTitle() %></h2>
-				</div><hr>
+				</div>
 				
 				<div id="regDage" align="left">
 					작성일 : [ <%=n.getRegDate() %> ]  /  
@@ -123,12 +99,12 @@ Member m = (Member)session.getAttribute("member");
 					
 					글 번호 : [ <%=n.getBoard_no() %> ]  /  
 					조회수 : <%=n.getView_count() %>   
-				</div><hr>
+				</div>
 				
-				<div id="contentForm" style="overflow: auto;">
+				<div id="contentForm" align="left">
 					<%=n.getContent() %>
-				</div><hr>
-				
+				</div>
+				<br>
 				<div id="menu" align="right">
 					<input class="btn btn-success btn-sm" type="button" value="메인 메뉴" onclick="location='/customerServiceCenter/noticeAdmin.do?currentPage=<%=currentPage%>'">
 					<%if(m != null & m.getUserId().equals(n.getUser_id())){ %>
@@ -163,9 +139,7 @@ Member m = (Member)session.getAttribute("member");
 			</script>
 			<!-- 글 삭제 -->
 		</div>
-		
-		<div id="footer">
-		</div>
+		<div id="footer"></div>
 	</div>
 
 </body>

@@ -21,8 +21,8 @@
 					</ul></li>
 				<li><a href="">문의/리뷰 관리</a>
 					<ul class="submenu">
-						<li><a href="">공지사항 관리</a></li>
-						<li><a href="">자주하는 질문 관리</a></li>
+						<li><a href="/customerServiceCenter/noticeAdmin.do">공지사항 관리</a></li>
+						<li><a href="/customerServiceCenter/qnaAdmin.do">자주하는 질문 관리</a></li>
 					</ul></li>
 
 				<li><a href="">회원 관리</a>

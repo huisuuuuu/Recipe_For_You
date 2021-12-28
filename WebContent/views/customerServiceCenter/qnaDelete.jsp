@@ -13,7 +13,7 @@
 <%if(result){ %>
 	alert("삭제가 완료됬습니다");
 <%}else{ %>
-	alert("삭제가 됬거나 잘못된 요청입니다");
+	alert("삭제됐거나 잘못된 요청입니다");
 <%} %>
 location.replace("/customerServiceCenter/qnaAdmin.do");
 </script>

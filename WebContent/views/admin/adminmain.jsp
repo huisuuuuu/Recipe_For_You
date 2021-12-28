@@ -118,12 +118,11 @@
                     </ul>
                 </li>
                 <li><a href="">문의/리뷰 관리</a>
-                    <ul class="sub-menu">
-                        <li><a href="/views/commons/a.jsp">공지사항</a></li>
-                        <li><a href="">자주하는 질문</a></li>
-                     
-                    </ul>
-                </li>
+					<ul class="submenu">
+						<li><a href="/customerServiceCenter/noticeAdmin.do">공지사항 관리</a></li>
+						<li><a href="/customerServiceCenter/qnaAdmin.do">자주하는 질문 관리</a></li>
+					</ul></li>
+					
                 <li><a href="/admin/memberAllList.do">회원관리</a>
                     <ul class="sub-menu">
                         <li><a href="/admin/memberAllList.do">회원관리 페이지</a></li>
