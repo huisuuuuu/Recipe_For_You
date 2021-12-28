@@ -59,9 +59,10 @@
 	ArrayList<Content> contentList = (ArrayList<Content>)recipeDetailInfo.get("contentList");
 	ArrayList<File> fileList =(ArrayList<File>) recipeDetailInfo.get("fileList");	
 	ArrayList<Ingredient> ingredientList = (ArrayList<Ingredient>)recipeDetailInfo.get("ingredientList");
-	ArrayList<MyboxIngredient> myBoxList = (ArrayList<MyboxIngredient>)recipeDetailInfo.get("myBoxList");
 	
 	Member m = (Member)session.getAttribute("member");
+	
+	ArrayList<MyboxIngredient> myBoxList =null;
 	%>
 	
 	<%--퀵바 script (강배님 추가 요청) --%>
@@ -209,7 +210,11 @@
               <div id="ingredient_warpper">
                 <table width="90%">
              
-                      <%for(int i=0;i<ingredientList.size();i++) {%>
+                       
+            <%if(m!=null)
+            	{myBoxList = (ArrayList<MyboxIngredient>)recipeDetailInfo.get("myBoxList"); %>
+             
+               <%for(int i=0;i<ingredientList.size();i++) {%>
                    		<%if(i%2==0){ %>
                    		 <tr>
                  			<%for(int k=0; k<myBoxList.size();k++ ){ %>
@@ -243,7 +248,28 @@
 				                   <%} %>
 				                     </tr>
 		                  <%} %>
+		                 	 
+	               
+	                   
                    <%} %>
+                   
+           <%} else{ %> 
+                   
+                   <%for(int i=0;i<ingredientList.size();i++) {%>
+                   <tr>
+                       <td><%=ingredientList.get(i).getIngredientName() %> </td>
+                       <td><%=ingredientList.get(i).getIngredientNum() %></td>
+
+                     <%if(i!=ingredientList.size()-1){ %>
+                       <td><%=ingredientList.get(i+1).getIngredientName() %> </td>
+                       <td><%=ingredientList.get(i+1).getIngredientNum() %></td>
+                       <%} %>
+                   </tr>
+                   <% i++;} %>
+                   
+           <%} %>
+                   
+                   
                    
                </table>
             </div>
@@ -267,10 +293,6 @@
                    </div>
                </div>
               <%} %>
-               
-  
-               
-               
                
 
             <!--content3_cook div -->   
