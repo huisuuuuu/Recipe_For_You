@@ -38,7 +38,7 @@
 	rel="stylesheet">
 <title>mybox</title>
 <link rel="stylesheet" type="text/css"
-	href="${pageContext.request.contextPath}/assets/css/main.css">
+	href="${pageContext.request.contextPath}/assets/css/mybox.css">
 <style>
 section.title {
 	min-height: 200px;
@@ -428,7 +428,7 @@ section.title h2 {
 							<li class="nav-item"><a class="nav-link active nav-info"
 								href="#">고객센터</a>
 								<ul class="submenu">
-									<li><a href="">공지사항</a></li>
+									<li><a href="/mybox/recommendedRecipeOnly.do">공지사항</a></li>
 									<li><a href="">자주하는질문</a></li>
 								</ul></li>
 							<li class="nav-item"><a class="nav-link active nav-mypage"
@@ -487,7 +487,8 @@ section.title h2 {
 												<option value="${mybox.ingredient_code}">${mybox.ingredient_name}</option>
 										</select></td>
 										<td><c:if test="${mybox.end_yn eq 'Y'}">
-												<input type="text" name="end_date" value="${mybox.end_date}">
+												<input type="text" name="end_date" value="${mybox.end_date}"
+>
 											</c:if> <c:if test="${mybox.end_yn eq 'N'}">
 												<input type="text" name="end_date" value="${mybox.end_date}"
 												style="color: red;">
