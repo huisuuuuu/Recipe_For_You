@@ -15,6 +15,11 @@
 <!-- jQuery 라이브러리 -->
 <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
 
+<link rel="stylesheet"
+	href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"
+	integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm"
+	crossorigin="anonymous">
+
 <style type="text/css">
 #wrap{
 	height: 1480px;
@@ -23,22 +28,8 @@
 	
 }
 
-#header{
-	height: 200px;
-	width: 1280px;
-	margin: 0 auto;
-	
-}
-
 #center{
 	height: 980px;
-	width: 1280px;
-	margin: 0 auto;
-	
-}
-
-#footer{
-	height: 300px;
 	width: 1280px;
 	margin: 0 auto;
 	
@@ -55,7 +46,7 @@
 	height: 400px;
 	width: 1200px;
 	margin: 0 auto;
-
+	border: 1px solid black;
 }
 
 #title{
@@ -63,24 +54,25 @@
 	text-overflow: ellipsis;
 	white-space: nowrap;
 	height: 50px;
-	width: 1000px;
+	width: 1200px;
 	margin: 0 auto;
-	
+	border: 1px solid black;
 }
 
 #regDage{
 	height: 30px;
-	width: 1000px;
+	width: 1200px;
 	margin: 0 auto;
 	
 }
 
 #menu{
 	height: 30px;
-	width: 1000px;
+	width: 1200px;
 	margin: 0 auto;
 
 }
+
 </style>
 </head>
 <body>
@@ -94,19 +86,19 @@
 		<div id="header">
 		
 		</div>
-		
+
 		<div id="center">
 		
 			<!-- 소개 하는 공간 -->
 			<div id="notice" align="center"">
 				<h1>  |  NOTICE  |  </h1>
 				<span>새로운 소식들과 유용한 정보들을 한곳에서 확인하세요.</span>
-			</div><hr>
+			</div>
 			
 			<form action="/views/customerServiceCenter/noticeUpdate.jsp" method="post">
 				<div id="title" align="center">
 					<h2>[ <%=n.getTitle() %> ]</h2>
-				</div><hr>
+				</div>
 				
 				<div id="regDage" align="left">
 					작성일 : [ <%=n.getRegDate() %> ]  /  
@@ -114,21 +106,21 @@
 					코드 : [ 공지사항 ]  
 					<%} %>
 					/  글 번호 : [ <%=n.getBoard_no() %> ]  /  조회수 : <%=n.getView_count() %>   
-				</div><hr>
+				</div>
 				
 				<div id="content" style="overflow: auto;">
 					<%=n.getContent() %>
-				</div><hr>
+				</div><br>
 				
 				<div id="menu" align="right">
 					<input class="btn btn-success btn-sm" type="button" value="메인 메뉴" onclick="location='/customerServiceCenter/notice.do?currentPage=<%=currentPage%>'">
-						
 				</div>
 			</form>
 		
 		</div>
 		
 		<div id="footer">
+			<jsp:include page="/views/common/footer.jsp"></jsp:include>
 		</div>
 	</div>
 </body>

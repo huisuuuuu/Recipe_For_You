@@ -33,44 +33,45 @@ public class MemberPwdChangeServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//로그인한 회원인지 확인
-		if(request.getSession().getAttribute("member")==null) response.sendRedirect("/views/commons/error.jsp");
-		
-		// 업데이트할 데이터 가져오기
-		String userPwd = request.getParameter("userPwd");
-		
-		// 성공여부 알림을 위해  member/memberMsg.jsp로 페이지 이동 및 메세지 변수 생성
-		RequestDispatcher view = request.getRequestDispatcher("/views/member/memberMsg.jsp");
-		String addr = "/";
-		String msg = "";
+		if(request.getSession().getAttribute("member")==null) {
+			response.sendRedirect("/views/commons/error.jsp");
+		}else {
+			// 업데이트할 데이터 가져오기
+			String userPwd = request.getParameter("userPwd");
+			
+			// 성공여부 알림을 위해  member/memberMsg.jsp로 페이지 이동 및 메세지 변수 생성
+			RequestDispatcher view = request.getRequestDispatcher("/views/member/memberMsg.jsp");
+			String addr = "/";
+			String msg = "";
 
-		// 유효성 검증
-		MemberJoinDataCheck mDataCheck = new MemberJoinDataCheck();
-		if(mDataCheck.regExPwd(userPwd)) {
-			
-			// 세션에서 id 가져오기
-			String userId = ((Member)request.getSession().getAttribute("member")).getUserId();
-			
-			// 비지니스 로직처리
-			MemberService mService = new MemberServiceImpl();
-			int result = mService.memberPwdChange(userId, userPwd);
-			
-			// 처리결과에 따라 메세지 설정
-			if(result>0) {
-				msg = "비밀번호를 변경하였습니다.";
+			// 유효성 검증
+			MemberJoinDataCheck mDataCheck = new MemberJoinDataCheck();
+			if(mDataCheck.regExPwd(userPwd)) {
+				
+				// 세션에서 id 가져오기
+				String userId = ((Member)request.getSession().getAttribute("member")).getUserId();
+				
+				// 비지니스 로직처리
+				MemberService mService = new MemberServiceImpl();
+				int result = mService.memberPwdChange(userId, userPwd);
+				
+				// 처리결과에 따라 메세지 설정
+				if(result>0) {
+					msg = "비밀번호를 변경하였습니다.";
+					
+				}else {
+					msg = "비밀번호를 변경하지 못했습니다."+"<br>"+"- 지속적인 문제발생시 관리자에게 문의해주세요 -";
+				}
 				
 			}else {
-				msg = "비밀번호를 변경하지 못했습니다."+"<br>"+"- 지속적인 문제발생시 관리자에게 문의해주세요 -";
+				addr = "/views/member/memberPwdChange.jsp";
+				msg = "입력하신 정보를 확인해주세요";
 			}
-			
-		}else {
-			addr = "/views/member/memberPwdChange.jsp";
-			msg = "입력하신 정보를 확인해주세요";
+			// 설정한 메세지를 가지고 페이지 이동
+			request.setAttribute("addr", addr);
+			request.setAttribute("msg", msg);
+			view.forward(request, response);
 		}
-		
-		request.setAttribute("addr", addr);
-		request.setAttribute("msg", msg);
-		view.forward(request, response);
-		
 	}
 
 	/**

@@ -17,28 +17,26 @@
 <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
 
 <style type="text/css">
+* {
+	font-family: 'Noto Sans KR', sans-serif;
+}
+
 #wrap{
-	height: 1480px;
-	width: 1280px;
-	margin: 0 auto;
-	
+	width: 100%;
 }
 
 #header{
-	height: 200px;
-	width: 1280px;
-	margin: 0 auto;
+height: 10%;
 }
 
 #center{
-	height: 980px;
-	width: 1280px;
+	height: 80%;
+	width: 1200px;
 	margin: 0 auto;
 }
 
 #footer{
-	height: 300px;
-	width: 1280px;
+	height: 10%;
 	margin: 0 auto;
 }
 
@@ -50,21 +48,21 @@
 }
 
 #arrayList{
-	height: 500px;
-	width : 1000px;
+	height: 600px;
+	width : 1200px;
 	margin: 0 auto;
 	
 }
 
 #pageList{
 	height: 40px;
-	width: 500px;
+	width: 1000px;
 	margin: 0 auto;
 }
 
 #serachList{
 	height: 30px;
-	width: 1000px;
+	width: 1200px;
 	margin: 0 auto;
 	
 }
@@ -75,6 +73,27 @@
 	margin: 0 auto;
 }
 
+
+#submit_form{
+ 	width: 180px;
+ 	height: 50px;
+ 	float: right;
+ 	border: 1px solid white;
+ }
+ 
+#keyword_form{
+ 	width: 300px;
+ 	height: 50px;
+ 	float: right;
+ 	border: 1px solid white;
+ }
+ 
+#option_form{
+ 	width: 100px;
+ 	height: 50px;
+ 	float: right;
+ 	border: 1px solid white;
+}
 </style>
 
 
@@ -93,7 +112,8 @@ int currentPage = (int)request.getAttribute("currentPage");
 <div id="warp">
 	<div id="header">
 	</div>
-	
+	<br>
+	<br>
 	
 	<div id="center">
 		<!-- 소개 하는 공간 -->
@@ -159,12 +179,13 @@ int currentPage = (int)request.getAttribute("currentPage");
 				<script>
 				$(function(){
 					$('.prev').addClass('page-link');
-					$('.prev').css('width','20%');
+					$('.prev').css('width','35%');
 					$('.naviNum').addClass('page-link');
 					$('.next').addClass('page-link');
-					$('.next').css('width','20%');
+					$('.next').css('width','35%');
 				});
 				</script>
+				
 				</div>
 				<!-- 페이징 처리 -->
 				<br>
@@ -172,23 +193,33 @@ int currentPage = (int)request.getAttribute("currentPage");
 				<!-- 검색 기능 -->
 				<div id="serachList" align="right">
 						<form action="/qna/qnaSearch.do" method="get">
-							<select name="type">
+							<div  id="submit_form" align="left">
+							<input class="btn btn-success" type="submit"  value="검색하기"/>
+							<input class="btn btn-success" type="button" value="메인센터" onclick="location='/'"/>
+						</div>
+						
+						<div id="keyword_form" align="left">
+							<input class="form-control me-2" type="text" name="keyword" size="30"/>
+						</div>
+						
+						<div id="option_form">
+							<select class="form-select" name="type">
 								<option value="title">제목</option>
 								<option value="content">내용</option>
 								<option value="all">제목+내용</option>
 							</select>
-
-							<input type="text" name="keyword" size="30"/>
-							<input class="btn btn-success btn-sm" type="submit"  value="검색하기"/>
-							<input class="btn btn-success btn-sm" type="button" value="메인센터" onclick="location='/'"/>
+						</div>
 						</form>
 				</div>
 				<!-- 검색 기능 -->
-		
+		<br>
+		<br>
+		<br>
 		
 		</div>
-	<div id="footer">
-	</div>
+		<div id="footer">
+			<jsp:include page="/views/common/footer.jsp"></jsp:include>
+		</div>
 </div>
 </body>
 </html>
