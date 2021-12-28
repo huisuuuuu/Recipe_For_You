@@ -11,6 +11,7 @@ public interface RecipeService {
 	HashMap<String, Object> selectAllPostList(int currentPage,String type);
 
 	HashMap<String,Object> selectOnePost(int boardNo,String userId);
+	HashMap<String,Object> selectOnePost(int boardNo);
 
 	int postLike(int boardNo,int likeNum);
 

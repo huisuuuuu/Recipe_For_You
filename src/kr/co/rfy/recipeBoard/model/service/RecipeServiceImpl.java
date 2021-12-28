@@ -45,7 +45,7 @@ public class RecipeServiceImpl implements RecipeService {
 		return hm;
 	}
 
-	//하나의 레시피 가져오기
+	//하나의 레시피 가져오기 (userid !=null 일 때)
 	@Override
 	public HashMap<String,Object> selectOnePost(int boardNo,String userId) {
 	
@@ -77,6 +77,45 @@ public class RecipeServiceImpl implements RecipeService {
 		return hm;
 		
 	}
+	
+	//하나의 레시피 가져오기 (userId==null 일 때)
+	@Override
+	public HashMap<String,Object> selectOnePost(int boardNo) {
+	
+	Connection conn = JDBCTemplate.getConnection();
+	
+		//총 4개의 데이터를 가져와야한다.
+		//1. 레시피 게시판 테이블에 있는 모든 데이터
+		//2. 해당 내용
+		//3. 해당 파일 경로
+		//4. 재료
+		//5. 마이냉장고 재료
+		RecipeDetail recipe=rDAO.selectOnePost(conn,boardNo);
+		ArrayList<Content> contentList = rDAO.selectOnePostContent(conn,boardNo);
+		ArrayList<File> fileList = rDAO.selectOnePostFile(conn,boardNo);
+		ArrayList<Ingredient> ingredientList = rDAO.selectOnePostIngredient(conn,boardNo);
+		
+		
+		
+		JDBCTemplate.close(conn);
+		
+		HashMap<String,Object> hm = new HashMap<String,Object>();
+		
+		hm.put("recipeInfo", recipe);
+		hm.put("contentList", contentList);
+		hm.put("fileList", fileList);
+		hm.put("ingredientList", ingredientList);
+		
+		
+		return hm;
+		
+	}
+	
+	
+	
+	
+	
+	
 	//레시피 추천 +1 반영
 	@Override
 	public int postLike(int boardNo,int likeNum) {
