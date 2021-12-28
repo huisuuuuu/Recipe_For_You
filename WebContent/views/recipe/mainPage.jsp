@@ -238,14 +238,14 @@ div {
     max-width: 1320px;
     height: 2350px;
     margin: 33px auto 50px auto;
-	border : 1px solid black;
+	
 }
 
 .contetns-sub {
     width: 100%;
     max-width: 1280px;
     margin: 15px auto 40px auto;
-    border : 1px solid black;
+  
 
 }
 
@@ -624,7 +624,7 @@ a { text-decoration:none !important }
                 <div class="contents1-image-4"><a href=""><img src="${recipeWithFileList[3].file_path}" alt="" width="615px" height="259px"></a></div>
             </div>
             <div class="contents2-title">BEST RECIPES</div>
-            <div class="contents2-button-more container"><a href="" type="button">더보기</a></div>
+            <div class="contents2-button-more container"><a href="/recipe/recipeBoard/selectAll.do" type="button">더보기</a></div>
             
             	
             <div id="content_recipe_wrapper" style="transform: translateY(20px)">
