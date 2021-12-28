@@ -1,12 +1,13 @@
 @charset "UTF-8";
 *{
-     box-sizing: border-box;
+    box-sizing: border-box;
 }
 #innerContentWrapper {
     margin: 0px auto;
     width: 600px;
     height: 950px;
     padding: 20px;
+    text-align: center;
 }
 #title{
     margin: auto;
@@ -15,7 +16,7 @@
     font-weight: 700;
     border-left: 1px solid black;
     border-right: 1px solid black;
-    width: 100px;
+    width: 230px;
     height: 20px;
     line-height: 20px;
 }
@@ -28,7 +29,8 @@
     font-size: 16px;
 }
 .td{
-	line-height:46px;
+    width: 350px;
+    margin: 0 auto;
 }
 input{
     height : 50px;
@@ -36,50 +38,42 @@ input{
     border : 1px solid #707070;
     padding-left: 10px;
 }
-button{
-    height : 50px;
-    width : 100px;
-    background-color: white;
-    border: 1px solid #7FB292;
-    color: #7FB292;
-}
-button:hover{
-    font-weight: bolder;
-}
-.validation{
-    width : 350px;
-    height : 24px;
-}
-#consent{
-    height : 20px;
-    width : 20px;
-    margin-top: 13px;
-}
-#showTOS{
-    margin-right: 110px;
-    line-height: 45px;
-    float: right;
-    color: #7FB292;
-}
 .greenBtn{
     background-color: #7FB292;
     color: white;
     border: 0px;
 }
-.Modal{
-    top: 20%
+.float{
+    float: left;
+    margin-left: 10px;
+    line-height: 12px;
+    margin: 5px;
 }
-.vBar{
-    font-size: 16px;
-    font-weight: 500;
-}
-#joinBtn:hover{
+#join:hover{
     color: black;
 }
-#ag{
-	line-height: 20px;
+ul.tabs{
+	margin: 0px;
+	padding: 0px;
+	list-style: none;
 }
-.indent{
-	margin-left: 10px;
-	text-indent: 10px;
+ul.tabs li{
+	display: inline-block;
+	padding: 10px 15px;
+	cursor : pointer;
+	border-bottom: 1px solid #707070;
+          width : 150px;
+}
+ul.tabs li.current{
+	color: #7FB292;
+	border-bottom: 1px solid #7FB292;
+}
+.tab-content{
+	display: none;
+}
+.tab-content.current{
+	display: inherit;
+}
+a{
+	text-decoration:none;
 }

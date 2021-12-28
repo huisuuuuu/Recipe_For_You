@@ -1,6 +1,6 @@
 @charset "UTF-8";
 *{
-     box-sizing: border-box;
+    box-sizing: border-box;
 }
 #innerContentWrapper {
     margin: 0px auto;
@@ -15,7 +15,7 @@
     font-weight: 700;
     border-left: 1px solid black;
     border-right: 1px solid black;
-    width: 100px;
+    width: 150px;
     height: 20px;
     line-height: 20px;
 }
@@ -26,9 +26,6 @@
     text-align: left;
     line-height: 48px;
     font-size: 16px;
-}
-.td{
-	line-height:46px;
 }
 input{
     height : 50px;
@@ -50,36 +47,27 @@ button:hover{
     width : 350px;
     height : 24px;
 }
-#consent{
-    height : 20px;
-    width : 20px;
-    margin-top: 13px;
-}
-#showTOS{
-    margin-right: 110px;
-    line-height: 45px;
-    float: right;
-    color: #7FB292;
-}
 .greenBtn{
     background-color: #7FB292;
     color: white;
     border: 0px;
 }
-.Modal{
-    top: 20%
-}
 .vBar{
     font-size: 16px;
     font-weight: 500;
 }
-#joinBtn:hover{
+#submit:hover{
     color: black;
 }
-#ag{
-	line-height: 20px;
+.textDiv{
+    line-height: 45px;
+    
 }
-.indent{
-	margin-left: 10px;
-	text-indent: 10px;
+.Modal{
+    top: 20%
+}
+.disabledInputTag{
+	border: none;
+	background-color: white;
+	color: black;
 }

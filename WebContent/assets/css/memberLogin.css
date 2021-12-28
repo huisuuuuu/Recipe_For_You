@@ -1,0 +1,71 @@
+@charset "UTF-8";
+
+
+        *{
+            box-sizing: border-box;
+        }
+        #innerContentWrapper {
+            margin: 0px auto;
+            
+            width: 600px;
+            padding: 20px;
+            text-align: center;
+        }
+        #title{
+            margin: auto;
+            text-align: center;
+            font-size: 23px;
+            font-weight: 700;
+            border-left: 1px solid black;
+            border-right: 1px solid black;
+            width: 100px;
+            height: 20px;
+            line-height: 20px;
+        }
+         .td{
+            width: 350px;
+            margin: 0 auto;
+        }
+        .input{
+            height : 50px;
+            width : 350px;
+            border : 1px solid #707070;
+            padding-left: 10px;
+            margin: 10px auto;
+        }
+        .greenBtn{
+            background-color: #7FB292;
+            color: white;
+            border: 0px;
+        }
+        .float{
+            float: left;
+            margin-left: 10px;
+            line-height: 12px;
+            margin: 5px;
+        }
+        #findIdPwd{
+			/* margin-left: 75px; */
+			float: right;
+            cursor: pointer;
+            
+        }
+        #join{
+            border: 1px solid #7FB292;
+            color: #7FB292;
+        }
+        #join:hover{
+            color: black;
+        }
+        .Modal{
+        	top: 20%;
+        	text-align: left;
+        }
+        #login:hover{
+        	color: black;
+        }
+        #Btn{
+            background-color: #7FB292;
+            color: white;
+            border: 0px;
+        }
