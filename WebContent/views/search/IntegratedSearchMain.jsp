@@ -31,7 +31,7 @@
 
 <body>
 
-<jsp:include page="/assets/css/search.jsp"></jsp:include>
+<jsp:include page="/assets/css/search.css"></jsp:include>
 
 <style>
 
@@ -49,7 +49,7 @@ font-weight:bolder;
 }
 .cate{
 border: 1px solid white;
-	width:95%;
+width:95%;
 text-align: right;
     
 
@@ -154,7 +154,7 @@ text-align:center;
 
 
         }
-	.empty
+		.empty
         {
 
             width: 100%;
