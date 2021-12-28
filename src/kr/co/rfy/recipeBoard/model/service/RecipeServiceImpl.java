@@ -358,6 +358,21 @@ Connection conn = JDBCTemplate.getConnection();
 		
 	}
 
+	@Override
+	public ArrayList<OurRecipe> selectBestRecipe(int currentPage) {
+	
+		Connection conn = JDBCTemplate.getConnection();
+		
+		//1.한페이지에 n개의 글을 가져올 것인지 설정
+		int recordCountPerPage = 8;
+		ArrayList<OurRecipe> list =rDAO.selectBestRecipe(conn,currentPage,recordCountPerPage);
+		
+		
+		return list;
+		
+		
+	}
+
 	
 
 		

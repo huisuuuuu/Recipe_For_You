@@ -22,24 +22,25 @@
 
 <style type="text/css">
 #wrap{
-	height: 1480px;
-	width: 1280px;
+	width: 100%;
 	margin: 0 auto;
-	
+}
+
+#header{
+	heigth:200px;
 }
 
 #center{
 	height: 980px;
-	width: 1280px;
+	width: 100%;
+	max-width: 1280px;
 	margin: 0 auto;
-	
 }
 
 #notice{
-	height: 100px;
+	height: 200px;
 	width : 500px;
 	margin: 0 auto;
-	
 }
 
 #content{
@@ -84,13 +85,13 @@
 	
 	<div id="wrap">
 		<div id="header">
-		
+			<%@ include file="/views/common/header2.jsp"%>
 		</div>
+		<br><br><br><br>
 
 		<div id="center">
-		
 			<!-- 소개 하는 공간 -->
-			<div id="notice" align="center"">
+			<div id="notice" align="center">
 				<h1>  |  NOTICE  |  </h1>
 				<span>새로운 소식들과 유용한 정보들을 한곳에서 확인하세요.</span>
 			</div>

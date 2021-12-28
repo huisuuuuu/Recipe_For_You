@@ -14,7 +14,9 @@
 	crossorigin="anonymous">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&family=Roboto:ital,wght@0,100;1,100&display=swap" rel="stylesheet">
+<link
+	href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&family=Roboto:ital,wght@0,100;1,100&display=swap"
+	rel="stylesheet">
 <title>footer</title>
 
 <style>
@@ -53,8 +55,8 @@
 
 
 
-		<div class="footer">
-			<div class="footer1 container">
+	<div class="footer">
+		<div class="footer1 container">
 			<pre>
 (주)컬쳐히어로
             
@@ -65,13 +67,13 @@
             
 주소:(13487) 경기도 성남시 분당구 삼평동625 판교세븐벤처밸리1단지 제3동 1001호 이메일:commerce@culturehero.net
             </pre>
-			</div>
-			<div class="footer-bottom">
-				<div id="footer-word">
-					<pre>     이용약관   개인정보처리방침   공지사항   자주묻는질문   광고/제휴문의:contact@culturehero.net</pre>
-				</div>
+		</div>
+		<div class="footer-bottom">
+			<div id="footer-word">
+				<pre>     이용약관   개인정보처리방침   공지사항   자주묻는질문   광고/제휴문의:contact@culturehero.net</pre>
 			</div>
 		</div>
+	</div>
 
 
 

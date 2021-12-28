@@ -5,6 +5,7 @@ import java.util.HashMap;
 
 import kr.co.rfy.adminRecipeBoard.model.vo.AdminRecipeBoard;
 import kr.co.rfy.recipeBoard.model.vo.MiddleCode;
+import kr.co.rfy.recipeBoard.model.vo.OurRecipe;
 import kr.co.rfy.recipeBoard.model.vo.Recipe;
 import kr.co.rfy.recipeBoard.model.vo.UserRecipeBoard;
 
@@ -38,6 +39,8 @@ public interface RecipeService {
 	
 	boolean updateUserRecipePost(AdminRecipeBoard arb, String[] ingredientNameValues, String[] ingredientNumValues,
 			String[] recipeContentValues);
+
+	ArrayList<OurRecipe> selectBestRecipe(int currentPage);
 
 
 
