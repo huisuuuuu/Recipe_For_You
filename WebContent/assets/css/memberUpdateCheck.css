@@ -1,0 +1,38 @@
+@charset "UTF-8";
+*{
+    box-sizing: border-box;
+}
+#innerContentWrapper {
+    margin: 0px auto;
+    width: 600px;
+    height: 950px;
+    padding: 20px;
+    text-align: center;
+}
+#title{
+    margin: auto;
+    text-align: center;
+    font-size: 23px;
+    font-weight: 700;
+    border-left: 1px solid black;
+    border-right: 1px solid black;
+    width: 150px;
+    height: 20px;
+    line-height: 20px;
+}
+#subTitle{
+    color: #707070;
+    font-size: 18px;
+}
+.input{
+    height : 50px;
+    width : 350px;
+    border : 1px solid #707070;
+    padding-left: 10px;
+    margin: 10px auto;
+}
+.greenBtn{
+    background-color: #7FB292;
+    color: white;
+    border: 0px;
+}
