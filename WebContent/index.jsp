@@ -231,10 +231,176 @@ div {
 
 .contents {
     width: 100%;
-    max-width: 1280px;
-    height: 1000px;
+    max-width: 1320px;
+    height: 2350px;
     margin: 33px auto 50px auto;
+	border : 1px solid black;
+}
+
+.contetns-sub {
+    width: 100%;
+    max-width: 1280px;
+    margin: 15px auto 40px auto;
+    border : 1px solid black;
+
+}
+
+.contents-top {
+    display: inline-block;
+}
+
+.contents1-title {
+    width: 23.125%;
+    margin: 52px 492px 18px 492px;
+    text-align: center;
+    font-size: 20px;
+    font-family: 'Noto Serif KR', sans-serif;
+    font-weight: 700;
+    letter-spacing: 0.255em;
+}
+
+.contents1-subtitle {
+    width: 35.16%;
+    margin: 0 415px 16px 415px;
+    text-align: center;
+    font-size: 16px;
+    font-family: 'Noto Serif KR', sans-serif;
+    font-weight: 700;
+    color: #5E5E5E;
+}
+
+.contents1-button-more {
+    width: 6.25%;
+    height: 40px;
+    border: 1px solid #7FB292;
+    text-align: center;
+    padding-top: 8px;
+}
+
+.contents1-button-more > a {
+    color: #7FB292;
+    font-size: 14px;
+}
+
+.contents1-image {
+
+    height: 550px;
+    width: 100%;
+    margin: 32px 0px 15px 0px;
+}
+
+.contents1-image-1 {
+    float: left;
+}
+
+.contents1-image-2 {
+    margin: 0px 35px 0px 35px;
+    float: left;
+}
+
+.contents1-image-3 {
+    margin: 0px 0px 31px 986px;
+}
+
+.contents1-image-4 {
+    float: right;
+}
+
+.contents2-title {
+    width: 26.56%;
+    margin: 61px 470px 20px 470px;
+    text-align: center;
+    font-size: 20px;
+    font-family: 'Noto Serif KR', sans-serif;
+    font-weight: 700;
+    letter-spacing: 0.255em;
+}
+
+.contents2-button-more {
+    width: 6.25%;
+    height: 40px;
+    border: 1px solid #7FB292;
+    text-align: center;
+    padding-top: 8px;
+}
+
+.contents2-button-more > a {
+    color: #7FB292;
+    font-size: 14px;
+}
+
+.contents2-main-1 {
+    width: 100%;
+    max-width: 1280px;
+    height: 418px;
+
+    margin: 35px 0px 44px 0px
+}
+
+.contents2-main-2 {
+    width: 100%;
+    max-width: 1280px;
+    height: 418px;
+
+    margin: 0px 0px 44px 0px
+}
+
+.recipe-content {
     border: 1px solid black;
+    width: 285px;
+    height: 385px;
+    float: left;
+    margin: 0px 16.5px 0px 16.5px;
+}
+
+.image {
+    border: 1px solid black;
+    width: 100%;
+    height: 284px;
+
+}
+
+.subtitle {
+    border: 1px solid black;
+    width: 100%;
+    height: 33px;
+
+}
+
+.title {
+    border: 1px solid black;
+    width: 100%;
+    height: 33px;
+
+}
+
+.menu {
+    border: 1px solid black;
+    width: 100%;
+    height: 33px;
+
+}
+
+.menu_level {
+    border: 1px solid black;
+    width: 50%;
+    height: 100%;
+    float: left;
+    
+
+}
+
+.menu_time {
+    border: 1px solid black;
+    width: 50%;
+    height: 100%;
+    float: left;
+
+}
+
+
+.img {
+    transform: translateY(5px);
 }
 
 
@@ -413,7 +579,85 @@ a { text-decoration:none !important }
             </div>
         </div>
         
-        <div class="contents"></div>
+        <div class="contents">
+        	<div class="contents-top"><img src="/assets/common/images/contents-top.jpg" alt="" width="1320px"></div>
+            
+            <div class="contetns-sub">
+            <div class="contents1-title">RECIPES FOR YOU</div>
+            <div class="contents1-subtitle">마이냉장고에 재료를 입력하고 레시피를 추천받아보세요.</div>
+            <div class="contents1-button-more container"><a href="" type="button">더보기</a></div>
+            <div class="contents1-image">
+                <div class="contents1-image-1"><a href=""><img src="${recipeWithFileList[0].file_path}" alt="" width="625px" height="550px"></a></div>
+                <div class="contents1-image-2"><a href=""><img src="" alt="" width="290px" height="257px"></a></div>
+                <div class="contents1-image-3"><a href=""><img src="" alt="" width="290px" height="260px"></a></div>
+                <div class="contents1-image-4"><a href=""><img src="" alt="" width="615px" height="259px"></a></div>
+            </div>
+            <div class="contents2-title">BEST RECIPES</div>
+            <div class="contents2-button-more container"><a href="" type="button">더보기</a></div>
+            <div class="contents2-main-1">
+                <div class="recipe-content">
+                    <div class="image" ></div>
+                            <div class="subtitle" ></div>
+                            <div class="title" ></div>
+                            <div class="menu">
+                                <div class="menu_level"><img src="/WebContent/assets/images/Level.png" alt="" width="20px" height="20px" class="img">초급</div>
+                                <div class="menu_time"><img src="/WebContent/assets/images/clock_time.png" alt="" width="20px" height="20px" class="img"><span>40분</span></div>
+                            </div>
+                </div>
+                <div class="recipe-content"><div class="image" ></div>
+                            <div class="subtitle" ></div>
+                            <div class="title" ></div>
+                            <div class="menu">
+                                <div class="menu_level"><img src="/WebContent/assets/images/Level.png" alt="" width="20px" height="20px" class="img">초급</div>
+                                <div class="menu_time"><img src="/WebContent/assets/images/clock_time.png" alt="" width="20px" height="20px" class="img"><span>40분</span></div>
+                            </div></div>
+                <div class="recipe-content"><div class="image" ></div>
+                            <div class="subtitle" ></div>
+                            <div class="title" ></div>
+                            <div class="menu">
+                                <div class="menu_level"><img src="/WebContent/assets/images/Level.png" alt="" width="20px" height="20px" class="img">초급</div>
+                                <div class="menu_time"><img src="/WebContent/assets/images/clock_time.png" alt="" width="20px" height="20px" class="img"><span>40분</span></div>
+                            </div></div>
+                <div class="recipe-content"><div class="image" ></div>
+                            <div class="subtitle" ></div>
+                            <div class="title" ></div>
+                            <div class="menu">
+                                <div class="menu_level"><img src="/WebContent/assets/images/Level.png" alt="" width="20px" height="20px" class="img">초급</div>
+                                <div class="menu_time"><img src="/WebContent/assets/images/clock_time.png" alt="" width="20px" height="20px" class="img"><span>40분</span></div>
+                            </div></div>
+            </div>
+            <div class="contents2-main-2">
+                <div class="recipe-content"><div class="image" ></div>
+                            <div class="subtitle" ></div>
+                            <div class="title" ></div>
+                            <div class="menu">
+                                <div class="menu_level"><img src="/WebContent/assets/images/Level.png" alt="" width="20px" height="20px" class="img">초급</div>
+                                <div class="menu_time"><img src="/WebContent/assets/images/clock_time.png" alt="" width="20px" height="20px" class="img"><span>40분</span></div>
+                            </div></div>
+                <div class="recipe-content"><div class="image" ></div>
+                            <div class="subtitle" ></div>
+                            <div class="title" ></div>
+                            <div class="menu">
+                                <div class="menu_level"><img src="/WebContent/assets/images/Level.png" alt="" width="20px" height="20px" class="img">초급</div>
+                                <div class="menu_time"><img src="/WebContent/assets/images/clock_time.png" alt="" width="20px" height="20px" class="img"><span>40분</span></div>
+                            </div></div>
+                <div class="recipe-content"><div class="image" ></div>
+                            <div class="subtitle" ></div>
+                            <div class="title" ></div>
+                            <div class="menu">
+                                <div class="menu_level"><img src="/WebContent/assets/images/Level.png" alt="" width="20px" height="20px" class="img">초급</div>
+                                <div class="menu_time"><img src="/WebContent/assets/images/clock_time.png" alt="" width="20px" height="20px" class="img"><span>40분</span></div>
+                            </div></div>
+                <div class="recipe-content"><div class="image" ></div>
+                            <div class="subtitle" ></div>
+                            <div class="title" ></div>
+                            <div class="menu">
+                                <div class="menu_level"><img src="/WebContent/assets/images/Level.png" alt="" width="20px" height="20px" class="img">초급</div>
+                                <div class="menu_time"><img src="/WebContent/assets/images/clock_time.png" alt="" width="20px" height="20px" class="img"><span>40분</span></div>
+                            </div></div>
+            </div>
+            </div>
+        </div>
         
         <div class="footer">
             <div class="footer1 container">
