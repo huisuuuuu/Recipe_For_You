@@ -1323,4 +1323,89 @@ public class AdminRecipeBoardDAO {
 
 	}
 
+	public int updateAdminRecipeBoard(Connection conn, AdminRecipeBoard arb) {
+		
+		PreparedStatement pstmt = null;
+		int result = 0;
+		String query =  "UPDATE RECIPE_BOARD SET " + 
+						"RECIPE_CODE=?, LEVEL_CODE=?, TIME_CODE=?, " + 
+						"TITLE=?, SUBTITLE=? " + 
+						"WHERE BOARD_NO=? AND USER_ID=? ";
+
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, arb.getRecipeCode());
+			pstmt.setString(2, arb.getLevelCode());
+			pstmt.setString(3, arb.getTimeCode());
+			pstmt.setString(4, arb.getTitle());
+			pstmt.setString(5, arb.getSubTitle());
+			pstmt.setInt(6, arb.getBoardNo());
+			pstmt.setString(7, arb.getUserId());
+			result = pstmt.executeUpdate();
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(pstmt);
+		}
+
+		return result;
+	}
+
+	public int updateRecipePostIngredient(Connection conn, int boardNo, String ingredientName,
+			String ingredientNum) {
+		
+		PreparedStatement pstmt = null;
+		int result = 0;
+		String query =  "UPDATE RECIPE_MANAGEMENT SET " + 
+						"INGREDIENT_NUM=?" + 
+						"WHERE BOARD_NO=? AND INGREDIENT_NAME=?";
+
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, ingredientNum);
+			pstmt.setInt(2, boardNo);
+			pstmt.setString(3, ingredientName);
+			result = pstmt.executeUpdate();
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(pstmt);
+		}
+
+		return result;
+		
+	}
+
+	public int updateRecipePostContent(Connection conn, int boardNo, int contentNo, String recipeContent) {
+		
+		PreparedStatement pstmt = null;
+		int result = 0;
+		String query =  "UPDATE RECIPE_CONTENT SET " + 
+						"CONTENT=? " + 
+						"WHERE BOARD_NO=? AND CONTENT_NO=?";
+
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, recipeContent);
+			pstmt.setInt(2, boardNo);
+			pstmt.setInt(3, contentNo);
+			result = pstmt.executeUpdate();
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(pstmt);
+		}
+
+		return result;
+		
+	}
+
+
+
 }

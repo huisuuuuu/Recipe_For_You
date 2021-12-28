@@ -93,9 +93,10 @@
 			<h1 class="main-title">CREATE A RECIPE</h1>
 			<h2 class="sub-title">여러분만의 맛있고 특별한 레시피를 공유해주세요.</h2>
 			<form id="recipePostFrm" action="/recipeBoard/adminRecipePostUpdateComplete.do" method="post" enctype="multipart/form-data">
+				<input type="hidden" name="boardNo" value="<%=recipeBoard.getBoardNo() %>"/>
 				<div class="recipeCode">
 					<select name="recipe_Code">
-						<option><%=recipeBoard.getRecipeName() %></option>
+						<option value="<%=recipeBoard.getRecipeName() %>"><%=recipeBoard.getRecipeName() %></option>
 						<option value="Recipe_01">한식</option>
 						<option value="Recipe_02">양식</option>
 						<option value="Recipe_03">일식</option>
@@ -106,12 +107,12 @@
 						<option value="Recipe_08">밑반찬</option>
 						<option value="Recipe_09">안주</option>
 					</select> <select name="level_Code">
-						<option value><%=recipeBoard.getLevelName() %></option>
+						<option value="<%=recipeBoard.getLevelName() %>"><%=recipeBoard.getLevelName() %></option>
 						<option value="LEVEL_01">초급</option>
 						<option value="LEVEL_02">중급</option>
 						<option value="LEVEL_03">고급</option>
 					</select> <select name="time_Code">
-						<option value><%=recipeBoard.getTimeName() %></option>
+						<option value="<%=recipeBoard.getTimeName() %>"><%=recipeBoard.getTimeName() %></option>
 						<option value="TIME_01">10분</option>
 						<option value="TIME_02">20분</option>
 						<option value="TIME_03">30분</option>
@@ -121,9 +122,9 @@
 					</select>
 				</div>
 				<div id="thumbnail">
-					<label for="thumbnailImage"><div id="thumbnailUpload">
+					<div id="thumbnailUpload">
 						<img src="<%=imageList.get(0).getFilePath() %>"/>
-					</div></label>
+					</div>
 				</div>
 				<div class="recipeContent">
 					<input type=text name="title" class="recipeContentInput"
@@ -166,20 +167,16 @@
 				<div id="stepArea" style="width: 650px; margin: 20px auto;">
 					<div id="stepItem_<%=i %>" class="step">
 						<p>Step<%=i%></p>
-						<label for="recipeImage_<%=i %>">
 						<div id="stepImage_<%=i %>" class="stepImage" style="margin-right: 5px; border-style: none;">
 						<img src="<%=imageList.get(i).getFilePath()%>" style="width: 200px; height: 200px; display:inline-block; float:left"/>
 						</div>
-						</label>
 						<div id="stepText_<%=i %>" class="stepText">
 							<textarea id="step_text_<%=i %>" class="stepText" name="recipeContent"
 								placeholder="조리법을 설명해주세요" style="resize: none;"><%=contentList.get(i).getContent()%></textarea>
 						</div>
 					</div>
 				</div>
-				<input type="file" name="recipeImage" id="recipeImage_<%=i %>" style="display: none;"/>
 				<%} %>
-				<input type="file" id="thumbnailImage" name="recipeImage" accept="image/*" onchange="setThumbnail(event,'thumbnailImage');" style="display: none;"/>
 				<div id="recipeUpload">
 				<input type="submit" value="완료"/>
 				<button type="button"><a href="/recipeBoard/recipeBoardAllSelect.do">취소</a></button>

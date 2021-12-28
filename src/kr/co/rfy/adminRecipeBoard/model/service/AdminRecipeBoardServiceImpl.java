@@ -134,20 +134,13 @@ public class AdminRecipeBoardServiceImpl implements AdminRecipeBoardService {
 		Connection conn = JDBCTemplate.getConnection();
 		
 		ArrayList<RecipeContent> contentList = rbDAO.selectRecipePostContentList(conn, recipeBoardNoValues);
-		System.out.println(contentList.size());
 		ArrayList<RecipeIngredient> ingredientList = rbDAO.selectRecipePostIngredientList(conn, recipeBoardNoValues);
-		System.out.println(ingredientList.size());
 		ArrayList<RecipeImage> imageList = rbDAO.selectRecipePostImageList(conn, recipeBoardNoValues);
-		System.out.println(imageList.size());
 		
 		int result = rbDAO.deleteAdminBoardList(conn, recipeBoardNoValues);
-		System.out.println(result);
 		int imageDeleteResult = rbDAO.deleteRecipeImageList(conn, recipeBoardNoValues);
-		System.out.println(imageDeleteResult);
 		int ingredientDeleteResult = rbDAO.deleteRecipeIngredientList(conn, recipeBoardNoValues);
-		System.out.println(ingredientDeleteResult);
 		int contentDeleteResult = rbDAO.deleteRecipeContentList(conn, recipeBoardNoValues);
-		System.out.println(contentDeleteResult);
 		
 		if((result==recipeBoardNoValues.length) && (contentDeleteResult==contentList.size()) && (ingredientDeleteResult==ingredientList.size()) && (imageDeleteResult==imageList.size()))
 			{
@@ -169,8 +162,6 @@ public class AdminRecipeBoardServiceImpl implements AdminRecipeBoardService {
 		
 		Connection conn = JDBCTemplate.getConnection();
 		ArrayList<String> recipePostWriter = rbDAO.selectRecipePostWriter(conn, recipeBoardNoValues);
-		System.out.println(recipePostWriter);
-		
 		
 		int result = rbDAO.recipeBoardMemberBlack(conn, recipePostWriter);	
 		if(result==recipeBoardNoValues.length) JDBCTemplate.commit(conn);
@@ -259,6 +250,44 @@ public class AdminRecipeBoardServiceImpl implements AdminRecipeBoardService {
 		map.put("pageNavi", pageNavi);
 		
 		return map;
+	}
+
+	@Override
+	public boolean updateAdminRecipePost(AdminRecipeBoard arb, String[] ingredientNameValues, String[] ingredientNumValues,
+			String[] recipeContentValues) {
+		
+		Connection conn = JDBCTemplate.getConnection();
+		
+		int recipePostUpdateResult = rbDAO.updateAdminRecipeBoard(conn, arb);
+		int recipeIngredientResult = 0;
+		int recipeContentResult = 0;
+		
+		for(int i=0; i<ingredientNameValues.length; i++) {
+			
+			recipeIngredientResult += rbDAO.updateRecipePostIngredient(conn, arb.getBoardNo(), ingredientNameValues[i], ingredientNumValues[i]);
+			
+		};
+		
+		ArrayList<RecipeContent> contentList = rbDAO.selectOneRecipePostContent(conn, arb.getBoardNo());
+		
+		for(int i=0; i<recipeContentValues.length; i++) {
+			
+			recipeContentResult += rbDAO.updateRecipePostContent(conn, arb.getBoardNo(), contentList.get(i).getContentNo(), recipeContentValues[i]);
+			
+		}
+		
+		if((recipePostUpdateResult>0)&&(recipeIngredientResult==ingredientNameValues.length)&&(recipeContentResult==recipeContentValues.length))
+		{
+			JDBCTemplate.commit(conn);
+			JDBCTemplate.close(conn);
+			return true;
+		}else
+		{
+			JDBCTemplate.rollback(conn);
+			JDBCTemplate.close(conn);
+			return false;
+		}
+		
 	}
 
 }

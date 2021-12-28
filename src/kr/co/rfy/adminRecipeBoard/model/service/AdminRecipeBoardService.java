@@ -71,5 +71,9 @@ public interface AdminRecipeBoardService {
 
 
 	HashMap<String, Object> selectPostCategory(int currentPage, String recipeCode);
+
+
+	boolean updateAdminRecipePost(AdminRecipeBoard arb, String[] ingredientNameValues, String[] ingredientNum,
+			String[] recipeContent);
 	
 }
