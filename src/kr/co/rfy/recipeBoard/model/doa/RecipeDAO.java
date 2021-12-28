@@ -762,7 +762,7 @@ public ArrayList<OurRecipe> selectAllPostPageList(Connection conn, int currentPa
 		
 	 String query="";
 	 
-	 System.out.println(type);
+
 	 
 		switch(type)
 		

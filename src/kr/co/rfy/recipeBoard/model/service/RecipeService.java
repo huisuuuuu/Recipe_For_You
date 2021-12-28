@@ -34,6 +34,8 @@ public interface RecipeService {
 	int insertUserRecipePost(UserRecipeBoard arb, String[] uploadImageNameValues, String[] uploadImagePathValues,
 			String[] ingredientNameValues, String[] ingredientNum, String[] recipeContent);
 
+	
+	
 	boolean updateUserRecipePost(AdminRecipeBoard arb, String[] ingredientNameValues, String[] ingredientNumValues,
 			String[] recipeContentValues);
 

@@ -64,9 +64,6 @@ public class RecipeBoardSelectkindServlet extends HttpServlet {
 		}
 		
 		
-		System.out.println(type);
-		System.out.println(recipeKind);
-		
 		
 		int currentPage;
 		if(request.getParameter("currentPage")==null)

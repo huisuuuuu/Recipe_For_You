@@ -92,7 +92,7 @@
                     <img src="/assets/common/images/headericon1.png" alt="" width="23px" height="28px">
                 </a>
                 <a href="" class="login">
-                    <img src="/assets/common/images/headericon2.png" alt="" width="80px" height="30px">
+                    <img src="/assets/common/images/headericon2.png" alt="" width="23x" height="28px">
                 </a>
                 </div>
                 
@@ -265,10 +265,10 @@
                    <div class="step_empty">step<%=i %></div>
                    <div class="step_content">
                       <hr>
-                       <div class="step_img">
+                       <div class="step_img" style=" transform: translateY(3px);">
                            <img src="<%=fileList.get(i).getFilePath() %>" width="302px" height="308px">
                        </div>
-                       <div class="step_text">
+                       <div class="step_text" style=" transform: translateY(7px);">
                           <%=contentList.get(i).getContent() %>
                        </div>
                    </div>
@@ -291,7 +291,7 @@
                <%if(m!=null && m.getUserId().equals(recipeInfo.getUserId())){ %>  
                   이 레시피를 &nbsp&nbsp
                    <button type="button" class="btn btn-success" id="updateBtn" >
-                   <a href="/recipe/recipeUserPostUpdate.do?boardNo=<%=recipeInfo.getBoardNo()%>"> 수정</a> </button> &nbsp 할래요! 
+                   <a href="/recipe/recipeUserPostUpdate.do?boardNo=<%=recipeInfo.getBoardNo()%>" style="color: white;"> 수정</a> </button> &nbsp 할래요! 
                    <button type="button" class="btn btn-success" id="deleteBtn" style="transform: translate(280px,-10px)">삭제</button>
                     <a href="/recipe/recipeBoard/selectAll.do?currentPage=<%=currentPage%>"><button type="button" class="btn btn-success" id="listBtn" style="transform: translate(300px,-10px)">목록</button></a>
      			

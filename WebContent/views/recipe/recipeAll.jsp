@@ -104,11 +104,13 @@
                     <img src="/assets/common/images//headericon1.png" alt="" width="23px" height="28px">
                 </a>
                 <a href="" class="login">
-                    <img src="/assets/common/images//headericon2.png" alt="" width="80px" height="30px">
+                    <img src="/assets/common/images//headericon2.png" alt="" width="23px" height="28px">
                 </a>
                 </div>
                 
             </div>
+
+
 
             <div class="navibar container-fluid">
                 <nav class="navbar navbar-expand-lg nav-distance">
@@ -184,11 +186,11 @@
             <div id="menu_content3">
                 <div id="menu_content3_top"></div>
                 <div id="menu_content3_bottom">
-          <%--       <%if(m!=null) {%>  --%>
+               <%if(m!=null) {%>
                    <button type="button" class="btn btn-success" id="myRecipeBtn">MY Recipe</a></button>
                     <button type="button" class="btn btn-success" id="recipeUploadBtn">레시피 등록</button>
                 
-          <%--        <%} %>     --%>
+                 <%} %>    
                  	  
                 </div>
             </div>
@@ -250,7 +252,7 @@
                			<%for(OurRecipe o:list) {%>
          
                         <div class="recipe_content">																	<%--useID 변경할 곳 --%>
-                        	<a href="/recipe/recipeSelectContent.do?boardNo=<%=o.getBoardNo()%>&currentPage=<%=currentPage %>&userId=user11" style="text-decoration: none; color: inherit;">
+                        	<a href="/recipe/recipeSelectContent.do?boardNo=<%=o.getBoardNo()%>&currentPage=<%=currentPage %>&userId=<%=m.getUserId() %>" style="text-decoration: none; color: inherit;">
 	                            <div class="image" style="text-align: center;"><p id ="explain">추천수 <%=o.getLikeNum() %></p><img src="<%=o.getFilePath()%>" width="278" height="278" class="allImage" ></div>
 	                            <div class="subtitle" style="text-align:center" ><%=o.getSubTitle() %></div>
 	                            <div class="title" style="text-align:center"><b><%=o.getTitle() %></b></div>
