@@ -428,7 +428,7 @@ section.title h2 {
 							<li class="nav-item"><a class="nav-link active nav-info"
 								href="#">고객센터</a>
 								<ul class="submenu">
-									<li><a href="/mybox/recommendedRecipeOnly.do">공지사항</a></li>
+									<li><a href="">공지사항</a></li>
 									<li><a href="">자주하는질문</a></li>
 								</ul></li>
 							<li class="nav-item"><a class="nav-link active nav-mypage"
