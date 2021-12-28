@@ -7,6 +7,7 @@ import java.io.InputStream;
 import java.util.Collection;
 
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -16,6 +17,13 @@ import kr.co.rfy.member.model.vo.Member;
 import kr.co.rfy.recipeBoard.model.service.RecipeService;
 import kr.co.rfy.recipeBoard.model.service.RecipeServiceImpl;
 import kr.co.rfy.recipeBoard.model.vo.UserRecipeBoard;
+
+@MultipartConfig(
+//		location = "/",
+//		fileSizeThreshold = 1024 * 1024, // 이 크기 이상의 파일을 가져올 때 위 localhost 경로에 임시 저장
+		maxFileSize = 1024 * 1024 * 100, // file 하나당 최대 크기 지정 100MB
+		maxRequestSize = 1024 * 1024 * 100 * 10 // 전체 request 크기 100MB 10개 
+		)
 
 /**
  * Servlet implementation class UserRecipeBoardPostUploadServlet
@@ -114,12 +122,10 @@ public class UserRecipeBoardPostUploadServlet extends HttpServlet {
 		int insertResultNum = 1+uploadImageNameValues.length+ingredientNameValues.length+recipeContent.length;
 		
 		if (result==insertResultNum) {
-			response.sendRedirect("/recipeBoard/recipeBoardAllSelect.do");
+			response.sendRedirect("/recipe/recipeBoard/selectAll.do");
 		} else {
 			response.sendRedirect("/views/common/error.jsp");
 		};
-		
-		
 		
 	}
 
