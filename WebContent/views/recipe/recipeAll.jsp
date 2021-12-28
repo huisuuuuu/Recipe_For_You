@@ -195,7 +195,7 @@
                 <div id="menu_content3_bottom">
           <%--       <%if(m!=null) {%>  --%>
                    <button type="button" class="btn btn-success" id="myRecipeBtn">MY Recipe</a></button>
-                    <button type="button" class="btn btn-success">레시피 등록</button>
+                    <button type="button" class="btn btn-success" id="recipeUploadBtn">레시피 등록</button>
                 
           <%--        <%} %>     --%>
                  	  
@@ -207,6 +207,14 @@
 			$('#myRecipeBtn').click(function(){
 				
 				location.replace("/recipe/recipeBoard/myRecipe.do");
+				
+			});
+		</script>
+		
+			<script>
+			$('#recipeUploadBtn').click(function(){
+				
+				location.replace("/views/recipe/userRecipePostUpload.jsp");
 				
 			});
 		</script>

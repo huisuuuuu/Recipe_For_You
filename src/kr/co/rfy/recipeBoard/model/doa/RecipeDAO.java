@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import kr.co.rfy.adminRecipeBoard.model.vo.RecipeIngredient;
 import kr.co.rfy.common.JDBCTemplate;
 import kr.co.rfy.recipeBoard.model.vo.Content;
 import kr.co.rfy.recipeBoard.model.vo.File;
@@ -14,6 +15,7 @@ import kr.co.rfy.recipeBoard.model.vo.MiddleCode;
 import kr.co.rfy.recipeBoard.model.vo.MyboxIngredient;
 import kr.co.rfy.recipeBoard.model.vo.OurRecipe;
 import kr.co.rfy.recipeBoard.model.vo.RecipeDetail;
+import kr.co.rfy.recipeBoard.model.vo.UserRecipeBoard;
 
 public class RecipeDAO {
 
@@ -1154,7 +1156,160 @@ public ArrayList<OurRecipe> selectAllPostPageList(Connection conn, int currentPa
 	}
 
 
+	public int insertUserRecipeBoard(Connection conn, UserRecipeBoard arb) {
+	
+		PreparedStatement pstmt = null;
+		int result = 0;
+		String query = "INSERT INTO RECIPE_BOARD VALUES('BOARD-1',RECIPE_SEQ.NEXTVAL,?,?,?,?,?,?,SYSDATE,0,0,'N')";
 
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, arb.getRecipeCode());
+			pstmt.setString(2, arb.getLevelCode());
+			pstmt.setString(3, arb.getTimeCode());
+			pstmt.setString(4, arb.getTitle());
+			pstmt.setString(5, arb.getSubTitle());
+			pstmt.setString(6, arb.getUserId());
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			JDBCTemplate.close(pstmt);
+		}
+		
+		return result;
+		
+		
+	}
+
+
+	public int selectOneRecipePost(Connection conn, String title, String writer) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		int boardNo = 0;
+		
+		String query = "SELECT BOARD_NO FROM RECIPE_BOARD WHERE TITLE=? AND USER_ID=? ORDER BY 1 DESC";
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, title);
+			pstmt.setString(2, writer);
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				boardNo = rset.getInt("board_no");
+			}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			JDBCTemplate.close(rset);
+			JDBCTemplate.close(pstmt);
+		}
+		
+		return boardNo;
+	}
+
+
+	public int insertRecipePostIngredient(Connection conn, int boardNo, String[] ingredientNameValues,
+			String[] ingredientNum) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		StringBuilder query = new StringBuilder();
+		
+		query.append("INSERT ALL");
+		
+		for(int i=0; i<ingredientNameValues.length; i++) {
+			
+			query.append(" ");
+			query.append("INTO RECIPE_MANAGEMENT VALUES("+boardNo+", '"+
+						ingredientNameValues[i]+"', '"+ingredientNum[i]+"', 'N')");
+			query.append(" ");
+		}
+		
+		query.append("SELECT * FROM DUAL");
+		
+		try {
+			pstmt = conn.prepareStatement(query.toString());
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			JDBCTemplate.close(pstmt);
+		}
+		
+		return result;
+	}
+
+
+	public int insertRecipePostContent(Connection conn, int boardNo, String[] recipeContent) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		StringBuilder query = new StringBuilder();
+		
+		query.append("INSERT ALL");
+		
+		for(int i=0; i<recipeContent.length; i++) {
+			
+			query.append(" ");
+			query.append("INTO RECIPE_CONTENT VALUES("+boardNo+","+(i+1)+",'"+recipeContent[i]+"', 'N')");
+			query.append(" ");
+		}
+		
+		query.append("SELECT * FROM DUAL");
+		
+		try {
+			pstmt = conn.prepareStatement(query.toString());
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			JDBCTemplate.close(pstmt);
+		}
+		
+		return result;
+		
+	}
+
+
+	public int insertRecipePostImage(Connection conn, int boardNo, String[] uploadImageNameValues,
+			String[] uploadImagePathValues) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		StringBuilder query = new StringBuilder();
+		
+		query.append("INSERT ALL");
+		
+		for(int i=0; i<uploadImageNameValues.length; i++) {
+			
+			query.append(" ");
+			query.append("INTO RECIPE_FILE VALUES("+boardNo+","+(i+1)+",'"+uploadImageNameValues[i]+"', '"+
+						  uploadImagePathValues[i]+"', 'N')");
+			query.append(" ");
+		}
+		
+		query.append("SELECT * FROM DUAL");
+		
+		try {
+			pstmt = conn.prepareStatement(query.toString());
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			JDBCTemplate.close(pstmt);
+		}
+		
+		return result;
+	}
 
 
 		

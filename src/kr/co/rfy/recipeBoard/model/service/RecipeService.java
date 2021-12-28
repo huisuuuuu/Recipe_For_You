@@ -5,6 +5,7 @@ import java.util.HashMap;
 
 import kr.co.rfy.recipeBoard.model.vo.MiddleCode;
 import kr.co.rfy.recipeBoard.model.vo.Recipe;
+import kr.co.rfy.recipeBoard.model.vo.UserRecipeBoard;
 
 public interface RecipeService {
 
@@ -28,6 +29,9 @@ public interface RecipeService {
 	HashMap<String, Object> selectMyRecipeList(int currentPage,String userId );
 
 	ArrayList<MiddleCode> getMiddleCode(String middleCode);
+
+	int insertUserRecipePost(UserRecipeBoard arb, String[] uploadImageNameValues, String[] uploadImagePathValues,
+			String[] ingredientNameValues, String[] ingredientNum, String[] recipeContent);
 
 
 

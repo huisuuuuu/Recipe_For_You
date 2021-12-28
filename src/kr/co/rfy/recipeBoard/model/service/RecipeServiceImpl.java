@@ -13,6 +13,7 @@ import kr.co.rfy.recipeBoard.model.vo.MiddleCode;
 import kr.co.rfy.recipeBoard.model.vo.MyboxIngredient;
 import kr.co.rfy.recipeBoard.model.vo.OurRecipe;
 import kr.co.rfy.recipeBoard.model.vo.RecipeDetail;
+import kr.co.rfy.recipeBoard.model.vo.UserRecipeBoard;
 
 public class RecipeServiceImpl implements RecipeService {
 	
@@ -280,21 +281,44 @@ public class RecipeServiceImpl implements RecipeService {
 		return mList;
 	}
 
-
-
-	
-
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+	@Override
+	public int insertUserRecipePost(UserRecipeBoard arb, String[] uploadImageNameValues,
+			String[] uploadImagePathValues, String[] ingredientNameValues, String[] ingredientNum,
+			String[] recipeContent) {
+		
+		Connection conn = JDBCTemplate.getConnection();
+		int result = rDAO.insertUserRecipeBoard(conn, arb);
+		int totalResult = result;
+		
+		if(result>0)
+		{
+			JDBCTemplate.commit(conn);
+			
+			int boardNo = rDAO.selectOneRecipePost(conn, arb.getTitle(), arb.getUserId());
+			
+			int ingredientResult = rDAO.insertRecipePostIngredient(conn, boardNo, ingredientNameValues, ingredientNum);
+				if(ingredientResult==ingredientNameValues.length) JDBCTemplate.commit(conn);
+				else JDBCTemplate.rollback(conn);
+			int contentResult = rDAO.insertRecipePostContent(conn, boardNo, recipeContent);
+				if(contentResult==recipeContent.length) JDBCTemplate.commit(conn);
+				else JDBCTemplate.rollback(conn);
+			int imageResult =rDAO.insertRecipePostImage(conn, boardNo, uploadImageNameValues, uploadImagePathValues);
+				if(imageResult==uploadImageNameValues.length) JDBCTemplate.commit(conn);
+				else JDBCTemplate.rollback(conn);
+			
+				totalResult += ingredientNameValues.length+recipeContent.length+uploadImageNameValues.length;
+		}else
+		{
+			JDBCTemplate.rollback(conn);
+		}
+		
+		return totalResult;
+		
+	}
+		
+		
+		
+		
 	
 	
 }
