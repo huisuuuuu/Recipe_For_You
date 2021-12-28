@@ -48,10 +48,10 @@ public interface AdminRecipeBoardService {
 	int updateRecipePostLike(int boardNo, int likeNum);
 
 
-	int deletePost(int boardNo, String writer);
+	boolean deletePost(int boardNo, String writer);
 
 
-	int deleteAdminPost(String[] recipeBoardNoValues);
+	boolean deleteAdminBoardList(String[] recipeBoardNoValues);
 
 
 	int recipeBoardMemberBlack(String[] recipePostWriterIdValues);
@@ -68,5 +68,8 @@ public interface AdminRecipeBoardService {
 
 	int insertAdminRecipePost(AdminRecipeBoard arb, String[] uploadImageNameValues, String[] uploadImagePathValues,
 			String[] ingredientNameValues, String[] ingredientNum, String[] recipeContent);
+
+
+	HashMap<String, Object> selectPostCategory(int currentPage, String recipeCode);
 	
 }

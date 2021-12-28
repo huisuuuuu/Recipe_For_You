@@ -47,9 +47,10 @@ public class AdminRecipeBoardListDeleteServlet extends HttpServlet {
 		String[] recipeBoardNoValues = request.getParameterValues("postNo");
 		
 		AdminRecipeBoardService rbService = new AdminRecipeBoardServiceImpl();
-		int result = rbService.deleteAdminPost(recipeBoardNoValues);
+		boolean result = rbService.deleteAdminBoardList(recipeBoardNoValues);
+		System.out.println("호출 결과: "+result);
 
-		if (result == recipeBoardNoValues.length) {
+		if (result) {
 			response.sendRedirect("/recipeBoard/recipeBoardAllSelect.do");
 
 		} else {

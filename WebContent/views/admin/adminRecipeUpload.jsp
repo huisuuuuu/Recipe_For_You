@@ -91,7 +91,7 @@
 						id="ingredient_Num" placeholder="계량 정보 / 예)300g" />
 					<button id="ingredientBtn" type="button">추가</button>
 				</div>
-				<div id="idgredientContent" style="width: 650px; margin: 10px auto;">
+				<div id="ingredientContent" style="width: 650px; margin: 10px auto;">
 					<ul id="ingredientList" style="margin-left: 40px; padding: 0px;">
 					</ul>
 				</div>

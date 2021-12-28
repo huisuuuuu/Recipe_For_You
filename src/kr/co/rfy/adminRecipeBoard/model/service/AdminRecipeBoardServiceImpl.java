@@ -73,7 +73,7 @@ public class AdminRecipeBoardServiceImpl implements AdminRecipeBoardService {
 		// 하나의 Page에서 몇 개의 목록으로 보여줄 것인지에 대한 값 필요
 		int recordCountPerPage = 5;
 
-		ArrayList<AdminRecipeBoard> list = rbDAO.selectSerachPostList(conn, currentPage, recordCountPerPage, keyword,
+		ArrayList<AdminRecipeBoard> list = rbDAO.selectSearchPostList(conn, currentPage, recordCountPerPage, keyword,
 				type);
 
 		// 하나의 PageNavi Bar에 보여질 Navi 개수를 설정
@@ -101,25 +101,67 @@ public class AdminRecipeBoardServiceImpl implements AdminRecipeBoardService {
 	}
 
 	@Override
-	public int deletePost(int boardNo, String writer) {
+	public boolean deletePost(int boardNo, String writer) {
 		
 		Connection conn = JDBCTemplate.getConnection();
-		int result = rbDAO.deletePost(conn, boardNo, writer);
-		if(result>0) JDBCTemplate.commit(conn);
-		else JDBCTemplate.rollback(conn);
-		JDBCTemplate.close(conn);
-		return result;
+		ArrayList<RecipeContent> contentList = rbDAO.selectOneRecipePostContent(conn, boardNo);
+		ArrayList<RecipeIngredient> ingredientList = rbDAO.selectOneRecipePostIngredient(conn, boardNo);
+		ArrayList<RecipeImage> imageList = rbDAO.selectOneRecipePostImage(conn, boardNo);
+		
+		int postDeleteResult = rbDAO.deletePost(conn, boardNo, writer);
+		int imageDeleteResult = rbDAO.deletePostImage(conn, boardNo);
+		int ingredientDeleteresult = rbDAO.deletePostIngredient(conn, boardNo);
+		int contentDeleteresult = rbDAO.deletePostContent(conn, boardNo);
+		
+		if((postDeleteResult>0) && (contentDeleteresult==contentList.size()) && (ingredientDeleteresult==ingredientList.size()) && (imageDeleteResult==imageList.size()))
+			{
+			JDBCTemplate.commit(conn);
+			JDBCTemplate.close(conn);
+			return true;
+			}
+		else
+		{
+			JDBCTemplate.rollback(conn);
+			JDBCTemplate.close(conn);
+			return false;
+		}
+		
 	}
 
 	@Override
-	public int deleteAdminPost(String[] recipeBoardNoValues) {
+	public boolean deleteAdminBoardList(String[] recipeBoardNoValues) {
 		
 		Connection conn = JDBCTemplate.getConnection();
-		int result = rbDAO.deleteAdminPost(conn, recipeBoardNoValues);
-		if(result==recipeBoardNoValues.length) JDBCTemplate.commit(conn);
-		else JDBCTemplate.rollback(conn);
-		JDBCTemplate.close(conn);
-		return result;
+		
+		ArrayList<RecipeContent> contentList = rbDAO.selectRecipePostContentList(conn, recipeBoardNoValues);
+		System.out.println(contentList.size());
+		ArrayList<RecipeIngredient> ingredientList = rbDAO.selectRecipePostIngredientList(conn, recipeBoardNoValues);
+		System.out.println(ingredientList.size());
+		ArrayList<RecipeImage> imageList = rbDAO.selectRecipePostImageList(conn, recipeBoardNoValues);
+		System.out.println(imageList.size());
+		
+		int result = rbDAO.deleteAdminBoardList(conn, recipeBoardNoValues);
+		System.out.println(result);
+		int imageDeleteResult = rbDAO.deleteRecipeImageList(conn, recipeBoardNoValues);
+		System.out.println(imageDeleteResult);
+		int ingredientDeleteResult = rbDAO.deleteRecipeIngredientList(conn, recipeBoardNoValues);
+		System.out.println(ingredientDeleteResult);
+		int contentDeleteResult = rbDAO.deleteRecipeContentList(conn, recipeBoardNoValues);
+		System.out.println(contentDeleteResult);
+		
+		if((result==recipeBoardNoValues.length) && (contentDeleteResult==contentList.size()) && (ingredientDeleteResult==ingredientList.size()) && (imageDeleteResult==imageList.size()))
+			{
+			JDBCTemplate.commit(conn);
+			JDBCTemplate.close(conn);
+			return true;
+			}
+		else
+		{
+			JDBCTemplate.rollback(conn);
+			JDBCTemplate.close(conn);
+			return false;
+		}
+
 	}
 
 	@Override
@@ -195,6 +237,28 @@ public class AdminRecipeBoardServiceImpl implements AdminRecipeBoardService {
 		
 		return totalResult;
 		
+	}
+
+	@Override
+	public HashMap<String, Object> selectPostCategory(int currentPage, String recipeCode) {
+		
+		Connection conn = JDBCTemplate.getConnection();
+
+		// 하나의 Page에서 몇 개의 목록으로 보여줄 것인지에 대한 값 필요
+		int recordCountPerPage = 5;
+
+		ArrayList<AdminRecipeBoard> list = rbDAO.selectPostCategoryList(conn, currentPage, recordCountPerPage, recipeCode);
+
+		// 하나의 PageNavi Bar에 보여질 Navi 개수를 설정
+		int naviCountPerPage = 10;
+		String pageNavi = rbDAO.getCategoryPageNavi(conn, naviCountPerPage, recordCountPerPage, currentPage, recipeCode);
+		
+		HashMap<String, Object> map =new HashMap<String,Object>();
+		
+		map.put("list", list);
+		map.put("pageNavi", pageNavi);
+		
+		return map;
 	}
 
 }
