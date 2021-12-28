@@ -82,7 +82,7 @@
                                 </ul>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link active nav-mypage" href="#">마이냉장고</a>
+                                <a class="nav-link active nav-mypage" href="/mybox/myboxList.do">마이냉장고</a>
                             </li>
                         </ul>
                     </div>

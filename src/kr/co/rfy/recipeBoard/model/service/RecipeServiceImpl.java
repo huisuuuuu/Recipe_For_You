@@ -189,14 +189,15 @@ public class RecipeServiceImpl implements RecipeService {
 	
 	//카테고리별 레시피 목록 가져오기
 	@Override
-	public HashMap<String, Object> selectRecipeKindAllList(int currentPage, String recipeKind) {
+	public HashMap<String, Object> selectRecipeKindAllList(int currentPage, String recipeKind,String type) {
 	
 		Connection conn = JDBCTemplate.getConnection();
 		int recordCountPerPage=5;
 		
 		//1.해당 페이지에 필요한 목록을 가져온다
 		//해당페이지에 글목록을 가져오기 위해서는 Connection과 현재페이지 값과 현재페이지에 몇개의 글목록을 가져올지에 대한 변수를 보낸다.
-		ArrayList<OurRecipe> list=rDAO.selectRecipeKindAllList(conn,currentPage,recordCountPerPage,recipeKind);
+		ArrayList<OurRecipe> list=rDAO.selectRecipeKindAllList(conn,currentPage,recordCountPerPage,recipeKind,type);
+		
 		
 		//2.해당 페이지에 필요한 네비바 생성
 		// 하나의 pageNavi bar에 보여질 navi 갯수를 설정

@@ -24,7 +24,7 @@ public interface RecipeService {
 
 	ArrayList<MiddleCode> getBigCode(String bigCode);
 
-	HashMap<String, Object> selectRecipeKindAllList(int currentPage, String recipeKind);
+	HashMap<String, Object> selectRecipeKindAllList(int currentPage, String recipeKind,String type);
 
 	HashMap<String, Object> selectMyRecipeList(int currentPage,String userId );
 
