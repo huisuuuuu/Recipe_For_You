@@ -16,6 +16,9 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 
+	<!-- jQuery Cookie --> 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js" integrity="sha512-aUhL2xOCrpLEuGD5f6tgHbLYEXRpYZ8G5yD+WlFrXrPy2IrWBlu6bih5C9H6qGsgqnU6mgx6KtU8TreHpASprw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
 
 	<%--제이쿼리 라이브러리 --%>   
     <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
@@ -60,6 +63,54 @@
 	
 	Member m = (Member)session.getAttribute("member");
 	%>
+	
+	<%--퀵바 script (강배님 추가 요청) --%>
+	<script>
+        $(function(){
+            // 세션에서 필요한 정보 가져오기
+            var recipeBoardNo = "<%=recipeInfo.getBoardNo()%>";
+             var recipeFilaPath = "<%=fileList.get(0).getFilePath()%>";
+            var currentPage = "<%=currentPage%>";
+
+            // 기존 쿠키값 여부 확인
+            if($.cookie("boardNo")===undefined){ // 기존 쿠기값이 없다면
+                var boardNo = [recipeBoardNo];
+                var filePath = [recipeFilaPath];
+                var page = [currentPage];
+                console.log("new");
+            }else{ // 기존 쿠기값이 있다면
+                var boardNo = [$.cookie("boardNo")];
+                var filePath = [$.cookie("imgAddr")];
+                var page = [$.cookie("page")];
+                // 기존 쿠기값에 레시피가 있는지 확인
+                var check = $.cookie("boardNo").split(",").indexOf(recipeBoardNo); // 확인
+                if(check<0){ // 없다면
+                    boardNo.unshift(recipeBoardNo);
+                    filePath.unshift(recipeFilaPath);
+                    page.unshift(page);
+                    console.log("add");
+                }else{ // 있다면
+                    // 값을 찾아가 삭제
+                    boardNo.splice(check,1);
+                    filePath.splice(check,1);
+                    page.splice(check,1);
+
+                    // 앞에 추가
+                    boardNo.unshift(recipeBoardNo);
+                    filePath.unshift(recipeFilaPath);
+                    page.unshift(page);
+                    console.log("add");
+                }
+            }
+            $.cookie("boardNo",boardNo,{path:"/"})
+            $.cookie("imgAddr",filePath,{path:"/"})
+            $.cookie("page",page,{path:"/"})
+        })
+    </script>
+	
+
+	
+	
 
 	
 	
@@ -398,19 +449,18 @@
     
     </script>
     
-    <%-- --%>
-      <script>
-       
-      
-      
-      
-      
-      
-      
-      
-      
-      </script> 
-            
+
+
+
+
+
+
+
+
+
+
+
+
             
 <!-- conntent 끝-->  
         </div>

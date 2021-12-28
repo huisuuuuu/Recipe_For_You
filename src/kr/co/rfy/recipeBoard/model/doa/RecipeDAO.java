@@ -17,7 +17,7 @@ import kr.co.rfy.recipeBoard.model.vo.RecipeDetail;
 
 public class RecipeDAO {
 
-	public ArrayList<OurRecipe> selectAllPostPageList(Connection conn, int currentPage, int recordCountPerPage) {
+public ArrayList<OurRecipe> selectAllPostPageList(Connection conn, int currentPage, int recordCountPerPage,String type) {
 		
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
@@ -27,7 +27,14 @@ public class RecipeDAO {
 		 int start = currentPage * recordCountPerPage - (recordCountPerPage-1);
 		 int end  = currentPage * recordCountPerPage;
 		 
-		 String query="SELECT * " + 
+		 String query="";
+		 
+		 
+			switch(type)
+			
+			{
+			case "latest_desc":
+				query="SELECT * " + 
 				 		"FROM(SELECT ROW_NUMBER()OVER(ORDER BY R.BOARD_NO DESC) AS NUM,R.USER_ID,R.BOARD_NO,R.SUBTITLE,R.TITLE,L.LEVEL_NAME,C.TIME_NAME,F.FILE_PATH " + 
 				 		"FROM RECIPE_BOARD R " + 
 				 		"LEFT JOIN COOK_TIME C ON(C.TIME_CODE=R.TIME_CODE) " + 
@@ -35,7 +42,48 @@ public class RecipeDAO {
 				 		"LEFT JOIN RECIPE_FILE F ON(F.BOARD_NO=R.BOARD_NO) " + 
 				 		"WHERE R.END_YN='N' AND F.FILE_NO=1) " + 
 				 		"WHERE NUM BETWEEN ? AND ?";
+							break;
 				
+			case "like_desc": 
+						query="SELECT * FROM(SELECT ROW_NUMBER()OVER(ORDER BY R.BOARD_NO DESC) AS NUM,R.USER_ID,R.BOARD_NO,R.SUBTITLE,R.TITLE,L.LEVEL_NAME,C.TIME_NAME,F.FILE_PATH,R.LIKE_NUM ,L.LEVEL_CODE,C.TIME_CODE " + 
+								"    FROM RECIPE_BOARD R\r\n" + 
+								"    LEFT JOIN COOK_TIME C ON(C.TIME_CODE=R.TIME_CODE) " + 
+								"    LEFT JOIN RECIPE_LEVEL L ON(L.LEVEL_CODE=R.LEVEL_CODE) " + 
+								"    LEFT JOIN RECIPE_FILE F ON(F.BOARD_NO=R.BOARD_NO) " + 
+								"    WHERE R.END_YN='N' AND F.FILE_NO=1) " + 
+								" WHERE NUM BETWEEN ? AND ? " + 
+								" ORDER BY LIKE_NUM DESC";
+							break;
+				
+			case "level_asc":
+						query="SELECT * " + 
+								"FROM(SELECT ROW_NUMBER()OVER(ORDER BY R.BOARD_NO DESC) AS NUM,R.USER_ID,R.BOARD_NO,R.SUBTITLE,R.TITLE,L.LEVEL_NAME,C.TIME_NAME,F.FILE_PATH,R.LIKE_NUM " + 
+								",L.LEVEL_CODE,C.TIME_CODE " + 
+								"FROM RECIPE_BOARD R  " + 
+								"LEFT JOIN COOK_TIME C ON(C.TIME_CODE=R.TIME_CODE) " + 
+								"LEFT JOIN RECIPE_LEVEL L ON(L.LEVEL_CODE=R.LEVEL_CODE) " + 
+								"LEFT JOIN RECIPE_FILE F ON(F.BOARD_NO=R.BOARD_NO) " + 
+								"WHERE R.END_YN='N' AND F.FILE_NO=1) " + 
+								"WHERE NUM BETWEEN ? AND ? " + 
+								"ORDER BY LEVEL_CODE ASC";
+							break;
+				
+				
+			case "time_asc":
+						query="SELECT * " + 
+								"FROM(SELECT ROW_NUMBER()OVER(ORDER BY R.BOARD_NO DESC) AS NUM,R.USER_ID,R.BOARD_NO,R.SUBTITLE,R.TITLE,L.LEVEL_NAME,C.TIME_NAME,F.FILE_PATH,R.LIKE_NUM " + 
+								",L.LEVEL_CODE,C.TIME_CODE " + 
+								"FROM RECIPE_BOARD R " + 
+								"LEFT JOIN COOK_TIME C ON(C.TIME_CODE=R.TIME_CODE) " + 
+								"LEFT JOIN RECIPE_LEVEL L ON(L.LEVEL_CODE=R.LEVEL_CODE) " + 
+								"LEFT JOIN RECIPE_FILE F ON(F.BOARD_NO=R.BOARD_NO) " + 
+								"WHERE R.END_YN='N' AND F.FILE_NO=1) " + 
+								"WHERE NUM BETWEEN ? AND ? " + 
+								"ORDER BY TIME_CODE ASC";
+							break;
+				
+			
+			}
 		try {
 			pstmt = conn.prepareStatement(query);
 			pstmt.setInt(1, start);
@@ -70,6 +118,7 @@ public class RecipeDAO {
 		}
 			return list;
 	}
+
 
 	public String getNavi(Connection conn, int naviCountPerPage, int recordCountPerPage, int currentPage) {
 		
@@ -325,13 +374,13 @@ public class RecipeDAO {
 			JDBCTemplate.close(rset);
 			JDBCTemplate.close(pstmt);
 		}
+		
+		
 		return ingredientList;
 		
 		
 	}
-
-	
-	//마이냉장고에서 재료 가져오기
+		//마이냉장고에서 재료 가져오기
 	public ArrayList<MyboxIngredient> selectMyBox(Connection conn, String userId) {
 		
 		PreparedStatement pstmt = null;
@@ -366,11 +415,13 @@ public class RecipeDAO {
 			JDBCTemplate.close(rset);
 			JDBCTemplate.close(pstmt);
 		}
-	
+		
+		
 		return list;
+		
 	}
 	
-	
+
 	
 	public int postLike(Connection conn, int boardNo,int likeNum) {
 		
@@ -862,6 +913,7 @@ public class RecipeDAO {
 	public ArrayList<OurRecipe> selectMyRecipeList(Connection conn, int currentPage, int recordCountPerPage,String userId) {
 		
 
+
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		ArrayList<OurRecipe> list = new ArrayList<OurRecipe>();
@@ -1098,7 +1150,7 @@ public class RecipeDAO {
 		return mList;
 	}
 
-	
+
 
 
 

@@ -48,7 +48,23 @@ public class RecipeBoardAllSelectServlet extends HttpServlet {
 		
 		RecipeService rService = new RecipeServiceImpl();
 		
-		HashMap<String, Object> pageDataMap =rService.selectAllPostList(currentPage);
+		//검색조건 값 받아오기 (최신,난이도,조리시간,추천순)
+		
+		request.setCharacterEncoding("UTF-8");
+		
+		String type="";
+		
+		if(request.getParameter("type")==null)
+		{
+			type ="latest_desc";
+		}else
+		{
+			type = (String)request.getParameter("type");
+		}
+		
+		
+		
+		HashMap<String, Object> pageDataMap =rService.selectAllPostList(currentPage,type);
 		
 		RequestDispatcher view = request.getRequestDispatcher("/views/recipe/recipeAll.jsp");
 		request.setAttribute("pageDataMap", pageDataMap);
