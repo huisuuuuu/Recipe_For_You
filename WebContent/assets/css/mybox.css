@@ -212,6 +212,7 @@ div {
     max-width: 1280px;
     height: 1000px;
     margin: 33px auto 50px auto;
+    border: 1px solid black;
 }
 
 <<<<<<< HEAD
