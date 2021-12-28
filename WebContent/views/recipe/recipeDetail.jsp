@@ -66,6 +66,9 @@
 	if(m!=null)
 	{
 		myBoxList = (ArrayList<MyboxIngredient>)recipeDetailInfo.get("myBoxList");	
+	}else
+	{
+		 myBoxList = null;
 	}
 		
 	
@@ -174,7 +177,7 @@
           <%if(m!=null){ %> 
             
             
-            	<%if(myBoxList!=null){ %>
+            	<%if(!myBoxList.isEmpty()){ %>
               		 <%for(int i=0;i<ingredientList.size();i++) {%>
                    		<%if(i%2==0){ %>
                    		 <tr>
@@ -226,8 +229,13 @@
                    
                    <%} %>
 
+               
+               
+               
+               
+               
                    
-            <%}else{ %>   
+          <%}else{ %>   
                    
 		                   <%for(int i=0;i<ingredientList.size();i++) {%>
 		                   <tr>
