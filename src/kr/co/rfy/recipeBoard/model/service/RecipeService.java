@@ -3,6 +3,7 @@ package kr.co.rfy.recipeBoard.model.service;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import kr.co.rfy.adminRecipeBoard.model.vo.AdminRecipeBoard;
 import kr.co.rfy.recipeBoard.model.vo.MiddleCode;
 import kr.co.rfy.recipeBoard.model.vo.Recipe;
 import kr.co.rfy.recipeBoard.model.vo.UserRecipeBoard;
@@ -32,6 +33,9 @@ public interface RecipeService {
 
 	int insertUserRecipePost(UserRecipeBoard arb, String[] uploadImageNameValues, String[] uploadImagePathValues,
 			String[] ingredientNameValues, String[] ingredientNum, String[] recipeContent);
+
+	boolean updateUserRecipePost(AdminRecipeBoard arb, String[] ingredientNameValues, String[] ingredientNumValues,
+			String[] recipeContentValues);
 
 
 

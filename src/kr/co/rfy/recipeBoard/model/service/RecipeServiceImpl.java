@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import kr.co.rfy.adminRecipeBoard.model.vo.AdminRecipeBoard;
+import kr.co.rfy.adminRecipeBoard.model.vo.RecipeContent;
 import kr.co.rfy.common.JDBCTemplate;
 import kr.co.rfy.recipeBoard.model.doa.RecipeDAO;
 import kr.co.rfy.recipeBoard.model.vo.Content;
@@ -69,6 +71,7 @@ public class RecipeServiceImpl implements RecipeService {
 		
 		HashMap<String,Object> hm = new HashMap<String,Object>();
 		
+	
 		hm.put("recipeInfo", recipe);
 		hm.put("contentList", contentList);
 		hm.put("fileList", fileList);
@@ -316,10 +319,46 @@ public class RecipeServiceImpl implements RecipeService {
 		return totalResult;
 		
 	}
+
+	@Override
+	public boolean updateUserRecipePost(AdminRecipeBoard arb, String[] ingredientNameValues,
+			String[] ingredientNumValues, String[] recipeContentValues) {
+		
+Connection conn = JDBCTemplate.getConnection();
+		
+		int recipePostUpdateResult = rDAO.updateUserRecipeBoard(conn, arb);
+		int recipeIngredientResult = 0;
+		int recipeContentResult = 0;
+		
+		for(int i=0; i<ingredientNameValues.length; i++) {
+			
+			recipeIngredientResult += rDAO.updateRecipePostIngredient(conn, arb.getBoardNo(), ingredientNameValues[i], ingredientNumValues[i]);
+			
+		};
+		
+		ArrayList<Content> contentList = rDAO.selectOnePostContent(conn, arb.getBoardNo());
+		
+		for(int i=0; i<recipeContentValues.length; i++) {
+			
+			recipeContentResult += rDAO.updateRecipePostContent(conn, arb.getBoardNo(), contentList.get(i).getContentNo(), recipeContentValues[i]);
+			
+		}
+		
+		if((recipePostUpdateResult>0)&&(recipeIngredientResult==ingredientNameValues.length)&&(recipeContentResult==recipeContentValues.length))
+		{
+			JDBCTemplate.commit(conn);
+			JDBCTemplate.close(conn);
+			return true;
+		}else
+		{
+			JDBCTemplate.rollback(conn);
+			JDBCTemplate.close(conn);
+			return false;
+		}
+		
+	}
+
 		
 		
 		
-		
-	
-	
-}
+	}
