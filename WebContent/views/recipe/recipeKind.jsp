@@ -185,11 +185,11 @@
                 <div id="menu_content3_top"></div>
                 <div id="menu_content3_bottom">
                 
-         <%--           <%if(m!=null) {%>  --%>
+                <%if(m!=null) {%> 
                    <button type="button" class="btn btn-success" id="myRecipeBtn">MY Recipe</a></button>
                     <button type="button" class="btn btn-success">레시피 등록</button>
                 
-          <%--        <%} %>  --%>
+                <%} %>  
 
                 </div>
             </div>
