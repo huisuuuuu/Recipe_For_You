@@ -112,15 +112,13 @@
 									for (int i = 0; i < ingredientList.size(); i++) {
 								%>
 								<tr>
-									<td><%=ingredientList.get(i).getIngredientName()%> <spn
-											style="color: red">필요해요!</spn></td>
+									<td><%=ingredientList.get(i).getIngredientName()%>
 									<td><%=ingredientList.get(i).getIngredientNum()%></td>
 
 									<%
 										if (i != ingredientList.size() - 1) {
 									%>
-									<td><%=ingredientList.get(i + 1).getIngredientName()%> <spn
-											style="color: red">필요해요!</spn></td>
+									<td><%=ingredientList.get(i + 1).getIngredientName()%>
 									<td><%=ingredientList.get(i + 1).getIngredientNum()%></td>
 									<%
 										}
@@ -145,7 +143,7 @@
 						%>
 						<div class="step_wrapper">
 							<div class="step_empty">
-								step<%=i%></div>
+								<p>Step<%=i%></p></div>
 							<div class="step_content">
 								<hr>
 								<div class="step_img" id="img1">
@@ -172,15 +170,18 @@
 							Member m = (Member) session.getAttribute("member");
 						%>
 						<div id="fotter_button">
-							<span>이 레시피를&nbsp&nbsp</span>
 							<%
 								if (m != null && m.getUserId().equals(recipeBoard.getUserId())) {
 							%>
+							<span>이 레시피를&nbsp&nbsp</span>
 							<button type="button" class="btnStyle" id="updateBtn">
 								<a href="/recipeBoard/recipePostUpdate.do?boardNo=<%=recipeBoard.getBoardNo()%>">수정</a></button>
+							<span style="margin: 3px 2px;">&nbsp할래요!</span>	
 							<%
-								} else {
+								} 
 							%>
+							<%-- 관리자라 추천 기능 불필요하여 비활성화
+							<%}else %>
 							<form action="/recipeBoard/recipeBoardPostLike.do" method="post"
 								id="likeUpdateForm" style="display: inline-block;">
 								<button class="btnStyle" id="likeBtn">추천</button>
@@ -191,7 +192,7 @@
 							<%
 								}
 							%>
-							<span style="margin: 3px 2px;">&nbsp할래요!</span>
+							--%>
 							<%if(m != null && m.getUserId().equals(recipeBoard.getUserId())) {%>
 							<button type="button" class="btnStyle" id="deleteBtn">
 							<a href="">삭제</a></button>
@@ -221,10 +222,6 @@
 				
 				if(window.confirm('정말로 삭제하시겠습니까? 삭제된 글은 절대로 복원 불가합니다.'))
 				{
-					
-					//하기 태그는 get 방식. 회원 삭제 url은 재사용 할 일이 없으므로 get 방식을 사용하는건 자원의 낭비이다.
-					//따라서 post 방식도 사용할 수 있는 폼태그를 생성
-					<%--location.replace("/recipeBoard/recipeBoardPostDelete.do?boardNo="+<%=recipeBoard.getBoardNo() %>); --%>
 					
 					var formTag = document.createElement("form");
 					formTag.setAttribute("action","/recipeBoard/recipeBoardPostDelete.do");

@@ -19,6 +19,5 @@
 	location.replace('/recipeBoard/recipeBoardAllSelect.do');
 	</script>
 	
-	
 </body>
 </html>

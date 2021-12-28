@@ -80,7 +80,7 @@
 							<tr>
 								<th><input type="checkbox" id="allCheckBox"></th>
 								<th>번호</th>
-								<th><select id="recipeCode" class="filter">
+								<th><select id="recipeCode" name="recipeCode" class="filter" onchange="location.href='/recipeBoard/recipeBoardCategorySelect.do?recipeCode='+this.value">
 										<option value>카테고리</option>
 										<option value="Recipe_01">한식</option>
 										<option value="Recipe_02">양식</option>
@@ -108,9 +108,7 @@
 								<td><%=recipeBoard.getRecipeName()%></td>
 								<td><a id="recipeName"
 									href="/recipeBoard/recipeBoardSelectContent.do?boardNo=<%=recipeBoard.getBoardNo()%>"><%=recipeBoard.getTitle()%></a></td>
-								<td><%=recipeBoard.getUserName()%>
-								<input type="hidden" name="postWriterId"
-									value="<%=recipeBoard.getUserId()%>"/></td>
+								<td><%=recipeBoard.getUserName()%></td>
 								<td><%=recipeBoard.getRegDate()%></td>
 							</tr>
 							<%} %>
@@ -128,7 +126,8 @@
 				</form>
 			</div>
 		</div>
-
+		<div id="footer"></div>
+	</div>
 		<script>
 			$('#allCheckBox').click(
 					function() {
@@ -171,8 +170,6 @@
 				alert("요청하신 게시글의 삭제가 완료되었습니다.");
 			});
 		</script>
-
-		<div id="footer"></div>
-	</div>
+		
 </body>
 </html>

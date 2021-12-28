@@ -180,3 +180,13 @@ tbody>tr:first-child>td {
 	
 	color: #5D9A71;
 }
+
+#recipeCode:hover{
+	
+	color: #7FB292;
+}
+
+#recipeCode>option:hover{
+	
+	color: black;
+}
