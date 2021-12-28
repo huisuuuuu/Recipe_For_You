@@ -27,7 +27,7 @@
    
     <%-- Bootstrap CSS --%>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-   <link rel="stylesheet" type="text/css" href="stylesheet/recipe_navi.css">
+  
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
@@ -36,6 +36,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&family=Roboto:ital,wght@0,100;1,100&display=swap" rel="stylesheet">
     <title>header</title>
+
     <link rel="stylesheet" type="text/css" href="/assets/css/recipeHeaderFooter.css">
     <link rel="stylesheet" type="text/css" href="/assets/css/ourRecipe.css">
     <link rel="stylesheet" type="text/css" href="/assets/css/ourRecipeNavi.css">
@@ -72,15 +73,6 @@
 </style>
 
 
-
-
-
-
-
-
-
-
-
 </head>
 
 
@@ -113,11 +105,12 @@
                     <img src="/assets/common/images//headericon1.png" alt="" width="23px" height="28px">
                 </a>
                 <a href="" class="login">
-                    <img src="/assets/common/images//headericon2.png" alt="" width="80px" height="30px">
+                    <img src="/assets/common/images//headericon2.png" alt="" width="23px" height="28px">
                 </a>
                 </div>
                 
             </div>
+
 
             <div class="navibar container-fluid">
                 <nav class="navbar navbar-expand-lg nav-distance">
@@ -150,7 +143,7 @@
                                 </ul>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link active nav-mypage" href="#">마이냉장고</a>
+                                <a class="nav-link active nav-mypage" href="/mybox/myboxList.do">마이냉장고</a>
                             </li>
                         </ul>
                     </div>
@@ -193,11 +186,11 @@
             <div id="menu_content3">
                 <div id="menu_content3_top"></div>
                 <div id="menu_content3_bottom">
-          <%--       <%if(m!=null) {%>  --%>
+               <%if(m!=null) {%>
                    <button type="button" class="btn btn-success" id="myRecipeBtn">MY Recipe</a></button>
                     <button type="button" class="btn btn-success" id="recipeUploadBtn">레시피 등록</button>
                 
-          <%--        <%} %>     --%>
+                 <%} %>    
                  	  
                 </div>
             </div>
@@ -259,7 +252,7 @@
                			<%for(OurRecipe o:list) {%>
          
                         <div class="recipe_content">																	<%--useID 변경할 곳 --%>
-                        	<a href="/recipe/recipeSelectContent.do?boardNo=<%=o.getBoardNo()%>&currentPage=<%=currentPage %>&userId=user11" style="text-decoration: none; color: inherit;">
+                        	<a href="/recipe/recipeSelectContent.do?boardNo=<%=o.getBoardNo()%>&currentPage=<%=currentPage %>&userId=<%=m.getUserId() %>" style="text-decoration: none; color: inherit;">
 	                            <div class="image" style="text-align: center;"><p id ="explain">추천수 <%=o.getLikeNum() %></p><img src="<%=o.getFilePath()%>" width="278" height="278" class="allImage" ></div>
 	                            <div class="subtitle" style="text-align:center" ><%=o.getSubTitle() %></div>
 	                            <div class="title" style="text-align:center"><b><%=o.getTitle() %></b></div>

@@ -1,3 +1,5 @@
+<%@page import="kr.co.rfy.mybox.model.vo.RecipeWithFile"%>
+<%@page import="java.util.LinkedList"%>
 <%@page import="kr.co.rfy.recipeBoard.model.vo.OurRecipe"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="kr.co.rfy.member.model.vo.Member"%>
@@ -236,14 +238,14 @@ div {
     max-width: 1320px;
     height: 2350px;
     margin: 33px auto 50px auto;
-	border : 1px solid black;
+	
 }
 
 .contetns-sub {
     width: 100%;
     max-width: 1280px;
     margin: 15px auto 40px auto;
-    border : 1px solid black;
+  
 
 }
 
@@ -308,6 +310,7 @@ div {
     float: right;
 }
 
+
 .contents2-title {
     width: 26.56%;
     margin: 61px 470px 20px 470px;
@@ -331,79 +334,101 @@ div {
     font-size: 14px;
 }
 
-.contents2-main-1 {
-    width: 100%;
-    max-width: 1280px;
-    height: 418px;
 
-    margin: 35px 0px 44px 0px
-}
-
-.contents2-main-2 {
-    width: 100%;
-    max-width: 1280px;
-    height: 418px;
-
-    margin: 0px 0px 44px 0px
-}
-
-.recipe-content {
-    border: 1px solid black;
-    width: 285px;
-    height: 385px;
-    float: left;
-    margin: 0px 16.5px 0px 16.5px;
-}
-
-.image {
-    border: 1px solid black;
-    width: 100%;
-    height: 284px;
-
-}
-
-.subtitle {
-    border: 1px solid black;
-    width: 100%;
-    height: 33px;
-
-}
-
-.title {
-    border: 1px solid black;
-    width: 100%;
-    height: 33px;
-
-}
-
-.menu {
-    border: 1px solid black;
-    width: 100%;
-    height: 33px;
-
-}
-
-.menu_level {
-    border: 1px solid black;
-    width: 50%;
-    height: 100%;
-    float: left;
+   #content_recipe_wrapper
+        {
+           
+            width: 1280px;
+            height: 1252px;
+            margin: 0 auto;
+         
+            
+        }
+        .content_recipe
+        {
+            
+            width: 100%;
+            height: 417px;
+           
+           
+              
+        }
+        .recipe_content
+        {
+           
+            width: 285px;
+            height: 418px;
+            float: left;
+            margin: 0px 10px 0px 20px;
+            color:gray;
+             
+        }
+        
+        
+        
+        .image
+        {
+            width: 100%;
+            height: 284px;
+           
+        }
     
-
-}
-
-.menu_time {
-    border: 1px solid black;
-    width: 50%;
-    height: 100%;
-    float: left;
-
-}
-
-
-.img {
-    transform: translateY(5px);
-}
+        .subtitle
+        {
+           
+            width: 100%;
+            height: 33px;
+            
+        }
+         .title
+        {
+           
+            width: 100%;
+            height: 33px;
+           
+        }
+         .menu
+        {
+           
+            width: 100%;
+            height: 33px;
+            
+           
+        }
+        .empty
+        {
+           
+            width: 100%;
+            height: 33px;
+           
+        }
+        .menu_level
+        {
+           
+            width: 50%;
+            height: 100%;
+            float: left;
+			            
+        }
+         .menu_time
+        {
+           
+            width: 50%;
+            height: 100%;
+            float: left;
+            
+        }
+        .img
+        {
+            transform: translateX(35px);
+        }
+        
+        .menu span
+        {
+            display: inline-block;
+            transform: translateX(40px);
+            
+        }
 
 
 .footer {
@@ -486,7 +511,10 @@ a { text-decoration:none !important }
 <body>
 <%
      Member m = (Member)session.getAttribute("member");
-	
+	ArrayList<OurRecipe> bestRecipe = (ArrayList<OurRecipe>)request.getAttribute("bestRecipe");
+	LinkedList<RecipeWithFile>recipeWithFileList = (LinkedList<RecipeWithFile>)request.getAttribute("recipeWithFileList");
+	  
+			int currentPage = (int)request.getAttribute("currentPage");
 %>
  <div id="wrapper">
         <div class="header fixed-top">
@@ -591,87 +619,55 @@ a { text-decoration:none !important }
             <div class="contents1-button-more container"><a href="" type="button">더보기</a></div>
             <div class="contents1-image">
                 <div class="contents1-image-1"><a href=""><img src="${recipeWithFileList[0].file_path}" alt="" width="625px" height="550px"></a></div>
-                <div class="contents1-image-2"><a href=""><img src="" alt="" width="290px" height="257px"></a></div>
-                <div class="contents1-image-3"><a href=""><img src="" alt="" width="290px" height="260px"></a></div>
-                <div class="contents1-image-4"><a href=""><img src="" alt="" width="615px" height="259px"></a></div>
+                <div class="contents1-image-2"><a href=""><img src="${recipeWithFileList[1].file_path}" alt="" width="290px" height="257px"></a></div>
+                <div class="contents1-image-3"><a href=""><img src="${recipeWithFileList[2].file_path}" alt="" width="290px" height="260px"></a></div>
+                <div class="contents1-image-4"><a href=""><img src="${recipeWithFileList[3].file_path}" alt="" width="615px" height="259px"></a></div>
             </div>
             <div class="contents2-title">BEST RECIPES</div>
-            <div class="contents2-button-more container"><a href="" type="button">더보기</a></div>
-            <div class="contents2-main-1">
-                <div class="recipe-content">
-                    <div class="image" ></div>
-                            <div class="subtitle" ></div>
-                            <div class="title" ></div>
-                            <div class="menu">
-                                <div class="menu_level"><img src="/WebContent/assets/images/Level.png" alt="" width="20px" height="20px" class="img">초급</div>
-                                <div class="menu_time"><img src="/WebContent/assets/images/clock_time.png" alt="" width="20px" height="20px" class="img"><span>40분</span></div>
-                            </div>
-                </div>
-                <div class="recipe-content"><div class="image" ></div>
-                            <div class="subtitle" ></div>
-                            <div class="title" ></div>
-                            <div class="menu">
-                                <div class="menu_level"><img src="/WebContent/assets/images/Level.png" alt="" width="20px" height="20px" class="img">초급</div>
-                                <div class="menu_time"><img src="/WebContent/assets/images/clock_time.png" alt="" width="20px" height="20px" class="img"><span>40분</span></div>
-                            </div></div>
-                <div class="recipe-content"><div class="image" ></div>
-                            <div class="subtitle" ></div>
-                            <div class="title" ></div>
-                            <div class="menu">
-                                <div class="menu_level"><img src="/WebContent/assets/images/Level.png" alt="" width="20px" height="20px" class="img">초급</div>
-                                <div class="menu_time"><img src="/WebContent/assets/images/clock_time.png" alt="" width="20px" height="20px" class="img"><span>40분</span></div>
-                            </div></div>
-                <div class="recipe-content"><div class="image" ></div>
-                            <div class="subtitle" ></div>
-                            <div class="title" ></div>
-                            <div class="menu">
-                                <div class="menu_level"><img src="/WebContent/assets/images/Level.png" alt="" width="20px" height="20px" class="img">초급</div>
-                                <div class="menu_time"><img src="/WebContent/assets/images/clock_time.png" alt="" width="20px" height="20px" class="img"><span>40분</span></div>
-                            </div></div>
-            </div>
-            <div class="contents2-main-2">
-                <div class="recipe-content"><div class="image" ></div>
-                            <div class="subtitle" ></div>
-                            <div class="title" ></div>
-                            <div class="menu">
-                                <div class="menu_level"><img src="/WebContent/assets/images/Level.png" alt="" width="20px" height="20px" class="img">초급</div>
-                                <div class="menu_time"><img src="/WebContent/assets/images/clock_time.png" alt="" width="20px" height="20px" class="img"><span>40분</span></div>
-                            </div></div>
-                <div class="recipe-content"><div class="image" ></div>
-                            <div class="subtitle" ></div>
-                            <div class="title" ></div>
-                            <div class="menu">
-                                <div class="menu_level"><img src="/WebContent/assets/images/Level.png" alt="" width="20px" height="20px" class="img">초급</div>
-                                <div class="menu_time"><img src="/WebContent/assets/images/clock_time.png" alt="" width="20px" height="20px" class="img"><span>40분</span></div>
-                            </div></div>
-                <div class="recipe-content"><div class="image" ></div>
-                            <div class="subtitle" ></div>
-                            <div class="title" ></div>
-                            <div class="menu">
-                                <div class="menu_level"><img src="/WebContent/assets/images/Level.png" alt="" width="20px" height="20px" class="img">초급</div>
-                                <div class="menu_time"><img src="/WebContent/assets/images/clock_time.png" alt="" width="20px" height="20px" class="img"><span>40분</span></div>
-                            </div></div>
-                <div class="recipe-content"><div class="image" ></div>
-                            <div class="subtitle" ></div>
-                            <div class="title" ></div>
-                            <div class="menu">
-                                <div class="menu_level"><img src="/WebContent/assets/images/Level.png" alt="" width="20px" height="20px" class="img">초급</div>
-                                <div class="menu_time"><img src="/WebContent/assets/images/clock_time.png" alt="" width="20px" height="20px" class="img"><span>40분</span></div>
-                            </div></div>
+            <div class="contents2-button-more container"><a href="/recipe/recipeBoard/selectAll.do" type="button">더보기</a></div>
+            
+            	
+            <div id="content_recipe_wrapper" style="transform: translateY(20px)">
+                     <div class="content_recipe" id="recipe1">
+               
+               
+               			
+         			<%for(OurRecipe bRe :bestRecipe){ %>
+                        <div class="recipe_content">																	
+                        	<a href="/recipe/recipeSelectContent.do?boardNo=<%=bRe.getBoardNo()%>&currentPage=<%=currentPage %>" style="text-decoration: none; color: inherit;">
+	                            <div class="image" style="text-align: center;"><img src="<%=bRe.getFilePath()%>" width="278" height="278" class="allImage" ></div>
+	                            <div class="subtitle" style="text-align:center" ><%=bRe.getSubTitle() %></div>
+	                            <div class="title" style="text-align:center"><b><%=bRe.getTitle() %></b></div>
+	                            <div class="menu"  style="color:gray">
+	                                <div class="menu_level" style="transform: translateX(45px)"> 
+	                                <img src="/assets/images/Level.png"  width="20px" height="20px" class="img">
+	                                <span ><%=bRe.getLevelName() %></span>
+	                                </div>
+	                                <div class="menu_time" style="transform: translateX(-15px)">
+	                                    <img src="/assets/images/clock_time.png" width="20px" height="20px" class="img">
+	                                    <span><%=bRe.getTimeName() %></span>
+	                                </div>
+	                            </div>
+	                            <div class="empty" style="text-align:center"></div>
+                            </a>
+                        </div>
+                       <%} %>
+                 
+
+        </div>
+        </div>
+            
+            
+            
+            
+            
             </div>
             </div>
         </div>
-        	<script>
-        		window.onload=function(){
-        			
-        			location.replace("/recipe/bestRecipePost.do");
-        			
-        		}
-        	
-        	
-        	</script>
+        
       
         	
+        
         
         
         <div class="footer">

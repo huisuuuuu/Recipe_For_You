@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import kr.co.rfy.adminRecipeBoard.model.vo.AdminRecipeBoard;
+import kr.co.rfy.adminRecipeBoard.model.vo.RecipeContent;
 import kr.co.rfy.common.JDBCTemplate;
 import kr.co.rfy.recipeBoard.model.doa.RecipeDAO;
 import kr.co.rfy.recipeBoard.model.vo.Content;
@@ -69,6 +71,7 @@ public class RecipeServiceImpl implements RecipeService {
 		
 		HashMap<String,Object> hm = new HashMap<String,Object>();
 		
+	
 		hm.put("recipeInfo", recipe);
 		hm.put("contentList", contentList);
 		hm.put("fileList", fileList);
@@ -189,14 +192,15 @@ public class RecipeServiceImpl implements RecipeService {
 	
 	//카테고리별 레시피 목록 가져오기
 	@Override
-	public HashMap<String, Object> selectRecipeKindAllList(int currentPage, String recipeKind) {
+	public HashMap<String, Object> selectRecipeKindAllList(int currentPage, String recipeKind,String type) {
 	
 		Connection conn = JDBCTemplate.getConnection();
 		int recordCountPerPage=5;
 		
 		//1.해당 페이지에 필요한 목록을 가져온다
 		//해당페이지에 글목록을 가져오기 위해서는 Connection과 현재페이지 값과 현재페이지에 몇개의 글목록을 가져올지에 대한 변수를 보낸다.
-		ArrayList<OurRecipe> list=rDAO.selectRecipeKindAllList(conn,currentPage,recordCountPerPage,recipeKind);
+		ArrayList<OurRecipe> list=rDAO.selectRecipeKindAllList(conn,currentPage,recordCountPerPage,recipeKind,type);
+		
 		
 		//2.해당 페이지에 필요한 네비바 생성
 		// 하나의 pageNavi bar에 보여질 navi 갯수를 설정
@@ -315,10 +319,63 @@ public class RecipeServiceImpl implements RecipeService {
 		return totalResult;
 		
 	}
+
+	@Override
+	public boolean updateUserRecipePost(AdminRecipeBoard arb, String[] ingredientNameValues,
+			String[] ingredientNumValues, String[] recipeContentValues) {
 		
+Connection conn = JDBCTemplate.getConnection();
 		
+		int recipePostUpdateResult = rDAO.updateUserRecipeBoard(conn, arb);
+		int recipeIngredientResult = 0;
+		int recipeContentResult = 0;
 		
+		for(int i=0; i<ingredientNameValues.length; i++) {
+			
+			recipeIngredientResult += rDAO.updateRecipePostIngredient(conn, arb.getBoardNo(), ingredientNameValues[i], ingredientNumValues[i]);
+			
+		};
 		
+		ArrayList<Content> contentList = rDAO.selectOnePostContent(conn, arb.getBoardNo());
+		
+		for(int i=0; i<recipeContentValues.length; i++) {
+			
+			recipeContentResult += rDAO.updateRecipePostContent(conn, arb.getBoardNo(), contentList.get(i).getContentNo(), recipeContentValues[i]);
+			
+		}
+		
+		if((recipePostUpdateResult>0)&&(recipeIngredientResult==ingredientNameValues.length)&&(recipeContentResult==recipeContentValues.length))
+		{
+			JDBCTemplate.commit(conn);
+			JDBCTemplate.close(conn);
+			return true;
+		}else
+		{
+			JDBCTemplate.rollback(conn);
+			JDBCTemplate.close(conn);
+			return false;
+		}
+		
+	}
+
+	@Override
+	public ArrayList<OurRecipe> selectBestRecipe(int currentPage) {
 	
+		Connection conn = JDBCTemplate.getConnection();
+		
+		//1.한페이지에 n개의 글을 가져올 것인지 설정
+		int recordCountPerPage = 8;
+		ArrayList<OurRecipe> list =rDAO.selectBestRecipe(conn,currentPage,recordCountPerPage);
+		
+		
+		return list;
+		
+		
+	}
+
 	
-}
+
+		
+		
+		
+	}

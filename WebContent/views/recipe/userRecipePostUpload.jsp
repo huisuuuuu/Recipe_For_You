@@ -25,7 +25,11 @@
 	integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm"
 	crossorigin="anonymous">
 
+<<<<<<< HEAD
+	<link rel="stylesheet" type="text/css" href="/assets/css/adminRecipeUpload.css">
+=======
 <link rel="stylesheet" type="text/css" href="/assets/css/adminRecipeUpload.css">
+>>>>>>> b86c4b999d42abc967f92e605cd32fb16a09b38f
   <link rel="stylesheet" type="text/css" href="/assets/css/recipeHeaderFooter.css">
 <title>냉장고를 부탁해</title>
 
@@ -82,7 +86,7 @@
                                 </ul>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link active nav-mypage" href="#">마이냉장고</a>
+                                <a class="nav-link active nav-mypage" href="/mybox/myboxList.do">마이냉장고</a>
                             </li>
                         </ul>
                     </div>

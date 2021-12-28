@@ -68,8 +68,6 @@
 	
 </style>
 
-
-
 </head>
 
 
@@ -81,8 +79,10 @@
 	ArrayList<OurRecipe> list =(ArrayList<OurRecipe>) kindPageDataMap.get("list");
 	String pageNavi =(String)kindPageDataMap.get("pageNavi");	
 	int currentPage = (int)request.getAttribute("currentPage");
-
-		
+	String recipe=(String)request.getAttribute("recipe");
+	
+	System.out.print(recipe);
+	
 	Member m = (Member)session.getAttribute("member");
 	%>
 
@@ -139,7 +139,7 @@
                                 </ul>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link active nav-mypage" href="#">마이냉장고</a>
+                                <a class="nav-link active nav-mypage" href="/mybox/myboxList.do">마이냉장고</a>
                             </li>
                         </ul>
                     </div>
@@ -185,11 +185,11 @@
                 <div id="menu_content3_top"></div>
                 <div id="menu_content3_bottom">
                 
-         <%--           <%if(m!=null) {%>  --%>
+                <%if(m!=null) {%> 
                    <button type="button" class="btn btn-success" id="myRecipeBtn">MY Recipe</a></button>
                     <button type="button" class="btn btn-success">레시피 등록</button>
                 
-          <%--        <%} %>  --%>
+                <%} %>  
 
                 </div>
             </div>
@@ -214,15 +214,30 @@
                  <div id="content_wrapper">
           
            <div id="recipe_search">
-              <form action=" " method="">
-                   <select>
+               <form action="/recipe/recipeBoardSelectList.do" id="recipeSearch"  method="get" onchange="searchAllPost()">
+                   <select name="type">
                        <option value="latest_desc">최신순</option>
                        <option value="like_desc">추천순</option>
                        <option value="level_asc">난이도</option>
                        <option value="time_asc">조리시간</option>
                    </select>
+                   <input type="hidden" name="recipe" value="<%=recipe%>"/>
                 </form>               
            </div>
+           
+            <%--검색 조건을 선택 시 한번 더 submit 동작--%>
+           <script>
+           	
+           	function searchAllPost(){
+           	
+           		recipeSearch.submit();
+           	}
+           	
+           	
+           </script>
+           
+           
+           
            
             <div id="content_recipe_wrapper">
                      <div class="content_recipe" id="recipe1">
