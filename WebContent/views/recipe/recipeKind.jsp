@@ -38,6 +38,37 @@
     <link rel="stylesheet" type="text/css" href="/assets/css/ourRecipe.css">
     <link rel="stylesheet" type="text/css" href="/assets/css/ourRecipeNavi.css">
 
+<style>
+	
+.image {
+  position:relative;
+  
+ }
+ 
+.image:hover
+	{
+		filter: grayscale(100%) opacity(0.8);
+		
+	}
+	
+#explain {
+  position:absolute;
+  visibility:hidden;
+ 
+ }
+
+
+.image:hover #explain  {
+   visibility:visible;
+   color:white;
+   font-size:30px;
+   transform: translate(100px,110px);
+   
+ }  
+	
+</style>
+
+
 
 </head>
 
@@ -198,7 +229,7 @@
                			<%for(OurRecipe o:list) {%>
                         <div class="recipe_content">																		<%--변경할 곳 --%>
                         	<a href="/recipe/recipeSelectContent.do?boardNo=<%=o.getBoardNo()%>&currentPage=<%=currentPage%>&userId=<%=m.getUserId() %>" style="text-decoration: none; color: inherit;">
-	                            <div class="image" style="text-align: center"><img src="<%=o.getFilePath()%>" width="278" height="278" ></div>
+	                             <div class="image" style="text-align: center;"><p id ="explain">추천수 <%=o.getLikeNum() %></p><img src="<%=o.getFilePath()%>" width="278" height="278" class="allImage" ></div>
 	                            <div class="subtitle" style="text-align:center" ><%=o.getSubTitle() %></div>
 	                            <div class="title" style="text-align:center"><b><%=o.getTitle() %></b></div>
 	                            <div class="menu"  style="color:gray">
