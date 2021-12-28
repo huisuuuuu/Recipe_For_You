@@ -38,7 +38,7 @@
 	rel="stylesheet">
 <title>mybox</title>
 <link rel="stylesheet" type="text/css"
-	href="${pageContext.request.contextPath}/assets/css/main.css">
+	href="${pageContext.request.contextPath}/assets/css/mybox.css">
 <style>
 section.title {
 	min-height: 200px;
@@ -487,7 +487,8 @@ section.title h2 {
 												<option value="${mybox.ingredient_code}">${mybox.ingredient_name}</option>
 										</select></td>
 										<td><c:if test="${mybox.end_yn eq 'Y'}">
-												<input type="text" name="end_date" value="${mybox.end_date}">
+												<input type="text" name="end_date" value="${mybox.end_date}"
+>
 											</c:if> <c:if test="${mybox.end_yn eq 'N'}">
 												<input type="text" name="end_date" value="${mybox.end_date}"
 												style="color: red;">
