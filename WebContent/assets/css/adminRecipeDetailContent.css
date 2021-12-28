@@ -63,6 +63,7 @@ div {
 #introduction {
 	width: 100%;
 	height: auto;
+	margin-bottom: 50px;
 	line-height: 24px;
 	font-size: 17px;
 	color: gray;
@@ -76,7 +77,8 @@ div {
 #content2_ingredient {
 	width: 100%;
 	height: auto;
-	margin-bottom: 80px;
+	margin-top: 80px;
+	margin-bottom: 100px;
 }
 
 #content2_ingredient table, tr, td {
@@ -101,6 +103,11 @@ div {
 	height: 74px;
 	line-height: 120px;
 	font-weight: bold;
+}
+
+.step_empty>p {
+	font-size: 16px;
+	
 }
 
 .step_content {

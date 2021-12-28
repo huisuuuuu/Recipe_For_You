@@ -31,7 +31,7 @@
 
 <body>
 
-<jsp:include page="/assets/css/search.jsp"></jsp:include>
+<jsp:include page="/assets/css/search.css"></jsp:include>
 
 <style>
 
@@ -49,7 +49,7 @@ font-weight:bolder;
 }
 .cate{
 border: 1px solid white;
-	width:95%;
+width:95%;
 text-align: right;
     
 
@@ -154,7 +154,7 @@ text-align:center;
 
 
         }
-	.empty
+		.empty
         {
 
             width: 100%;
@@ -238,23 +238,15 @@ color:gray;
     text-decoration: none;
     
 }
-
+.whole{
+padding-top: 200px;
+}
 
 </style>
 <jsp:include page="/assets/common/head.jsp"></jsp:include>
 
 
-<form action="/search/recipe.do" method="get" id="search">
-
-<div class="searchbar">
-<input type="text" size="30" name="keyword" class="search_input"/>
-<input type="hidden" name="type" value="latest"/>
-<label for="searchSubmit" class="search_icon" style="cursor: pointer;"><i class="fas fa-search search-icon"></i></label>
-<input type="submit" id="searchSubmit" style="display:none;"/>
-</div>
-			</form>
-            </div>
-        </div>
+<div class="whole">
 <%
 //페이징 처리되어 넘어온 데이터를 가져와야 함
 HashMap<String, Object> pageDataMap = (HashMap<String, Object>)request.getAttribute("pageDataMap");
@@ -285,6 +277,8 @@ String type =(String)request.getAttribute("type");
 
 
 <div class="contents">
+
+
 <hr>
 <div class="cate">
 <a class="sun" id="latest" href="/search/recipe.do?keyword=<%=keyword%>&currentPage=<%=currentPage%>&type=latest">최신순</a>
@@ -337,7 +331,7 @@ String type =(String)request.getAttribute("type");
 </div>
 </div>
 </div>
-
+</div>
 <div class="layout-pagination">
 						<div class="page-navi">
 							<nav aria-label="Page navigation example">

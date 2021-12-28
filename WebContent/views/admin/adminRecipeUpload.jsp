@@ -68,8 +68,8 @@
 					</select>
 				</div>
 				<div id="thumbnail">
-					<label for="thumbnailImage"><div id="thumbnailUpload">
-						</div></label>
+					<label for="thumbnailImage"><img id="thumbnailUpload" src="/assets/images/test2.png"/>
+					</label>
 				</div>
 				<div class="recipeContent">
 					<input type=text name="title" class="recipeContentInput"
@@ -91,7 +91,7 @@
 						id="ingredient_Num" placeholder="계량 정보 / 예)300g" />
 					<button id="ingredientBtn" type="button">추가</button>
 				</div>
-				<div id="idgredientContent" style="width: 650px; margin: 10px auto;">
+				<div id="ingredientContent" style="width: 650px; margin: 10px auto;">
 					<ul id="ingredientList" style="margin-left: 40px; padding: 0px;">
 					</ul>
 				</div>
@@ -160,10 +160,41 @@
 				<input type="submit" value="작성하기"/>
 				<button type="button"><a href="/recipeBoard/recipeBoardAllSelect.do">취소</a></button>
 				</div>
-				<input type="file" id="thumbnailImage" name="recipeImage" accept="image/*" onchange="setThumbnail(event,'thumbnailImage');" style="display: none;"/>
+				<input type="file" id="thumbnailImage" name="recipeImage" accept="image/*" style="display: none;"/>
 				<input type="file" id="recipeImage_1" name="recipeImage" style="display: none;"/>
 			</form>
 			
+			<script>
+						
+			$(document).ready(function(){
+				$('#thumbnailImage').on("change", handleImgFileSelect);
+			})
+			
+			function handleImgFileSelect(e){
+				
+				var files = e.target.files;
+				var filesArr = Array.prototype.slice.call(files);
+				
+				filesArr.foeEach(function(f){
+					if(!f.type.match("image.*")){
+						alert("이미지만 업로드 가능합니다.");
+						return;
+					}
+					
+					sel_file = f;
+					
+					var reader = new FileReader();
+					reader.onload = function(e){
+					$('#thumbnailUpload').attr("src", e.target.result);
+					$('#thumbnailUpload').css("margin", "0 auto");
+					$('#thumbnailUpload').css("width", "650px");
+					$('#thumbnailUpload').css("height", "500px");
+				}	
+				reader.readAsDataURL(f);				
+			)};
+			
+			</script>
+
 			<script>
 				var count = 2;
 

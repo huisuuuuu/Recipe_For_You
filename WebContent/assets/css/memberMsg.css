@@ -1,0 +1,19 @@
+@charset "UTF-8";
+button{
+    height : 50px;
+    width : 100px;
+    background-color: white;
+    border: 1px solid #7FB292;
+    color: #7FB292;
+}
+button:hover{
+    font-weight: bolder;
+}
+.greenBtn{
+    background-color: #7FB292;
+    color: white;
+    border: 0px;
+}
+.Modal{
+    top: 20%
+}

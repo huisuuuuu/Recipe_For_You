@@ -13,6 +13,7 @@ import kr.co.rfy.recipeBoard.model.vo.MiddleCode;
 import kr.co.rfy.recipeBoard.model.vo.MyboxIngredient;
 import kr.co.rfy.recipeBoard.model.vo.OurRecipe;
 import kr.co.rfy.recipeBoard.model.vo.RecipeDetail;
+import kr.co.rfy.recipeBoard.model.vo.UserRecipeBoard;
 
 public class RecipeServiceImpl implements RecipeService {
 	
@@ -45,7 +46,7 @@ public class RecipeServiceImpl implements RecipeService {
 		return hm;
 	}
 
-	//하나의 레시피 가져오기
+	//하나의 레시피 가져오기 (userid !=null 일 때)
 	@Override
 	public HashMap<String,Object> selectOnePost(int boardNo,String userId) {
 	
@@ -77,6 +78,45 @@ public class RecipeServiceImpl implements RecipeService {
 		return hm;
 		
 	}
+	
+	//하나의 레시피 가져오기 (userId==null 일 때)
+	@Override
+	public HashMap<String,Object> selectOnePost(int boardNo) {
+	
+	Connection conn = JDBCTemplate.getConnection();
+	
+		//총 4개의 데이터를 가져와야한다.
+		//1. 레시피 게시판 테이블에 있는 모든 데이터
+		//2. 해당 내용
+		//3. 해당 파일 경로
+		//4. 재료
+		//5. 마이냉장고 재료
+		RecipeDetail recipe=rDAO.selectOnePost(conn,boardNo);
+		ArrayList<Content> contentList = rDAO.selectOnePostContent(conn,boardNo);
+		ArrayList<File> fileList = rDAO.selectOnePostFile(conn,boardNo);
+		ArrayList<Ingredient> ingredientList = rDAO.selectOnePostIngredient(conn,boardNo);
+		
+		
+		
+		JDBCTemplate.close(conn);
+		
+		HashMap<String,Object> hm = new HashMap<String,Object>();
+		
+		hm.put("recipeInfo", recipe);
+		hm.put("contentList", contentList);
+		hm.put("fileList", fileList);
+		hm.put("ingredientList", ingredientList);
+		
+		
+		return hm;
+		
+	}
+	
+	
+	
+	
+	
+	
 	//레시피 추천 +1 반영
 	@Override
 	public int postLike(int boardNo,int likeNum) {
@@ -241,21 +281,44 @@ public class RecipeServiceImpl implements RecipeService {
 		return mList;
 	}
 
-
-
-	
-
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+	@Override
+	public int insertUserRecipePost(UserRecipeBoard arb, String[] uploadImageNameValues,
+			String[] uploadImagePathValues, String[] ingredientNameValues, String[] ingredientNum,
+			String[] recipeContent) {
+		
+		Connection conn = JDBCTemplate.getConnection();
+		int result = rDAO.insertUserRecipeBoard(conn, arb);
+		int totalResult = result;
+		
+		if(result>0)
+		{
+			JDBCTemplate.commit(conn);
+			
+			int boardNo = rDAO.selectOneRecipePost(conn, arb.getTitle(), arb.getUserId());
+			
+			int ingredientResult = rDAO.insertRecipePostIngredient(conn, boardNo, ingredientNameValues, ingredientNum);
+				if(ingredientResult==ingredientNameValues.length) JDBCTemplate.commit(conn);
+				else JDBCTemplate.rollback(conn);
+			int contentResult = rDAO.insertRecipePostContent(conn, boardNo, recipeContent);
+				if(contentResult==recipeContent.length) JDBCTemplate.commit(conn);
+				else JDBCTemplate.rollback(conn);
+			int imageResult =rDAO.insertRecipePostImage(conn, boardNo, uploadImageNameValues, uploadImagePathValues);
+				if(imageResult==uploadImageNameValues.length) JDBCTemplate.commit(conn);
+				else JDBCTemplate.rollback(conn);
+			
+				totalResult += ingredientNameValues.length+recipeContent.length+uploadImageNameValues.length;
+		}else
+		{
+			JDBCTemplate.rollback(conn);
+		}
+		
+		return totalResult;
+		
+	}
+		
+		
+		
+		
 	
 	
 }

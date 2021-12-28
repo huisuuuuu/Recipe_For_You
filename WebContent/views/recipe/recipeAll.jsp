@@ -41,6 +41,46 @@
     <link rel="stylesheet" type="text/css" href="/assets/css/ourRecipeNavi.css">
 
 
+<style>
+	
+.image {
+  position:relative;
+  
+ }
+ 
+.image:hover
+	{
+		filter: grayscale(100%) opacity(0.8);
+		
+	}
+	
+#explain {
+  position:absolute;
+  visibility:hidden;
+ 
+ }
+
+
+.image:hover #explain  {
+   visibility:visible;
+   color:white;
+   font-size:30px;
+   transform: translate(100px,110px);
+   
+ }  
+	
+</style>
+
+
+
+
+
+
+
+
+
+
+
 </head>
 
 
@@ -155,7 +195,7 @@
                 <div id="menu_content3_bottom">
           <%--       <%if(m!=null) {%>  --%>
                    <button type="button" class="btn btn-success" id="myRecipeBtn">MY Recipe</a></button>
-                    <button type="button" class="btn btn-success">레시피 등록</button>
+                    <button type="button" class="btn btn-success" id="recipeUploadBtn">레시피 등록</button>
                 
           <%--        <%} %>     --%>
                  	  
@@ -167,6 +207,14 @@
 			$('#myRecipeBtn').click(function(){
 				
 				location.replace("/recipe/recipeBoard/myRecipe.do");
+				
+			});
+		</script>
+		
+			<script>
+			$('#recipeUploadBtn').click(function(){
+				
+				location.replace("/views/recipe/userRecipePostUpload.jsp");
 				
 			});
 		</script>
@@ -202,14 +250,17 @@
            </script>
            
            
+           
             <div id="content_recipe_wrapper">
                      <div class="content_recipe" id="recipe1">
                
+               
+               <%if(m!=null){ %>
                			<%for(OurRecipe o:list) {%>
          
                         <div class="recipe_content">																	<%--useID 변경할 곳 --%>
                         	<a href="/recipe/recipeSelectContent.do?boardNo=<%=o.getBoardNo()%>&currentPage=<%=currentPage %>&userId=user11" style="text-decoration: none; color: inherit;">
-	                            <div class="image" style="text-align: center;"><img src="<%=o.getFilePath()%>" width="278" height="278" ></div>
+	                            <div class="image" style="text-align: center;"><p id ="explain">추천수 <%=o.getLikeNum() %></p><img src="<%=o.getFilePath()%>" width="278" height="278" class="allImage" ></div>
 	                            <div class="subtitle" style="text-align:center" ><%=o.getSubTitle() %></div>
 	                            <div class="title" style="text-align:center"><b><%=o.getTitle() %></b></div>
 	                            <div class="menu"  style="color:gray">
@@ -226,10 +277,30 @@
                             </a>
                         </div>
                         <%} %>
-                        
-                      
-           
+                     <%}else{ %>  
+                      			<%for(OurRecipe o:list) {%>
          
+                        <div class="recipe_content">																
+                        	<a href="/recipe/recipeSelectContent.do?boardNo=<%=o.getBoardNo()%>&currentPage=<%=currentPage %>" style="text-decoration: none; color: inherit;">
+	                            <div class="image" style="text-align: center;"><p id ="explain">추천수 <%=o.getLikeNum() %></p><img src="<%=o.getFilePath()%>" width="278" height="278" class="allImage" ></div>
+	                            <div class="subtitle" style="text-align:center" ><%=o.getSubTitle() %></div>
+	                            <div class="title" style="text-align:center"><b><%=o.getTitle() %></b></div>
+	                            <div class="menu"  style="color:gray">
+	                                <div class="menu_level" style="transform: translateX(45px)"> 
+	                                <img src="/assets/images/Level.png"  width="20px" height="20px" class="img">
+	                                <span ><%=o.getLevelName() %></span>
+	                                </div>
+	                                <div class="menu_time" style="transform: translateX(-15px)">
+	                                    <img src="/assets/images/clock_time.png" width="20px" height="20px" class="img">
+	                                    <span><%=o.getTimeName() %></span>
+	                                </div>
+	                            </div>
+	                            <div class="empty" style="text-align:center"><%=o.getUserId() %></div>
+                            </a>
+                        </div>
+                        <%} %>
+         
+         			<%} %>
                 
             </div>
 

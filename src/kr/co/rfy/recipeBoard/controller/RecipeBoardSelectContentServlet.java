@@ -35,18 +35,31 @@ public class RecipeBoardSelectContentServlet extends HttpServlet {
 		
 		int boardNo=Integer.parseInt(request.getParameter("boardNo"));
 		int currentPage=Integer.parseInt(request.getParameter("currentPage"));
+		
+		//추가한 변수
 		String userId = request.getParameter("userId");
 		
 		
 		
 		RecipeService rService = new RecipeServiceImpl();
-		HashMap<String,Object> recipeDetailInfo=rService.selectOnePost(boardNo,userId);
+		HashMap<String,Object> recipeDetailInfo =null;
+		if(userId==null)
+		{
+		 recipeDetailInfo=rService.selectOnePost(boardNo);
+		}else
+		{
+		 recipeDetailInfo=rService.selectOnePost(boardNo,userId);
+		}
+		
+		
+		
 
 		RequestDispatcher view =request.getRequestDispatcher("/views/recipe/recipeDetail.jsp");
 		request.setAttribute("recipeDetailInfo", recipeDetailInfo);
 		request.setAttribute("currentPage", currentPage);
 		
 		view.forward(request, response);
+		
 		
 		
 		

@@ -1,256 +1,153 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-	<!-- jQuery -->
-	<script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
-	<!-- bootstrap -->
-	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
-	<%-- Required meta tags --%>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <%--font--%>
-    <style>    
-    @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR&family=Noto+Serif+KR:wght@200&display=swap');
-    </style>
-    <!-- header, footer css -->
-    <link rel="stylesheet" type="text/css" href="/assets/css/recipeHeaderFooter.css">
-<title>냉장고를 부탁해 회원가입</title>
+<!-- jQuery -->
+<script src="https://code.jquery.com/jquery-3.6.0.js"
+	integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+	crossorigin="anonymous"></script>
+<!-- bootstrap -->
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+	rel="stylesheet"
+	integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
+	crossorigin="anonymous">
+<script
+	src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+	integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+	crossorigin="anonymous"></script>
+<%-- Required meta tags --%>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<%--font--%>
 <style>
-       *{
-            box-sizing: border-box;
-        }
-        #innerContentWrapper {
-            margin: 0px auto;
-            width: 600px;
-            height: 950px;
-            padding: 20px;
-        }
-        #title{
-            margin: auto;
-            text-align: center;
-            font-size: 23px;
-            font-weight: 700;
-            border-left: 1px solid black;
-            border-right: 1px solid black;
-            width: 100px;
-            height: 20px;
-            line-height: 20px;
-        }
-        .th {
-            float: left;
-            width: 100px;
-            height : 48px;
-            text-align: left;
-            line-height: 48px;
-            font-size: 16px;
-        }
-		.td{
-			line-height:46px;
-		}
-        input{
-            height : 50px;
-            width : 350px;
-            border : 1px solid #707070;
-            padding-left: 10px;
-        }
-        button{
-            height : 50px;
-            width : 100px;
-            background-color: white;
-            border: 1px solid #7FB292;
-            color: #7FB292;
-        }
-        button:hover{
-            font-weight: bolder;
-        }
-        .validation{
-            width : 350px;
-            height : 24px;
-        }
-        #consent{
-            height : 20px;
-            width : 20px;
-            margin-top: 13px;
-        }
-        #showTOS{
-            margin-right: 110px;
-            line-height: 45px;
-            float: right;
-            color: #7FB292;
-        }
-        .greenBtn{
-            background-color: #7FB292;
-            color: white;
-            border: 0px;
-        }
-        .Modal{
-            top: 20%
-        }
-        .vBar{
-            font-size: 16px;
-            font-weight: 500;
-        }
-        #joinBtn:hover{
-            color: black;
-        }
-        #ag{
-        	line-height: 20px;
-        }
-        .indent{
-        	margin-left: 10px;
-        	text-indent: 10px;
-        }
-   </style>
+@import
+	url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR&family=Noto+Serif+KR:wght@200&display=swap')
+	;
+</style>
+<!-- header, footer css -->
+<link rel="stylesheet" type="text/css"
+	href="/assets/css/recipeHeaderFooter.css">
+<!-- CSS -->
+<link rel="stylesheet" type="text/css" href="/assets/css/memberJoin.css">
+<title>냉장고를 부탁해 회원가입</title>
 
 </head>
 <body>
-     <div id="wrapper">
-        <div class="header fixed-top" style="position:fixed;background-color: white">
-            <div class="top">
-                <div class=top-img><img src="/assets/common/images/topicon.png" alt="" width="18px" height="25px"></div>
-                <span class="top1 align">마이냉장고에 나만의 식재료를 등록하고 레시피를 추천 받아 보세요!</span>
-            </div>
-            <div class="header1">
-                <a href="" class="logo">
-                    <img src="/assets/common/images//main%20logo.png" alt="">
-                </a>
-                <div class="box-user">
-                   <a href="" class="mypage">
-                    <img src="/assets/common/images//headericon1.png" alt="" width="23px" height="28px">
-                </a>
-                <a href="" class="login">
-                    <img src="/assets/common/images//headericon2.png" alt="" width="80px" height="30px">
-                </a>
-                </div>
-                
-            </div>
+	<div id="wrapper">
 
-            <div class="navibar container-fluid">
-                <nav class="navbar navbar-expand-lg nav-distance">
-                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                            <li class="nav-item">
-                                <a class="nav-link active nav-about" href="#">ABOUT</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link active nav-recipe" href="/recipe/recipeBoard/selectAll.do">레시피</a>
-                                <ul class="submenu">
-                                    <li><a href="">모두보기</a></li>
-                                    <li><a href="/recipe/recipeBoardSelectList.do?recipe=hansik">한식</a></li>
-                                    <li><a href="/recipe/recipeBoardSelectList.do?recipe=yangsik">양식</a></li>
-                                    <li><a href="/recipe/recipeBoardSelectList.do?recipe=ilsik">일식</a></li>
-                                    <li><a href="/recipe/recipeBoardSelectList.do?recipe=jungsik">중식</a></li>
-                                    <li><a href="/recipe/recipeBoardSelectList.do?recipe=bunsik ">분식</a></li>
-                                    <li><a href="/recipe/recipeBoardSelectList.do?recipe=vege">채식</a></li>
-                                    <li><a href="/recipe/recipeBoardSelectList.do?recipe=dite">다이어트</a></li>
-                                    <li><a href="/recipe/recipeBoardSelectList.do?recipe=banchan">밑반찬</a></li>
-                                    <li><a href="/recipe/recipeBoardSelectList.do?recipe=annju">안주</a></li>
-                                </ul>
-                            </li>
+	</div>
 
-                            <li class="nav-item">
-                                <a class="nav-link active nav-info" href="#">고객센터</a>
-                                <ul class="submenu">
-                                    <li><a href="">공지사항</a></li>
-                                    <li><a href="">자주하는질문</a></li>
-                                </ul>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link active nav-mypage" href="#">마이냉장고</a>
-                            </li>
-                        </ul>
-                    </div>
-                </nav>
-                <div class=" box-search d-flex justify-content-center h-100">
-                    <div class="searchbar">
-                        <input class="search_input" type="text" name="" placeholder="">
-                        <a href="" class="search_icon"><i class="fas fa-search"></i></a>
-                    </div>
-                </div>
+		<div class="contents">
+			<div id="innerContentWrapper">
+				<form action="/member/memberJoin.do" method="post" id="joinForm">
+					<div>
+						<H3 style=text-align:center>|  회원가입  |</H3>
+					</div>
+					<br><br>
+					<!--아이디-->
+					<div class="th">아이디</div>
+					<div class="td">
+						<input type="text" name="userId" placeholder=" 6자 이상의 영문 혹은 영문과 숫자 조합" maxlength="12" data-name="아이디" class="essential">
+						<button id="checkId" type="button">중복확인</button>
+						<br>
+					</div>
+					<div class="validation" style="display: none;">
+						<div class="th"></div>
+						<span>6자 이상의 영문 혹은 영문과 숫자 조합</span>
+					</div>
+					<br>
 
-            </div>
-        </div>
-        
-        <div class="contents">
-			   <div id="innerContentWrapper">
-		        <form action="/member/memberJoin.do" method="post" id="joinForm">
-		            <div><div id="title">회원가입</div></div><br><br>
-		            
-		            <!--아이디-->
-		            <div class="th">아이디 </div>
-		            <div class="td">
-		                <input type="text" name="userId" placeholder=" 6자 이상의 영문 혹은 영문과 숫자 조합" maxlength="12" data-name="아이디" class="essential">
-		                <button id="checkId" type="button">중복확인</button><br>
-		            </div>
-		            <div class="validation" style="display:none;"><div class="th"></div><span>6자 이상의 영문 혹은 영문과 숫자 조합</span></div><br>
-		            
-		            <!--비밀번호-->
-		            <div class="th">비밀번호 </div>
-		            <div class="td">
-		                <input type="password" name="userPwd" placeholder=" 비밀번호를 입력해주세요" maxlength="14" data-name="비밀번호" class="essential">
-		            </div>
-		            <div class="validation" style="display:none;"><div class="th"></div><span>8자 이상의 영문, 숫자, 특수문자 조합</span></div><br>
-		            
-		            <!--비밀번호 확인-->
-		            <div class="th">비밀번호 확인</div>
-		            <div class="td">
-		                <input type="password" name="userPwd_re" placeholder=" 비밀번호를 한번 더 입력해주세요" maxlength="14" data-name="비밀번호 확인" class="essential">
-		            </div>
-		            <div class="validation" style="display:none;"><div class="th"></div><span>비밀번호를 확인해주세요</span></div><br>
-		
-		            <!--이름-->
-		            <div class="th">이름 </div>
-		            <div class="td">
-		            <input type="text" name="userName" placeholder=" 이름을 입력해주세요" data-name="이름" maxlength="10" class="essential">
-		            </div>
-		            <div class="validation" style="display:none;"><div class="th"></div><span>2자 이상의 한글</span></div><br>
-		
-		            <!--이메일-->
-		            <div class="th">이메일 </div>
-		            <div class="td">
-			            <input type="email" name="userEmail" placeholder=" 예: member@join.com" data-name="이메일" class="essential">
-		                <button id="checkEmail" type="button">인증하기</button><br>
-		            </div>
-					<div class="validation" style="display:none;"><div class="th"></div><span>이메일 형식으로 작성</span></div><br>
-					<div style="display:none;" id="inputAuthKey">
+					<!--비밀번호-->
+					<div class="th">비밀번호</div>
+					<div class="td">
+						<input type="password" name="userPwd" placeholder=" 비밀번호를 입력해주세요" maxlength="14" data-name="비밀번호" class="essential">
+					</div>
+					<div class="validation" style="display: none;">
+						<div class="th"></div>
+						<span>8자 이상의 영문, 숫자, 특수문자 조합</span>
+					</div>
+					<br>
+
+					<!--비밀번호 확인-->
+					<div class="th">비밀번호 확인</div>
+					<div class="td">
+						<input type="password" name="userPwd_re" placeholder=" 비밀번호를 한번 더 입력해주세요" maxlength="14" data-name="비밀번호 확인" class="essential">
+					</div>
+					<div class="validation" style="display: none;">
+						<div class="th"></div>
+						<span>비밀번호를 확인해주세요</span>
+					</div>
+					<br>
+
+					<!--이름-->
+					<div class="th">이름</div>
+					<div class="td">
+						<input type="text" name="userName" placeholder=" 이름을 입력해주세요" data-name="이름" maxlength="10" class="essential">
+					</div>
+					<div class="validation" style="display: none;">
+						<div class="th"></div>
+						<span>2자 이상의 한글</span>
+					</div>
+					<br>
+
+					<!--이메일-->
+					<div class="th">이메일</div>
+					<div class="td">
+						<input type="email" name="userEmail" placeholder=" 예: member@join.com" data-name="이메일" class="essential">
+						<button id="checkEmail" type="button">인증하기</button>
+						<br>
+					</div>
+					<div class="validation" style="display: none;">
+						<div class="th"></div>
+						<span>이메일 형식으로 작성</span>
+					</div>
+					<br>
+					<div style="display: none;" id="inputAuthKey">
 						<div class="th">인증번호</div>
 						<div class="td">
-							<input type="text" id="authKeyNo" placeholder="인증번호를 입력하세요" data-name="인증번호" value="auth"/>
-							<button id="authKeyCheck" type="button">인증번호확인</button><br>
+							<input type="text" id="authKeyNo" placeholder="인증번호를 입력하세요" data-name="인증번호" value="auth" />
+							<button id="authKeyCheck" type="button">인증번호확인</button>
+							<br>
 						</div>
-					</div><br>
-		
-		            <!--전화번호-->
-		            <div class="th">전화번호 </div>
-		            <div class="td">
-		                <input type="text" name="userPhone" placeholder=" 숫자만 입력해주세요" maxlength="11" data-name="전화번호" class="essential">
-		            </div>
-		            <div class="validation" style="display:none;"><div class="th"></div><span>숫자만 입력</span></div><br>
-		
-		            <!--이용약관동의-->
-		            <div class="th">이용약관 </div>
-		            <div class="td">
-		                <label><input type="checkbox" name="userConsent" id="consent" class="form-check-input" value="Y" data-name="동의" vali="T"> 동의</label>
-		                <a type="button" id="showTOS" data-bs-toggle="modal" data-bs-target="#tosModal">약관보기 &gt; </a>
-		            </div><br>
-		                 
-		            <br><br><br>
-		            <div class="th"></div><input type="button" value="회원가입" id="joinBtn" class="greenBtn" data-name="회원가입">
-		        </form>
-		            <!-- 이용약관 Modal -->
-		            <div class="modal fade" id="tosModal" tabindex="-1" aria-labelledby="tosModalLabel" aria-hidden="true">
-		              <div class="modal-dialog modal-dialog-scrollable">
-		                <div class="modal-content">
-		                  <div class="modal-header">
-		                    <h5 class="modal-title" id="tosModalLabel">이용약관</h5>
-		                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-		                  </div>
-		                  <div class="modal-body" id="tosBody">
-		                    	< 2팀 >('www.Recipe_For_You.co.kr'이하 '냉장고를 부탁해')은(는) 「개인정보 보호법」 제30조에 따라 정보주체의 개인정보를 보호하고 이와 관련한 고충을 신속하고 원활하게 처리할 수 있도록 하기 위하여 다음과 같이 개인정보 처리방침을 수립·공개합니다. <br />
+					</div>
+					<br>
+
+					<!--전화번호-->
+					<div class="th">전화번호</div>
+					<div class="td">
+						<input type="text" name="userPhone" placeholder=" 숫자만 입력해주세요" maxlength="11" data-name="전화번호" class="essential">
+					</div>
+					<div class="validation" style="display: none;">
+						<div class="th"></div>
+						<span>숫자만 입력</span>
+					</div>
+					<br>
+
+					<!--이용약관동의-->
+					<div class="th">이용약관</div>
+					<div class="td">
+						<label>&nbsp&nbsp&nbsp&nbsp&nbsp<input type="checkbox" name="userConsent" id="consent" class="form-check-input" value="Y" data-name="동의" vali="T">&nbsp동의</label>
+						<a type="button" id="showTOS" data-bs-toggle="modal" data-bs-target="#tosModal">약관보기 &gt; </a>
+					</div>
+					<br><br><br><br>
+					<div class="th"></div>
+					<input type="button" value="회원가입" id="joinBtn" class="greenBtn"
+						data-name="회원가입">
+				</form>
+				<!-- 이용약관 Modal -->
+				<div class="modal fade" id="tosModal" tabindex="-1"
+					aria-labelledby="tosModalLabel" aria-hidden="true">
+					<div class="modal-dialog modal-dialog-scrollable">
+						<div class="modal-content">
+							<div class="modal-header">
+								<h5 class="modal-title" id="tosModalLabel">이용약관</h5>
+								<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+							</div>
+							<div class="modal-body" id="tosBody">
+									< 2팀 >('www.Recipe_For_You.co.kr'이하 '냉장고를 부탁해')은(는) 「개인정보 보호법」 제30조에 따라 정보주체의 개인정보를 보호하고 이와 관련한 고충을 신속하고 원활하게 처리할 수 있도록 하기 위하여 다음과 같이 개인정보 처리방침을 수립·공개합니다. <br />
 									○ 이 개인정보처리방침은 2021년 12월 21부터 적용됩니다. <br /><br />
 									제1조(개인정보의 처리 목적) <br />
 										<p class="indent">
@@ -358,249 +255,234 @@
 										<p class="indent">
 										① 이 개인정보처리방침은 2021년 12월 21부터 적용됩니다.
 										</p><br />
-		                  </div>
-		                  <div class="modal-footer">
-		                    <button type="button" class="btn greenBtn" data-bs-dismiss="modal">확인</button>
-		                  </div>
-		                </div>
-		              </div>
-		            </div>      
-		   		
-		   		<!-- 알림 Modal -->
-		            <div class="modal fade Modal" id="alertModal" tabindex="-1" aria-labelledby="alertModalLabel" aria-hidden="true">
-		              <div class="modal-dialog modal-dialog-scrollable">
-		                <div class="modal-content">
-		                  <div class="modal-header">
-		                    <h5 class="modal-title" id="alertModalLabel">알림메세지</h5>
-		                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-		                  </div>
-		                  <div class="modal-body" id="alertModalMSG">
-		                  </div>
-		                  <div class="modal-footer">
-		                    <button type="button" class="btn greenBtn" data-bs-dismiss="modal">확인</button>
-		                  </div>
-		                </div>
-		              </div>
-		            </div>
-    		</div>
-        </div>
-        
-        
-        <div class="footer">
-            <div class="footer1 container">
-            <pre>
-(주)컬쳐히어로
-            
-            
-상호:(주)컬쳐히어로   대표자:양준규  개인정보관리책임자:장호진  사업자 등록번호:144-81-35400
-            
-통신판매업 신고:제 2015-경기성남-1940호  전화:1833-8307  팩스:031-8017-1800
-            
-주소:(13487) 경기도 성남시 분당구 삼평동625 판교세븐벤처밸리1단지 제3동 1001호 이메일:commerce@culturehero.net
-            </pre>
-            </div>
-            <div class="footer-bottom">
-               <div id="footer-word">
-                <pre>      이용약관   개인정보처리방침   공지사항   자주묻는질문   광고/제휴문의:contact@culturehero.net</pre>
-                </div>
-            </div>
-        </div>
-    </div>
+							</div>
+							<div class="modal-footer">
+								<button type="button" class="btn greenBtn" data-bs-dismiss="modal">확인</button>
+							</div>
+						</div>
+					</div>
+				</div>
 
-    <script>
+				<!-- 알림 Modal -->
+				<div class="modal fade Modal" id="alertModal" tabindex="-1"
+					aria-labelledby="alertModalLabel" aria-hidden="true">
+					<div class="modal-dialog modal-dialog-scrollable">
+						<div class="modal-content">
+							<div class="modal-header">
+								<h5 class="modal-title" id="alertModalLabel">알림메세지</h5>
+								<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+							</div>
+							<div class="modal-body" id="alertModalMSG"></div>
+							<div class="modal-footer">
+								<button type="button" class="btn greenBtn" data-bs-dismiss="modal">확인</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+
+		<div class="footer">
+	<%@include file="/views/common/footer.jsp"%>
+		</div>
+	</div>
+	<!-- 퀵바 -->
+	<%@include file="/views/common/quickbar.jsp"%>
+	<script>
 		var authKey;
-        //입력받은 값 유효성검사 호출
-        $("input[name]").keyup(function() {
-            var exp = "";
-            
-            //입력하고 있는 데이터에 맞는 정규식을 찾아 exp에 넣음
-            if ($(this).attr("name") == "userId") { // 아이디
-                exp = "^[a-z0-9]{6,12}$";
-            } else if ($(this).attr("name") == "userPwd") { // 비밀번호
-                exp = "^(?=.+[a-z])(?=.+[0-9])(?=.+[~!@#$%^&*-+]).{8,14}";
-            } else if ($(this).attr("name") == "userPwd_re") {//비밀번호 확인    
-                var pw=$("input[name=userPwd]").val();
-               	if($(this).val()==pw){
-                    $(this).parent().next().children().next().css("color", "green");
-                    $(this).attr("vali","T");
-                }else{
-                    $(this).parent().next().children().next().css("color", "red");
-                    $(this).attr("vali","F");
-                }
-                $(this).parent().next().css("display","block");
-                return;
-            } else if ($(this).attr("name") == "userName") {//이름 확인
-            	exp = "^[가-힣]{2,10}$";
-            } else if ($(this).attr("name") == "userEmail") {//이메일 확인
-            	exp = ".+@.+";
-            } else if ($(this).attr("name") == "userPhone") {//전화번호 확인
-            	exp = "^[0-9]{10,11}$";
-            }
-                $(this).parent().next().css("display","block");
-            
-            //정규식 결과에 따라 span 태그에 있는 메시지를 보여줌
-            var result = checkValidation($(this).val(), exp);
-            if (result) {
-                    $(this).parent().next().children().next().css("color", "green");
-                    $(this).attr("vali","T");
-            } else {
-                    $(this).parent().next().children().next().css("color", "red");
-                    $(this).attr("vali","F");
-            }
-            $(this).parent().next().css("display","block");
-        });
-        
-        //입력값과 정규식을 매개변수로 받아 유효성 검사
-        function checkValidation(value, exp) {
-            var exp = new RegExp(exp);
-            return exp.test(value);
-        }
+		//입력받은 값 유효성검사 호출
+		$("input[name]").keyup(function() {
+							var exp = "";
+							//입력하고 있는 데이터에 맞는 정규식을 찾아 exp에 넣음
+							if ($(this).attr("name") == "userId") { // 아이디
+								exp = "^[a-z0-9]{6,12}$";
+							} else if ($(this).attr("name") == "userPwd") { // 비밀번호
+								exp = "^(?=.+[a-z])(?=.+[0-9])(?=.+[~!@#$%^&*-+]).{8,14}";
+							} else if ($(this).attr("name") == "userPwd_re") {//비밀번호 확인    
+								var pw = $("input[name=userPwd]").val();
+								if ($(this).val() == pw) {
+									$(this).parent().next().children().next().css("color", "green");
+									$(this).attr("vali", "T");
+								} else {
+									$(this).parent().next().children().next().css("color", "red");
+									$(this).attr("vali", "F");
+								}
+								$(this).parent().next().css("display", "block");
+								return;
+							} else if ($(this).attr("name") == "userName") {//이름 확인
+								exp = "^[가-힣]{2,10}$";
+							} else if ($(this).attr("name") == "userEmail") {//이메일 확인
+								exp = ".+@.+";
+							} else if ($(this).attr("name") == "userPhone") {//전화번호 확인
+								exp = "^[0-9]{10,11}$";
+							}
+							$(this).parent().next().css("display", "block");
 
-        // 아이디 중복 확인
-        $("#checkId").click(function() {
-            var userId = $("input[name=userId]").val();
-            var exp = "^[a-z0-9]{6,12}$";
-        	var $msg = $("#alertModalMSG");
-        	var $modal = $("#alertModal");
-            
-            	//아이디 중복확인전 다시한번 아이디 유효성 검사
-            if(checkValidation(userId,exp)){
-	            $.ajax({
-	            	url : "/member/AjaxIdCheck.do",
-	            	type : "post",
-	            	data : {"userId":userId},
-	            	success : function(idCheck){
-	            		// idcheck값으로 1이 오면 중복된 아이디
-	            		if(idCheck==0){
-	            			$("input[name=userId]").attr("idCheck",userId) // userId 태그에 아이디 사용가능 표시로 속성을 추가
-	            			$msg.html("사용가능한 아이디입니다.");
-	            			$modal.modal("show");
-	            		}else{
-	            			$msg.html("이미 사용중인 아이디입니다.");
-	            			$modal.modal("show");
-	            		}	
-	            	},
-	            	error : function(){
-	            		location.replace("/views/commons/error.jsp")
-	            	}
-	            })
-            }else{
-            	$msg.html("6자 이상의 영문 혹은 영문과 숫자 조합만 가능합니다.");
-            	$modal.modal("show");
-            };
-        })
-        	// 이메일 인증
-        $("#checkEmail").click(function(){
-        	var email = $("input[name=userEmail]").val();
-        	var exp = ".+@.+";
-        	var $msg = $("#alertModalMSG");
-        	var $modal = $("#alertModal");
+							//정규식 결과에 따라 span 태그에 있는 메시지를 보여줌
+							var result = checkValidation($(this).val(), exp);
+							if (result) {
+								$(this).parent().next().children().next().css("color", "green");
+								$(this).attr("vali", "T");
+							} else {
+								$(this).parent().next().children().next().css("color", "red");
+								$(this).attr("vali", "F");
+							}
+							$(this).parent().next().css("display", "block");
+						});
 
-        	// 인증번호를 보내기전 email 유효성 검사
-            if(checkValidation(email,exp)){
-	            $.ajax({
-	            	url : "/member/AjaxEmailCheck.do",
-	            	type : "post",
-	            	data : {"userEmail":email},
-	            	success : function(emailCheck){
-	            		// emailCheck 값으로 fail이 오면 중복된 이메일
-	            		var result = $.trim(emailCheck);
-	            		if(result!="fail"){
-	            			$("input[name=userEmail]").attr("emailCheck",email) // userEmail 태그에 인증번호를 보낸 이메일주소를 속성으로 추가
-	            			$("#inputAuthKey").css("display","block");
-	            			authKey = emailCheck;
-	            			$msg.html("입력하신 이메일주소로 인증번호를 발송하였습니다.");
-	            			$modal.modal("show");
-	            		}else{
-	            			$msg.html("이미 사용중인 이메일입니다.");
-	            			$modal.modal("show");
-	            		}	
-	            	},
-	            	error : function(){
-	            		location.replace("/views/commons/error.jsp")
-	            	}
-	            })
-            }else{
-            	$msg.html("이메일 형식이 아닙니다.");
-            	$modal.modal("show");
-            };
-        })
-        	//인증번호 확인
-        $("#authKeyCheck").click(function(){
-        	var authKeyNo = $("#authKeyNo").val();
-        	var $msg = $("#alertModalMSG");
-        	var $modal = $("#alertModal");
-        	
-        	if($("input[name=userEmail]").attr("emailCheck")==$("input[name=userEmail]").val()){
-	        	if(authKeyNo = authKey){
-	    			$msg.html("인증되었습니다.");
-	    			$modal.modal("show");
-	    			$("input[name=userEmail]").attr("data-name",$("input[name=userEmail]").val());
-	    			return ;
-	        	}else{
-	        		$msg.html("인증번호가 다릅니다.");
-	    			$modal.modal("show");
-	    			$("input[name=userEmail]").removeAttr("emailCheck");
-	    			return ;
-	        	}
-	        	$msg.html("이메일주소가 변경되었습니다.");
-    			$modal.modal("show");
-        	}
-        })
-        
-			// 회원가입 버튼을 클릭하여 폼태그 사항을 submit하기전 입력사항 검사
-        $("#joinBtn").click(function(){
-        	var $msg = $("#alertModalMSG");
-        	var $modal = $("#alertModal");
-        	var $form = $("#joinForm");
-        	var $userId = $("input[name=userId]");
+		//입력값과 정규식을 매개변수로 받아 유효성 검사
+		function checkValidation(value, exp) {
+			var exp = new RegExp(exp);
+			return exp.test(value);
+		}
 
-        	$.each($(".essential"), function(index, item){
-        			// 입력값이 없을 경우
-        		if($(this).val()==""){
-        				console.log($(this).val());
-        				var dataName = $(this).attr("data-name");
-        				$(this).focus();
-        				$msg.html(dataName+"을(를) 입력해주세요.");
-                    	$modal.modal("show");
-                    	$form = "";
-	                return false;
-        		}
-        			// 이용약관동의 체크를 하지 않았을 경우
-	        	if(!$("#consent").prop("checked")){
-	        		$msg.html("이용약관에 동의해주세요.");
-	        		$modal.modal("show");
-		           	$form = "";
-		            return false;
-	        	}
-        			// 유효성 검사규칙에 맞지 않을 경우
- 	        	if($(this).attr("vali")!="T"){
- 	        		$msg.html("입력정보를 확인해주세요.");
- 	        		$modal.modal("show");
-	            	$form = "";
-	            	$(this).focus();
-	            	console.log($(this).val());
-	            	return false;
-    			}
- 	       			// 이메일 인증을 하지 않았을 경우 
- 	        	if($("input[name=userEmail]").attr("data-name")!=$("input[name=userEmail]").val()){
- 	        		$msg.html("이메일 인증을 해주세요");
- 	        		$modal.modal("show");
-	            	$form = "";
-	            	return false;
- 	        	}
-        			// 아이디 중복확인을 하지 않았을 경우 
- 	        	if($userId.attr("idCheck")!=$userId.val()){
- 	        		$msg.html("아이디 중복확인을 해주세요");
- 	        		$modal.modal("show");
-	            	$form = "";
-	            	return false;
- 	        	}
-        	})
-        	if($form!=""){
-        		$form.submit();
-        	}
-        })
-    </script>    
+		// 아이디 중복 확인
+		$("#checkId").click(function() {
+			var userId = $("input[name=userId]").val();
+			var exp = "^[a-z0-9]{6,12}$";
+			var $msg = $("#alertModalMSG");
+			var $modal = $("#alertModal");
+
+			//아이디 중복확인전 다시한번 아이디 유효성 검사
+			if (checkValidation(userId, exp)) {
+				$.ajax({
+					url : "/member/AjaxIdCheck.do",
+					type : "post",
+					data : {"userId" : userId},
+					success : function(idCheck) {
+						// idcheck값으로 1이 오면 중복된 아이디
+						if (idCheck == 0) {
+							$("input[name=userId]").attr("idCheck", userId) // userId 태그에 아이디 사용가능 표시로 속성을 추가
+							$msg.html("사용가능한 아이디입니다.");
+							$modal.modal("show");
+						} else {
+							$msg.html("이미 사용중인 아이디입니다.");
+							$modal.modal("show");
+						}
+					},
+					error : function() {
+						location.replace("/views/commons/error.jsp")
+					}
+				})
+			} else {
+				$msg.html("6자 이상의 영문 혹은 영문과 숫자 조합만 가능합니다.");
+				$modal.modal("show");
+			};
+		})
+		// 이메일 인증
+		$("#checkEmail").click(
+				function() {
+					var email = $("input[name=userEmail]").val();
+					var exp = ".+@.+";
+					var $msg = $("#alertModalMSG");
+					var $modal = $("#alertModal");
+
+					// 인증번호를 보내기전 email 유효성 검사
+					if (checkValidation(email, exp)) {
+						$.ajax({
+							url : "/member/AjaxEmailCheck.do",
+							type : "post",
+							data : {"userEmail" : email},
+							success : function(emailCheck) {
+								// emailCheck 값으로 fail이 오면 중복된 이메일
+								var result = $.trim(emailCheck);
+								if (result != "fail") {
+									$("input[name=userEmail]").attr("emailCheck", email) // userEmail 태그에 인증번호를 보낸 이메일주소를 속성으로 추가
+									$("#inputAuthKey").css("display", "block");
+									authKey = emailCheck;
+									$msg.html("입력하신 이메일주소로 인증번호를 발송하였습니다.");
+									$modal.modal("show");
+								} else {
+									$msg.html("이미 사용중인 이메일입니다.");
+									$modal.modal("show");
+								}
+							},
+							error : function() {
+								location.replace("/views/commons/error.jsp")
+							}
+						})
+					} else {
+						$msg.html("이메일 형식이 아닙니다.");
+						$modal.modal("show");
+					}
+					;
+				})
+		//인증번호 확인
+		$("#authKeyCheck").click(function() {
+							var authKeyNo = $("#authKeyNo").val();
+							var $msg = $("#alertModalMSG");
+							var $modal = $("#alertModal");
+
+							if ($("input[name=userEmail]").attr("emailCheck") == $("input[name=userEmail]").val()) {
+								if (authKeyNo = authKey) {
+									$msg.html("인증되었습니다.");
+									$modal.modal("show");
+									$("input[name=userEmail]").attr("data-name",$("input[name=userEmail]").val());
+									return;
+								} else {
+									$msg.html("인증번호가 다릅니다.");
+									$modal.modal("show");
+									$("input[name=userEmail]").removeAttr("emailCheck");
+									return;
+								}
+								$msg.html("이메일주소가 변경되었습니다.");
+								$modal.modal("show");
+							}
+						})
+
+		// 회원가입 버튼을 클릭하여 폼태그 사항을 submit하기전 입력사항 검사
+		$("#joinBtn").click(function() {
+					var $msg = $("#alertModalMSG");
+					var $modal = $("#alertModal");
+					var $form = $("#joinForm");
+					var $userId = $("input[name=userId]");
+
+					$.each($(".essential"), function(index, item) {
+						// 입력값이 없을 경우
+						if ($(this).val() == "") {
+							var dataName = $(this).attr("data-name");
+							$(this).focus();
+							$msg.html(dataName + "을(를) 입력해주세요.");
+							$modal.modal("show");
+							$form = "";
+							return false;
+						}
+						// 이용약관동의 체크를 하지 않았을 경우
+						if (!$("#consent").prop("checked")) {
+							$msg.html("이용약관에 동의해주세요.");
+							$modal.modal("show");
+							$form = "";
+							return false;
+						}
+						// 유효성 검사규칙에 맞지 않을 경우
+						if ($(this).attr("vali") != "T") {
+							$msg.html("입력정보를 확인해주세요.");
+							$modal.modal("show");
+							$form = "";
+							$(this).focus();
+							console.log($(this).val());
+							return false;
+						}
+						// 이메일 인증을 하지 않았을 경우 
+						if ($("input[name=userEmail]").attr("data-name") != $("input[name=userEmail]").val()) {
+							$msg.html("이메일 인증을 해주세요");
+							$modal.modal("show");
+							$form = "";
+							return false;
+						}
+						// 아이디 중복확인을 하지 않았을 경우 
+						if ($userId.attr("idCheck") != $userId.val()) {
+							$msg.html("아이디 중복확인을 해주세요");
+							$modal.modal("show");
+							$form = "";
+							return false;
+						}
+					})
+					if ($form != "") {
+						$form.submit();
+					}
+				})
+	</script>
 </body>
 </html>

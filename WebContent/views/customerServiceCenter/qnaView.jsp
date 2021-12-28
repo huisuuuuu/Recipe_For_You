@@ -34,7 +34,7 @@
 	height: 980px;
 	width: 1280px;
 	margin: 0 auto;
-
+	
 }
 
 #footer{
@@ -55,7 +55,7 @@
 	height: 400px;
 	width: 1000px;
 	margin: 0 auto;
-
+	border: 1px solid black;
 }
 
 #title{
@@ -65,7 +65,7 @@
 	height: 50px;
 	width: 1000px;
 	margin: 0 auto;
-
+	border: 1px solid black;
 }
 
 #regDage{
@@ -144,6 +144,7 @@ Member m = (Member)session.getAttribute("member");
 		
 		
 		<div id="footer">
+			<jsp:include page="/views/common/footer.jsp"></jsp:include>
 		</div>
 	</div>
 

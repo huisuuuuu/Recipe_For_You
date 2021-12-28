@@ -46,6 +46,18 @@ public class AdminRecipeBoard {
 		this.subTitle = subTitle;
 		this.userId = userId;
 	}
+	
+	public AdminRecipeBoard(int boardNo, String recipeCode, String levelCode, String timeCode, String title, String subTitle,
+			String userId) {
+		super();
+		this.boardNo = boardNo;
+		this.recipeCode = recipeCode;
+		this.levelCode = levelCode;
+		this.timeCode = timeCode;
+		this.title = title;
+		this.subTitle = subTitle;
+		this.userId = userId;
+	}
 
 	public AdminRecipeBoard(String boardCode, int boardNo, String recipeCode, String recipeName, String levelCode,
 			String levelName, String timeCode, String timeName, String title, String subTitle, String userId,

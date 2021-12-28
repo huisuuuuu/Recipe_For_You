@@ -46,6 +46,7 @@ div {
     padding: 30px 0;
 }
 
+
 .logo {
     width: 15.9%;
     height: 47px;
@@ -241,32 +242,6 @@ div {
     margin: 15px auto 40px auto;
 
 }
-
-
-
-.contents2-title {
-    width: 26.56%;
-    margin: 61px 470px 20px 470px;
-    text-align: center;
-    font-size: 20px;
-    font-family: 'Noto Serif KR', sans-serif;
-    font-weight: 700;
-    letter-spacing: 0.255em;
-}
-
-.contents2-button-more {
-    width: 6.25%;
-    height: 40px;
-    border: 1px solid #7FB292;
-    text-align: center;
-    padding-top: 8px;
-}
-
-.contents2-button-more > a {
-    color: #7FB292;
-    font-size: 14px;
-}
-
 
 
 

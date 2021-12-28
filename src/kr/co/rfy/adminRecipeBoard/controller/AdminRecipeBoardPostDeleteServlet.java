@@ -41,11 +41,12 @@ public class AdminRecipeBoardPostDeleteServlet extends HttpServlet {
 		
 		//비즈니스 로직 처리
 		AdminRecipeBoardService rbService = new AdminRecipeBoardServiceImpl();
-		int result = rbService.deletePost(boardNo,writer);
+		boolean result = rbService.deletePost(boardNo,writer);
+		System.out.println("호출 결과:"+result);
 		
 		RequestDispatcher view = request.getRequestDispatcher("/views/admin/deleteRecipePost.jsp");
 		
-		if(result>0)
+		if(result)
 		{
 			request.setAttribute("result",true);
 		}else

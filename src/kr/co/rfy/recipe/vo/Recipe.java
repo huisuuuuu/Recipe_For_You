@@ -41,45 +41,7 @@ public class Recipe {
 	private String time_name;
 	private String level_name;
 	private String content;
-	
-	
-	
-	
-	
-	
-	@Override
-	public String toString() {
-		return "Recipe [board_code=" + board_code + ", board_no=" + board_no + ", recipe_code=" + recipe_code
-				+ ", level_code=" + level_code + ", time_code=" + time_code + ", title=" + title + ", subtitle="
-				+ subtitle + ", user_id=" + user_id + ", regdate=" + regdate + ", like_num=" + like_num
-				+ ", view_count=" + view_count + ", end_YN=" + end_YN + ", file_path=" + file_path + ", time_name="
-				+ time_name + ", level_name=" + level_name + ", content=" + content + "]";
-	}
-	public Recipe(String board_code, int board_no, String recipe_code, String level_code, String time_code,
-			String title, String subtitle, String user_id, Date regdate, int like_num, int view_count, char end_YN,
-			String file_path, String time_name, String level_name, String content) {
-		super();
-		this.board_code = board_code;
-		this.board_no = board_no;
-		this.recipe_code = recipe_code;
-		this.level_code = level_code;
-		this.time_code = time_code;
-		this.title = title;
-		this.subtitle = subtitle;
-		this.user_id = user_id;
-		this.regdate = regdate;
-		this.like_num = like_num;
-		this.view_count = view_count;
-		this.end_YN = end_YN;
-		this.file_path = file_path;
-		this.time_name = time_name;
-		this.level_name = level_name;
-		this.content = content;
-	}
-	public Recipe() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
+	private int file_no;
 	public String getBoard_code() {
 		return board_code;
 	}
@@ -176,6 +138,50 @@ public class Recipe {
 	public void setContent(String content) {
 		this.content = content;
 	}
+	public int getFile_no() {
+		return file_no;
+	}
+	public void setFile_no(int file_no) {
+		this.file_no = file_no;
+	}
+	public Recipe() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+	public Recipe(String board_code, int board_no, String recipe_code, String level_code, String time_code,
+			String title, String subtitle, String user_id, Date regdate, int like_num, int view_count, char end_YN,
+			String file_path, String time_name, String level_name, String content, int file_no) {
+		super();
+		this.board_code = board_code;
+		this.board_no = board_no;
+		this.recipe_code = recipe_code;
+		this.level_code = level_code;
+		this.time_code = time_code;
+		this.title = title;
+		this.subtitle = subtitle;
+		this.user_id = user_id;
+		this.regdate = regdate;
+		this.like_num = like_num;
+		this.view_count = view_count;
+		this.end_YN = end_YN;
+		this.file_path = file_path;
+		this.time_name = time_name;
+		this.level_name = level_name;
+		this.content = content;
+		this.file_no = file_no;
+	}
+	@Override
+	public String toString() {
+		return "Recipe [board_code=" + board_code + ", board_no=" + board_no + ", recipe_code=" + recipe_code
+				+ ", level_code=" + level_code + ", time_code=" + time_code + ", title=" + title + ", subtitle="
+				+ subtitle + ", user_id=" + user_id + ", regdate=" + regdate + ", like_num=" + like_num
+				+ ", view_count=" + view_count + ", end_YN=" + end_YN + ", file_path=" + file_path + ", time_name="
+				+ time_name + ", level_name=" + level_name + ", content=" + content + ", file_no=" + file_no + "]";
+	}
+	
+	
+	
+	
 	
 	
 	

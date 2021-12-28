@@ -35,30 +35,32 @@ public class MemberWithDrawServlet extends HttpServlet {
 		// 회원탈퇴처리(정보 업데이트)하는 서블릿
 		
 		//로그인한 회원인지 확인
-		if(request.getSession().getAttribute("member")==null) response.sendRedirect("/views/common/error.jsp");
-
-		// 세션에서 아이디 가져오기
-		String userId = ((Member)request.getSession().getAttribute("member")).getUserId();
-		
-		// 비지니스 로직 처리
-		MemberService mService = new MemberServiceImpl();
-		int result = mService.memberWithDraw(userId);
-		
-		// 비지니스로직 처리에서 성공 실패 여부에 따라 메세지 및 페이지 설정
-		RequestDispatcher view = request.getRequestDispatcher("/views/member/memberMsg.jsp");
-		String addr = "/";
-		String msg = "";
-		if(result>0) {
-			msg = "회원탈퇴처리 되었습니다.";
-			// 세션파기
-			request.getSession().invalidate();			
+		if(request.getSession().getAttribute("member")==null) {
+			response.sendRedirect("/views/common/error.jsp");
 		}else {
-			msg = "회원탈퇴처리에 실패하였습니다. "+"<br>"+"- 지속적인 문제발생시 관리자에게 문의해주세요 -";
+			// 세션에서 아이디 가져오기
+			String userId = ((Member)request.getSession().getAttribute("member")).getUserId();
+			
+			// 비지니스 로직 처리
+			MemberService mService = new MemberServiceImpl();
+			int result = mService.memberWithDraw(userId);
+			
+			// 비지니스로직 처리에서 성공 실패 여부에 따라 메세지 및 페이지 설정
+			RequestDispatcher view = request.getRequestDispatcher("/views/member/memberMsg.jsp");
+			String addr = "/";
+			String msg = "";
+			if(result>0) {
+				msg = "회원탈퇴처리 되었습니다.";
+				// 세션파기
+				request.getSession().invalidate();			
+			}else {
+				msg = "회원탈퇴처리에 실패하였습니다. "+"<br>"+"- 지속적인 문제발생시 관리자에게 문의해주세요 -";
+			}
+			// 설정한 메세지를 가지고 페이지 이동
+			request.setAttribute("addr", addr);
+			request.setAttribute("msg", msg);
+			view.forward(request, response);
 		}
-		request.setAttribute("addr", addr);
-		request.setAttribute("msg", msg);
-		view.forward(request, response);
-		
 	}
 
 	/**

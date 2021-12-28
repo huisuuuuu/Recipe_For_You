@@ -1,55 +1,37 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
-
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <!--제이쿼리-->
-  <script src="https://code.jquery.com/jquery-3.6.0.js"
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link
+	href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap"
+	rel="stylesheet">
+<!-- jQuery CDN -->
+<script src="https://code.jquery.com/jquery-3.6.0.js"
 	integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
 	crossorigin="anonymous"></script>
-  
-   <style>
-   @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@200&display=swap');
-   </style>
+<!-- BootStrap -->
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+	rel="stylesheet"
+	integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
+	crossorigin="anonymous">
 
-   
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
-    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&family=Roboto:ital,wght@0,100;1,100&display=swap" rel="stylesheet">
-    <title>header</title>
-    <link rel="stylesheet" type="text/css" href="/assets/css/recipeDetailMain.css">
-     <link rel="stylesheet" type="text/css" href="/assets/css/userRecipePostUpload.css">
+<link rel="stylesheet"
+	href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"
+	integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm"
+	crossorigin="anonymous">
 
-
-
-
-
-
-
-
-
-
-
-
-
+<link rel="stylesheet" type="text/css" href="/assets/css/userRecipeUpload.css">
+  <link rel="stylesheet" type="text/css" href="/assets/css/recipeHeaderFooter.css">
+<title>냉장고를 부탁해</title>
 
 </head>
 <body>
-
-
-    <div id="wrapper">
+	 <div id="wrapper">
         <div class="header fixed-top">
             <div class="top">
                 <div class=top-img><img src="/assets/common/images/topicon.png" alt="" width="18px" height="25px"></div>
@@ -57,20 +39,19 @@
             </div>
             <div class="header1">
                 <a href="" class="logo">
-                    <img src="/assets/common/images/main%20logo.png">
+                    <img src="/assets/common/images//main%20logo.png" alt="">
                 </a>
                 <div class="box-user">
                    <a href="" class="mypage">
-                    <img src="/assets/common/images/headericon1.png" alt="" width="23px" height="28px">
+                    <img src="/assets/common/images//headericon1.png" alt="" width="23px" height="28px">
                 </a>
                 <a href="/views/member/memberLogin.jsp" class="login">
-                    <img src="/assets/common/images/headericon2.png" alt="" width="80px" height="30px">
+                    <img src="/assets/common/images//headericon2.png" alt="" width="80px" height="30px">
                 </a>
                 </div>
                 
             </div>
-
-            <div class="navibar container-fluid">
+ 	<div class="navibar container-fluid">
                 <nav class="navbar navbar-expand-lg nav-distance">
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
@@ -78,18 +59,18 @@
                                 <a class="nav-link active nav-about" href="#">ABOUT</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link active nav-recipe" href="#">레시피</a>
+                                <a class="nav-link active nav-recipe" href="/recipe/recipeBoard/selectAll.do">레시피</a>
                                 <ul class="submenu">
-                                    <li><a href="">모두보기</a></li>
-                                    <li><a href="">한식</a></li>
-                                    <li><a href="">양식</a></li>
-                                    <li><a href="">일식</a></li>
-                                    <li><a href="">중식</a></li>
-                                    <li><a href="">분식</a></li>
-                                    <li><a href="">채식</a></li>
-                                    <li><a href="">다이어트</a></li>
-                                    <li><a href="">밑반찬</a></li>
-                                    <li><a href="">안주</a></li>
+                                    <li><a href="/recipe/recipeBoard/selectAll.do">모두보기</a></li>
+                                    <li><a href="/recipe/recipeBoardSelectList.do?recipe=hansik">한식</a></li>
+                                    <li><a href="/recipe/recipeBoardSelectList.do?recipe=yangsik">양식</a></li>
+                                    <li><a href="/recipe/recipeBoardSelectList.do?recipe=ilsik">일식</a></li>
+                                    <li><a href="/recipe/recipeBoardSelectList.do?recipe=jungsik">중식</a></li>
+                                    <li><a href="/recipe/recipeBoardSelectList.do?recipe=bunsik ">분식</a></li>
+                                    <li><a href="/recipe/recipeBoardSelectList.do?recipe=vege">채식</a></li>
+                                    <li><a href="/recipe/recipeBoardSelectList.do?recipe=dite">다이어트</a></li>
+                                    <li><a href="/recipe/recipeBoardSelectList.do?recipe=banchan">밑반찬</a></li>
+                                    <li><a href="/recipe/recipeBoardSelectList.do?recipe=annju">안주</a></li>
                                 </ul>
                             </li>
 
@@ -117,197 +98,103 @@
         </div>
         
         <div class="contents">
-            
-            		<div id="contents">
 			<h1 class="main-title">CREATE A RECIPE</h1>
 			<h2 class="sub-title">여러분만의 맛있고 특별한 레시피를 공유해주세요.</h2>
-			<form id="formList">
-				<div class="recipeCode" style="text-align: center">
+			<form id="recipePostFrm" action="/recipeBoard/UserRecipePostUpload.do" method="post" enctype="multipart/form-data">
+				<div class="recipeCode">
 					<select name="recipe_Code">
 						<option>레시피 분류</option>
-						<option value="recipe_01">한식</option>
-						<option value="recipe_02">양식</option>
-						<option value="recipe_03">일식</option>
-						<option value="recipe_04">중식</option>
-						<option value="recipe_05">분식</option>
-						<option value="recipe_06">채식</option>
-						<option value="recipe_07">다이어트</option>
-						<option value="recipe_08">밑반찬</option>
-						<option value="recipe_09">안주</option>
-					</select> <select name="levle_Code">
+						<option value="Recipe_01">한식</option>
+						<option value="Recipe_02">양식</option>
+						<option value="Recipe_03">일식</option>
+						<option value="Recipe_04">중식</option>
+						<option value="Recipe_05">분식</option>
+						<option value="Recipe_06">채식</option>
+						<option value="Recipe_07">다이어트</option>
+						<option value="Recipe_08">밑반찬</option>
+						<option value="Recipe_09">안주</option>
+					</select> <select name="level_Code">
 						<option value>난이도</option>
-						<option value="levle_01">초급</option>
-						<option value="levle_02">중급</option>
-						<option value="levle_03">고급</option>
+						<option value="LEVEL_01">초급</option>
+						<option value="LEVEL_02">중급</option>
+						<option value="LEVEL_03">고급</option>
 					</select> <select name="time_Code">
 						<option value>조리시간</option>
-						<option value="time_01">10분</option>
-						<option value="time_02">20분</option>
-						<option value="time_03">30분</option>
-						<option value="time_04">40분</option>
-						<option value="time_05">50분</option>
-						<option value="time_06">60분이상</option>
+						<option value="TIME_01">10분</option>
+						<option value="TIME_02">20분</option>
+						<option value="TIME_03">30분</option>
+						<option value="TIME_04">40분</option>
+						<option value="TIME_05">50분</option>
+						<option value="TIME_06">60분이상</option>
 					</select>
 				</div>
-				
 				<div id="thumbnail">
 					<label for="thumbnailImage"><div id="thumbnailUpload">
 						</div></label>
 				</div>
 				<div class="recipeContent">
 					<input type=text name="title" class="recipeContentInput"
-						placeholder="레시피 제목을 입력해주세요" /></br> <input type=text name="subTitle"
+						placeholder="레시피 제목을 입력해주세요"/></br> <input type=text name="subTitle"
 						class="recipeContentInput" maxlength="20"
 						placeholder="레시피를 간단히 설명해주세요(20자 이내)" /></br>
-						  <textarea id="recipeContent" placeholder="레시피를 상세히 설명해주세요" style="resize: none;"></textarea>
+						<textarea id="recipeContent" name="recipeContent"
+						placeholder="레시피를 상세히 설명해주세요" style="resize: none;"></textarea>
 				</div>
 				<hr style="width: 650px; margin: 0 auto; margin-top: 15px;">
 				<div id="ingredient" class="titleArea">
-						<span>재료</span>
-				 <select name="big_Code" onchange="selectBigcode()">
+					<span>재료</span> <select name="big_Code" id="bigCode">
 						<option value>대분류</option>
-						<option value="PRODUCT_01">반찬/김치</option>
-						<option value="PRODUCT_02">정육/계란</option>
-						<option value="PRODUCT_03">수산/해산/건어물</option>
-						<option value="PRODUCT_04">채소/과일</option>
-						<option value="PRODUCT_05">견과/쌀</option>
-						<option value="PRODUCT_06">면류</option>
-						<option value="PRODUCT_07">간편식/조리식품</option>
-						<option value="PRODUCT_08">과일청/잼</option>
-						<option value="PRODUCT_09">디저트</option>
-						<option value="PRODUCT_10">장류/조미료</option>
-						<option value="PRODUCT_11">유제품</option>
-					</select>
-					 <select name="middle_Code" id="mArea" onchange="selectMiddlecode()" >
-						<option>중분류</option>
-
-					 	
-					</select> 
-					
-					<script>
-						var middleCodeList;
-						var mArea = document.getElementById("mArea")
-						
-						function selectBigcode(){
-							
-							var bigCode = $('select[name=big_Code]').val();
-							
-							 $.ajax({
-								 
-								 url:"/recipe/recipeBigcodeSelect.do",
-								 type:"post",
-								 dataType:"json",
-								 data:{"bigCode":bigCode},
-								 success:function(data){
-									 
-									 middleCodeList=data;
-									 
-									 
-									 mArea.innerHTML="";
-									 mArea.innerHTML="<option>중분류</option>";
-									 for(var i in middleCodeList)
-									{		
-										 mArea.innerHTML+='<option value='+middleCodeList[i].mCode+'>'+middleCodeList[i].mName+'</option>';
-									  
-									}
-
-									 
-								 },
-								 error:function(){
-									 
-									 alert('통신 실패');
-									 
-								 }
-								 
-							 }); 
-						};
-						
-					</script>
-					
-					
-					
-				<select name="ingredient_Code" id="ingredient_Code">
-						<option value>소분류</option>
-				</select> 
-				
-				
-				<script>
-						
-						
-						
-						function selectMiddlecode(){
-							
-							var middleCode = $('#mArea').val();
-							
-							 $.ajax({
-								 
-								 url:"/recipe/recipeMiddlecodeSelect.do",
-								 type:"post",
-								 dataType:"json",
-								 data:{"middleCode":middleCode},
-								 success:function(data){
-									 
-									 ingredientCodeList=data;
-									 
-										 ingredient_Code.innerHTML="";
-										 ingredient_Code.innerHTML="<option value>소분류</option>";
-										 for(var i in ingredientCodeList)
-										{		
-											 ingredient_Code.innerHTML+='<option value='+ingredientCodeList[i].mCode+'>'+ingredientCodeList[i].mName+'</option>';
-										  
-									}
-									 
-								 },
-								 error:function(){
-									 
-									 alert('통신 실패');
-									 
-								 }
-								 
-							 }); 
-						};
-						
-					</script>
-					
-
-					
-					<input type="text" maxlength="10" name="ingredient_Num"
+					</select> <select name="middle_Code" id="middleCode">
+						<option id="middleOption" value>중분류</option>
+					</select> <select name="ingredient_Code" id="ingredientCode">
+						<option id="ingredientOption" value>소분류</option>
+					</select> <input type="text" maxlength="10" name="ingredient_Num"
 						id="ingredient_Num" placeholder="계량 정보 / 예)300g" />
 					<button id="ingredientBtn" type="button">추가</button>
 				</div>
-				
 				<div id="idgredientContent" style="width: 650px; margin: 10px auto;">
-					<ul id="ingredientList" style="margin: 0px; padding: 0px;">
-						<li>돼지고기 <span>300g</span>
-						</li>
-						<li>청주 <span>한 큰술</span>
-						</li>
+					<ul id="ingredientList" style="margin-left: 40px; padding: 0px;">
 					</ul>
 				</div>
 
 				<script>
-					$('#ingredientBtn')
-							.click(
-									function() {
-
-										var $ingredientSelect = $('#ingredient_Code option:selected');
+				
+						$('#ingredientBtn').click(function() {
+										
+										var $ingredientSelect = $('#ingredientCode option:selected');
 										var ingredient = $ingredientSelect
 												.text();
 										var $ingredient_Num = $(
 												'#ingredient_Num').val();
+										var divTag = document
+										.createElement("div");
 										var liTag = document
 												.createElement("li");
 										var spanTag = document
 												.createElement("span");
+										var inputTag = document.createElement("input");
+										var inputTag2 = document.createElement("input");
 
-										spanTag.innerHTML = $ingredient_Num;
 										liTag.innerHTML = ingredient;
-										liTag.appendChild(spanTag);
+										spanTag.innerHTML = $ingredient_Num;
+										divTag.appendChild(liTag);
+										divTag.appendChild(spanTag);
+										
+										inputTag.setAttribute("type","hidden");
+										inputTag.setAttribute("name","ingredientName");
+										inputTag.setAttribute("value",ingredient);
+										
+										inputTag2.setAttribute("type","hidden");
+										inputTag2.setAttribute("name","ingredientNum");
+										inputTag2.setAttribute("value",$ingredient_Num);
+										
+										divTag.appendChild(inputTag);
+										divTag.appendChild(inputTag2);
 
 										if (ingredient != "소분류"
 												&& $ingredient_Num.length > 0) {
 											$('#ingredientList')[0]
-													.appendChild(liTag);
+													.appendChild(divTag);
 										} else {
 											alert("재료 및 계랑 정보를 입력해주세요.");
 										}
@@ -322,28 +209,22 @@
 					<div id="stepItem_1" class="step">
 						<p>Step1</p>
 						<label for="recipeImage_1">
-						<div id="stepImage_1" class="stepImage imageWidth" style="margin-right: 5px; width:200px">
-				
-						</div>
+						<div id="stepImage_1" class="stepImage" style="margin-right: 5px;"></div>
 						</label>
 						<div id="stepText_1" class="stepText">
-							<textarea id="step_text_1" class="stepText"
+							<textarea id="step_text_1" class="stepText" name="recipeContent"
 								placeholder="조리법을 설명해주세요" style="resize: none;"></textarea>
 						</div>
 					</div>
 				</div>
-				<div id="recipeUpload" style="text-align: center"">
+				<div id="recipeUpload">
 				<input type="submit" value="작성하기"/>
-				<button type="button"><a href="/">취소</a></button>
+				<button type="button"><a href="/recipeBoard/recipeBoardAllSelect.do">취소</a></button>
 				</div>
+				<input type="file" id="thumbnailImage" name="recipeImage" accept="image/*" onchange="setThumbnail(event,'thumbnailImage');" style="display: none;"/>
+				<input type="file" id="recipeImage_1" name="recipeImage" style="display: none;"/>
 			</form>
-			<form id="fileUpload">
-				
-				<input type="file" id="thumbnailImage" style="display: none;" />
-				 
-				<input type="file" id="recipeImage_1" style="display: none;" />
-			</form>
-
+			
 			<script>
 				var count = 2;
 
@@ -359,122 +240,122 @@
 
 					parentDiv.id = "stepItem_" + count;
 					parentDiv.setAttribute("class", "step");
+					
 					pTag.innerText = "Step" + count;
-                    
-					labelTag.setAttribute("for", "recipeImage_" + count);    
+					
+					labelTag.setAttribute("for", "recipeImage_" + count);
 					imageDiv.setAttribute("id", "stepImage_" + count)
-					imageDiv.setAttribute("class", "stepImage imageWidth");
-                    imageDiv.setAttribute("style", "margin-right: 5px; width:200px");
-                    labelTag.appendChild(imageDiv);
-                    
+					imageDiv.setAttribute("class", "stepImage");
+					labelTag.appendChild(imageDiv);
+					
 					textDiv.setAttribute("id", "stepText_" + count)
 					textDiv.setAttribute("class", "stepText");
-                    
 					textareaTag.setAttribute("id", "step_text_" + count)
+					textareaTag.setAttribute("name", "recipeContent")
 					textareaTag.setAttribute("class", "stepText");
 					textareaTag.setAttribute("placeholder", "조리법을 설명해주세요");
 					textareaTag.setAttribute("style", "resize:none");
 					textDiv.appendChild(textareaTag);
-                    
+					
 					parentDiv.appendChild(pTag);
 					parentDiv.appendChild(labelTag);
 					parentDiv.appendChild(textDiv);
-					console.log(parentDiv);
 
-					/*
-                    inputTag.setAttribute("type", "file");
-					inputTag.setAttribute("id", "recipeImage_" + count);
+					inputTag.setAttribute("type", "file");
+					inputTag.setAttribute("id", "recipeImage_"+count);
+					inputTag.setAttribute("name", "recipeImage");
 					inputTag.setAttribute("style", "display:none");
-                    */
 
 					$('#stepArea')[0].appendChild(parentDiv);
-					//$('#fileUpload')[0].appendChild(inputTag);
+					$('#recipePostFrm')[0].appendChild(inputTag);
 					count++;
 				})
 			</script>
 		</div>
-            
-
-           
-           
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-        </div>
-        
-        <div class="footer">
-            <div class="footer1 container">
-            <pre>
-(주)컬쳐히어로
-            
-            
-상호:(주)컬쳐히어로   대표자:양준규  개인정보관리책임자:장호진  사업자 등록번호:144-81-35400
-            
-통신판매업 신고:제 2015-경기성남-1940호  전화:1833-8307  팩스:031-8017-1800
-            
-주소:(13487) 경기도 성남시 분당구 삼평동625 판교세븐벤처밸리1단지 제3동 1001호 이메일:commerce@culturehero.net
-            </pre>
-            </div>
-            <div class="footer-bottom">
-               <div id="footer-word">
-                <pre>      이용약관   개인정보처리방침   공지사항   자주묻는질문   광고/제휴문의:contact@culturehero.net</pre>
-                </div>
-            </div>
-        </div>
-    </div>
-
-
-
-    <!-- Optional JavaScript; choose one of the two! -->
-
-    <!-- Option 1: Bootstrap Bundle with Popper -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
-
-    <!-- Option 2: Separate Popper and Bootstrap JS -->
-    <!--
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
-    -->
-
-
-
-
-
-
-
-
-
-
-
+		<div id="footer">
+		<%@include file="/views/common/footer.jsp" %>
+		</div>
+	</div>
+	
+	<script>
+		
+	$(document).ready(function(){
+		$.ajax({
+			url: "/admin/productBig.do",
+			type: "get",
+			dataType: "json",
+			success: function(data){
+					
+				var $bigCode = $('#bigCode');
+				
+				$.each(data, function(index, item){
+					
+					var str = "<option value='"+item.bigCode+"'>"+item.bigName+"</option>";
+					$bigCode.append(str);
+				});
+				
+			},
+			error: function(){
+				console.log("Ajax 통신 실패");	
+			}
+		});
+	});
+	
+	$('#bigCode').click(function(){
+		
+		var bigCode = $(this).val();
+		
+		$.ajax({
+			url: "/admin/productMiddle.do",
+			data: {"bigCode":bigCode},
+			dataType: "json",
+			type: "get",
+			success: function(data){
+				
+				var $middleCode = $('#middleCode');
+				$('#middleCode option:not(#middleOption)').remove();
+				
+				$.each(data, function(index, item){
+					
+					var str = "<option value='"+item.middleCode+"'>"+item.middleName+"</option>";
+					$middleCode.append(str);
+				});
+				
+			},
+			error: function(){
+				console.log("Ajax 통신 실패");
+			}
+		});
+		
+	});
+	
+	$('#middleCode').click(function(){
+		
+		var middleCode = $(this).val();
+		
+		$.ajax({
+			url: "/admin/productIngredient.do",
+			data: {"middleCode":middleCode},
+			dataType: "json",
+			type: "get",
+			success: function(data){
+				
+				var $ingredientCode = $('#ingredientCode');
+				$('#ingredientCode option:not(#ingredientOption)').remove();
+				
+				$.each(data, function(index, item){
+					
+					var str = "<option value='"+item.ingredientCode+"'>"+item.ingredientName+"</option>";
+					$ingredientCode.append(str);
+				});
+				
+			},
+			error: function(){
+				console.log("Ajax 통신 실패");
+			}
+		});
+		
+	});
+	</script>
 </body>
 </html>

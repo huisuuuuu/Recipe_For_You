@@ -19,34 +19,15 @@
 <!-- jQuery 라이브러리 -->
 <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
 
+<link rel="stylesheet"
+	href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"
+	integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm"
+	crossorigin="anonymous">
+
+<link rel="stylesheet" type="text/css"
+	href="/assets/css/adminRecipeBoard.css">	
+	
 <style type="text/css">
-#wrap{
-	height: 1480px;
-	width: 1280px;
-	margin: 0 auto;
-	
-}
-
-#header{
-	height: 200px;
-	width: 1280px;
-	margin: 0 auto;
-	
-}
-
-#center{
-	height: 980px;
-	width: 1280px;
-	margin: 0 auto;
-	
-}
-
-#footer{
-	height: 300px;
-	width: 1280px;
-	margin: 0 auto;
-	
-}
 
 #notice{
 	height: 100px;
@@ -59,12 +40,11 @@
 	height: 500px;
 	width : 1000px;
 	margin: 0 auto;
-
 }
 
 #pageList{
 	height: 40px;
-	width: 500px;
+	width: 1000px;
 	margin: 0 auto;
 }
 
@@ -72,7 +52,27 @@
 	height: 30px;
 	width: 1000px;
 	margin: 0 auto;
-	
+}
+
+ #submit_form{
+ 	width: 275px;
+ 	height: 50px;
+ 	float: right;
+ 	border: 1px solid white;
+ }
+ 
+#keyword_form{
+ 	width: 300px;
+ 	height: 50px;
+ 	float: right;
+ 	border: 1px solid white;
+ }
+ 
+#option_form{
+ 	width: 100px;
+ 	height: 50px;
+ 	float: right;
+ 	border: 1px solid white;
 }
 </style>
 
@@ -89,17 +89,17 @@ int currentPage = (int)request.getAttribute("currentPage");
 String keyword = (String)request.getParameter("keyword");
 
 %>
-	<div id="warp">
+	<div id="wrapper">
 		<div id="header"></div>
-		
-		
-		<div id="center">
-		
+		<div id="navigation">
+			<%@include file="/views/common/adminNavigation.jsp"%>
+		</div>
+		<div id="content">
 			<!-- 소개 하는 공간 -->
 			<div id="notice" align="center"">
 				<h1>  |  NOTICE  |  </h1>
 				<span>새로운 소식들과 유용한 정보들을 한곳에서 확인하세요.</span>
-			</div><hr>
+			</div>
 			
 			<!-- 여기는 arrayList단 -->
 			<div id="arrayList">
@@ -147,36 +147,41 @@ String keyword = (String)request.getParameter("keyword");
 			<script>
 			$(function(){
 				$('.prev').addClass('page-link');
-				$('.prev').css('width','20%');
+				$('.prev').css('width','35%');
 				$('.naviNum').addClass('page-link');
 				$('.next').addClass('page-link');
-				$('.next').css('width','20%');
+				$('.next').css('width','35%');
 			});
 			</script>
+			
+			<br>
 			<!-- 페이징 처리 -->
 			
 			<!-- 검색 -->
 			<div id="serachList" align="right">
 				<form action="/notice/noticeAdminSearch.do" method="get">
-					<select name="type">
-						<option value="title">제목</option>
-						<option value="content">내용</option>
-						<option value="all">제목+내용</option>
-					</select>
-					<input type="text" name="keyword" size="30"/>
-					<input class="btn btn-success btn-sm" type="submit"  value="검색하기"/>
-					<input class="btn btn-success btn-sm" type="button" value="메인센터" onclick="location='/'"/>
-					<input class="btn btn-success btn-sm" type="button" value="글 쓰기" onclick="location='/views/customerServiceCenter/noticeWrite.jsp'"/>
+					<div  id="submit_form" align="left">
+						<input class="btn btn-success" type="submit"  value="검색하기"/>
+						<input class="btn btn-success" type="button" value="메인센터" onclick="location='/'"/>
+						<input class="btn btn-success" type="button" value="글 쓰기" onclick="location='/views/customerServiceCenter/noticeWrite.jsp'"/>
+					</div>
+					
+					<div id="keyword_form" align="left">
+						<input class="form-control me-2" type="text" name="keyword" size="30"/>
+					</div>
+					
+					<div id="option_form">
+						<select class="form-select" name="type">
+							<option value="title">제목</option>
+							<option value="content">내용</option>
+							<option value="all">제목+내용</option>
+						</select>
+					</div>
 				</form>
 			</div>
 			<!-- 검색 -->
-		
 		</div>
-		
-		
 		<div id="footer"></div>
-	
-	
 	</div>
 
 

@@ -38,38 +38,38 @@ public class MemberLoginServlet extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		
 		// 로그인한 회원인지 확인
-		if(request.getSession().getAttribute("member")!=null) response.sendRedirect("/views/common/error.jsp");
-		
-		// 로그인 데이터 가져오기
-		String userId = request.getParameter("userId");
-		String userPwd = request.getParameter("userPwd");
-		
-		// 유효성 검증
-		MemberJoinDataCheck mDataCheck = new MemberJoinDataCheck();
+		if(request.getSession().getAttribute("member")!=null) {
+			response.sendRedirect("/views/common/error.jsp");
+		}else {
+			// 로그인 데이터 가져오기
+			String userId = request.getParameter("userId");
+			String userPwd = request.getParameter("userPwd");
+			
+			// 유효성 검증
+			MemberJoinDataCheck mDataCheck = new MemberJoinDataCheck();
 
-		// 유효성 검증에 맞지 않거나 비지니스로직 처리에서 입력한 정보에 해당하는 회원이 없을 경우
-		RequestDispatcher view = request.getRequestDispatcher("/views/member/memberMsg.jsp");
-		String msg = "아이디와 비밀번호를 확인해주세요";
-		request.setAttribute("addr", "/views/member/memberLogin.jsp");
-		request.setAttribute("msg", msg);
+			// 유효성 검증에 맞지 않거나 비지니스로직 처리에서 입력한 정보에 해당하는 회원이 없을 경우
+			RequestDispatcher view = request.getRequestDispatcher("/views/member/memberMsg.jsp");
+			String msg = "아이디와 비밀번호를 확인해주세요";
+			request.setAttribute("addr", "/views/member/memberLogin.jsp");
+			request.setAttribute("msg", msg);
 
-		if(mDataCheck.regExId(userId) && mDataCheck.regExPwd(userPwd)) {
-			// 비지니스 로직 처리
-			MemberService mService = new MemberServiceImpl();
-			Member m = mService.memberLogin(userId, userPwd);
-
-			if(m!=null) {
-				HttpSession session = request.getSession(true);
-				session.setAttribute("member", m);
-				response.sendRedirect("/");
+			if(mDataCheck.regExId(userId) && mDataCheck.regExPwd(userPwd)) {
+				// 비지니스 로직 처리
+				MemberService mService = new MemberServiceImpl();
+				Member m = mService.memberLogin(userId, userPwd);
+				// 정보를 가지고 왔으면 세션 생성
+				if(m!=null) {
+					HttpSession session = request.getSession(true);
+					session.setAttribute("member", m);
+					response.sendRedirect("/");
+				}else {
+					view.forward(request, response);			
+				}
 			}else {
 				view.forward(request, response);			
 			}
-		}else {
-			view.forward(request, response);			
 		}
-
-
 	}
 
 	/**

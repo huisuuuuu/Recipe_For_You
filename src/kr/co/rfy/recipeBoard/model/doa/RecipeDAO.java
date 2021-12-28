@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import kr.co.rfy.adminRecipeBoard.model.vo.RecipeIngredient;
 import kr.co.rfy.common.JDBCTemplate;
 import kr.co.rfy.recipeBoard.model.vo.Content;
 import kr.co.rfy.recipeBoard.model.vo.File;
@@ -14,109 +15,113 @@ import kr.co.rfy.recipeBoard.model.vo.MiddleCode;
 import kr.co.rfy.recipeBoard.model.vo.MyboxIngredient;
 import kr.co.rfy.recipeBoard.model.vo.OurRecipe;
 import kr.co.rfy.recipeBoard.model.vo.RecipeDetail;
+import kr.co.rfy.recipeBoard.model.vo.UserRecipeBoard;
 
 public class RecipeDAO {
 
 public ArrayList<OurRecipe> selectAllPostPageList(Connection conn, int currentPage, int recordCountPerPage,String type) {
 		
-		PreparedStatement pstmt = null;
-		ResultSet rset = null;
-		ArrayList<OurRecipe> list = new ArrayList<OurRecipe>();
+	PreparedStatement pstmt = null;
+	ResultSet rset = null;
+	ArrayList<OurRecipe> list = new ArrayList<OurRecipe>();
+	
+	//글번호의 시작과 끝번호
+	 int start = currentPage * recordCountPerPage - (recordCountPerPage-1);
+	 int end  = currentPage * recordCountPerPage;
+	 
+	 String query="";
+	 
+	 
+		switch(type)
 		
-		//글번호의 시작과 끝번호
-		 int start = currentPage * recordCountPerPage - (recordCountPerPage-1);
-		 int end  = currentPage * recordCountPerPage;
-		 
-		 String query="";
-		 
-		 
-			switch(type)
-			
-			{
-			case "latest_desc":
-				query="SELECT * " + 
-				 		"FROM(SELECT ROW_NUMBER()OVER(ORDER BY R.BOARD_NO DESC) AS NUM,R.USER_ID,R.BOARD_NO,R.SUBTITLE,R.TITLE,L.LEVEL_NAME,C.TIME_NAME,F.FILE_PATH " + 
-				 		"FROM RECIPE_BOARD R " + 
-				 		"LEFT JOIN COOK_TIME C ON(C.TIME_CODE=R.TIME_CODE) " + 
-				 		"LEFT JOIN RECIPE_LEVEL L ON(L.LEVEL_CODE=R.LEVEL_CODE) " + 
-				 		"LEFT JOIN RECIPE_FILE F ON(F.BOARD_NO=R.BOARD_NO) " + 
-				 		"WHERE R.END_YN='N' AND F.FILE_NO=1) " + 
-				 		"WHERE NUM BETWEEN ? AND ?";
-							break;
-				
-			case "like_desc": 
-						query="SELECT * FROM(SELECT ROW_NUMBER()OVER(ORDER BY R.BOARD_NO DESC) AS NUM,R.USER_ID,R.BOARD_NO,R.SUBTITLE,R.TITLE,L.LEVEL_NAME,C.TIME_NAME,F.FILE_PATH,R.LIKE_NUM ,L.LEVEL_CODE,C.TIME_CODE " + 
-								"    FROM RECIPE_BOARD R\r\n" + 
-								"    LEFT JOIN COOK_TIME C ON(C.TIME_CODE=R.TIME_CODE) " + 
-								"    LEFT JOIN RECIPE_LEVEL L ON(L.LEVEL_CODE=R.LEVEL_CODE) " + 
-								"    LEFT JOIN RECIPE_FILE F ON(F.BOARD_NO=R.BOARD_NO) " + 
-								"    WHERE R.END_YN='N' AND F.FILE_NO=1) " + 
-								" WHERE NUM BETWEEN ? AND ? " + 
-								" ORDER BY LIKE_NUM DESC";
-							break;
-				
-			case "level_asc":
-						query="SELECT * " + 
-								"FROM(SELECT ROW_NUMBER()OVER(ORDER BY R.BOARD_NO DESC) AS NUM,R.USER_ID,R.BOARD_NO,R.SUBTITLE,R.TITLE,L.LEVEL_NAME,C.TIME_NAME,F.FILE_PATH,R.LIKE_NUM " + 
-								",L.LEVEL_CODE,C.TIME_CODE " + 
-								"FROM RECIPE_BOARD R  " + 
-								"LEFT JOIN COOK_TIME C ON(C.TIME_CODE=R.TIME_CODE) " + 
-								"LEFT JOIN RECIPE_LEVEL L ON(L.LEVEL_CODE=R.LEVEL_CODE) " + 
-								"LEFT JOIN RECIPE_FILE F ON(F.BOARD_NO=R.BOARD_NO) " + 
-								"WHERE R.END_YN='N' AND F.FILE_NO=1) " + 
-								"WHERE NUM BETWEEN ? AND ? " + 
-								"ORDER BY LEVEL_CODE ASC";
-							break;
-				
-				
-			case "time_asc":
-						query="SELECT * " + 
-								"FROM(SELECT ROW_NUMBER()OVER(ORDER BY R.BOARD_NO DESC) AS NUM,R.USER_ID,R.BOARD_NO,R.SUBTITLE,R.TITLE,L.LEVEL_NAME,C.TIME_NAME,F.FILE_PATH,R.LIKE_NUM " + 
-								",L.LEVEL_CODE,C.TIME_CODE " + 
-								"FROM RECIPE_BOARD R " + 
-								"LEFT JOIN COOK_TIME C ON(C.TIME_CODE=R.TIME_CODE) " + 
-								"LEFT JOIN RECIPE_LEVEL L ON(L.LEVEL_CODE=R.LEVEL_CODE) " + 
-								"LEFT JOIN RECIPE_FILE F ON(F.BOARD_NO=R.BOARD_NO) " + 
-								"WHERE R.END_YN='N' AND F.FILE_NO=1) " + 
-								"WHERE NUM BETWEEN ? AND ? " + 
-								"ORDER BY TIME_CODE ASC";
-							break;
-				
-			
-			}
-		try {
-			pstmt = conn.prepareStatement(query);
-			pstmt.setInt(1, start);
-			pstmt.setInt(2, end);
-			
-			rset = pstmt.executeQuery();
-			
-			while(rset.next())
-			{
-				OurRecipe o = new OurRecipe();
-				o.setUserId(rset.getString("user_Id"));
-				o.setBoardNo(rset.getInt("board_no"));
-				o.setTitle(rset.getString("title"));
-				o.setSubTitle(rset.getString("subTitle"));
-				o.setLevelName(rset.getString("level_name"));
-				o.setTimeName(rset.getString("time_name"));
-				o.setFilePath(rset.getString("file_path"));
-				
-				list.add(o);
-			}
-			
-			
-			
-			
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}finally
 		{
-			JDBCTemplate.close(rset);
-			JDBCTemplate.close(pstmt);
+		case "latest_desc":
+			query="SELECT * " + 
+			 		"FROM(SELECT ROW_NUMBER()OVER(ORDER BY R.BOARD_NO DESC) AS NUM,R.USER_ID,R.BOARD_NO,R.SUBTITLE,R.TITLE,L.LEVEL_NAME,C.TIME_NAME,F.FILE_PATH,R.LIKE_NUM ,L.LEVEL_CODE,C.TIME_CODE " + 
+			 		"FROM RECIPE_BOARD R " + 
+			 		"LEFT JOIN COOK_TIME C ON(C.TIME_CODE=R.TIME_CODE) " + 
+			 		"LEFT JOIN RECIPE_LEVEL L ON(L.LEVEL_CODE=R.LEVEL_CODE) " + 
+			 		"LEFT JOIN RECIPE_FILE F ON(F.BOARD_NO=R.BOARD_NO) " + 
+			 		"WHERE R.END_YN='N' AND F.FILE_NO=1) " + 
+			 		"WHERE NUM BETWEEN ? AND ?";
+						break;
+			
+		case "like_desc": 
+					query="SELECT * FROM(SELECT ROW_NUMBER()OVER(ORDER BY R.BOARD_NO DESC) AS NUM,R.USER_ID,R.BOARD_NO,R.SUBTITLE,R.TITLE,L.LEVEL_NAME,C.TIME_NAME,F.FILE_PATH,R.LIKE_NUM ,L.LEVEL_CODE,C.TIME_CODE " + 
+							"    FROM RECIPE_BOARD R\r\n" + 
+							"    LEFT JOIN COOK_TIME C ON(C.TIME_CODE=R.TIME_CODE) " + 
+							"    LEFT JOIN RECIPE_LEVEL L ON(L.LEVEL_CODE=R.LEVEL_CODE) " + 
+							"    LEFT JOIN RECIPE_FILE F ON(F.BOARD_NO=R.BOARD_NO) " + 
+							"    WHERE R.END_YN='N' AND F.FILE_NO=1) " + 
+							" WHERE NUM BETWEEN ? AND ? " + 
+							" ORDER BY LIKE_NUM DESC";
+						break;
+			
+		case "level_asc":
+					query="SELECT * " + 
+							"FROM(SELECT ROW_NUMBER()OVER(ORDER BY R.BOARD_NO DESC) AS NUM,R.USER_ID,R.BOARD_NO,R.SUBTITLE,R.TITLE,L.LEVEL_NAME,C.TIME_NAME,F.FILE_PATH,R.LIKE_NUM " + 
+							",L.LEVEL_CODE,C.TIME_CODE " + 
+							"FROM RECIPE_BOARD R  " + 
+							"LEFT JOIN COOK_TIME C ON(C.TIME_CODE=R.TIME_CODE) " + 
+							"LEFT JOIN RECIPE_LEVEL L ON(L.LEVEL_CODE=R.LEVEL_CODE) " + 
+							"LEFT JOIN RECIPE_FILE F ON(F.BOARD_NO=R.BOARD_NO) " + 
+							"WHERE R.END_YN='N' AND F.FILE_NO=1) " + 
+							"WHERE NUM BETWEEN ? AND ? " + 
+							"ORDER BY LEVEL_CODE ASC";
+						break;
+			
+			
+		case "time_asc":
+					query="SELECT * " + 
+							"FROM(SELECT ROW_NUMBER()OVER(ORDER BY R.BOARD_NO DESC) AS NUM,R.USER_ID,R.BOARD_NO,R.SUBTITLE,R.TITLE,L.LEVEL_NAME,C.TIME_NAME,F.FILE_PATH,R.LIKE_NUM " + 
+							",L.LEVEL_CODE,C.TIME_CODE " + 
+							"FROM RECIPE_BOARD R " + 
+							"LEFT JOIN COOK_TIME C ON(C.TIME_CODE=R.TIME_CODE) " + 
+							"LEFT JOIN RECIPE_LEVEL L ON(L.LEVEL_CODE=R.LEVEL_CODE) " + 
+							"LEFT JOIN RECIPE_FILE F ON(F.BOARD_NO=R.BOARD_NO) " + 
+							"WHERE R.END_YN='N' AND F.FILE_NO=1) " + 
+							"WHERE NUM BETWEEN ? AND ? " + 
+							"ORDER BY TIME_CODE ASC";
+						break;
+			
+		
 		}
-			return list;
+	try {
+		pstmt = conn.prepareStatement(query);
+		pstmt.setInt(1, start);
+		pstmt.setInt(2, end);
+		
+		rset = pstmt.executeQuery();
+		
+		while(rset.next())
+		{
+			OurRecipe o = new OurRecipe();
+			o.setUserId(rset.getString("user_Id"));
+			o.setBoardNo(rset.getInt("board_no"));
+			o.setTitle(rset.getString("title"));
+			o.setSubTitle(rset.getString("subTitle"));
+			o.setLevelName(rset.getString("level_name"));
+			o.setTimeName(rset.getString("time_name"));
+			o.setFilePath(rset.getString("file_path"));
+			o.setLikeNum(rset.getInt("like_num"));
+			o.setCookCode(rset.getString("time_code"));
+			o.setLevelCode(rset.getString("level_code"));
+			
+			list.add(o);
+		}
+		
+		
+		
+		
+	} catch (SQLException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}finally
+	{
+		JDBCTemplate.close(rset);
+		JDBCTemplate.close(pstmt);
+	}
+		return list;
 	}
 
 
@@ -1151,7 +1156,160 @@ public ArrayList<OurRecipe> selectAllPostPageList(Connection conn, int currentPa
 	}
 
 
+	public int insertUserRecipeBoard(Connection conn, UserRecipeBoard arb) {
+	
+		PreparedStatement pstmt = null;
+		int result = 0;
+		String query = "INSERT INTO RECIPE_BOARD VALUES('BOARD-1',RECIPE_SEQ.NEXTVAL,?,?,?,?,?,?,SYSDATE,0,0,'N')";
 
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, arb.getRecipeCode());
+			pstmt.setString(2, arb.getLevelCode());
+			pstmt.setString(3, arb.getTimeCode());
+			pstmt.setString(4, arb.getTitle());
+			pstmt.setString(5, arb.getSubTitle());
+			pstmt.setString(6, arb.getUserId());
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			JDBCTemplate.close(pstmt);
+		}
+		
+		return result;
+		
+		
+	}
+
+
+	public int selectOneRecipePost(Connection conn, String title, String writer) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		int boardNo = 0;
+		
+		String query = "SELECT BOARD_NO FROM RECIPE_BOARD WHERE TITLE=? AND USER_ID=? ORDER BY 1 DESC";
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, title);
+			pstmt.setString(2, writer);
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				boardNo = rset.getInt("board_no");
+			}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			JDBCTemplate.close(rset);
+			JDBCTemplate.close(pstmt);
+		}
+		
+		return boardNo;
+	}
+
+
+	public int insertRecipePostIngredient(Connection conn, int boardNo, String[] ingredientNameValues,
+			String[] ingredientNum) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		StringBuilder query = new StringBuilder();
+		
+		query.append("INSERT ALL");
+		
+		for(int i=0; i<ingredientNameValues.length; i++) {
+			
+			query.append(" ");
+			query.append("INTO RECIPE_MANAGEMENT VALUES("+boardNo+", '"+
+						ingredientNameValues[i]+"', '"+ingredientNum[i]+"', 'N')");
+			query.append(" ");
+		}
+		
+		query.append("SELECT * FROM DUAL");
+		
+		try {
+			pstmt = conn.prepareStatement(query.toString());
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			JDBCTemplate.close(pstmt);
+		}
+		
+		return result;
+	}
+
+
+	public int insertRecipePostContent(Connection conn, int boardNo, String[] recipeContent) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		StringBuilder query = new StringBuilder();
+		
+		query.append("INSERT ALL");
+		
+		for(int i=0; i<recipeContent.length; i++) {
+			
+			query.append(" ");
+			query.append("INTO RECIPE_CONTENT VALUES("+boardNo+","+(i+1)+",'"+recipeContent[i]+"', 'N')");
+			query.append(" ");
+		}
+		
+		query.append("SELECT * FROM DUAL");
+		
+		try {
+			pstmt = conn.prepareStatement(query.toString());
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			JDBCTemplate.close(pstmt);
+		}
+		
+		return result;
+		
+	}
+
+
+	public int insertRecipePostImage(Connection conn, int boardNo, String[] uploadImageNameValues,
+			String[] uploadImagePathValues) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		StringBuilder query = new StringBuilder();
+		
+		query.append("INSERT ALL");
+		
+		for(int i=0; i<uploadImageNameValues.length; i++) {
+			
+			query.append(" ");
+			query.append("INTO RECIPE_FILE VALUES("+boardNo+","+(i+1)+",'"+uploadImageNameValues[i]+"', '"+
+						  uploadImagePathValues[i]+"', 'N')");
+			query.append(" ");
+		}
+		
+		query.append("SELECT * FROM DUAL");
+		
+		try {
+			pstmt = conn.prepareStatement(query.toString());
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			JDBCTemplate.close(pstmt);
+		}
+		
+		return result;
+	}
 
 
 		
