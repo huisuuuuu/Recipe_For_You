@@ -452,7 +452,7 @@ section.title2 h2 {
 			<div class="mybox-row">
 				<c:forEach var="recipe" items="${recipeWithFileList}">
 					<div class="mybox-row-item">
-						<img class="mybox-row-item-image" src="${pageContext.request.contextPath}${recipe.file_path}" />
+						<a href=""><img class="mybox-row-item-image" src="${pageContext.request.contextPath}${recipe.file_path}" /></a>
 						<br>
 						<span>${recipe.subtitle}</span>
 						<br> 
