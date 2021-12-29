@@ -24,11 +24,11 @@ public class AdminRecipeBoardServiceImpl implements AdminRecipeBoardService {
 		Connection conn = JDBCTemplate.getConnection();
 
 		// 하나의 Page에서 몇 개의 목록으로 보여줄 것인지에 대한 값 필요
-		int recordCountPerPage = 5;
+		int recordCountPerPage = 10;
 		ArrayList<AdminRecipeBoard> list = rbDAO.selectAllPostPageList(conn, currentPage, recordCountPerPage);
 
 		// 하나의 PageNavi Bar에 보여질 Navi 개수를 설정
-		int naviCountPerPage = 10;
+		int naviCountPerPage = 5;
 		String pageNavi = rbDAO.getPageNavi(conn, naviCountPerPage, recordCountPerPage, currentPage);
 
 		// 2가지 방법
@@ -71,13 +71,13 @@ public class AdminRecipeBoardServiceImpl implements AdminRecipeBoardService {
 		Connection conn = JDBCTemplate.getConnection();
 
 		// 하나의 Page에서 몇 개의 목록으로 보여줄 것인지에 대한 값 필요
-		int recordCountPerPage = 5;
+		int recordCountPerPage = 10;
 
 		ArrayList<AdminRecipeBoard> list = rbDAO.selectSearchPostList(conn, currentPage, recordCountPerPage, keyword,
 				type);
 
 		// 하나의 PageNavi Bar에 보여질 Navi 개수를 설정
-		int naviCountPerPage = 10;
+		int naviCountPerPage = 5;
 		String pageNavi = rbDAO.getSearchPageNavi(conn, naviCountPerPage, recordCountPerPage, currentPage, keyword,
 				type);
 		
@@ -241,7 +241,7 @@ public class AdminRecipeBoardServiceImpl implements AdminRecipeBoardService {
 		ArrayList<AdminRecipeBoard> list = rbDAO.selectPostCategoryList(conn, currentPage, recordCountPerPage, recipeCode);
 
 		// 하나의 PageNavi Bar에 보여질 Navi 개수를 설정
-		int naviCountPerPage = 10;
+		int naviCountPerPage = 5;
 		String pageNavi = rbDAO.getCategoryPageNavi(conn, naviCountPerPage, recordCountPerPage, currentPage, recipeCode);
 		
 		HashMap<String, Object> map =new HashMap<String,Object>();
