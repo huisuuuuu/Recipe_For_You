@@ -161,11 +161,6 @@ public ArrayList<OurRecipe> selectAllPostPageList(Connection conn, int currentPa
 		//5. 페이지 네비 모양 만들기
 		
 		StringBuilder sb = new StringBuilder();
-		
-		
-		
-		
-		
 		sb.append("<nav aria-label=Page navigation example'>");
 		sb.append("<ul class='pagination justify-content-center'>");
 		sb.append("<li class='page-item'>");
@@ -184,7 +179,7 @@ public ArrayList<OurRecipe> selectAllPostPageList(Connection conn, int currentPa
 		sb.append("</li>");
 		    for(int i=startNavi; i<=endNavi; i++)
 			{
-				sb.append("<li class='page-item'><a class='page-link' style='color:black' href='#'>");
+				sb.append("<li class='page-item'><a class='page-link' style='color:black' href='/recipe/recipeBoard/selectAll.do?currentPage="+ i + "'>");
 				sb.append(i);
 				sb.append("</a>");
 				sb.append("</li>");
