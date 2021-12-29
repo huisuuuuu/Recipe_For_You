@@ -224,7 +224,7 @@
 						</ul></li>
 					<li class="GNB-float"><a href="#" class="hoverColor">고객센터</a>
 						<ul class="ul-list">
-							<li><a href="#">공지사항</a></li>
+							<li><a href="/customerServiceCenter/notice.do">공지사항</a></li>
 							<li><a href="#">자주하는질문</a></li>
 						</ul></li>
 					<li class="GNB-float" id="myBox"><a href="/mybox/myboxList.do"
