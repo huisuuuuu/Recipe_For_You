@@ -25,81 +25,16 @@
 	integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm"
 	crossorigin="anonymous">
 
-<<<<<<< HEAD
+
 	<link rel="stylesheet" type="text/css" href="/assets/css/adminRecipeUpload.css">
-=======
+
 
   <link rel="stylesheet" type="text/css" href="/assets/css/recipeHeaderFooter.css">
 <title>냉장고를 부탁해</title>
 
 </head>
 <body>
-	 <div id="wrapper">
-        <div class="header fixed-top">
-            <div class="top">
-                <div class=top-img><img src="/assets/common/images/topicon.png" alt="" width="18px" height="25px"></div>
-                <span class="top1 align">마이냉장고에 나만의 식재료를 등록하고 레시피를 추천 받아 보세요!</span>
-            </div>
-            <div class="header1">
-                <a href="" class="logo">
-                    <img src="/assets/common/images//main%20logo.png" alt="">
-                </a>
-                <div class="box-user">
-                   <a href="" class="mypage">
-                    <img src="/assets/common/images//headericon1.png" alt="" width="23px" height="28px">
-                </a>
-                <a href="/views/member/memberLogin.jsp" class="login">
-                    <img src="/assets/common/images//headericon2.png" alt="" width="80px" height="30px">
-                </a>
-                </div>
-                
-            </div>
- 	<div class="navibar container-fluid">
-                <nav class="navbar navbar-expand-lg nav-distance">
-                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                            <li class="nav-item">
-                                <a class="nav-link active nav-about" href="#">ABOUT</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link active nav-recipe" href="/recipe/recipeBoard/selectAll.do">레시피</a>
-                                <ul class="submenu">
-                                    <li><a href="/recipe/recipeBoard/selectAll.do">모두보기</a></li>
-                                    <li><a href="/recipe/recipeBoardSelectList.do?recipe=hansik">한식</a></li>
-                                    <li><a href="/recipe/recipeBoardSelectList.do?recipe=yangsik">양식</a></li>
-                                    <li><a href="/recipe/recipeBoardSelectList.do?recipe=ilsik">일식</a></li>
-                                    <li><a href="/recipe/recipeBoardSelectList.do?recipe=jungsik">중식</a></li>
-                                    <li><a href="/recipe/recipeBoardSelectList.do?recipe=bunsik ">분식</a></li>
-                                    <li><a href="/recipe/recipeBoardSelectList.do?recipe=vege">채식</a></li>
-                                    <li><a href="/recipe/recipeBoardSelectList.do?recipe=dite">다이어트</a></li>
-                                    <li><a href="/recipe/recipeBoardSelectList.do?recipe=banchan">밑반찬</a></li>
-                                    <li><a href="/recipe/recipeBoardSelectList.do?recipe=annju">안주</a></li>
-                                </ul>
-                            </li>
-
-                            <li class="nav-item">
-                                <a class="nav-link active nav-info" href="#">고객센터</a>
-                                <ul class="submenu">
-                                    <li><a href="">공지사항</a></li>
-                                    <li><a href="">자주하는질문</a></li>
-                                </ul>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link active nav-mypage" href="/mybox/myboxList.do">마이냉장고</a>
-                            </li>
-                        </ul>
-                    </div>
-                </nav>
-                <div class=" box-search d-flex justify-content-center h-100">
-                    <div class="searchbar">
-                        <input class="search_input" type="text" name="" placeholder="">
-                        <a href="" class="search_icon"><i class="fas fa-search"></i></a>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-        
+	<%@include file="/views/common/header3.jsp"%>
         <div class="contents">
 			<h1 class="main-title">CREATE A RECIPE</h1>
 			<h2 class="sub-title">여러분만의 맛있고 특별한 레시피를 공유해주세요.</h2>
@@ -295,9 +230,11 @@
 				})
 			</script>
 		</div>
-		<div id="footer">
+		
+		
+		
+		
 		<%@include file="/views/common/footer.jsp" %>
-		</div>
 	</div>
 	
 	<script>

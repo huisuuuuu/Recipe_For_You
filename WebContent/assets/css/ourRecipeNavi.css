@@ -28,29 +28,7 @@
            
             
         }
-        #menu_content2 td
-        {
-            font-family: 'Noto Serif KR', serif;
-        }
-        #menu_content2 td
-        {  
-            width: 80px;
-            height: 43px;
 
-        }
-       
-        td{
-            border: 2px solid;
-            border-color: #7FB292;
-            
-        }
-         table,tr,td 
-        { 
-           border-collapse: collapse;
-            padding: 0px;
-            margin: 0px;
-            
-        }
         #menu_content2 a
         {   
             display:block;
