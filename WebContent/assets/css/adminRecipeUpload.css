@@ -220,9 +220,11 @@ div {
 #ingredientList span {
 	width: 40%;
 	padding: 5px 0px;
-	margin: 0 20px;
+	margin: 0;
 	text-align: left;
 	color: #5E5E5E;
+	font-family: "Noto Serif KR", serif, Helvetica, "Helvetica Neue", Arial;
+	font-size: 13px;
 }
 
 .step {
