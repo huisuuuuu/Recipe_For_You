@@ -48,17 +48,17 @@
 	<!-- 퀵바 -->
 	<%@include file="/views/common/quickbar.jsp"%>
 	<script>
-		$(function() {
-			var result = ${requestScope.result};
+	$(function() {
+		var result = ${requestScope.result};
 
-			if (result == true) {
-				$("#alertModalMSG").html("회원가입이 되었습니다.");
-			} else {
-				$("#alertModalMSG").html("회원가입 실패하였습니다." + "<br>"
-										+ " - 지속적인 문제 발생 시 관리자에게 문의해주세요 - ");
-			}
-			$("#alertModal").modal("show");
-		})
+		if (result == true) {
+			$("#alertModalMSG").html("회원가입이 되었습니다.");
+		} else {
+			$("#alertModalMSG").html("회원가입 실패하였습니다." + "<br>"
+									+ " - 지속적인 문제 발생 시 관리자에게 문의해주세요 - ");
+		}
+		$("#alertModal").modal("show");
+	})
 	</script>
 </body>
 </html>

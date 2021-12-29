@@ -36,11 +36,8 @@
 
 </head>
 <body>
-	<div id="wrapper">
 
-	</div>
-
-		<div class="contents">
+		<%@ include file="/views/common/header2.jsp" %>	
 			<div id="innerContentWrapper">
 				<form action="/member/memberJoin.do" method="post" id="joinForm">
 					<div>
@@ -129,7 +126,7 @@
 					<!--이용약관동의-->
 					<div class="th">이용약관</div>
 					<div class="td">
-						<label>&nbsp&nbsp&nbsp&nbsp&nbsp<input type="checkbox" name="userConsent" id="consent" class="form-check-input" value="Y" data-name="동의" vali="T">&nbsp동의</label>
+						<label><input type="checkbox" name="userConsent" id="consent" class="form-check-input" value="Y" data-name="동의" vali="T">&nbsp동의</label>
 						<a type="button" id="showTOS" data-bs-toggle="modal" data-bs-target="#tosModal">약관보기 &gt; </a>
 					</div>
 					<br><br><br><br>
@@ -257,7 +254,7 @@
 										</p><br />
 							</div>
 							<div class="modal-footer">
-								<button type="button" class="btn greenBtn" data-bs-dismiss="modal">확인</button>
+								<button type="button" class="btn greenBtn confirmBtn" data-bs-dismiss="modal">확인</button>
 							</div>
 						</div>
 					</div>
@@ -274,7 +271,7 @@
 							</div>
 							<div class="modal-body" id="alertModalMSG"></div>
 							<div class="modal-footer">
-								<button type="button" class="btn greenBtn" data-bs-dismiss="modal">확인</button>
+								<button type="button" class="btn greenBtn confirmBtn" data-bs-dismiss="modal">확인</button>
 							</div>
 						</div>
 					</div>
@@ -290,6 +287,18 @@
 	<!-- 퀵바 -->
 	<%@include file="/views/common/quickbar.jsp"%>
 	<script>
+		$(function(){
+			$(".confirmBtn").css("background-color","#7FB292");
+			$(".confirmBtn").css("color","white");
+			$(".confirmBtn").hover(function(){
+				$(".confirmBtn").css("color","black");
+			},function(){
+				$(".confirmBtn").css("color","white");
+			});
+			$("#alertModal").css("top","20%");	
+		})
+		
+	
 		var authKey;
 		//입력받은 값 유효성검사 호출
 		$("input[name]").keyup(function() {

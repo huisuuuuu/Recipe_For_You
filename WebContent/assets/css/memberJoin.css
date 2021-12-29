@@ -3,7 +3,8 @@
      box-sizing: border-box;
 }
 #innerContentWrapper {
-    margin: 0px auto;
+    margin: 50px auto;
+    height: 600px;
     width: 600px;
     height: 950px;
     padding: 20px;

@@ -37,9 +37,7 @@
 
 </head>
 <body>
-	<div id="wrapper"></div>
-
-	<div class="contents">
+		<%@ include file="/views/common/header2.jsp" %>	
 		<div id="innerContentWrapper">
 			<form action="/member/memberPwdChange.do" method="post"
 				id="pwdChangeForm">
@@ -71,19 +69,30 @@
 				</div>
 				<br> <br>
 				<div class="th"></div>
-				<input type="submit" value="변경하기" id="submit" class="greenBtn">
+				<input type="submit" value="변경하기" id="submit" class="greenBtn confirmBtn">
 			</form>
 		</div>
-	</div>
+
 	<!-- 퀵바 -->
 	<%@include file="/views/common/quickbar.jsp"%>
 	<div class="footer">
 	<!-- footer -->
 	<%@include file="/views/common/footer.jsp"%>
 	</div>
-	</div>
+	
 
 	<script>
+		$(function(){
+			$(".confirmBtn").css("background-color","#7FB292");
+			$(".confirmBtn").css("color","white");
+			$(".confirmBtn").hover(function(){
+				$(this).css("color","black");
+			},function(){
+				$(this).css("color","white");
+			});
+			$("#alertModal").css("top","20%");	
+		})
+
 		// 비밀번호 유효성 검사
 		$("input[name=userPwd]").keyup(
 				function() {

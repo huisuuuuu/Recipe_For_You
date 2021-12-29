@@ -24,11 +24,7 @@
 
 </head>
 <body>
-     <div id="wrapper">
-
-        </div>
-        
-        <div class="contents">
+		<%@ include file="/views/common/header2.jsp" %>	
 			<div id="innerContentWrapper">
 		        <form action="/member/memberIdPwCheck.do" method="post">
 		            <div>
@@ -43,20 +39,30 @@
 		                <input type="password" class="input" name="type" value="update" hidden>                
 		            </div>
 		            <br><br>
-		            <div class="td"><input type="submit" value="확인" id="submit" class="btn greenBtn input"></div>
+		            <div class="td"><input type="submit" value="확인" id="submit" class="btn greenBtn input confirmBtn"></div>
 		        </form>
 		    </div>
-        </div>
+ 
 	<!-- 퀵바 -->        
 	<%@include file="/views/common/quickbar.jsp" %>
         <div class="footer">
 	<!-- footer -->
 	<%@include file="/views/common/footer.jsp"%>
         </div>
-    </div>
+
 	<script>
 	$(function(){
 		$("input[name=userId]").val("${sessionScope.member.userId }");		
+		
+		$(".confirmBtn").css("background-color","#7FB292");
+		$(".confirmBtn").css("color","white");
+		$(".confirmBtn").hover(function(){
+			$(".confirmBtn").css("color","black");
+		},function(){
+			$(".confirmBtn").css("color","white");
+		});
+		$("#alertModal").css("top","20%");	
+		
 	})
 	</script>
 </body>

@@ -36,11 +36,7 @@
 
 </head>
 <body>
-	<div id="wrapper">
-	
-	</div>
-
-		<div class="contents">
+			<%@ include file="/views/common/header2.jsp" %>	
 			<div id="innerContentWrapper">
 				<form action="/member/memberUpdate.do" method="post" id="updateForm">
 					<div>
@@ -95,11 +91,11 @@
 					<br><br><br><br>
 					
 					<div class="th"></div>
-					<input type="button" value="개인정보 수정" id="update" class="greenBtn">
+					<input type="button" value="개인정보 수정" id="update" class="greenBtn confirmBtn">
 				</form>
 				<br />
 				<div class="th"></div>
-				<input type="button" value="회원탈퇴" id="withDraw" class="greenBtn">
+				<input type="button" value="회원탈퇴" id="withDraw" class="greenBtn confirmBtn">
 			</div>
 			<!-- 알림 Modal -->
 			<div class="modal fade Modal" id="alertModal" tabindex="-1"
@@ -112,7 +108,7 @@
 						</div>
 						<div class="modal-body" id="alertModalMSG"></div>
 						<div class="modal-footer">
-							<button type="button" class="btn greenBtn" data-bs-dismiss="modal" id="btn">확인</button>
+							<button type="button" class="btn greenBtn confirmBtn" data-bs-dismiss="modal" id="btn">확인</button>
 						</div>
 					</div>
 				</div>
@@ -128,20 +124,19 @@
 						</div>
 						<div class="modal-body" id="alertModalMSG">회원탈퇴를 진행하시겠습니까?</div>
 						<div class="modal-footer">
-							<button type="button" class="btn greenBtn" data-bs-dismiss="modal">취소</button>
-							<button type="button" class="btn greenBtn" data-bs-dismiss="modal" id="withdrawBtn">회원탈퇴</button>
+							<button type="button" class="btn greenBtn confirmBtn" data-bs-dismiss="modal">취소</button>
+							<button type="button" class="btn greenBtn confirmBtn" data-bs-dismiss="modal" id="withdrawBtn">회원탈퇴</button>
 						</div>
 					</div>
 				</div>
 			</div>
-		</div>
+
 		<!-- 퀵바 -->
 		<%@include file="/views/common/quickbar.jsp"%>
 		<div class="footer">
 		<!-- footer -->
 		<%@include file="/views/common/footer.jsp"%>
 		</div>
-	</div>
 
 	<script>
 		$(function() {
@@ -167,6 +162,15 @@
 				$(this).attr("vali", "T");
 			}
 		});
+		
+		$(".confirmBtn").css("background-color","#7FB292");
+		$(".confirmBtn").css("color","white");
+		$(".confirmBtn").hover(function(){
+			$(this).css("color","black");
+		},function(){
+			$(this).css("color","white");
+		});
+		$("#alertModal").css("top","20%");	
 
 		//입력값과 정규식을 매개변수로 받아 유효성 검사
 		function checkValidation(value, exp) {
