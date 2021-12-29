@@ -20,17 +20,12 @@
 	rel="stylesheet"
 	integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
 	crossorigin="anonymous">
-<link rel="stylesheet"
-	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
-	integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
-	crossorigin="anonymous">
+
 <link rel="stylesheet"
 	href="https://use.fontawesome.com/releases/v5.5.0/css/all.css"
 	integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU"
 	crossorigin="anonymous">
-<link
-	href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
-	rel="stylesheet" id="bootstrap-css">
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link
@@ -40,13 +35,26 @@
 <link rel="stylesheet" type="text/css"
 	href="${pageContext.request.contextPath}/assets/css/mybox.css">
 <style>
-section.title {
-	min-height: 200px;
-}
+
 
 section.title h2 {
-	line-height: 200px;
+	line-height: 100px;
 	text-align: center;
+    font-size: 32px;
+    font-family: 'Noto Serif KR', sans-serif;
+    font-weight: 700;
+    color: #5E5E5E;
+}
+
+
+
+section.title2 h2 {
+	margin : 150px auto 50px auto;
+	text-align: center;
+    font-size: 32px;
+    font-family: 'Noto Serif KR', sans-serif;
+    font-weight: 700;
+    color: #5E5E5E;
 }
 
 .mybox-list {
@@ -117,11 +125,6 @@ section.title h2 {
 	paddin: 10px;
 	background-color: #5c9970;
 	color: #fff;
-}
-
-.header {
-	position: sticky;
-	background-color: #fff;
 }
 
 .mybox-row {
@@ -377,7 +380,7 @@ section.title h2 {
 </head>
 
 <body>
-	<div id="wrapper">
+	
 		<%@include file="/views/common/header2.jsp" %>
 
 		<div class="contents" style="height: auto;">
@@ -441,7 +444,7 @@ section.title h2 {
 				</section>
 			</form>
 
-			<section class="title">
+			<section class="title2">
 				<h2>추천레시피</h2>
 				<hr>
 			</section>
@@ -451,9 +454,9 @@ section.title h2 {
 					<div class="mybox-row-item">
 						<img class="mybox-row-item-image" src="${pageContext.request.contextPath}${recipe.file_path}" />
 						<br>
-						<span>${recipe.title}</span>
-						<br> 
 						<span>${recipe.subtitle}</span>
+						<br> 
+						<span>${recipe.title}</span>
 					</div>
 				</c:forEach>
 			</div>
@@ -461,7 +464,7 @@ section.title h2 {
 
 		<%@include file="/views/common/footer.jsp" %>
 
-	</div>
+	
 
 	<!-- Optional JavaScript; choose one of the two! -->
 
