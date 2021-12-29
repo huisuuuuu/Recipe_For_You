@@ -2,6 +2,11 @@
 *{
     box-sizing: border-box;
 }
+#innerContentWrapper> * {
+	font-family: 'Noto Sans KR', sans-serif;
+	font-size: 90%;
+	letter-spacing: -0.04em;
+} 
 #innerContentWrapper {
     margin: 50px auto;
     min-height: 600px;

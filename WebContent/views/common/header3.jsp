@@ -177,7 +177,7 @@
 					</a>
 					<ul class="myMenuSub">
 						<li><a href="/views/member/memberUpdateCheck.jsp">회원정보 수정</a></li>
-						<li><a href="/views/member/memberPwdCheck.jsp">비밀번호 변경</a></li>
+						<li><a href="/views/member/memberPwdChangeCheck.jsp">비밀번호 변경</a></li>
 						<li><a href="/member/memberLogout.do">로그아웃</a></li>
 					</ul>
 				</div>

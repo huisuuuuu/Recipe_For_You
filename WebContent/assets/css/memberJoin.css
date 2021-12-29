@@ -2,10 +2,15 @@
 *{
      box-sizing: border-box;
 }
+#innerContentWrapper> * {
+	font-family: 'Noto Sans KR', sans-serif;
+	font-size: 90%;
+	letter-spacing: -0.04em;
+}     
 #innerContentWrapper {
     margin: 50px auto;
     height: 600px;
-    width: 600px;
+    width: 650px;
     height: 950px;
     padding: 20px;
 }
@@ -22,14 +27,22 @@
 }
 .th {
     float: left;
-    width: 100px;
+    width: 110px;
     height : 48px;
     text-align: left;
     line-height: 48px;
-    font-size: 16px;
+    font-size: 15px;
+}
+.th-space {
+    float: left;
+    width: 110px;
+    height : 25px;
 }
 .td{
-	line-height:46px;
+	line-height: 45px;
+}
+.validation-letter{
+	margin: 0 auto;
 }
 input{
     height : 50px;
@@ -38,6 +51,7 @@ input{
     padding-left: 10px;
 }
 button{
+	margin-left: 5px;
     height : 50px;
     width : 100px;
     background-color: white;
@@ -48,8 +62,10 @@ button:hover{
     font-weight: bolder;
 }
 .validation{
-    width : 350px;
-    height : 24px;
+    width : 600px;
+    height : 25px;
+    margin : 0 auto;
+    line-height: 25px;
 }
 #consent{
     height : 20px;
@@ -57,7 +73,7 @@ button:hover{
     margin-top: 13px;
 }
 #showTOS{
-    margin-right: 110px;
+    margin-right: 150px;
     line-height: 45px;
     float: right;
     color: #7FB292;

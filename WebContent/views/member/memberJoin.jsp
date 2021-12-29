@@ -18,18 +18,12 @@
 	src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
 	integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
 	crossorigin="anonymous"></script>
-<%-- Required meta tags --%>
+
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<%--font--%>
+<!-- font -->
 <style>
-@import
-	url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR&family=Noto+Serif+KR:wght@200&display=swap')
-	;
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR&family=Noto+Serif+KR:wght@200&display=swap');
 </style>
-<!-- header, footer css -->
-<link rel="stylesheet" type="text/css"
-	href="/assets/css/recipeHeaderFooter.css">
 <!-- CSS -->
 <link rel="stylesheet" type="text/css" href="/assets/css/memberJoin.css">
 <title>냉장고를 부탁해 회원가입</title>
@@ -48,11 +42,11 @@
 					<div class="th">아이디</div>
 					<div class="td">
 						<input type="text" name="userId" placeholder=" 6자 이상의 영문 혹은 영문과 숫자 조합" maxlength="12" data-name="아이디" class="essential">
-						<button id="checkId" type="button">중복확인</button>
+						<button id="checkId" type="button" style="margin-left:5px;">중복확인</button>
 						<br>
 					</div>
 					<div class="validation" style="display: none;">
-						<div class="th"></div>
+						<div class="th-space"></div>
 						<span>6자 이상의 영문 혹은 영문과 숫자 조합</span>
 					</div>
 					<br>
@@ -63,7 +57,7 @@
 						<input type="password" name="userPwd" placeholder=" 비밀번호를 입력해주세요" maxlength="14" data-name="비밀번호" class="essential">
 					</div>
 					<div class="validation" style="display: none;">
-						<div class="th"></div>
+						<div class="th-space"></div>
 						<span>8자 이상의 영문, 숫자, 특수문자 조합</span>
 					</div>
 					<br>
@@ -74,7 +68,7 @@
 						<input type="password" name="userPwd_re" placeholder=" 비밀번호를 한번 더 입력해주세요" maxlength="14" data-name="비밀번호 확인" class="essential">
 					</div>
 					<div class="validation" style="display: none;">
-						<div class="th"></div>
+						<div class="th-space"></div>
 						<span>비밀번호를 확인해주세요</span>
 					</div>
 					<br>
@@ -85,7 +79,7 @@
 						<input type="text" name="userName" placeholder=" 이름을 입력해주세요" data-name="이름" maxlength="10" class="essential">
 					</div>
 					<div class="validation" style="display: none;">
-						<div class="th"></div>
+						<div class="th-space"></div>
 						<span>2자 이상의 한글</span>
 					</div>
 					<br>
@@ -94,19 +88,19 @@
 					<div class="th">이메일</div>
 					<div class="td">
 						<input type="email" name="userEmail" placeholder=" 예: member@join.com" data-name="이메일" class="essential">
-						<button id="checkEmail" type="button">인증하기</button>
+						<button id="checkEmail" type="button" style="margin-left:5px;">인증하기</button>
 						<br>
 					</div>
 					<div class="validation" style="display: none;">
-						<div class="th"></div>
+						<div class="th-space"></div>
 						<span>이메일 형식으로 작성</span>
 					</div>
-					<br>
+					
 					<div style="display: none;" id="inputAuthKey">
 						<div class="th">인증번호</div>
 						<div class="td">
-							<input type="text" id="authKeyNo" placeholder="인증번호를 입력하세요" data-name="인증번호" value="auth" />
-							<button id="authKeyCheck" type="button">인증번호확인</button>
+							<input type="text" id="authKeyNo" placeholder="인증번호를 입력하세요" data-name="인증번호" />
+							<button id="authKeyCheck" type="button" style="margin-left:5px;">인증번호확인</button>
 							<br>
 						</div>
 					</div>
@@ -118,7 +112,7 @@
 						<input type="text" name="userPhone" placeholder=" 숫자만 입력해주세요" maxlength="11" data-name="전화번호" class="essential">
 					</div>
 					<div class="validation" style="display: none;">
-						<div class="th"></div>
+						<div class="th-space"></div>
 						<span>숫자만 입력</span>
 					</div>
 					<br>

@@ -13,7 +13,10 @@
 	<script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
 	<!-- jQuery Cookie --> 
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js" integrity="sha512-aUhL2xOCrpLEuGD5f6tgHbLYEXRpYZ8G5yD+WlFrXrPy2IrWBlu6bih5C9H6qGsgqnU6mgx6KtU8TreHpASprw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-
+	<!-- font -->
+	<style>
+	@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR&family=Noto+Serif+KR:wght@200&display=swap');
+	</style>
 <title>Insert title here</title>
 <style>
 	#quickNavBar{
@@ -24,7 +27,6 @@
         top: 300px;
         letter-spacing: -0.3px;
         transition: top 0.4s;
-
 	}
 	#qnbWrapper{
 		display: none;
