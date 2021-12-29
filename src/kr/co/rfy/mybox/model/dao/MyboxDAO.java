@@ -334,7 +334,7 @@ public class MyboxDAO {
 		sb.append("	USING(BOARD_NO)");
 		sb.append("	WHERE ROWNUM <= 4");
 		sb.append("	) o3");
-		sb.append("	JOIN (	SELECT * FROM RECIPE_FILE oo1	ORDER BY FILE_NAME ) o4");
+		sb.append("	JOIN (	SELECT * FROM RECIPE_FILE oo1 where file_name like '%1%'	ORDER BY FILE_NAME ) o4");
 		sb.append("	USING (BOARD_NO)");
 		sb.append("	ORDER BY BOARD_NO");
 		
