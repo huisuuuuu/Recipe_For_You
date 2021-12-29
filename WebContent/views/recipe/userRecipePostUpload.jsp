@@ -28,8 +28,7 @@
 <<<<<<< HEAD
 	<link rel="stylesheet" type="text/css" href="/assets/css/adminRecipeUpload.css">
 =======
-<link rel="stylesheet" type="text/css" href="/assets/css/adminRecipeUpload.css">
->>>>>>> b86c4b999d42abc967f92e605cd32fb16a09b38f
+
   <link rel="stylesheet" type="text/css" href="/assets/css/recipeHeaderFooter.css">
 <title>냉장고를 부탁해</title>
 
