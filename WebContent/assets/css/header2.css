@@ -7,7 +7,10 @@ div {
 #wrapper {
 	width: 100%;
 	background-color: #fff;
+<<<<<<< HEAD
+=======
 	
+>>>>>>> 0bec796cbb9106ae6d6e7678c172f413dee6fc2d
 }
 
 .header {
@@ -275,19 +278,18 @@ div {
 	width: 10px;
 	position: absolute;
 	right: 3%;
-	top: 15%;
 	border-radius: 50%;
 	color: #7FB292;
 	text-decoration: none;
 }
 
-.contents {
-	width: 100%;
-	max-width: 1280px;
-	height: 1000px;
-	margin: 33px auto 50px auto;
-	border: 1px solid black;
+.form-control {
+	width: 600px;
+	border-radius: 20px 20px;
+	margin: 10px 0 0 0;
 }
+
+
 
 .myMenu, .login, .admin {
 	color: #5E5E5E;
