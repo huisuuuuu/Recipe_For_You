@@ -95,7 +95,7 @@
 }
 
 #option_form {
-	width: 100px;
+	width: 130px;
 	height: 50px;
 	float: right;
 	border: 1px solid white;
