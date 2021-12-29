@@ -165,34 +165,23 @@
 			</form>
 			
 			<script>
-						
-			$(document).ready(function(){
-				$('#thumbnailImage').on("change", handleImgFileSelect);
-			})
-			
-			function handleImgFileSelect(e){
-				
-				var files = e.target.files;
-				var filesArr = Array.prototype.slice.call(files);
-				
-				filesArr.foeEach(function(f){
-					if(!f.type.match("image.*")){
-						alert("이미지만 업로드 가능합니다.");
-						return;
+				$(document).ready(function() {
+					$('#thumbnailImage').on("change", function() {
+						readURL(this);
+					});
+				});
+
+				function readURL(input) {
+					if (input.files && input.files[0]) {
+						var reader = new FileReader();
+						reader.onload = function(e) {
+							$('#thumbnailUpload').attr('src', e.target.result);
+							$('#thumbnailUpload').prop('style', "width: 650px; height: 500px; margin: 0 auto; border-style: none;");
+							$('#thumbnail').prop('style', "background-image: none;");
+						}
+						reader.readAsDataURL(input.files[0]);
 					}
-					
-					sel_file = f;
-					
-					var reader = new FileReader();
-					reader.onload = function(e){
-					$('#thumbnailUpload').attr("src", e.target.result);
-					$('#thumbnailUpload').css("margin", "0 auto");
-					$('#thumbnailUpload').css("width", "650px");
-					$('#thumbnailUpload').css("height", "500px");
-				}	
-				reader.readAsDataURL(f);				
-			)};
-			
+				}
 			</script>
 
 			<script>
