@@ -25,6 +25,12 @@ div {
 	float: right;
 }
 
+#contents {
+	width: 85%;
+	height: auto;
+	float: right;
+}
+
 #footer {
 	width: 85%;
 	height: 50px;

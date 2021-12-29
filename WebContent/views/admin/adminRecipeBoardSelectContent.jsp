@@ -112,14 +112,14 @@
 									for (int i = 0; i < ingredientList.size(); i++) {
 								%>
 								<tr>
-									<td><%=ingredientList.get(i).getIngredientName()%>
-									<td><%=ingredientList.get(i).getIngredientNum()%></td>
+									<td class="ingredientName"><%=ingredientList.get(i).getIngredientName()%>
+									<td class="ingredientNum"><%=ingredientList.get(i).getIngredientNum()%></td>
 
 									<%
 										if (i != ingredientList.size() - 1) {
 									%>
-									<td><%=ingredientList.get(i + 1).getIngredientName()%>
-									<td><%=ingredientList.get(i + 1).getIngredientNum()%></td>
+									<td class="ingredientName"><%=ingredientList.get(i + 1).getIngredientName()%>
+									<td class="ingredientNum"><%=ingredientList.get(i + 1).getIngredientNum()%></td>
 									<%
 										}
 									%>
