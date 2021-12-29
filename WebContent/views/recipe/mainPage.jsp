@@ -431,6 +431,39 @@ div {
         }
 
 
+.image {
+  position:relative;
+  
+ }
+ 
+.image:hover
+	{
+		filter: grayscale(60%) opacity(0.7);
+		
+	}
+	
+#explain {
+  position:absolute;
+  visibility:hidden;
+	  
+ 
+ }
+
+
+.image:hover #explain  {
+   visibility:visible;
+   color:white;
+   font-size:20px;
+   transform: translate(70px,110px);
+   
+   
+ }  
+	
+
+
+
+
+
 .footer {
     width: 100%;
     height: 200px;
@@ -553,7 +586,7 @@ a { text-decoration:none !important }
 	            </div>    
                 	<%if(m.getRoll().substring(0,2).equals("AD")) {%>
                 <div>	
-                	<a href="/recipeBoard/recipeBoardAllSelect.do" class="admin">
+                		<a href="/recipeBoard/recipeBoardAllSelect.do" class="admin">
 	            	    <img src="/assets/common/images/headericon3.png" width="15px" height="28px"> 관리자 페이지
 	               	</a>
 	            </div>    		
@@ -635,20 +668,8 @@ a { text-decoration:none !important }
          			<%for(OurRecipe bRe :bestRecipe){ %>
                         <div class="recipe_content">																	
                         	<a href="/recipe/recipeSelectContent.do?boardNo=<%=bRe.getBoardNo()%>&currentPage=<%=currentPage %>" style="text-decoration: none; color: inherit;">
-	                            <div class="image" style="text-align: center;"><img src="<%=bRe.getFilePath()%>" width="278" height="278" class="allImage" ></div>
-	                            <div class="subtitle" style="text-align:center" ><%=bRe.getSubTitle() %></div>
-	                            <div class="title" style="text-align:center"><b><%=bRe.getTitle() %></b></div>
-	                            <div class="menu"  style="color:gray">
-	                                <div class="menu_level" style="transform: translateX(45px)"> 
-	                                <img src="/assets/images/Level.png"  width="20px" height="20px" class="img">
-	                                <span ><%=bRe.getLevelName() %></span>
-	                                </div>
-	                                <div class="menu_time" style="transform: translateX(-15px)">
-	                                    <img src="/assets/images/clock_time.png" width="20px" height="20px" class="img">
-	                                    <span><%=bRe.getTimeName() %></span>
-	                                </div>
-	                            </div>
-	                            <div class="empty" style="text-align:center"></div>
+	                            <div class="image" style="text-align: center;"><p id ="explain"> <%=bRe.getTitle()%></p><img src="<%=bRe.getFilePath()%>" width="278" height="278" class="allImage" ></div>
+	                          
                             </a>
                         </div>
                        <%} %>
