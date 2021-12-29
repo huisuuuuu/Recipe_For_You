@@ -54,7 +54,7 @@ public class MemberIdPwCheckServlet extends HttpServlet {
 			}else if(type.equals("change")) {
 				sendAddr="/views/member/memberPwdChange.jsp";
 			}else {
-				response.sendRedirect("/views/commons/error.jsp");
+				response.sendRedirect("/views/common/error.jsp");
 			}
 			
 			String userId = m.getUserId();
