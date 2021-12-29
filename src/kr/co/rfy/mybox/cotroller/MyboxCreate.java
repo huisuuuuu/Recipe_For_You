@@ -61,8 +61,8 @@ public class MyboxCreate extends HttpServlet {
 		
 		// USER_ID
 		HttpSession session = request.getSession();
-		String userId = (String) session.getAttribute("user_id");
-//		String userId = "test1000";
+//		String userId = (String) session.getAttribute("user_id");
+		String userId = "test1000";
 		
 		System.out.println("---------------------------------------------------");
 		System.out.println("productBigList 개수 " +  productBigList.length);

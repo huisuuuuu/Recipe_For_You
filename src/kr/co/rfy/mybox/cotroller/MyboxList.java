@@ -48,8 +48,8 @@ public class MyboxList extends HttpServlet {
 		
 		// USER_ID
 		HttpSession session = request.getSession();
-		String userId = (String) session.getAttribute("user_id");
-		//String userId = "test1000";
+//		String userId = (String) session.getAttribute("user_id");
+		String userId = "test1000";
 		System.out.println("======== userId: " + userId);
 		
 		List<Mybox> myboxList = null;
