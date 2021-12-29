@@ -808,7 +808,9 @@ a {
 	LinkedList<RecipeWithFile>recipeWithFileList = (LinkedList<RecipeWithFile>)request.getAttribute("recipeWithFileList");
 	  
 			int currentPage = (int)request.getAttribute("currentPage");
+			
 %>
+
  <div id="wrapper">
         <div class="header">
 		<div class="top">
@@ -992,7 +994,7 @@ a {
         	
         
         
-        
+        <%@include file="/views/common/quickbar.jsp"%>
         <div class="footer">
             <div class="footer1 container">
             <pre>

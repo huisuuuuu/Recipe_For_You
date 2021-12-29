@@ -59,6 +59,7 @@
 	%>
 
 		 <%@include file="/views/common/header3.jsp"%>
+		 <%@include file="/views/common/quickbar.jsp"%>
 		 
 	<%
 	

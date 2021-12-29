@@ -94,7 +94,8 @@
 
 
       <%@include file="/views/common/header3.jsp"%>
-        
+       <%@include file="/views/common/quickbar.jsp"%>
+       
         <div class="contents">
             <div id=menuNavi_wrapper>
             <div id="menu_content1"></div>

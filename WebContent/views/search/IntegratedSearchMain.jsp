@@ -250,7 +250,7 @@ color:gray;
 
 </style>
 <jsp:include page="/views/common/header2.jsp"></jsp:include>
-
+<%@include file="/views/common/quickbar.jsp"%>
 
 <div class="whole">
 <%
