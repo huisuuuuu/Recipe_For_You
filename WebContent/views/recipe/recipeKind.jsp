@@ -259,7 +259,7 @@
 	                                    <span><%=o.getTimeName() %></span>
 	                                </div>
 	                            </div>
-	                            <div class="empty" style="text-align:center"><%=o.getUserId() %></div>
+	                            <div class="empty" style="text-align:center"><%=o.getUserName() %></div>
                             </a>
                         </div>
                         <%} %>
@@ -280,7 +280,7 @@
 	                                    <span><%=o.getTimeName() %></span>
 	                                </div>
 	                            </div>
-	                            <div class="empty" style="text-align:center"><%=o.getUserId() %></div>
+	                            <div class="empty" style="text-align:center"><%=o.getUserName() %></div>
                             </a>
                         </div>
                         <%} %>
