@@ -19,84 +19,11 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <!-- CSS -->
-<!--  <link rel="stylesheet" type="text/css" href="/assets/css/memberLogin.css"> -->
+ <link rel="stylesheet" type="text/css" href="/assets/css/memberLogin.css">
 
 <title>냉장고를 부탁해 회원 로그인</title>
 <style>
-body{
-	padding-top: 200px;
-}
-#innerContentWrapper{
-/* padding-top: 200px; */
-}
-        *{
-            box-sizing: border-box;
-        }
-        #innerContentWrapper {
-            margin: 50px auto;
-            width: 600px;
-            padding: 20px;
-            text-align: center;
-            height: 1200px;
-        }
-        #title{
-            margin: auto;
-            text-align: center;
-            font-size: 23px;
-            font-weight: 700;
-            border-left: 1px solid black;
-            border-right: 1px solid black;
-            width: 100px;
-            height: 20px;
-            line-height: 20px;
-        }
-         .td{
-            width: 350px;
-            margin: 0 auto;
-        }
-        .input{
-            height : 50px;
-            width : 350px;
-            border : 1px solid #707070;
-            padding-left: 10px;
-            margin: 10px auto;
-        }
-        .greenBtn{
-            background-color: #7FB292;
-            color: white;
-            border: 0px;
-        }
-        .float{
-            float: left;
-            margin-left: 10px;
-            line-height: 12px;
-            margin: 5px;
-        }
-        #findIdPwd{
-			/* margin-left: 75px; */
-			float: right;
-            cursor: pointer;
-            
-        }
-        #join{
-            border: 1px solid #7FB292;
-            color: #7FB292;
-        }
-        #join:hover{
-            color: black;
-        }
-        .Modal{
-        	top: 20%;
-        	text-align: left;
-        }
-        #login:hover{
-        	color: black;
-        }
-        #Btn{
-            background-color: #7FB292;
-            color: white;
-            border: 0px;
-        }
+
 </style>
 			
 </head>
@@ -149,7 +76,7 @@ body{
 						</div>
 						<div class="modal-body" id="alertModalMSG"></div>
 						<div class="modal-footer">
-							<button type="button" class="greenBtn btn" data-bs-dismiss="modal" id="btn greenBtn">확인</button>
+							<button type="button" class="greenBtn btn confirmBtn" data-bs-dismiss="modal" id="btn greenBtn">확인</button>
 						</div>
 					</div>
 				</div>
@@ -175,6 +102,15 @@ body{
 			} else {
 				$("#rememberId").attr("checked", false);
 			}
+			
+			$(".confirmBtn").css("background-color","#7FB292");
+			$(".confirmBtn").css("color","white");
+			$(".confirmBtn").hover(function(){
+				$(".confirmBtn").css("color","black");
+			},function(){
+				$(".confirmBtn").css("color","white");
+			});
+			$(".Modal").css("top","20%");
 		})
 
 		$("#login").click(

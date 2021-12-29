@@ -36,9 +36,7 @@
 <title>냉장고를 부탁해 아이디/비밀번호 찾기</title>
 </head>
 <body>
-	<div id="wrapper"></div>
-
-	<div class="contents">
+			<%@ include file="/views/common/header2.jsp" %>	
 		<div id="innerContentWrapper">
 			<div>
 				<H3 style=text-align:center>|  아이디/비밀번호 찾기  |</H3>
@@ -64,7 +62,7 @@
 				<br>
 				<br>
 				<div class="td">
-					<input type="button" value="아이디 찾기" id="findId" class="btn greenBtn input">
+					<input type="button" value="아이디 찾기" id="findId" class="btn greenBtn input confirmBtn">
 				</div>
 			</div>
 
@@ -82,7 +80,7 @@
 				<br>
 				<br>
 				<div class="td">
-					<input type="button" value="비밀번호 찾기" id="findPwd" class="btn greenBtn input">
+					<input type="button" value="비밀번호 찾기" id="findPwd" class="btn greenBtn input confirmBtn">
 				</div>
 			</div>
 		</div>
@@ -98,14 +96,14 @@
 					</div>
 					<div class="modal-body" id="alertModalMSG"></div>
 					<div class="modal-footer">
-						<button type="button" class="btn greenBtn" data-bs-dismiss="modal" id="movePwdBtn">비밀번호 찾기</button>
-						<a href="/views/member/memberLogin.jsp"><button type="button" class="btn greenBtn" data-bs-dismiss="modal" id="loginBtn">로그인 하기</button></a>
-						<button type="button" class="btn greenBtn" data-bs-dismiss="modal" id="btn">확인</button>
+						<button type="button" class="btn greenBtn confirmBtn" data-bs-dismiss="modal" id="movePwdBtn">비밀번호 찾기</button>
+						<a href="/views/member/memberLogin.jsp"><button type="button" class="btn greenBtn confirmBtn" data-bs-dismiss="modal" id="loginBtn">로그인 하기</button></a>
+						<button type="button" class="btn greenBtn confirmBtn" data-bs-dismiss="modal" id="btn">확인</button>
 					</div>
 				</div>
 			</div>
 		</div>
-	</div>
+
 
 
 	<div class="footer">
@@ -125,6 +123,15 @@
 				$(this).addClass("current");
 				$("#" + tabId).addClass("current");
 			})
+
+			$(".confirmBtn").css("background-color","#7FB292");
+			$(".confirmBtn").css("color","white");
+			$(".confirmBtn").hover(function(){
+				$(this).css("color","black");
+			},function(){
+				$(this).css("color","white");
+			});
+			$("#alertModal").css("top","20%");	
 		})
 
 		// 아이디 찾기
