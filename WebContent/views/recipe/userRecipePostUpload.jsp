@@ -28,8 +28,7 @@
 <<<<<<< HEAD
 	<link rel="stylesheet" type="text/css" href="/assets/css/adminRecipeUpload.css">
 =======
-<link rel="stylesheet" type="text/css" href="/assets/css/adminRecipeUpload.css">
->>>>>>> b86c4b999d42abc967f92e605cd32fb16a09b38f
+
   <link rel="stylesheet" type="text/css" href="/assets/css/recipeHeaderFooter.css">
 <title>냉장고를 부탁해</title>
 
@@ -133,8 +132,8 @@
 					</select>
 				</div>
 				<div id="thumbnail">
-					<label for="thumbnailImage"><div id="thumbnailUpload">
-						</div></label>
+					<label for="thumbnailImage"><img id="thumbnailUpload" src="/assets/images/test2.png"/>
+					</label>
 				</div>
 				<div class="recipeContent">
 					<input type=text name="title" class="recipeContentInput"
@@ -160,7 +159,7 @@
 					<ul id="ingredientList" style="margin-left: 40px; padding: 0px;">
 					</ul>
 				</div>
-
+				
 				<script>
 				
 						$('#ingredientBtn').click(function() {
@@ -228,6 +227,26 @@
 				<input type="file" id="thumbnailImage" name="recipeImage" accept="image/*" onchange="setThumbnail(event,'thumbnailImage');" style="display: none;"/>
 				<input type="file" id="recipeImage_1" name="recipeImage" style="display: none;"/>
 			</form>
+			
+			<script>
+				$(document).ready(function() {
+					$('#thumbnailImage').on("change", function() {
+						readURL(this);
+					});
+				});
+
+				function readURL(input) {
+					if (input.files && input.files[0]) {
+						var reader = new FileReader();
+						reader.onload = function(e) {
+							$('#thumbnailUpload').attr('src', e.target.result);
+							$('#thumbnailUpload').prop('style', "width: 650px; height: 500px; margin: 0 auto; border-style: none;");
+							$('#thumbnail').prop('style', "background-image: none;");
+						}
+						reader.readAsDataURL(input.files[0]);
+					}
+				}
+			</script>
 			
 			<script>
 				var count = 2;
