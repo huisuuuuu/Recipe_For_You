@@ -707,11 +707,7 @@ a {
   position:relative;
 
  }
-.contents1-image-1 :hover
-    {
-        filter: grayscale(100%) opacity(0.8);
-    }
-
+ 
 #explain1 {
   position:absolute;
   visibility:hidden;
@@ -828,7 +824,7 @@ a {
 			</a>
 			<div class="box-user">
 				<div id="mypage">
-					<a href="" class="mypage"> <img
+					<a href="/mybox/myboxList.do" class="mypage"> <img
 						src="/assets/common/images/headericon1.png" alt="" width="23px"
 						height="28px">
 					</a>
@@ -900,8 +896,8 @@ a {
 						</ul></li>
 					<li class="GNB-float"><a href="#" class="hoverColor">고객센터</a>
 						<ul class="ul-list">
-							<li><a href="#">공지사항</a></li>
-							<li><a href="#">자주하는질문</a></li>
+							<li><a href="/customerServiceCenter/notice.do">공지사항</a></li>
+							<li><a href="/customerServiceCenter/qna.do">자주하는질문</a></li>
 						</ul></li>
 					<li class="GNB-float" id="myBox"><a href="/mybox/myboxList.do"
 						class="greenColor hoverColor"> 마이냉장고</a></li>
@@ -957,10 +953,10 @@ a {
             <div class="contents1-title">RECIPES FOR YOU</div>
             <div class="contents1-subtitle">마이냉장고에 재료를 입력하고 레시피를 추천받아보세요.</div>
             <div class="contents1-image">
-                <div class="contents1-image-1"><a href=""><p id="explain1">${recipeWithFileList[0].title}</p><img src="${recipeWithFileList[0].file_path}" alt="" width="625px" height="550px"></a></div>
-                <div class="contents1-image-2"><a href=""><p id="explain1">${recipeWithFileList[1].title}</p><img src="${recipeWithFileList[1].file_path}" alt="" width="290px" height="257px"></a></div>
-                <div class="contents1-image-3"><a href=""><p id="explain1">${recipeWithFileList[2].title}</p><img src="${recipeWithFileList[2].file_path}" alt="" width="290px" height="260px"></a></div>
-                <div class="contents1-image-4"><a href=""><p id="explain1">${recipeWithFileList[3].title}</p><img src="${recipeWithFileList[3].file_path}" alt="" width="615px" height="259px"></a></div>
+                <div class="contents1-image-1"><a href="http://127.0.0.1/recipe/recipeSelectContent.do?boardNo=1&currentPage=1"><p id="explain1">${recipeWithFileList[0].title}</p><img src="${recipeWithFileList[0].file_path}" alt="" width="625px" height="550px"></a></div>
+                <div class="contents1-image-2"><a href="http://127.0.0.1/recipe/recipeSelectContent.do?boardNo=43&currentPage=1"><p id="explain1">${recipeWithFileList[1].title}</p><img src="${recipeWithFileList[1].file_path}" alt="" width="290px" height="257px"></a></div>
+                <div class="contents1-image-3"><a href="http://127.0.0.1/recipe/recipeSelectContent.do?boardNo=50&currentPage=1"><p id="explain1">${recipeWithFileList[2].title}</p><img src="${recipeWithFileList[2].file_path}" alt="" width="290px" height="260px"></a></div>
+                <div class="contents1-image-4"><a href="http://127.0.0.1/recipe/recipeSelectContent.do?boardNo=57&currentPage=1"><p id="explain1">${recipeWithFileList[3].title}</p><img src="${recipeWithFileList[3].file_path}" alt="" width="615px" height="259px"></a></div>
             </div>
             <div class="contents2-title">BEST RECIPES</div>
             <div class="contents2-button-more container"><a href="/recipe/recipeBoard/selectAll.do" type="button">더보기</a></div>

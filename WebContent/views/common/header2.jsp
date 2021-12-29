@@ -152,7 +152,7 @@
 			</a>
 			<div class="box-user">
 				<div id="mypage">
-					<a href="" class="mypage"> <img
+					<a href="/mybox/myboxList.do" class="mypage"> <img
 						src="/assets/common/images/headericon1.png" alt="" width="23px"
 						height="28px">
 					</a>
