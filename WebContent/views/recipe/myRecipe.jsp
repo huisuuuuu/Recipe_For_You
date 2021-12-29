@@ -31,9 +31,6 @@
 	
 	%>
 
-
-
-	
    
        <%@include file="/views/common/header3.jsp"%>
        

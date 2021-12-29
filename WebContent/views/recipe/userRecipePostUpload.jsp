@@ -29,7 +29,6 @@
 	<link rel="stylesheet" type="text/css" href="/assets/css/adminRecipeUpload.css">
 
 
-  <link rel="stylesheet" type="text/css" href="/assets/css/recipeHeaderFooter.css">
 <title>냉장고를 부탁해</title>
 
 </head>
@@ -157,7 +156,7 @@
 				</div>
 				<div id="recipeUpload">
 				<input type="submit" value="작성하기"/>
-				<button type="button"><a href="/recipeBoard/recipeBoardAllSelect.do">취소</a></button>
+				<button type="button"><a href="/recipe/recipeBoard/selectAll.do">취소</a></button>
 				</div>
 				<input type="file" id="thumbnailImage" name="recipeImage" accept="image/*" onchange="setThumbnail(event,'thumbnailImage');" style="display: none;"/>
 				<input type="file" id="recipeImage_1" name="recipeImage" style="display: none;"/>

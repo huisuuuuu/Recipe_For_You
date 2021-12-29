@@ -123,7 +123,7 @@
                 
                 <%if(m!=null) {%> 
                    <button type="button" class="btn btn-success" id="myRecipeBtn">MY Recipe</a></button>
-                    <button type="button" class="btn btn-success">레시피 등록</button>
+                    <button type="button" class="btn btn-success" id="recipeUploadBtn">레시피 등록</button>
                 
                 <%} %>  
 
@@ -143,6 +143,14 @@
 
 
 		</script>
+				<script>
+			$('#recipeUploadBtn').click(function(){
+				
+				location.replace("/views/recipe/userRecipePostUpload.jsp");
+				
+			});
+		</script>
+		
         
         
         
