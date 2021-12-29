@@ -43,10 +43,7 @@
 			</div>
 		</div>
 	</div>
-	<!-- footer -->
-	<%@include file="/views/common/footer.jsp"%>
-	<!-- 퀵바 -->
-	<%@include file="/views/common/quickbar.jsp"%>
+
 	<script>
 		$(function() {
 			$("#alertModal").modal("show");
