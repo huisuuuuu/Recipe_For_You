@@ -283,13 +283,6 @@ div {
 	text-decoration: none;
 }
 
-.form-control {
-	width: 600px;
-	border-radius: 20px 20px;
-	margin: 10px 0 0 0;
-}
-
-
 
 .myMenu, .login, .admin {
 	color: #5E5E5E;
