@@ -31,7 +31,7 @@
 
 <body>
 
-<jsp:include page="/assets/css/search.css"></jsp:include>
+
 
 <style>
 
@@ -238,12 +238,18 @@ color:gray;
     text-decoration: none;
     
 }
-.whole{
-padding-top: 200px;
+
+.content {
+	width: 100%;
+	max-width: 1280px;
+	height: 1500px;
+	margin: 33px auto 50px auto;
+	border: 1px solid white;
 }
 
+
 </style>
-<jsp:include page="/assets/common/head.jsp"></jsp:include>
+<jsp:include page="/views/common/header2.jsp"></jsp:include>
 
 
 <div class="whole">
@@ -276,7 +282,7 @@ String type =(String)request.getAttribute("type");
 <br><br><br>
 
 
-<div class="contents">
+<div class="content">
 
 
 <hr>
@@ -354,11 +360,11 @@ String type =(String)request.getAttribute("type");
 					
 <br><br><br>
 
-<div class="contents">
+<div class="content">
 <hr>
 </div>
 					
 					<%} %>
 					
 
-<jsp:include page="/assets/common/foot.jsp"></jsp:include>
+<jsp:include page="/views/common/footer.jsp"></jsp:include>
