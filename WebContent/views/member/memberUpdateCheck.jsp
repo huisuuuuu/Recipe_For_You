@@ -12,12 +12,10 @@
 	<%-- Required meta tags --%>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <%--font--%>
-    <style>    
-    @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR&family=Noto+Serif+KR:wght@200&display=swap');
-    </style>
-    <!-- header, footer css -->
-    <link rel="stylesheet" type="text/css" href="/assets/css/recipeHeaderFooter.css">
+	<!-- font -->
+	<style>
+	@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR&family=Noto+Serif+KR:wght@200&display=swap');
+	</style>
     <!-- CSS -->
     <link rel="stylesheet" type="text/css" href="/assets/css/memberUpdateCheck.css">
 <title>Insert title here</title>

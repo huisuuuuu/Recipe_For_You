@@ -28,8 +28,6 @@
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR&family=Noto+Serif+KR:wght@200&display=swap');
 </style>
-<!-- header, footer css -->
-<link rel="stylesheet" type="text/css" href="/assets/css/recipeHeaderFooter.css">
 <!-- CSS -->
 <link rel="stylesheet" type="text/css" href="/assets/css/memberFindIdPwd.css">
 
@@ -43,8 +41,7 @@
 			</div>
 			<br>
 			<ul class="tabs">
-				<li class="tab-link current" data-tab="tab-1">아이디 찾기</li>
-				<li class="tab-link" data-tab="tab-2" id="pwdTab">비밀번호 찾기</li>
+				<li class="tab-link current" data-tab="tab-1">아이디 찾기</li><li class="tab-link" data-tab="tab-2" id="pwdTab">비밀번호 찾기</li>
 			</ul>
 			<br />
 			<br />

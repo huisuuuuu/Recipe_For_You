@@ -21,15 +21,10 @@
 <%-- Required meta tags --%>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<%--font--%>
+<!-- font -->
 <style>
-@import
-	url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR&family=Noto+Serif+KR:wght@200&display=swap')
-	;
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR&family=Noto+Serif+KR:wght@200&display=swap');
 </style>
-<!-- header, footer css -->
-<link rel="stylesheet" type="text/css"
-	href="/assets/css/recipeHeaderFooter.css">
 <!-- CSS -->
 <link rel="stylesheet" type="text/css"
 	href="/assets/css/memberPwdChange.css">
@@ -39,8 +34,7 @@
 <body>
 		<%@ include file="/views/common/header2.jsp" %>	
 		<div id="innerContentWrapper">
-			<form action="/member/memberPwdChange.do" method="post"
-				id="pwdChangeForm">
+			<form action="/member/memberPwdChange.do" method="post" id="pwdChangeForm">
 				<div>
 				<H3 style=text-align:center>|  비밀번호 변경  |</H3>
 				</div>

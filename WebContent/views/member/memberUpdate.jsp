@@ -18,22 +18,13 @@
 	integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
 	crossorigin="anonymous"></script>
 <meta charset="UTF-8">
-<%-- Required meta tags --%>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<%--font--%>
+<!-- font -->
 <style>
-@import
-	url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR&family=Noto+Serif+KR:wght@200&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR&family=Noto+Serif+KR:wght@200&display=swap');
 </style>
-<!-- header, footer css -->
-<link rel="stylesheet" type="text/css"
-	href="/assets/css/recipeHeaderFooter.css">
 <!-- CSS -->
-<link rel="stylesheet" type="text/css"
-	href="/assets/css/memberUpdate.css">
-<title>Insert title here</title>
-
+<link rel="stylesheet" type="text/css" href="/assets/css/memberUpdate.css">
+<title>냉장고를 부탁해 회원 개인정보 수정</title>
 </head>
 <body>
 			<%@ include file="/views/common/header2.jsp" %>	
@@ -66,7 +57,7 @@
 						<input type="email" name="userEmail"
 							placeholder=" 예: member@join.com" data-name="이메일" vali="T"
 							class="essential" />
-						<button id="checkEmail" type="button">인증하기</button>
+						<button id="checkEmail" type="button" style="margin-left:5px;">인증하기</button>
 						<br>
 					</div>
 					<br />
@@ -75,7 +66,7 @@
 						<div class="td">
 							<input type="text" id="authKeyNo" placeholder="인증번호를 입력하세요"
 								data-name="이메일인증" />
-							<button id="authKeyCheck" type="button">인증번호확인</button>
+							<button id="authKeyCheck" type="button" style="margin-left:5px;">인증번호확인</button>
 							<br>
 						</div>
 						<br />

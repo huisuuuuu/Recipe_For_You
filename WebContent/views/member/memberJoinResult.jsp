@@ -20,25 +20,29 @@
 	src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
 	integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
 	crossorigin="anonymous"></script>
+<!-- font -->
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR&family=Noto+Serif+KR:wght@200&display=swap');
+</style>	
 <!-- CSS -->
 <link rel="stylesheet" type="text/css" href="/assets/css/memberMsg.css">
 <title>냉장고를 부탁해 회원가입</title>
 <style>
+
 </style>
 </head>
 <body>
 	<!-- 알림 Modal -->
-	<div class="modal fade Modal" id="alertModal" tabindex="-1"
-		aria-labelledby="alertModalLabel" aria-hidden="true">
+	<div class="modal fade Modal" id="alertModal" tabindex="-1" aria-labelledby="alertModalLabel" aria-hidden="true">
 		<div class="modal-dialog modal-dialog-scrollable">
 			<div class="modal-content">
 				<div class="modal-header">
-					<h5 class="modal-title" id="alertModalLabel">알림메세지</h5>
+					<h5 class="modal-title" id="alertModalLabel" style="font-family: 'Noto Sans KR', sans-serif; font-size:18px;">알림메세지</h5>
 					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 				</div>
-				<div class="modal-body" id="alertModalMSG"></div>
+				<div class="modal-body" id="alertModalMSG" style="font-family: 'Noto Sans KR', sans-serif;"></div>
 				<div class="modal-footer">
-					<a href="/"><button type="button" class="btn greenBtn" data-bs-dismiss="modal" id="#btn">확인</button></a>
+					<a href="/"><button type="button" class="btn greenBtn" data-bs-dismiss="modal" id="#btn" style="font-family: 'Noto Sans KR', sans-serif;">확인</button></a>
 				</div>
 			</div>
 		</div>

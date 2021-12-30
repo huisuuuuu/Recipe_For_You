@@ -18,23 +18,20 @@
 	integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
 	crossorigin="anonymous"></script>
 <meta charset="UTF-8">
-<%-- Required meta tags --%>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<%--font--%>
+<!-- font -->
 <style>
-@import
-	url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR&family=Noto+Serif+KR:wght@200&display=swap')
-	;
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR&family=Noto+Serif+KR:wght@200&display=swap');
 </style>
-<!-- header, footer css -->
-<link rel="stylesheet" type="text/css"
-	href="/assets/css/recipeHeaderFooter.css">
 <!-- CSS -->
-<link rel="stylesheet" type="text/css"
-	href="/assets/css/memberPwdChangeCheck.css">
+<link rel="stylesheet" type="text/css" href="/assets/css/memberPwdChangeCheck.css">
 <title>Insert title here</title>
-
+<style>
+#innerContentWrapper> * {
+	font-family: 'Noto Sans KR', sans-serif;
+	font-size: 90%;
+	letter-spacing: -0.04em;
+} 
+</style>
 </head>
 <body>
 		<%@ include file="/views/common/header2.jsp" %>	

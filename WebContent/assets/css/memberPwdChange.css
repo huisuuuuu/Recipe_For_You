@@ -2,6 +2,11 @@
 *{
     box-sizing: border-box;
 }
+#innerContentWrapper> * {
+	font-family: 'Noto Sans KR', sans-serif;
+	font-size: 90%;
+	letter-spacing: -0.04em;
+} 
 #innerContentWrapper {
     margin: 50px auto;
     min-height: 600px;
@@ -9,24 +14,13 @@
     height: 950px;
     padding: 20px;
 }
-#title{
-    margin: auto;
-    text-align: center;
-    font-size: 23px;
-    font-weight: 700;
-    border-left: 1px solid black;
-    border-right: 1px solid black;
-    width: 150px;
-    height: 20px;
-    line-height: 20px;
-}
 .th {
     float: left;
     width: 100px;
     height : 48px;
     text-align: left;
     line-height: 48px;
-    font-size: 16px;
+    font-size: 15px;
 }
 input{
     height : 50px;

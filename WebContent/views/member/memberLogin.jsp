@@ -15,26 +15,20 @@
 	crossorigin="anonymous"></script>
 <!-- jQuery Cookie -->
 <script src="https://cdn.jsdelivr.net/npm/js-cookie@3.0.1/dist/js.cookie.min.js"></script>
-<%-- Required meta tags --%>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
 <!-- CSS -->
- <link rel="stylesheet" type="text/css" href="/assets/css/memberLogin.css">
-
-<title>냉장고를 부탁해 회원 로그인</title>
+<link rel="stylesheet" type="text/css" href="/assets/css/memberLogin.css">
+<!-- font -->
 <style>
-
+/* @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR&family=Noto+Serif+KR:wght@200&display=swap'); */
 </style>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&family=Roboto:ital,wght@0,100;1,100&display=swap" rel="stylesheet">
+<title>냉장고를 부탁해 회원 로그인</title>
 			
 </head>
 <body >
 		<%@ include file="/views/common/header2.jsp" %>		
-
-
-	<!-- <div id="wrapper"> -->
-
-		
-<!-- 	<div class="contents"> -->
 		<div id="innerContentWrapper">
 			<form action="/member/memberLogin.do" method="post" id="loginForm">
 				<div>
@@ -82,8 +76,7 @@
 				</div>
 			</div>
 		</div>
-	<!-- </div> -->
-	<!-- </div> -->
+
 	<!-- 퀵바 -->
  	 <%@include file="/views/common/quickbar.jsp"%>
 	<div class="footer">
