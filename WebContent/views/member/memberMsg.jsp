@@ -36,10 +36,10 @@
 		<div class="modal-dialog modal-dialog-scrollable">
 			<div class="modal-content">
 				<div class="modal-header">
-					<h5 class="modal-title" id="alertModalLabel">알림메세지</h5>
+					<h5 class="modal-title" id="alertModalLabel" style="font-family: 'Noto Sans KR', sans-serif; font-size:18px;">알림메세지</h5>
 					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 				</div>
-				<div class="modal-body" id="alertModalMSG">${requestScope.msg }
+				<div class="modal-body" id="alertModalMSG" style="font-family: 'Noto Sans KR', sans-serif;">${requestScope.msg }
 				</div>
 				<div class="modal-footer">
 					<a href="${requestScope.addr }"><button type="button" class="btn greenBtn" data-bs-dismiss="modal" id="#btn">확인</button></a>
