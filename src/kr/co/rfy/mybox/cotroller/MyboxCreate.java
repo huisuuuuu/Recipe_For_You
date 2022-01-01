@@ -1,13 +1,9 @@
 package kr.co.rfy.mybox.cotroller;
 
 import java.io.IOException;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -15,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import kr.co.rfy.member.model.vo.Member;
 import kr.co.rfy.mybox.model.service.MyboxService;
 import kr.co.rfy.mybox.model.service.MyboxServiceImpl;
 import kr.co.rfy.mybox.model.vo.Mybox;
@@ -61,7 +58,7 @@ public class MyboxCreate extends HttpServlet {
 		
 		// USER_ID
 		HttpSession session = request.getSession();
-//		String userId = (String) session.getAttribute("user_id");
+		//String userId = ((Member)session.getAttribute("member")).getUserId();
 		String userId = "test1000";
 		
 		System.out.println("---------------------------------------------------");

@@ -83,6 +83,7 @@
 	String pageNavi =(String)kindPageDataMap.get("pageNavi");	
 	int currentPage = (int)request.getAttribute("currentPage");
 	String recipe=(String)request.getAttribute("recipe");
+	String type = (String)request.getAttribute("type");	
 	
 	
 	%>
@@ -161,10 +162,31 @@
            <div id="recipe_search">
                <form action="/recipe/recipeBoardSelectList.do" id="recipeSearch"  method="get" onchange="searchAllPost()">
                    <select name="type">
-                       <option value="latest_desc">최신순</option>
-                       <option value="like_desc">추천순</option>
+                    <%if(type.equals("latest_desc")) {%>
+                       <option value="latest_desc" selected >최신순</option>
+                       <option value="like_desc" >추천순</option>
                        <option value="level_asc">난이도</option>
                        <option value="time_asc">조리시간</option>
+
+					<%}else if(type.equals("like_desc")){ %>
+					   <option value="latest_desc" selected>최신순</option>
+                       <option value="like_desc" selected>추천순</option>
+                       <option value="level_asc">난이도</option>
+                       <option value="time_asc">조리시간</option>
+			
+					<%}else if(type.equals("level_asc")){ %>
+					   <option value="latest_desc">최신순</option>
+                       <option value="like_desc">추천순</option>
+                       <option value="level_asc" selected>난이도</option>
+                       <option value="time_asc">조리시간</option>
+
+					<%}else if(type.equals("time_asc")){ %>
+					   <option value="latest_desc">최신순</option>
+                       <option value="like_desc">추천순</option>
+                       <option value="level_asc">난이도</option>
+                       <option value="time_asc" selected>조리시간</option>
+
+					<%} %>
                    </select>
                    <input type="hidden" name="recipe" value="<%=recipe%>"/>
                 </form>               

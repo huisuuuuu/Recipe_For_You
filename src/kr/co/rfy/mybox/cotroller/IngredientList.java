@@ -36,7 +36,7 @@ public class IngredientList extends HttpServlet {
 		
 		String middle_code = request.getParameter("middle_code");
 		
-		System.out.println("@/mybox/IngredientList.do - middle_code : " + middle_code);
+		//System.out.println("@/mybox/IngredientList.do - middle_code : " + middle_code);
 		
 		MyboxService myboxService = new MyboxServiceImpl();
 		

@@ -69,6 +69,7 @@ public class RecipeBoardAllSelectServlet extends HttpServlet {
 		RequestDispatcher view = request.getRequestDispatcher("/views/recipe/recipeAll.jsp");
 		request.setAttribute("pageDataMap", pageDataMap);
 		request.setAttribute("currentPage", currentPage);
+		request.setAttribute("type", type);
 	
 		view.forward(request, response);
 	}

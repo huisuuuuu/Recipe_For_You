@@ -66,7 +66,7 @@
                		
                			<%for(OurRecipe o:list) {%>
 	                        <div class="recipe_content">
-	                        	<a href="/recipe/recipeSelectContent.do?boardNo=<%=o.getBoardNo()%>&currentPage=<%=currentPage %>" style="text-decoration: none; color: inherit;">
+	                        	<a href="/recipe/recipeSelectContent.do?boardNo=<%=o.getBoardNo()%>&currentPage=<%=currentPage %>&userId=<%=m.getUserId() %>" style="text-decoration: none; color: inherit;">
 		                            <div class="image" style="text-align: center"><img src="<%=o.getFilePath()%>" width="278" height="278" ></div>
 		                            <div class="subtitle" style="text-align:center" ><%=o.getSubTitle() %></div>
 		                            <div class="title" style="text-align:center"><b><%=o.getTitle() %></b></div>
