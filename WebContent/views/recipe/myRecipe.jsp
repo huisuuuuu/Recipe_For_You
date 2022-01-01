@@ -49,17 +49,7 @@
         </div>  
                   <div id="content_wrapper">
           <%if(!list.isEmpty()){ %>
-           <div id="recipe_search">
-       
-              <form action=" " method="">
-                   <select>
-                       <option value="latest_desc">최신순</option>
-                       <option value="like_desc">추천순</option>
-                       <option value="level_asc">난이도</option>
-                       <option value="time_asc">조리시간</option>
-                   </select>
-                </form>               
-           </div>
+         
             <div id="content_recipe_wrapper">
              <div class="content_recipe" id="recipe1">
                		

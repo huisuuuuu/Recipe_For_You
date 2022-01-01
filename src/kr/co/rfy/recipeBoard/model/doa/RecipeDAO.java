@@ -995,8 +995,8 @@ public ArrayList<OurRecipe> selectAllPostPageList(Connection conn, int currentPa
 		 		"LEFT JOIN RECIPE_FILE F ON(F.BOARD_NO=R.BOARD_NO) " + 
 		 		"WHERE R.END_YN='N' AND F.FILE_NO=1 AND R.USER_ID=?) " + 
 		 		"WHERE NUM BETWEEN ? AND ?";
-		
-		
+		 
+		 
 		 try {
 			pstmt=conn.prepareStatement(query);
 			
