@@ -53,6 +53,21 @@ public class RecipeSelectMyRecipeServlet extends HttpServlet {
 			currentPage = Integer.parseInt(request.getParameter("currentPage"));
 		}
 		
+		
+		//검색조건 값 받아오기 (최신,난이도,조리시간,추천순)
+		
+		String type=(String)request.getParameter("type");
+		
+		if(type==null)
+		{
+			type ="latest_desc";
+		}else 
+		{
+			type=(String)request.getParameter("type");
+		}
+		
+		
+		
 		//요청한 page 값을 갖고 페이지 목록화 처리 -> currentPage에 대한 글 목록 가져온다
 		
 		RecipeService rService = new RecipeServiceImpl();

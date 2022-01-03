@@ -37,7 +37,7 @@ public class DeleteMyBox extends HttpServlet {
 		
 		String my_box_no = request.getParameter("my_box_no");
 		
-		System.out.println("@/mybox/DeleteMyBox.do - my_box_no : " +  my_box_no);
+		//System.out.println("@/mybox/DeleteMyBox.do - my_box_no : " +  my_box_no);
 		
 		// 삭제 요청
 		int result =  0;

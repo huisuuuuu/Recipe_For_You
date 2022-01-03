@@ -85,7 +85,7 @@ public class RecipeBoardSelectkindServlet extends HttpServlet {
 		response.setCharacterEncoding("UTF-8");
 		request.setAttribute("kindPageDataMap", kindPageDataMap);
 		request.setAttribute("currentPage", currentPage);
-		
+		request.setAttribute("type", type);
 		
 		switch(recipeKind)	
 		{

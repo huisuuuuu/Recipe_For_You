@@ -807,7 +807,7 @@ a {
 	ArrayList<OurRecipe> bestRecipe = (ArrayList<OurRecipe>)request.getAttribute("bestRecipe");
 	LinkedList<RecipeWithFile>recipeWithFileList = (LinkedList<RecipeWithFile>)request.getAttribute("recipeWithFileList");
 	  
-			int currentPage = (int)request.getAttribute("currentPage");
+	int currentPage = (int)request.getAttribute("currentPage");
 			
 %>
 
@@ -955,7 +955,7 @@ a {
             <div class="contents1-title">RECIPES FOR YOU</div>
             <div class="contents1-subtitle">마이냉장고에 재료를 입력하고 레시피를 추천받아보세요.</div>
             <div class="contents1-image">
-                <div class="contents1-image-1"><a href="http://127.0.0.1/recipe/recipeSelectContent.do?boardNo=1&currentPage=1"><p id="explain1">${recipeWithFileList[0].title}</p><img src="${recipeWithFileList[0].file_path}" alt="" width="625px" height="550px"></a></div>
+               <div class="contents1-image-1"><a href="http://127.0.0.1/recipe/recipeSelectContent.do?boardNo=1&currentPage=1"><p id="explain1">${recipeWithFileList[0].title}</p><img src="${recipeWithFileList[0].file_path}" alt="" width="625px" height="550px"></a></div>
                 <div class="contents1-image-2"><a href="http://127.0.0.1/recipe/recipeSelectContent.do?boardNo=43&currentPage=1"><p id="explain1">${recipeWithFileList[1].title}</p><img src="${recipeWithFileList[1].file_path}" alt="" width="290px" height="257px"></a></div>
                 <div class="contents1-image-3"><a href="http://127.0.0.1/recipe/recipeSelectContent.do?boardNo=50&currentPage=1"><p id="explain1">${recipeWithFileList[2].title}</p><img src="${recipeWithFileList[2].file_path}" alt="" width="290px" height="260px"></a></div>
                 <div class="contents1-image-4"><a href="http://127.0.0.1/recipe/recipeSelectContent.do?boardNo=57&currentPage=1"><p id="explain1">${recipeWithFileList[3].title}</p><img src="${recipeWithFileList[3].file_path}" alt="" width="615px" height="259px"></a></div>
@@ -963,21 +963,30 @@ a {
             <div class="contents2-title">BEST RECIPES</div>
             <div class="contents2-button-more container"><a href="/recipe/recipeBoard/selectAll.do" type="button">더보기</a></div>
             
-            	
             <div id="content_recipe_wrapper" style="transform: translateY(20px)">
                      <div class="content_recipe" id="recipe1">
-               
-               
-               			
+                   
+                  <%if(m!=null) {%>   
          			<%for(OurRecipe bRe :bestRecipe){ %>
+                        <div class="recipe_content">																	
+                        	<a href="/recipe/recipeSelectContent.do?boardNo=<%=bRe.getBoardNo()%>&currentPage=<%=currentPage %>&userId=<%=bRe.getUserId()%>" style="text-decoration: none; color: inherit;">
+	                            <div class="image" style="text-align: center;"><p id ="explain"> <%=bRe.getTitle()%></p><img src="<%=bRe.getFilePath()%>" width="278" height="278" class="allImage" ></div>
+                            </a>
+                        </div>
+                       <%} %>
+                 <%}else{ %>
+                 		<%for(OurRecipe bRe :bestRecipe){ %>
                         <div class="recipe_content">																	
                         	<a href="/recipe/recipeSelectContent.do?boardNo=<%=bRe.getBoardNo()%>&currentPage=<%=currentPage %>" style="text-decoration: none; color: inherit;">
 	                            <div class="image" style="text-align: center;"><p id ="explain"> <%=bRe.getTitle()%></p><img src="<%=bRe.getFilePath()%>" width="278" height="278" class="allImage" ></div>
-	                          
                             </a>
                         </div>
                        <%} %>
                  
+                 
+                 
+                 
+                 <%} %>
 
         </div>
         </div>

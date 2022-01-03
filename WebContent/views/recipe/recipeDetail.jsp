@@ -69,7 +69,9 @@
 	if(m!=null)
 	{
 		myBoxList = (ArrayList<MyboxIngredient>)recipeDetailInfo.get("myBoxList");	
+		System.out.print(myBoxList);
 	}
+	
 	
 	%>
 
@@ -152,7 +154,7 @@
                 <table width="90%">
              
              
-
+		
           <%if(m!=null){ %> 
             
             
@@ -213,7 +215,7 @@
                
                
                
-                   
+          <%--비로그인일 경우 필요해요 기능 미실행--%>        
           <%}else{ %>   
                    
 		                   <%for(int i=0;i<ingredientList.size();i++) {%>

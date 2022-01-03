@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import kr.co.rfy.member.model.vo.Member;
 import kr.co.rfy.mybox.model.service.MyboxService;
 import kr.co.rfy.mybox.model.service.MyboxServiceImpl;
 import kr.co.rfy.mybox.model.vo.RecipeWithFile;
@@ -41,7 +42,7 @@ public class BestRecipeServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		
-		//best recipe 게시물 가져오기
+		//best recipe 게시물 가져오기(혜원)
 		int currentPage;
 		
 		if(request.getParameter("currentPage")==null)
@@ -58,13 +59,12 @@ public class BestRecipeServlet extends HttpServlet {
 		ArrayList<OurRecipe> bestRecipe	=rService.selectBestRecipe(currentPage);
 		
 		
-		//메인 페이지 상단 데이터 가져오기
-		
+		//메인 페이지 상단 데이터 가져오기(선원)
 		MyboxService myboxService = new MyboxServiceImpl();
 		
 		// USER_ID
 		HttpSession session = request.getSession();
-		//String userId = (String) session.getAttribute("user_id");
+		//String userId = ((Member) session.getAttribute("member")).getUserId();
 		String userId = "test1000";
 		System.out.println("======== userId: " + userId);
 		

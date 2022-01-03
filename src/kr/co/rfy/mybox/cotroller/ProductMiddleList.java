@@ -35,7 +35,7 @@ public class ProductMiddleList extends HttpServlet {
 		
 		String big_code = request.getParameter("big_code");
 		
-		System.out.println("@/mybox/ProductMiddleList.do - big_code : " + big_code);
+		//System.out.println("@/mybox/ProductMiddleList.do - big_code : " + big_code);
 		
 		MyboxService myboxService = new MyboxServiceImpl();
 		

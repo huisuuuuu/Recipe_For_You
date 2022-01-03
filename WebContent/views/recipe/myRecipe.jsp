@@ -49,24 +49,14 @@
         </div>  
                   <div id="content_wrapper">
           <%if(!list.isEmpty()){ %>
-           <div id="recipe_search">
-       
-              <form action=" " method="">
-                   <select>
-                       <option value="latest_desc">최신순</option>
-                       <option value="like_desc">추천순</option>
-                       <option value="level_asc">난이도</option>
-                       <option value="time_asc">조리시간</option>
-                   </select>
-                </form>               
-           </div>
+         
             <div id="content_recipe_wrapper">
              <div class="content_recipe" id="recipe1">
                		
                		
                			<%for(OurRecipe o:list) {%>
 	                        <div class="recipe_content">
-	                        	<a href="/recipe/recipeSelectContent.do?boardNo=<%=o.getBoardNo()%>&currentPage=<%=currentPage %>" style="text-decoration: none; color: inherit;">
+	                        	<a href="/recipe/recipeSelectContent.do?boardNo=<%=o.getBoardNo()%>&currentPage=<%=currentPage %>&userId=<%=m.getUserId() %>" style="text-decoration: none; color: inherit;">
 		                            <div class="image" style="text-align: center"><img src="<%=o.getFilePath()%>" width="278" height="278" ></div>
 		                            <div class="subtitle" style="text-align:center" ><%=o.getSubTitle() %></div>
 		                            <div class="title" style="text-align:center"><b><%=o.getTitle() %></b></div>
