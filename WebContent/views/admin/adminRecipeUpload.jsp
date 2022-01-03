@@ -88,8 +88,9 @@
 					</select> <select name="ingredient_Code" id="ingredientCode">
 						<option id="ingredientOption" value>소분류</option>
 					</select> <input type="text" maxlength="10" name="ingredient_Num"
-						id="ingredient_Num" placeholder="계량 정보 / 예)300g" />
-					<button id="ingredientBtn" type="button">추가</button>
+						id="ingredient_Num" placeholder="계량 정보 / 예)300g" />&nbsp&nbsp&nbsp&nbsp&nbsp
+					<button id="ingredientAddBtn" class="ingredientBtn" type="button">추가</button>
+					<button id="ingredientDelBtn" class="ingredientBtn" type="button">삭제</button>
 				</div>
 				<div id="ingredientContent" style="width: 650px; margin: 10px auto;">
 					<ul id="ingredientList" style="margin-left: 40px; padding: 0px;">
@@ -98,7 +99,7 @@
 
 				<script>
 				
-						$('#ingredientBtn').click(function() {
+						$('#ingredientAddBtn').click(function() {
 										
 										var $ingredientSelect = $('#ingredientCode option:selected');
 										var ingredient = $ingredientSelect
@@ -142,12 +143,15 @@
 				</script>
 				<div id="recipeStep" class="titleArea">
 					<span>조리법</span>
-					<button type="button" id="stepBtn">Step 추가</button>
+					<button type="button" id="stepAddBtn" class="stepBtn">Step 추가</button>
 				</div>
 				<div id="stepArea" style="width: 650px; margin: 20px auto;">
+					<%-- 
 					<div id="stepItem_1" class="step">
-						<p>Step1</p>
-						<label for="recipeImage_1">
+						<p>Step1
+						<i id="stepDelIcon" class="fas fa-trash-alt"></i>
+						</p>
+						<label for="recipeImage_1" style="float: left;">
 						<div id="stepImage_1" class="stepImage" style="margin-right: 5px;"></div>
 						</label>
 						<div id="stepText_1" class="stepText">
@@ -155,39 +159,20 @@
 								placeholder="조리법을 설명해주세요" style="resize: none;"></textarea>
 						</div>
 					</div>
+					--%>
 				</div>
 				<div id="recipeUpload">
 				<input type="submit" value="작성하기"/>
 				<button type="button"><a href="/recipeBoard/recipeBoardAllSelect.do">취소</a></button>
 				</div>
 				<input type="file" id="thumbnailImage" name="recipeImage" accept="image/*" style="display: none;"/>
-				<input type="file" id="recipeImage_1" name="recipeImage" style="display: none;"/>
+				<input type="file" id="recipeImage_1" name="recipeImage" style="display: none;" onchange="stepImg(this)"/>
 			</form>
 			
 			<script>
-				$(document).ready(function() {
-					$('#thumbnailImage').on("change", function() {
-						readURL(this);
-					});
-				});
+				var count = 1;
 
-				function readURL(input) {
-					if (input.files && input.files[0]) {
-						var reader = new FileReader();
-						reader.onload = function(e) {
-							$('#thumbnailUpload').attr('src', e.target.result);
-							$('#thumbnailUpload').prop('style', "width: 650px; height: 500px; margin: 0 auto; border-style: none;");
-							$('#thumbnail').prop('style', "background-image: none;");
-						}
-						reader.readAsDataURL(input.files[0]);
-					}
-				}
-			</script>
-
-			<script>
-				var count = 2;
-
-				$('#stepBtn').click(function() {
+				$('#stepAddBtn').click(function() {
 
 					var parentDiv = document.createElement("div");
 					var imageDiv = document.createElement("div");
@@ -201,6 +186,7 @@
 					parentDiv.setAttribute("class", "step");
 					
 					pTag.innerText = "Step" + count;
+					pTag.innerHTML += '<i id="stepDelIcon_'+count+'" class="fas fa-trash-alt stepDelIcon"></i>';
 					
 					labelTag.setAttribute("for", "recipeImage_" + count);
 					imageDiv.setAttribute("id", "stepImage_" + count)
@@ -224,11 +210,57 @@
 					inputTag.setAttribute("id", "recipeImage_"+count);
 					inputTag.setAttribute("name", "recipeImage");
 					inputTag.setAttribute("style", "display:none");
+					inputTag.setAttribute("onchange", "stepImg(this)");
 
 					$('#stepArea')[0].appendChild(parentDiv);
-					$('#recipePostFrm')[0].appendChild(inputTag);
+					$("#stepImage_" + count)[0].appendChild(inputTag);
 					count++;
-				})
+				});
+				
+				$('#stepDelIcon_1').click(function(){
+						alert("aa");
+				});
+				
+			</script>
+			
+				<script>
+				$(document).ready(function() {
+					$('#thumbnailImage').on("change", function() {
+						readURL(this);
+					});
+				});
+
+				function readURL(input) {
+					if (input.files && input.files[0]) {
+						var reader = new FileReader();
+						reader.onload = function(e) {
+							$('#thumbnailUpload').attr('src', e.target.result);
+							$('#thumbnailUpload').prop('style', "width: 650px; height: 500px; margin: 0 auto; border-style: none;");
+							$('#thumbnail').prop('style', "background-image: none;");
+						}
+						reader.readAsDataURL(input.files[0]);
+					}
+				}
+			</script>
+			
+			<script>
+			var num = 0;
+			
+			function stepImg(i){
+				var img = i.files; // files 를 사용하면 파일의 정보를 알 수 있음
+				var reader = new FileReader(); // FileReader 객체 사용
+				
+				reader.onload = function(rst){ // 이미지를 선택후 로딩이 완료되면 실행될 부분
+					
+					// 이미지는 base64 문자열로 추가
+					// 이 방법을 응용하면 선택한 이미지를 미리보기 할 수 있음
+					$("#stepImage_"+num).append('<img class="img" src="' + rst.target.result + '">'); // append 메소드를 사용해서 이미지 추가
+					$("#stepImage_"+num).prop("style","border-style: none;");
+					
+				}
+				reader.readAsDataURL(img[0]); // 파일을 읽는다, 배열이기 때문에 0 으로 접근
+				num++;
+			}
 			</script>
 		</div>
 		<div id="footer"></div>

@@ -25,12 +25,6 @@ div {
 	float: right;
 }
 
-#contents {
-	width: 85%;
-	height: auto;
-	float: right;
-}
-
 #footer {
 	width: 85%;
 	height: 50px;
@@ -156,27 +150,27 @@ div {
 }
 
 #ingredient>select {
-	width: 110px;
+	width: 100px;
 	height: 25px;
 	text-align: center;
 	margin: 3px 5px 0px 5px;
-	font-size: 14px;
+	font-size: 13px;
 	font-family: "Noto Serif KR", serif, Helvetica, "Helvetica Neue", Arial;
 }
 
 #ingredient>input {
-	width: 150px;
+	width: 130px;
 	height: 25px;
 	margin: 0 auto;
-	font-size: 14px;
+	font-size: 13px;
 	font-family: "Noto Serif KR", serif, Helvetica, "Helvetica Neue", Arial;
 }
 
 #ingredient>button {
-	float: right;
 	width: 45px;
 	height: 25px;
 	margin-top: 3px;
+	margin-left: 1px;
 	font-size: 14px;
 	font-weight: bold;
 	font-family: "Noto Serif KR", serif, Helvetica, "Helvetica Neue", Arial;
@@ -200,6 +194,15 @@ div {
 	border-radius: 7px 7px;
 	background-color: #E3EEE6;
 	font-size: 14px;
+}
+
+.stepDelIcon{
+	float: right;
+	margin-top: 9px;
+	margin-right: 6px;
+	font-size: 20px;
+	cursor: pointer;
+	
 }
 
 #ingredientList{
@@ -226,17 +229,16 @@ div {
 #ingredientList span {
 	width: 40%;
 	padding: 5px 0px;
-	margin: 0;
+	margin: 0 20px;
 	text-align: left;
 	color: #5E5E5E;
-	font-family: "Noto Serif KR", serif, Helvetica, "Helvetica Neue", Arial;
-	font-size: 13px;
 }
 
 .step {
 	width: 100%;
 	heigth: 300px;
 	margin: 20px auto;
+	overflow: hidden;
 }
 
 .step>p {
@@ -255,8 +257,17 @@ div {
 	background-size: contain;
 	background-repeat: no-repeat;
 	cursor: pointer;
+	overflow: hidden;
 }
 
+.img {
+	width: 200px;
+	height: 200px;
+}
+
+label {
+	overflow: hidden;
+}
 .stepText {
 	width: 440px;
 	height: 200px;
@@ -264,7 +275,6 @@ div {
 	font-size: 16px;
 	font-family: "Noto Serif KR", serif, Helvetica, "Helvetica Neue", Arial;
 }
-
 #recipeUpload{
 	
 	width: 100%;
